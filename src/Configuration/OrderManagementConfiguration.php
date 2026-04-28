@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EBay\OrderManagement\Configuration;
 
 final class OrderManagementConfiguration
@@ -12,6 +14,14 @@ final class OrderManagementConfiguration
     public ?string $accessToken = null;
 
     public bool $diagnosticLogging = false;
+
+    /** Default request options applied to every outbound request. */
+    public RequestOptions $defaultRequestOptions;
+
+    public function __construct()
+    {
+        $this->defaultRequestOptions = new RequestOptions();
+    }
 
     /** Hostnames tokens may be sent to — passed to AllowedHostsValidator. */
     public function getAllowedHosts(): array

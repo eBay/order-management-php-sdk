@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EBay\OrderManagement\Clients\Rest;
 
+use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
+use EBay\OrderManagement\Configuration\RequestOptions;
 use EBay\OrderManagement\Configuration\TokenContext;
 use EBay\OrderManagement\Generated\Fulfillment\FulfillmentApiClient;
 use EBay\OrderManagement\Generated\Fulfillment\Models\AcceptPaymentDisputeRequest;
@@ -21,39 +25,60 @@ use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillment;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentDetails;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentPagedCollection;
 use EBay\OrderManagement\Generated\Fulfillment\Models\UpdateEvidencePaymentDisputeRequest;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\OrderItemRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Issue_refund\Issue_refundRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Item\WithFulfillmentItemRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Order\OrderRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary\Payment_dispute_summaryRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Accept\AcceptRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Activity\ActivityRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Add_evidence\Add_evidenceRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Contest\ContestRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_evidence_content\Fetch_evidence_contentRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Update_evidence\Update_evidenceRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration;
 use Psr\Http\Message\StreamInterface;
 
 final class FulfillmentClient
 {
-    public function __construct(private readonly FulfillmentApiClient $kiota) {}
+    public function __construct(
+        private readonly FulfillmentApiClient $kiota,
+        private readonly OrderManagementConfiguration $config,
+    ) {}
 
     // ── Orders ────────────────────────────────────────────────────────────────
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getOrder(string $orderId, ?string $accessToken = null): ?Order
+    public function getOrder(string $orderId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Order
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->byOrderId($orderId)->get()->wait();
+        $rc = new OrderItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->byOrderId($orderId)->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getOrders(?string $accessToken = null): ?OrderSearchPagedCollection
+    public function getOrders(?string $accessToken = null, ?RequestOptions $requestOptions = null): ?OrderSearchPagedCollection
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->get()->wait();
+        $rc = new OrderRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function issueRefund(string $orderId, IssueRefundRequest $body, ?string $accessToken = null): ?Refund
+    public function issueRefund(string $orderId, IssueRefundRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Refund
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->byOrderId($orderId)->issue_refund()->post($body)->wait();
+        $rc = new Issue_refundRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->byOrderId($orderId)->issue_refund()->post($body, $rc)->wait();
     }
 
     // ── Shipping Fulfillments ─────────────────────────────────────────────────
@@ -61,28 +86,31 @@ final class FulfillmentClient
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getShippingFulfillments(string $orderId, ?string $accessToken = null): ?ShippingFulfillmentPagedCollection
+    public function getShippingFulfillments(string $orderId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillmentPagedCollection
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->get()->wait();
+        $rc = new Shipping_fulfillmentRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function createShippingFulfillment(string $orderId, ShippingFulfillmentDetails $body, ?string $accessToken = null): ?Shipping_fulfillmentPostResponse
+    public function createShippingFulfillment(string $orderId, ShippingFulfillmentDetails $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipping_fulfillmentPostResponse
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->post($body)->wait();
+        $rc = new Shipping_fulfillmentRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->post($body, $rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getShippingFulfillment(string $orderId, string $fulfillmentId, ?string $accessToken = null): ?ShippingFulfillment
+    public function getShippingFulfillment(string $orderId, string $fulfillmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillment
     {
         TokenContext::set($accessToken);
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get()->wait();
+        $rc = new WithFulfillmentItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get($rc)->wait();
     }
 
     // ── Payment Disputes ──────────────────────────────────────────────────────
@@ -90,81 +118,114 @@ final class FulfillmentClient
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getPaymentDispute(string $paymentDisputeId, ?string $accessToken = null): ?PaymentDispute
+    public function getPaymentDispute(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDispute
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get()->wait();
+        $rc = new WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getPaymentDisputeSummaries(?string $accessToken = null): ?DisputeSummaryResponse
+    public function getPaymentDisputeSummaries(?string $accessToken = null, ?RequestOptions $requestOptions = null): ?DisputeSummaryResponse
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute_summary()->get()->wait();
+        $rc = new Payment_dispute_summaryRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute_summary()->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getActivities(string $paymentDisputeId, ?string $accessToken = null): ?PaymentDisputeActivityHistory
+    public function getActivities(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDisputeActivityHistory
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get()->wait();
+        $rc = new ActivityRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function acceptPaymentDispute(string $paymentDisputeId, AcceptPaymentDisputeRequest $body, ?string $accessToken = null): void
+    public function acceptPaymentDispute(string $paymentDisputeId, AcceptPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         TokenContext::set($accessToken);
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body)->wait();
+        $rc = new AcceptRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body, $rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function contestPaymentDispute(string $paymentDisputeId, ContestPaymentDisputeRequest $body, ?string $accessToken = null): void
+    public function contestPaymentDispute(string $paymentDisputeId, ContestPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         TokenContext::set($accessToken);
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body)->wait();
+        $rc = new ContestRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body, $rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function addEvidence(string $paymentDisputeId, AddEvidencePaymentDisputeRequest $body, ?string $accessToken = null): ?AddEvidencePaymentDisputeResponse
+    public function addEvidence(string $paymentDisputeId, AddEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?AddEvidencePaymentDisputeResponse
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body)->wait();
+        $rc = new Add_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body, $rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function updateEvidence(string $paymentDisputeId, UpdateEvidencePaymentDisputeRequest $body, ?string $accessToken = null): void
+    public function updateEvidence(string $paymentDisputeId, UpdateEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         TokenContext::set($accessToken);
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body)->wait();
+        $rc = new Update_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body, $rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function fetchEvidenceContent(string $paymentDisputeId, ?string $accessToken = null): ?StreamInterface
+    public function fetchEvidenceContent(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?StreamInterface
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get()->wait();
+        $rc = new Fetch_evidence_contentRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait();
     }
 
     /**
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function uploadEvidenceFile(string $paymentDisputeId, ?string $accessToken = null): ?FileEvidence
+    public function uploadEvidenceFile(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?FileEvidence
     {
         TokenContext::set($accessToken);
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post()->wait();
+        $rc = new Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(null, $rc)->wait();
+    }
+
+    // ── Internal ──────────────────────────────────────────────────────────────
+
+    /**
+     * Merges default and per-call headers; default headers do not overwrite
+     * values already present (matching C# tryAdd semantics).
+     *
+     * @return array<string,string>
+     */
+    private function mergeHeaders(?RequestOptions $requestOptions): array
+    {
+        $merged = [];
+        // Default headers go in first (lower priority — tryAdd semantics)
+        foreach ($this->config->defaultRequestOptions->headers as $key => $value) {
+            $merged[$key] = $value;
+        }
+        // Per-call headers overwrite defaults
+        if ($requestOptions !== null) {
+            foreach ($requestOptions->headers as $key => $value) {
+                $merged[$key] = $value;
+            }
+        }
+        return $merged;
     }
 }

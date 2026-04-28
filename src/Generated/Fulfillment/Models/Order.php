@@ -1,0 +1,515 @@
+<?php
+
+namespace EBay\OrderManagement\Generated\Fulfillment\Models;
+
+use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
+use Microsoft\Kiota\Abstractions\Serialization\Parsable;
+use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
+use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
+use Microsoft\Kiota\Abstractions\Types\TypeUtils;
+
+/**
+ * This type contains the details of an order, including information about the buyer, order history, shipping fulfillments, line items, costs, payments, and order fulfillment status.
+*/
+class Order implements AdditionalDataHolder, Parsable 
+{
+    /**
+     * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+    */
+    private ?array $additionalData = null;
+    
+    /**
+     * @var Buyer|null $buyer This type contains information about the order's buyer.
+    */
+    private ?Buyer $buyer = null;
+    
+    /**
+     * @var string|null $buyerCheckoutNotes This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+    */
+    private ?string $buyerCheckoutNotes = null;
+    
+    /**
+     * @var CancelStatus|null $cancelStatus This type contains information about any requests that have been made to cancel an order.
+    */
+    private ?CancelStatus $cancelStatus = null;
+    
+    /**
+     * @var string|null $creationDate The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+    */
+    private ?string $creationDate = null;
+    
+    /**
+     * @var bool|null $ebayCollectAndRemitTax This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+    */
+    private ?bool $ebayCollectAndRemitTax = null;
+    
+    /**
+     * @var array<string>|null $fulfillmentHrefs This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+    */
+    private ?array $fulfillmentHrefs = null;
+    
+    /**
+     * @var array<FulfillmentStartInstruction>|null $fulfillmentStartInstructions This container consists of a set of specifications for fulfilling the order, including the type of fulfillment, shipping carrier and service, shipping address, and estimated delivery window. These instructions are derived from the buyer's and seller's eBay account preferences, the listing parameters, and the buyer's checkout selections. The seller can use them as a starting point for packaging, addressing, and shipping the order.<br><br><span class="tablenote"><strong>Note:</strong> Although this container is presented as an array, it currently returns only one set of fulfillment specifications. Additional array members will be supported in future functionality.</span>
+    */
+    private ?array $fulfillmentStartInstructions = null;
+    
+    /**
+     * @var string|null $lastModifiedDate The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+    */
+    private ?string $lastModifiedDate = null;
+    
+    /**
+     * @var array<LineItem>|null $lineItems This array contains the details for all line items that comprise the order.
+    */
+    private ?array $lineItems = null;
+    
+    /**
+     * @var string|null $orderFulfillmentStatus The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
+    */
+    private ?string $orderFulfillmentStatus = null;
+    
+    /**
+     * @var string|null $orderId The unique identifier of the order. This field is always returned.
+    */
+    private ?string $orderId = null;
+    
+    /**
+     * @var string|null $orderPaymentStatus The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
+    */
+    private ?string $orderPaymentStatus = null;
+    
+    /**
+     * @var PaymentSummary|null $paymentSummary This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+    */
+    private ?PaymentSummary $paymentSummary = null;
+    
+    /**
+     * @var PricingSummary|null $pricingSummary This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+    */
+    private ?PricingSummary $pricingSummary = null;
+    
+    /**
+     * @var Program|null $program This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+    */
+    private ?Program $program = null;
+    
+    /**
+     * @var string|null $salesRecordReference An eBay-generated identifier that is used to identify and manage orders through the Selling Manager and Selling Manager Pro tools. This order identifier can also be found on the Orders grid page and in the Sales Record pages in Seller Hub. A <strong>salesRecordReference</strong> number is only generated and returned at the order level, and not at the order line item level.<br><br> In cases where the seller does not have a Selling Manager or Selling Manager Pro subscription nor access to Seller Hub, this field may not be returned.
+    */
+    private ?string $salesRecordReference = null;
+    
+    /**
+     * @var string|null $sellerId The unique eBay user ID of the seller who sold the order.
+    */
+    private ?string $sellerId = null;
+    
+    /**
+     * @var Amount|null $totalFeeBasisAmount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+    */
+    private ?Amount $totalFeeBasisAmount = null;
+    
+    /**
+     * @var Amount|null $totalMarketplaceFee This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+    */
+    private ?Amount $totalMarketplaceFee = null;
+    
+    /**
+     * Instantiates a new Order and sets the default values.
+    */
+    public function __construct() {
+        $this->setAdditionalData([]);
+    }
+
+    /**
+     * Creates a new instance of the appropriate class based on discriminator value
+     * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
+     * @return Order
+    */
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): Order {
+        return new Order();
+    }
+
+    /**
+     * Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @return array<string, mixed>|null
+    */
+    public function getAdditionalData(): ?array {
+        return $this->additionalData;
+    }
+
+    /**
+     * Gets the buyer property value. This type contains information about the order's buyer.
+     * @return Buyer|null
+    */
+    public function getBuyer(): ?Buyer {
+        return $this->buyer;
+    }
+
+    /**
+     * Gets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * @return string|null
+    */
+    public function getBuyerCheckoutNotes(): ?string {
+        return $this->buyerCheckoutNotes;
+    }
+
+    /**
+     * Gets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * @return CancelStatus|null
+    */
+    public function getCancelStatus(): ?CancelStatus {
+        return $this->cancelStatus;
+    }
+
+    /**
+     * Gets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @return string|null
+    */
+    public function getCreationDate(): ?string {
+        return $this->creationDate;
+    }
+
+    /**
+     * Gets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+     * @return bool|null
+    */
+    public function getEbayCollectAndRemitTax(): ?bool {
+        return $this->ebayCollectAndRemitTax;
+    }
+
+    /**
+     * The deserialization information for the current model
+     * @return array<string, callable(ParseNode): void>
+    */
+    public function getFieldDeserializers(): array {
+        $o = $this;
+        return  [
+            'buyer' => fn(ParseNode $n) => $o->setBuyer($n->getObjectValue([Buyer::class, 'createFromDiscriminatorValue'])),
+            'buyerCheckoutNotes' => fn(ParseNode $n) => $o->setBuyerCheckoutNotes($n->getStringValue()),
+            'cancelStatus' => fn(ParseNode $n) => $o->setCancelStatus($n->getObjectValue([CancelStatus::class, 'createFromDiscriminatorValue'])),
+            'creationDate' => fn(ParseNode $n) => $o->setCreationDate($n->getStringValue()),
+            'ebayCollectAndRemitTax' => fn(ParseNode $n) => $o->setEbayCollectAndRemitTax($n->getBooleanValue()),
+            'fulfillmentHrefs' => function (ParseNode $n) {
+                $val = $n->getCollectionOfPrimitiveValues();
+                if (is_array($val)) {
+                    TypeUtils::validateCollectionValues($val, 'string');
+                }
+                /** @var array<string>|null $val */
+                $this->setFulfillmentHrefs($val);
+            },
+            'fulfillmentStartInstructions' => fn(ParseNode $n) => $o->setFulfillmentStartInstructions($n->getCollectionOfObjectValues([FulfillmentStartInstruction::class, 'createFromDiscriminatorValue'])),
+            'lastModifiedDate' => fn(ParseNode $n) => $o->setLastModifiedDate($n->getStringValue()),
+            'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([LineItem::class, 'createFromDiscriminatorValue'])),
+            'orderFulfillmentStatus' => fn(ParseNode $n) => $o->setOrderFulfillmentStatus($n->getStringValue()),
+            'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
+            'orderPaymentStatus' => fn(ParseNode $n) => $o->setOrderPaymentStatus($n->getStringValue()),
+            'paymentSummary' => fn(ParseNode $n) => $o->setPaymentSummary($n->getObjectValue([PaymentSummary::class, 'createFromDiscriminatorValue'])),
+            'pricingSummary' => fn(ParseNode $n) => $o->setPricingSummary($n->getObjectValue([PricingSummary::class, 'createFromDiscriminatorValue'])),
+            'program' => fn(ParseNode $n) => $o->setProgram($n->getObjectValue([Program::class, 'createFromDiscriminatorValue'])),
+            'salesRecordReference' => fn(ParseNode $n) => $o->setSalesRecordReference($n->getStringValue()),
+            'sellerId' => fn(ParseNode $n) => $o->setSellerId($n->getStringValue()),
+            'totalFeeBasisAmount' => fn(ParseNode $n) => $o->setTotalFeeBasisAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
+            'totalMarketplaceFee' => fn(ParseNode $n) => $o->setTotalMarketplaceFee($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
+        ];
+    }
+
+    /**
+     * Gets the fulfillmentHrefs property value. This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * @return array<string>|null
+    */
+    public function getFulfillmentHrefs(): ?array {
+        return $this->fulfillmentHrefs;
+    }
+
+    /**
+     * Gets the fulfillmentStartInstructions property value. This container consists of a set of specifications for fulfilling the order, including the type of fulfillment, shipping carrier and service, shipping address, and estimated delivery window. These instructions are derived from the buyer's and seller's eBay account preferences, the listing parameters, and the buyer's checkout selections. The seller can use them as a starting point for packaging, addressing, and shipping the order.<br><br><span class="tablenote"><strong>Note:</strong> Although this container is presented as an array, it currently returns only one set of fulfillment specifications. Additional array members will be supported in future functionality.</span>
+     * @return array<FulfillmentStartInstruction>|null
+    */
+    public function getFulfillmentStartInstructions(): ?array {
+        return $this->fulfillmentStartInstructions;
+    }
+
+    /**
+     * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @return string|null
+    */
+    public function getLastModifiedDate(): ?string {
+        return $this->lastModifiedDate;
+    }
+
+    /**
+     * Gets the lineItems property value. This array contains the details for all line items that comprise the order.
+     * @return array<LineItem>|null
+    */
+    public function getLineItems(): ?array {
+        return $this->lineItems;
+    }
+
+    /**
+     * Gets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
+     * @return string|null
+    */
+    public function getOrderFulfillmentStatus(): ?string {
+        return $this->orderFulfillmentStatus;
+    }
+
+    /**
+     * Gets the orderId property value. The unique identifier of the order. This field is always returned.
+     * @return string|null
+    */
+    public function getOrderId(): ?string {
+        return $this->orderId;
+    }
+
+    /**
+     * Gets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
+     * @return string|null
+    */
+    public function getOrderPaymentStatus(): ?string {
+        return $this->orderPaymentStatus;
+    }
+
+    /**
+     * Gets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * @return PaymentSummary|null
+    */
+    public function getPaymentSummary(): ?PaymentSummary {
+        return $this->paymentSummary;
+    }
+
+    /**
+     * Gets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * @return PricingSummary|null
+    */
+    public function getPricingSummary(): ?PricingSummary {
+        return $this->pricingSummary;
+    }
+
+    /**
+     * Gets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * @return Program|null
+    */
+    public function getProgram(): ?Program {
+        return $this->program;
+    }
+
+    /**
+     * Gets the salesRecordReference property value. An eBay-generated identifier that is used to identify and manage orders through the Selling Manager and Selling Manager Pro tools. This order identifier can also be found on the Orders grid page and in the Sales Record pages in Seller Hub. A <strong>salesRecordReference</strong> number is only generated and returned at the order level, and not at the order line item level.<br><br> In cases where the seller does not have a Selling Manager or Selling Manager Pro subscription nor access to Seller Hub, this field may not be returned.
+     * @return string|null
+    */
+    public function getSalesRecordReference(): ?string {
+        return $this->salesRecordReference;
+    }
+
+    /**
+     * Gets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * @return string|null
+    */
+    public function getSellerId(): ?string {
+        return $this->sellerId;
+    }
+
+    /**
+     * Gets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @return Amount|null
+    */
+    public function getTotalFeeBasisAmount(): ?Amount {
+        return $this->totalFeeBasisAmount;
+    }
+
+    /**
+     * Gets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @return Amount|null
+    */
+    public function getTotalMarketplaceFee(): ?Amount {
+        return $this->totalMarketplaceFee;
+    }
+
+    /**
+     * Serializes information the current object
+     * @param SerializationWriter $writer Serialization writer to use to serialize this model
+    */
+    public function serialize(SerializationWriter $writer): void {
+        $writer->writeObjectValue('buyer', $this->getBuyer());
+        $writer->writeStringValue('buyerCheckoutNotes', $this->getBuyerCheckoutNotes());
+        $writer->writeObjectValue('cancelStatus', $this->getCancelStatus());
+        $writer->writeStringValue('creationDate', $this->getCreationDate());
+        $writer->writeBooleanValue('ebayCollectAndRemitTax', $this->getEbayCollectAndRemitTax());
+        $writer->writeCollectionOfPrimitiveValues('fulfillmentHrefs', $this->getFulfillmentHrefs());
+        $writer->writeCollectionOfObjectValues('fulfillmentStartInstructions', $this->getFulfillmentStartInstructions());
+        $writer->writeStringValue('lastModifiedDate', $this->getLastModifiedDate());
+        $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
+        $writer->writeStringValue('orderFulfillmentStatus', $this->getOrderFulfillmentStatus());
+        $writer->writeStringValue('orderId', $this->getOrderId());
+        $writer->writeStringValue('orderPaymentStatus', $this->getOrderPaymentStatus());
+        $writer->writeObjectValue('paymentSummary', $this->getPaymentSummary());
+        $writer->writeObjectValue('pricingSummary', $this->getPricingSummary());
+        $writer->writeObjectValue('program', $this->getProgram());
+        $writer->writeStringValue('salesRecordReference', $this->getSalesRecordReference());
+        $writer->writeStringValue('sellerId', $this->getSellerId());
+        $writer->writeObjectValue('totalFeeBasisAmount', $this->getTotalFeeBasisAmount());
+        $writer->writeObjectValue('totalMarketplaceFee', $this->getTotalMarketplaceFee());
+        $writer->writeAdditionalData($this->getAdditionalData());
+    }
+
+    /**
+     * Sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     * @param array<string,mixed> $value Value to set for the AdditionalData property.
+    */
+    public function setAdditionalData(?array $value): void {
+        $this->additionalData = $value;
+    }
+
+    /**
+     * Sets the buyer property value. This type contains information about the order's buyer.
+     * @param Buyer|null $value Value to set for the buyer property.
+    */
+    public function setBuyer(?Buyer $value): void {
+        $this->buyer = $value;
+    }
+
+    /**
+     * Sets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * @param string|null $value Value to set for the buyerCheckoutNotes property.
+    */
+    public function setBuyerCheckoutNotes(?string $value): void {
+        $this->buyerCheckoutNotes = $value;
+    }
+
+    /**
+     * Sets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * @param CancelStatus|null $value Value to set for the cancelStatus property.
+    */
+    public function setCancelStatus(?CancelStatus $value): void {
+        $this->cancelStatus = $value;
+    }
+
+    /**
+     * Sets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @param string|null $value Value to set for the creationDate property.
+    */
+    public function setCreationDate(?string $value): void {
+        $this->creationDate = $value;
+    }
+
+    /**
+     * Sets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+     * @param bool|null $value Value to set for the ebayCollectAndRemitTax property.
+    */
+    public function setEbayCollectAndRemitTax(?bool $value): void {
+        $this->ebayCollectAndRemitTax = $value;
+    }
+
+    /**
+     * Sets the fulfillmentHrefs property value. This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * @param array<string>|null $value Value to set for the fulfillmentHrefs property.
+    */
+    public function setFulfillmentHrefs(?array $value): void {
+        $this->fulfillmentHrefs = $value;
+    }
+
+    /**
+     * Sets the fulfillmentStartInstructions property value. This container consists of a set of specifications for fulfilling the order, including the type of fulfillment, shipping carrier and service, shipping address, and estimated delivery window. These instructions are derived from the buyer's and seller's eBay account preferences, the listing parameters, and the buyer's checkout selections. The seller can use them as a starting point for packaging, addressing, and shipping the order.<br><br><span class="tablenote"><strong>Note:</strong> Although this container is presented as an array, it currently returns only one set of fulfillment specifications. Additional array members will be supported in future functionality.</span>
+     * @param array<FulfillmentStartInstruction>|null $value Value to set for the fulfillmentStartInstructions property.
+    */
+    public function setFulfillmentStartInstructions(?array $value): void {
+        $this->fulfillmentStartInstructions = $value;
+    }
+
+    /**
+     * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @param string|null $value Value to set for the lastModifiedDate property.
+    */
+    public function setLastModifiedDate(?string $value): void {
+        $this->lastModifiedDate = $value;
+    }
+
+    /**
+     * Sets the lineItems property value. This array contains the details for all line items that comprise the order.
+     * @param array<LineItem>|null $value Value to set for the lineItems property.
+    */
+    public function setLineItems(?array $value): void {
+        $this->lineItems = $value;
+    }
+
+    /**
+     * Sets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
+     * @param string|null $value Value to set for the orderFulfillmentStatus property.
+    */
+    public function setOrderFulfillmentStatus(?string $value): void {
+        $this->orderFulfillmentStatus = $value;
+    }
+
+    /**
+     * Sets the orderId property value. The unique identifier of the order. This field is always returned.
+     * @param string|null $value Value to set for the orderId property.
+    */
+    public function setOrderId(?string $value): void {
+        $this->orderId = $value;
+    }
+
+    /**
+     * Sets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
+     * @param string|null $value Value to set for the orderPaymentStatus property.
+    */
+    public function setOrderPaymentStatus(?string $value): void {
+        $this->orderPaymentStatus = $value;
+    }
+
+    /**
+     * Sets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * @param PaymentSummary|null $value Value to set for the paymentSummary property.
+    */
+    public function setPaymentSummary(?PaymentSummary $value): void {
+        $this->paymentSummary = $value;
+    }
+
+    /**
+     * Sets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * @param PricingSummary|null $value Value to set for the pricingSummary property.
+    */
+    public function setPricingSummary(?PricingSummary $value): void {
+        $this->pricingSummary = $value;
+    }
+
+    /**
+     * Sets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * @param Program|null $value Value to set for the program property.
+    */
+    public function setProgram(?Program $value): void {
+        $this->program = $value;
+    }
+
+    /**
+     * Sets the salesRecordReference property value. An eBay-generated identifier that is used to identify and manage orders through the Selling Manager and Selling Manager Pro tools. This order identifier can also be found on the Orders grid page and in the Sales Record pages in Seller Hub. A <strong>salesRecordReference</strong> number is only generated and returned at the order level, and not at the order line item level.<br><br> In cases where the seller does not have a Selling Manager or Selling Manager Pro subscription nor access to Seller Hub, this field may not be returned.
+     * @param string|null $value Value to set for the salesRecordReference property.
+    */
+    public function setSalesRecordReference(?string $value): void {
+        $this->salesRecordReference = $value;
+    }
+
+    /**
+     * Sets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * @param string|null $value Value to set for the sellerId property.
+    */
+    public function setSellerId(?string $value): void {
+        $this->sellerId = $value;
+    }
+
+    /**
+     * Sets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @param Amount|null $value Value to set for the totalFeeBasisAmount property.
+    */
+    public function setTotalFeeBasisAmount(?Amount $value): void {
+        $this->totalFeeBasisAmount = $value;
+    }
+
+    /**
+     * Sets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @param Amount|null $value Value to set for the totalMarketplaceFee property.
+    */
+    public function setTotalMarketplaceFee(?Amount $value): void {
+        $this->totalMarketplaceFee = $value;
+    }
+
+}

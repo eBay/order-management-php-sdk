@@ -1,0 +1,64 @@
+<?php
+
+namespace EBay\OrderManagement\Generated\Fulfillment;
+
+use EBay\OrderManagement\Generated\Fulfillment\Order\OrderRequestBuilder;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary\Payment_dispute_summaryRequestBuilder;
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Payment_disputeRequestBuilder;
+use Microsoft\Kiota\Abstractions\ApiClientBuilder;
+use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
+use Microsoft\Kiota\Abstractions\RequestAdapter;
+use Microsoft\Kiota\Serialization\Form\FormParseNodeFactory;
+use Microsoft\Kiota\Serialization\Form\FormSerializationWriterFactory;
+use Microsoft\Kiota\Serialization\Json\JsonParseNodeFactory;
+use Microsoft\Kiota\Serialization\Json\JsonSerializationWriterFactory;
+use Microsoft\Kiota\Serialization\Multipart\MultipartSerializationWriterFactory;
+use Microsoft\Kiota\Serialization\Text\TextParseNodeFactory;
+use Microsoft\Kiota\Serialization\Text\TextSerializationWriterFactory;
+
+/**
+ * The main entry point of the SDK, exposes the configuration and the fluent API.
+*/
+class FulfillmentApiClient extends BaseRequestBuilder 
+{
+    /**
+     * The order property
+    */
+    public function order(): OrderRequestBuilder {
+        return new OrderRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The payment_dispute property
+    */
+    public function payment_dispute(): Payment_disputeRequestBuilder {
+        return new Payment_disputeRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * The payment_dispute_summary property
+    */
+    public function payment_dispute_summary(): Payment_dispute_summaryRequestBuilder {
+        return new Payment_dispute_summaryRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
+    /**
+     * Instantiates a new FulfillmentApiClient and sets the default values.
+     * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
+    */
+    public function __construct(RequestAdapter $requestAdapter) {
+        parent::__construct($requestAdapter, [], '{+baseurl}');
+        ApiClientBuilder::registerDefaultSerializer(JsonSerializationWriterFactory::class);
+        ApiClientBuilder::registerDefaultSerializer(TextSerializationWriterFactory::class);
+        ApiClientBuilder::registerDefaultSerializer(FormSerializationWriterFactory::class);
+        ApiClientBuilder::registerDefaultSerializer(MultipartSerializationWriterFactory::class);
+        ApiClientBuilder::registerDefaultDeserializer(JsonParseNodeFactory::class);
+        ApiClientBuilder::registerDefaultDeserializer(TextParseNodeFactory::class);
+        ApiClientBuilder::registerDefaultDeserializer(FormParseNodeFactory::class);
+        if (empty($this->requestAdapter->getBaseUrl())) {
+            $this->requestAdapter->setBaseUrl('https://api.ebay.com{basePath}');
+        }
+        $this->pathParameters['baseurl'] = $this->requestAdapter->getBaseUrl();
+    }
+
+}

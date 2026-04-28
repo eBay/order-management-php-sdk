@@ -1,0 +1,39 @@
+<?php
+
+namespace EBay\OrderManagement\Generated\Fulfillment\Payment_dispute;
+
+use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\WithPayment_dispute_ItemRequestBuilder;
+use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
+use Microsoft\Kiota\Abstractions\RequestAdapter;
+
+/**
+ * Builds and executes requests for operations under /payment_dispute
+*/
+class Payment_disputeRequestBuilder extends BaseRequestBuilder 
+{
+    /**
+     * Gets an item from the EBay/OrderManagement/Generated/Fulfillment.payment_dispute.item collection
+     * @param string $payment_dispute_id This parameter is used to specify the unique identifier of the payment dispute being retrieved.<br><br> Use the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputeSummaries" target="_blank ">getPaymentDisputeSummaries</a> method to retrieve payment dispute IDs.
+     * @return WithPayment_dispute_ItemRequestBuilder
+    */
+    public function byPayment_dispute_id(string $payment_dispute_id): WithPayment_dispute_ItemRequestBuilder {
+        $urlTplParams = $this->pathParameters;
+        $urlTplParams['payment_dispute_id'] = $payment_dispute_id;
+        return new WithPayment_dispute_ItemRequestBuilder($urlTplParams, $this->requestAdapter);
+    }
+
+    /**
+     * Instantiates a new Payment_disputeRequestBuilder and sets the default values.
+     * @param array<string, mixed>|string $pathParametersOrRawUrl Path parameters for the request or a String representing the raw URL.
+     * @param RequestAdapter $requestAdapter The request adapter to use to execute the requests.
+    */
+    public function __construct($pathParametersOrRawUrl, RequestAdapter $requestAdapter) {
+        parent::__construct($requestAdapter, [], '{+baseurl}/payment_dispute');
+        if (is_array($pathParametersOrRawUrl)) {
+            $this->pathParameters = $pathParametersOrRawUrl;
+        } else {
+            $this->pathParameters = ['request-raw-url' => $pathParametersOrRawUrl];
+        }
+    }
+
+}

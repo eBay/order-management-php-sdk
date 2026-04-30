@@ -11,9 +11,8 @@ final class CancellationOperations
                 ... on ApproveContractCancellationSuccess {
                     contractCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on ContractCancellationActionNotPermittedError { errorCode errorMessage }
@@ -35,9 +34,8 @@ final class CancellationOperations
                 ... on ContractCancellationSuccess {
                     contractCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on ContractCancellationNotFoundError { errorCode errorMessage }
@@ -52,9 +50,8 @@ final class CancellationOperations
                 ... on CreateItemCommitmentCancellationSuccess {
                     itemCommitmentCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on ItemCommitmentCancellationEligibilityError { errorCode errorMessage }
@@ -70,9 +67,8 @@ final class CancellationOperations
                 ... on CreateOrderCancellationSuccess {
                     orderCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on OrderCancellationEligibilityError { errorCode errorMessage }
@@ -95,9 +91,8 @@ final class CancellationOperations
                 ... on CreatePurchaseQuoteCancellationSuccess {
                     purchaseQuoteCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on PurchaseQuoteCancellationEligibilityError { errorCode errorMessage }
@@ -113,9 +108,8 @@ final class CancellationOperations
                 ... on DeclineContractCancellationSuccess {
                     contractCancellation {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                 }
                 ... on ContractCancellationActionNotPermittedError { errorCode errorMessage }
@@ -132,14 +126,12 @@ final class CancellationOperations
                 ... on SellerContractCancellationsSuccess {
                     contractCancellations {
                         cancellationId
-                        cancellationState
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
                     }
                     pagination {
                         nextCursor
                         previousCursor
-                        total
                     }
                 }
                 ... on ContractCancellationInvalidDateRangeError { errorCode errorMessage }

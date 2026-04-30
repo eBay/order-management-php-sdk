@@ -10,9 +10,8 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
-                    creationDate
-                    lastModifiedDate
+                    status { code }
+                    requestedAt
                 }
                 ... on ApproveReturnInputValidationError { errorCode errorMessage }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
@@ -27,7 +26,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on AttachReturnShipmentLabelInputValidationError { errorCode errorMessage }
                 ... on MultipleReturnLabelsNotSupportedError { errorCode errorMessage }
@@ -45,7 +44,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on DeclineReturnInputValidationError { errorCode errorMessage }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
@@ -60,9 +59,9 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
-                    creationDate
-                    lastModifiedDate
+                    status { code }
+                    requestedAt
+                    closedAt
                 }
                 ... on ReturnNotFoundError { errorCode errorMessage }
             }
@@ -75,7 +74,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on MultipleRefundWithholdingsNotAllowedError { errorCode errorMessage }
                 ... on ProcessReturnRefundInputValidationError { errorCode errorMessage }
@@ -98,7 +97,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on MultipleRefundTermsNotAllowedError { errorCode errorMessage }
                 ... on ProposeKeepItemWithPartialRefundInputValidationError { errorCode errorMessage }
@@ -116,7 +115,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on ProvideRmaNumberInputValidationError { errorCode errorMessage }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
@@ -131,7 +130,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on RecordReturnLabelSentOfflineInputValidationError { errorCode errorMessage }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
@@ -146,7 +145,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
                 ... on ReturnNotFoundError { errorCode errorMessage }
@@ -159,16 +158,15 @@ final class ReturnOperations
             sellerOrderReturns(input: $input) {
                 __typename
                 ... on SellerOrderReturns {
-                    returns {
+                    orderReturns {
                         returnId
-                        status
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        requestedAt
+                        closedAt
                     }
                     pagination {
                         nextCursor
                         previousCursor
-                        total
                     }
                 }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
@@ -185,7 +183,7 @@ final class ReturnOperations
                 __typename
                 ... on SellerReturnPreferences {
                     listingMarketplace
-                    rmaRequired
+                    rmaPreference { preferenceStatus }
                 }
                 ... on ReturnPreferenceNotFoundError { errorCode errorMessage }
             }
@@ -198,7 +196,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
                 ... on ReturnNotFoundError { errorCode errorMessage }
@@ -213,7 +211,7 @@ final class ReturnOperations
                 __typename
                 ... on OrderReturn {
                     returnId
-                    status
+                    status { code }
                 }
                 ... on ReturnActionNotPermittedError { errorCode errorMessage }
                 ... on ReturnNotFoundError { errorCode errorMessage }
@@ -228,7 +226,7 @@ final class ReturnOperations
                 __typename
                 ... on SellerReturnPreferences {
                     listingMarketplace
-                    rmaRequired
+                    rmaPreference { preferenceStatus }
                 }
                 ... on ReturnPreferenceNotFoundError { errorCode errorMessage }
             }

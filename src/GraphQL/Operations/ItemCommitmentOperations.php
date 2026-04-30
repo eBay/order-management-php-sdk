@@ -10,15 +10,12 @@ final class ItemCommitmentOperations
                 sellerItemCommitments(input: {}) {
                     itemCommitments {
                         itemCommitmentId
-                        status
-                        quantity
-                        creationDate
-                        lastModifiedDate
+                        createdAt
+                        updatedAt
                     }
                     pagination {
                         nextCursor
                         previousCursor
-                        total
                     }
                 }
             }
@@ -32,22 +29,19 @@ final class ItemCommitmentOperations
                 ... on ItemCommitmentsByIdsSuccess {
                     itemCommitments {
                         itemCommitmentId
-                        status
-                        quantity
-                        creationDate
-                        lastModifiedDate
+                        createdAt
+                        updatedAt
                     }
                 }
                 ... on ItemCommitmentsByIdsPartialFailure {
                     itemCommitments {
                         itemCommitmentId
-                        status
-                        quantity
+                        createdAt
                     }
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputItemCommitmentId retryable }
                 }
                 ... on ItemCommitmentsByIdsCompleteFailure {
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputItemCommitmentId retryable }
                 }
             }
         }
@@ -58,14 +52,14 @@ final class ItemCommitmentOperations
             markOrdersPaid(input: $input) {
                 __typename
                 ... on MarkOrdersPaidSuccess {
-                    orders { orderId paidDate }
+                    markPaidOrders { orderId placedAt updatedAt }
                 }
                 ... on MarkOrdersPaidPartialFailure {
-                    successfulOrders { orderId paidDate }
-                    failedOrders { orderId errors { errorCode errorMessage } }
+                    markPaidOrders { orderId placedAt updatedAt }
+                    failures { errorCode displayMessage inputOrderId retryable }
                 }
                 ... on MarkOrdersPaidCompleteFailure {
-                    failedOrders { orderId errors { errorCode errorMessage } }
+                    failures { errorCode displayMessage inputOrderId retryable }
                 }
             }
         }
@@ -76,24 +70,22 @@ final class ItemCommitmentOperations
             orderLineItemsByIds(input: $input) {
                 __typename
                 ... on OrderLineItemsByIdsSuccess {
-                    orderLineItems {
-                        lineItemId
-                        orderId
-                        quantity
-                        status
+                    lineItems {
+                        orderLineItemId
+                        createdAt
+                        updatedAt
                     }
                 }
                 ... on OrderLineItemsByIdsPartialFailure {
-                    orderLineItems {
-                        lineItemId
-                        orderId
-                        quantity
-                        status
+                    lineItems {
+                        orderLineItemId
+                        createdAt
+                        updatedAt
                     }
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputLineItemId retryable }
                 }
                 ... on OrderLineItemsByIdsCompleteFailure {
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputLineItemId retryable }
                 }
             }
         }
@@ -105,15 +97,12 @@ final class ItemCommitmentOperations
                 sellerOrders(input: {}) {
                     orders {
                         orderId
-                        orderPaymentStatus
-                        orderFulfillmentStatus
-                        creationDate
-                        lastModifiedDate
+                        placedAt
+                        updatedAt
                     }
                     pagination {
                         nextCursor
                         previousCursor
-                        total
                     }
                 }
             }
@@ -127,22 +116,20 @@ final class ItemCommitmentOperations
                 ... on OrdersByIdsSuccess {
                     orders {
                         orderId
-                        orderPaymentStatus
-                        orderFulfillmentStatus
-                        creationDate
-                        lastModifiedDate
+                        placedAt
+                        updatedAt
                     }
                 }
                 ... on OrdersByIdsPartialFailure {
                     orders {
                         orderId
-                        orderPaymentStatus
-                        orderFulfillmentStatus
+                        placedAt
+                        updatedAt
                     }
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputOrderId retryable }
                 }
                 ... on OrdersByIdsCompleteFailure {
-                    errors { errorCode errorMessage }
+                    failures { errorCode displayMessage inputOrderId retryable }
                 }
             }
         }

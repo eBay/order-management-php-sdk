@@ -8,18 +8,16 @@ readonly class PurchaseQuoteData
 {
     public function __construct(
         public ?string $purchaseQuoteId = null,
-        public ?string $status = null,
-        public ?string $creationDate = null,
-        public ?string $lastModifiedDate = null,
+        public ?string $createdAt = null,
+        public ?string $updatedAt = null,
     ) {}
 
     public static function fromArray(array $data): self
     {
         return new self(
-            purchaseQuoteId:  $data['purchaseQuoteId'] ?? null,
-            status:           $data['status'] ?? null,
-            creationDate:     $data['creationDate'] ?? null,
-            lastModifiedDate: $data['lastModifiedDate'] ?? null,
+            purchaseQuoteId: $data['purchaseQuoteId'] ?? null,
+            createdAt:       $data['createdAt'] ?? null,
+            updatedAt:       $data['updatedAt'] ?? null,
         );
     }
 }

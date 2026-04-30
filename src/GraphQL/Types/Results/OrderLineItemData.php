@@ -7,19 +7,17 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrderLineItemData
 {
     public function __construct(
-        public ?string $lineItemId = null,
-        public ?string $orderId = null,
-        public ?int $quantity = null,
-        public ?string $status = null,
+        public ?string $orderLineItemId = null,
+        public ?string $createdAt = null,
+        public ?string $updatedAt = null,
     ) {}
 
     public static function fromArray(array $data): self
     {
         return new self(
-            lineItemId: $data['lineItemId'] ?? null,
-            orderId:    $data['orderId'] ?? null,
-            quantity:   isset($data['quantity']) ? (int) $data['quantity'] : null,
-            status:     $data['status'] ?? null,
+            orderLineItemId: $data['orderLineItemId'] ?? null,
+            createdAt:       $data['createdAt'] ?? null,
+            updatedAt:       $data['updatedAt'] ?? null,
         );
     }
 }

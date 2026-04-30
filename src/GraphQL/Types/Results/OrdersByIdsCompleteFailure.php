@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrdersByIdsCompleteFailure extends OrdersByIdsOutput
 {
     /**
-     * @param GraphQLError[] $errors
+     * @param GraphQLError[] $failures
      */
     public function __construct(
-        public array $errors = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class OrdersByIdsCompleteFailure extends OrdersByIdsOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            errors: array_map(
+            failures: array_map(
                 static fn(array $e) => GraphQLError::fromArray($e),
-                $data['errors'] ?? []
+                $data['failures'] ?? []
             ),
         );
     }

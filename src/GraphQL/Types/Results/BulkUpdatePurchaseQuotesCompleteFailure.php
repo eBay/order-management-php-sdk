@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class BulkUpdatePurchaseQuotesCompleteFailure extends BulkUpdatePurchaseQuotesOutput
 {
     /**
-     * @param FailedPurchaseQuoteResult[] $failedPurchaseQuotes
+     * @param GraphQLError[] $failures
      */
     public function __construct(
-        public array $failedPurchaseQuotes = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class BulkUpdatePurchaseQuotesCompleteFailure extends BulkUpdatePurchas
     public static function fromArray(array $data): self
     {
         return new self(
-            failedPurchaseQuotes: array_map(
-                static fn(array $q) => FailedPurchaseQuoteResult::fromArray($q),
-                $data['failedPurchaseQuotes'] ?? []
+            failures: array_map(
+                static fn(array $e) => GraphQLError::fromArray($e),
+                $data['failures'] ?? []
             ),
         );
     }

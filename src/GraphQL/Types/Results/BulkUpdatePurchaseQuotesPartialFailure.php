@@ -7,12 +7,12 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class BulkUpdatePurchaseQuotesPartialFailure extends BulkUpdatePurchaseQuotesOutput
 {
     /**
-     * @param PurchaseQuoteData[]         $successfulPurchaseQuotes
-     * @param FailedPurchaseQuoteResult[] $failedPurchaseQuotes
+     * @param PurchaseQuoteData[] $updatedPurchaseQuotes
+     * @param GraphQLError[]      $failures
      */
     public function __construct(
-        public array $successfulPurchaseQuotes = [],
-        public array $failedPurchaseQuotes = [],
+        public array $updatedPurchaseQuotes = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -23,13 +23,13 @@ readonly class BulkUpdatePurchaseQuotesPartialFailure extends BulkUpdatePurchase
     public static function fromArray(array $data): self
     {
         return new self(
-            successfulPurchaseQuotes: array_map(
+            updatedPurchaseQuotes: array_map(
                 static fn(array $q) => PurchaseQuoteData::fromArray($q),
-                $data['successfulPurchaseQuotes'] ?? []
+                $data['updatedPurchaseQuotes'] ?? []
             ),
-            failedPurchaseQuotes: array_map(
-                static fn(array $q) => FailedPurchaseQuoteResult::fromArray($q),
-                $data['failedPurchaseQuotes'] ?? []
+            failures: array_map(
+                static fn(array $e) => GraphQLError::fromArray($e),
+                $data['failures'] ?? []
             ),
         );
     }

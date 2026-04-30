@@ -8,7 +8,7 @@ readonly class SellerReturnPreferencesResult extends SellerReturnPreferenceOutpu
 {
     public function __construct(
         public ?string $listingMarketplace = null,
-        public ?bool $rmaRequired = null,
+        public ?string $rmaPreferenceStatus = null,
     ) {}
 
     public function getTypename(): string
@@ -20,7 +20,7 @@ readonly class SellerReturnPreferencesResult extends SellerReturnPreferenceOutpu
     {
         return new self(
             listingMarketplace: $data['listingMarketplace'] ?? null,
-            rmaRequired:        isset($data['rmaRequired']) ? (bool) $data['rmaRequired'] : null,
+            rmaPreferenceStatus: $data['rmaPreference']['preferenceStatus'] ?? null,
         );
     }
 }

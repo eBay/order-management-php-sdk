@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class MarkOrdersPaidSuccess extends MarkOrdersPaidOutput
 {
     /**
-     * @param PaidOrderResult[] $orders
+     * @param OrderData[] $markPaidOrders
      */
     public function __construct(
-        public array $orders = [],
+        public array $markPaidOrders = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class MarkOrdersPaidSuccess extends MarkOrdersPaidOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            orders: array_map(
-                static fn(array $o) => PaidOrderResult::fromArray($o),
-                $data['orders'] ?? []
+            markPaidOrders: array_map(
+                static fn(array $o) => OrderData::fromArray($o),
+                $data['markPaidOrders'] ?? []
             ),
         );
     }

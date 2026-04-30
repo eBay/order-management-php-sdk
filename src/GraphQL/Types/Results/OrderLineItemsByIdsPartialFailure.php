@@ -7,12 +7,12 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrderLineItemsByIdsPartialFailure extends OrderLineItemsByIdsOutput
 {
     /**
-     * @param OrderLineItemData[] $orderLineItems
-     * @param GraphQLError[]      $errors
+     * @param OrderLineItemData[] $lineItems
+     * @param GraphQLError[]      $failures
      */
     public function __construct(
-        public array $orderLineItems = [],
-        public array $errors = [],
+        public array $lineItems = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -23,13 +23,13 @@ readonly class OrderLineItemsByIdsPartialFailure extends OrderLineItemsByIdsOutp
     public static function fromArray(array $data): self
     {
         return new self(
-            orderLineItems: array_map(
+            lineItems: array_map(
                 static fn(array $i) => OrderLineItemData::fromArray($i),
-                $data['orderLineItems'] ?? []
+                $data['lineItems'] ?? []
             ),
-            errors: array_map(
+            failures: array_map(
                 static fn(array $e) => GraphQLError::fromArray($e),
-                $data['errors'] ?? []
+                $data['failures'] ?? []
             ),
         );
     }

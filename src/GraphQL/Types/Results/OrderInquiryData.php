@@ -9,21 +9,17 @@ readonly class OrderInquiryData
     public function __construct(
         public ?string $inquiryId = null,
         public ?string $status = null,
-        public ?string $type = null,
-        public ?string $refundStatus = null,
-        public ?string $creationDate = null,
-        public ?string $lastModifiedDate = null,
+        public ?string $createdAt = null,
     ) {}
 
     public static function fromArray(array $data): self
     {
+        $statusCode = isset($data['status']['code']) ? $data['status']['code'] : null;
+
         return new self(
-            inquiryId:        $data['inquiryId'] ?? null,
-            status:           $data['status'] ?? null,
-            type:             $data['type'] ?? null,
-            refundStatus:     $data['refundStatus'] ?? null,
-            creationDate:     $data['creationDate'] ?? null,
-            lastModifiedDate: $data['lastModifiedDate'] ?? null,
+            inquiryId: $data['inquiryId'] ?? null,
+            status:    $statusCode,
+            createdAt: $data['createdAt'] ?? null,
         );
     }
 }

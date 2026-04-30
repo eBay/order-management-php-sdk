@@ -8,7 +8,7 @@ readonly class UpdateSellerRmaPreferenceSuccess extends UpdateSellerRmaPreferenc
 {
     public function __construct(
         public ?string $listingMarketplace = null,
-        public ?bool $rmaRequired = null,
+        public ?string $rmaPreferenceStatus = null,
     ) {}
 
     public function getTypename(): string
@@ -19,8 +19,8 @@ readonly class UpdateSellerRmaPreferenceSuccess extends UpdateSellerRmaPreferenc
     public static function fromArray(array $data): self
     {
         return new self(
-            listingMarketplace: $data['listingMarketplace'] ?? null,
-            rmaRequired:        isset($data['rmaRequired']) ? (bool) $data['rmaRequired'] : null,
+            listingMarketplace:  $data['listingMarketplace'] ?? null,
+            rmaPreferenceStatus: $data['rmaPreference']['preferenceStatus'] ?? null,
         );
     }
 }

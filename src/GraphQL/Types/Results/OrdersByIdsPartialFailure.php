@@ -8,11 +8,11 @@ readonly class OrdersByIdsPartialFailure extends OrdersByIdsOutput
 {
     /**
      * @param OrderData[]    $orders
-     * @param GraphQLError[] $errors
+     * @param GraphQLError[] $failures
      */
     public function __construct(
         public array $orders = [],
-        public array $errors = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -27,9 +27,9 @@ readonly class OrdersByIdsPartialFailure extends OrdersByIdsOutput
                 static fn(array $o) => OrderData::fromArray($o),
                 $data['orders'] ?? []
             ),
-            errors: array_map(
+            failures: array_map(
                 static fn(array $e) => GraphQLError::fromArray($e),
-                $data['errors'] ?? []
+                $data['failures'] ?? []
             ),
         );
     }

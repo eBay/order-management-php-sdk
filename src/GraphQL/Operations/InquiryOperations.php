@@ -11,10 +11,8 @@ final class InquiryOperations
                 ... on OrderInquirySuccess {
                     orderInquiry {
                         inquiryId
-                        status
-                        type
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        createdAt
                     }
                 }
                 ... on OrderInquiryNotFoundError { errorCode errorMessage }
@@ -29,8 +27,7 @@ final class InquiryOperations
                 ... on ProcessOrderInquiryRefundSuccess {
                     orderInquiry {
                         inquiryId
-                        status
-                        refundStatus
+                        status { code }
                     }
                 }
                 ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
@@ -52,7 +49,7 @@ final class InquiryOperations
                 ... on ProvideShipmentInfoForItemNotReceivedInquirySuccess {
                     orderInquiry {
                         inquiryId
-                        status
+                        status { code }
                     }
                 }
                 ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
@@ -67,17 +64,14 @@ final class InquiryOperations
             sellerOrderInquiries(input: $input) {
                 __typename
                 ... on SellerOrderInquiries {
-                    inquiries {
+                    orderInquiries {
                         inquiryId
-                        status
-                        type
-                        creationDate
-                        lastModifiedDate
+                        status { code }
+                        createdAt
                     }
                     pagination {
                         nextCursor
                         previousCursor
-                        total
                     }
                 }
                 ... on OrderInquiryInvalidDateRangeError { errorCode errorMessage }
@@ -94,7 +88,7 @@ final class InquiryOperations
                 ... on SendOrderInquiryMessageSuccess {
                     orderInquiry {
                         inquiryId
-                        status
+                        status { code }
                     }
                 }
                 ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
@@ -111,7 +105,7 @@ final class InquiryOperations
                 ... on SubmitOrderInquiryReferralSuccess {
                     orderInquiry {
                         inquiryId
-                        status
+                        status { code }
                     }
                 }
                 ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }

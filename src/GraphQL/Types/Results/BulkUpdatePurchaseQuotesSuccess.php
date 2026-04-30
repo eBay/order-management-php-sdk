@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class BulkUpdatePurchaseQuotesSuccess extends BulkUpdatePurchaseQuotesOutput
 {
     /**
-     * @param PurchaseQuoteData[] $purchaseQuotes
+     * @param PurchaseQuoteData[] $updatedPurchaseQuotes
      */
     public function __construct(
-        public array $purchaseQuotes = [],
+        public array $updatedPurchaseQuotes = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class BulkUpdatePurchaseQuotesSuccess extends BulkUpdatePurchaseQuotesO
     public static function fromArray(array $data): self
     {
         return new self(
-            purchaseQuotes: array_map(
+            updatedPurchaseQuotes: array_map(
                 static fn(array $q) => PurchaseQuoteData::fromArray($q),
-                $data['purchaseQuotes'] ?? []
+                $data['updatedPurchaseQuotes'] ?? []
             ),
         );
     }

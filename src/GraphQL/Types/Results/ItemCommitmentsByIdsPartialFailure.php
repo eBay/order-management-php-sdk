@@ -8,11 +8,11 @@ readonly class ItemCommitmentsByIdsPartialFailure extends ItemCommitmentsByIdsOu
 {
     /**
      * @param ItemCommitmentData[] $itemCommitments
-     * @param GraphQLError[]       $errors
+     * @param GraphQLError[]       $failures
      */
     public function __construct(
         public array $itemCommitments = [],
-        public array $errors = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -27,9 +27,9 @@ readonly class ItemCommitmentsByIdsPartialFailure extends ItemCommitmentsByIdsOu
                 static fn(array $c) => ItemCommitmentData::fromArray($c),
                 $data['itemCommitments'] ?? []
             ),
-            errors: array_map(
+            failures: array_map(
                 static fn(array $e) => GraphQLError::fromArray($e),
-                $data['errors'] ?? []
+                $data['failures'] ?? []
             ),
         );
     }

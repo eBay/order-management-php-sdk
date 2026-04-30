@@ -9,8 +9,7 @@ readonly class ApproveReturnSuccess extends ApproveReturnOutput
     public function __construct(
         public ?string $returnId = null,
         public ?string $status = null,
-        public ?string $creationDate = null,
-        public ?string $lastModifiedDate = null,
+        public ?string $requestedAt = null,
     ) {}
 
     public function getTypename(): string
@@ -21,10 +20,9 @@ readonly class ApproveReturnSuccess extends ApproveReturnOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            returnId:         $data['returnId'] ?? null,
-            status:           $data['status'] ?? null,
-            creationDate:     $data['creationDate'] ?? null,
-            lastModifiedDate: $data['lastModifiedDate'] ?? null,
+            returnId:    $data['returnId'] ?? null,
+            status:      $data['status']['code'] ?? null,
+            requestedAt: $data['requestedAt'] ?? null,
         );
     }
 }

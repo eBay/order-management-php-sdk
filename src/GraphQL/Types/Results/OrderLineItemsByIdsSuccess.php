@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrderLineItemsByIdsSuccess extends OrderLineItemsByIdsOutput
 {
     /**
-     * @param OrderLineItemData[] $orderLineItems
+     * @param OrderLineItemData[] $lineItems
      */
     public function __construct(
-        public array $orderLineItems = [],
+        public array $lineItems = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class OrderLineItemsByIdsSuccess extends OrderLineItemsByIdsOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            orderLineItems: array_map(
+            lineItems: array_map(
                 static fn(array $i) => OrderLineItemData::fromArray($i),
-                $data['orderLineItems'] ?? []
+                $data['lineItems'] ?? []
             ),
         );
     }

@@ -20,7 +20,7 @@ readonly class SendReturnMessageSuccess extends SendReturnMessageOutput
     {
         return new self(
             returnId: $data['returnId'] ?? null,
-            status:   $data['status'] ?? null,
+            status:   $data['status']['code'] ?? null,
         );
     }
 }

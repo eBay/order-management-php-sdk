@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class SellerOrderInquiriesSuccess extends SellerOrderInquiriesOutput
 {
     /**
-     * @param OrderInquiryData[] $inquiries
+     * @param OrderInquiryData[] $orderInquiries
      */
     public function __construct(
-        public array $inquiries = [],
+        public array $orderInquiries = [],
         public ?PaginationOutput $pagination = null,
     ) {}
 
@@ -22,9 +22,9 @@ readonly class SellerOrderInquiriesSuccess extends SellerOrderInquiriesOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            inquiries: array_map(
+            orderInquiries: array_map(
                 static fn(array $i) => OrderInquiryData::fromArray($i),
-                $data['inquiries'] ?? []
+                $data['orderInquiries'] ?? []
             ),
             pagination: isset($data['pagination'])
                 ? PaginationOutput::fromArray($data['pagination'])

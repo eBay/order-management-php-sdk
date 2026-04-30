@@ -20,7 +20,7 @@ readonly class RecordReturnLabelSentOfflineSuccess extends RecordReturnLabelSent
     {
         return new self(
             returnId: $data['returnId'] ?? null,
-            status:   $data['status'] ?? null,
+            status:   $data['status']['code'] ?? null,
         );
     }
 }

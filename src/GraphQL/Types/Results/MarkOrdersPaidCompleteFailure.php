@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class MarkOrdersPaidCompleteFailure extends MarkOrdersPaidOutput
 {
     /**
-     * @param FailedOrderResult[] $failedOrders
+     * @param GraphQLError[] $failures
      */
     public function __construct(
-        public array $failedOrders = [],
+        public array $failures = [],
     ) {}
 
     public function getTypename(): string
@@ -21,9 +21,9 @@ readonly class MarkOrdersPaidCompleteFailure extends MarkOrdersPaidOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            failedOrders: array_map(
-                static fn(array $o) => FailedOrderResult::fromArray($o),
-                $data['failedOrders'] ?? []
+            failures: array_map(
+                static fn(array $e) => GraphQLError::fromArray($e),
+                $data['failures'] ?? []
             ),
         );
     }

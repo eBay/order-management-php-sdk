@@ -8,18 +8,18 @@ readonly class CancellationData
 {
     public function __construct(
         public ?string $cancellationId = null,
-        public ?string $cancellationState = null,
-        public ?string $creationDate = null,
-        public ?string $lastModifiedDate = null,
+        public ?string $status = null,
+        public ?string $requestedAt = null,
     ) {}
 
     public static function fromArray(array $data): self
     {
+        $statusCode = isset($data['status']['code']) ? $data['status']['code'] : null;
+
         return new self(
-            cancellationId:    $data['cancellationId'] ?? null,
-            cancellationState: $data['cancellationState'] ?? null,
-            creationDate:      $data['creationDate'] ?? null,
-            lastModifiedDate:  $data['lastModifiedDate'] ?? null,
+            cancellationId: $data['cancellationId'] ?? null,
+            status:         $statusCode,
+            requestedAt:    $data['requestedAt'] ?? null,
         );
     }
 }

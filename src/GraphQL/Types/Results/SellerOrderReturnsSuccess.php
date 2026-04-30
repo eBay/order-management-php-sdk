@@ -7,10 +7,10 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class SellerOrderReturnsSuccess extends SellerOrderReturnsOutput
 {
     /**
-     * @param OrderReturnData[] $returns
+     * @param OrderReturnData[] $orderReturns
      */
     public function __construct(
-        public array $returns = [],
+        public array $orderReturns = [],
         public ?PaginationOutput $pagination = null,
     ) {}
 
@@ -22,9 +22,9 @@ readonly class SellerOrderReturnsSuccess extends SellerOrderReturnsOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            returns: array_map(
+            orderReturns: array_map(
                 static fn(array $r) => OrderReturnData::fromArray($r),
-                $data['returns'] ?? []
+                $data['orderReturns'] ?? []
             ),
             pagination: isset($data['pagination'])
                 ? PaginationOutput::fromArray($data['pagination'])

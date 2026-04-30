@@ -9,21 +9,22 @@ final class PurchaseQuoteOperations
             bulkUpdatePurchaseQuotes(input: $input) {
                 __typename
                 ... on BulkUpdatePurchaseQuotesSuccess {
-                    purchaseQuotes {
+                    updatedPurchaseQuotes {
                         purchaseQuoteId
-                        status
-                        lastModifiedDate
+                        createdAt
+                        updatedAt
                     }
                 }
                 ... on BulkUpdatePurchaseQuotesPartialFailure {
-                    successfulPurchaseQuotes {
+                    updatedPurchaseQuotes {
                         purchaseQuoteId
-                        status
+                        createdAt
+                        updatedAt
                     }
-                    failedPurchaseQuotes { purchaseQuoteId errors { errorCode errorMessage } }
+                    failures { errorCode displayMessage inputPurchaseQuoteId retryable }
                 }
                 ... on BulkUpdatePurchaseQuotesCompleteFailure {
-                    failedPurchaseQuotes { purchaseQuoteId errors { errorCode errorMessage } }
+                    failures { errorCode displayMessage inputPurchaseQuoteId retryable }
                 }
             }
         }
@@ -36,9 +37,8 @@ final class PurchaseQuoteOperations
                 ... on CreatePurchaseQuoteSuccess {
                     purchaseQuote {
                         purchaseQuoteId
-                        status
-                        creationDate
-                        lastModifiedDate
+                        createdAt
+                        updatedAt
                     }
                 }
                 ... on CreatePurchaseQuoteBusinessError { errorCode errorMessage }

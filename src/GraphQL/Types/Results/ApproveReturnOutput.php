@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\Results;
 
-abstract class ApproveReturnOutput
+abstract readonly class ApproveReturnOutput
 {
     abstract public function getTypename(): string;
 

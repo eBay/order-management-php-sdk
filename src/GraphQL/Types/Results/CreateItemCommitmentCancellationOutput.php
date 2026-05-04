@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\Results;
 
-abstract class CreateItemCommitmentCancellationOutput
+abstract readonly class CreateItemCommitmentCancellationOutput
 {
     abstract public function getTypename(): string;
 

@@ -8,7 +8,7 @@ final class OrderManagementConfiguration
 {
     public string $fulfillmentBaseUrl = 'https://api.ebay.com';
     public string $logisticsBaseUrl   = 'https://api.ebay.com';
-    public string $graphQLBaseUrl     = 'https://api.ebay.com/sell/graph/v1_beta/graphql';
+    public string $graphQLBaseUrl     = 'https://api.ebay.com/graphql';
 
     /** Static fallback token; per-call token takes precedence when provided. */
     public ?string $accessToken = null;

@@ -17,10 +17,10 @@ readonly class OrderInquirySuccess extends OrderInquiryOutput
 
     public static function fromArray(array $data): self
     {
+        // orderInquiry may be a union type (e.g. ItemNotReceivedInquiry)
+        $raw = $data['orderInquiry'] ?? null;
         return new self(
-            orderInquiry: isset($data['orderInquiry'])
-                ? OrderInquiryData::fromArray($data['orderInquiry'])
-                : null,
+            orderInquiry: $raw !== null ? OrderInquiryData::fromArray($raw) : null,
         );
     }
 }

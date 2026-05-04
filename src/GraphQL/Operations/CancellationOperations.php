@@ -10,13 +10,29 @@ final class CancellationOperations
                 __typename
                 ... on ApproveContractCancellationSuccess {
                     contractCancellation {
+                        __typename
                         cancellationId
-                        status { code }
-                        requestedAt
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
                     }
                 }
-                ... on ContractCancellationActionNotPermittedError { errorCode errorMessage }
-                ... on ContractCancellationNotFoundError { errorCode errorMessage }
+                ... on ContractCancellationActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions {
+                        __typename
+                        code
+                        displayText
+                    }
+                }
+                ... on ContractCancellationNotFoundError {
+                    errorCode
+                    errorMessage
+                    requestedContractCancellationId
+                }
                 ... on RefundAuthorizationFailedError { errorCode errorMessage }
                 ... on RefundBlockedByPaymentDisputeError { errorCode errorMessage }
                 ... on RefundInstrumentDeclinedError { errorCode errorMessage }
@@ -33,12 +49,57 @@ final class CancellationOperations
                 __typename
                 ... on ContractCancellationSuccess {
                     contractCancellation {
+                        __typename
                         cancellationId
-                        status { code }
+                        lineItems {
+                            __typename
+                            cancellationLineItemId
+                            requestedQuantity
+                            cancelledQuantity
+                            listingRestockTasks {
+                                __typename
+                                ... on PostPurchaseListingRelistTask {
+                                    relistStatus {
+                                        __typename
+                                        code
+                                        displayText
+                                    }
+                                    relistedListing { listingId }
+                                }
+                            }
+                            ... on OrderCancellationLineItem {
+                                orderLineItem { orderLineItemId }
+                            }
+                        }
                         requestedAt
+                        reason { code displayText }
+                        requesterNote
+                        requester
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
+                        closedAt
+                        refunds { refundId }
+                        sellerAvailableActions {
+                            primaryActions {
+                                __typename
+                                code
+                                displayText
+                            }
+                            responseDueAt
+                        }
+                        ... on OrderCancellation {
+                            lineItems { __typename }
+                        }
                     }
                 }
-                ... on ContractCancellationNotFoundError { errorCode errorMessage }
+                ... on ContractCancellationNotFoundError {
+                    errorCode
+                    errorMessage
+                    requestedContractCancellationId
+                }
             }
         }
         GRAPHQL;
@@ -49,13 +110,33 @@ final class CancellationOperations
                 __typename
                 ... on CreateItemCommitmentCancellationSuccess {
                     itemCommitmentCancellation {
+                        __typename
                         cancellationId
-                        status { code }
-                        requestedAt
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
                     }
                 }
-                ... on ItemCommitmentCancellationEligibilityError { errorCode errorMessage }
-                ... on ItemCommitmentNotFoundError { errorCode errorMessage }
+                ... on ItemCommitmentCancellationEligibilityError {
+                    errorCode
+                    errorMessage
+                    ineligibilityReasons {
+                        __typename
+                        code
+                        displayMessage
+                        itemCommitmentId
+                        ... on ItemCommitmentCancellationReasonNotAllowed {
+                            availableReasons { code displayText }
+                        }
+                    }
+                }
+                ... on ItemCommitmentNotFoundError {
+                    errorCode
+                    errorMessage
+                    itemCommitmentId
+                }
             }
         }
         GRAPHQL;
@@ -66,14 +147,43 @@ final class CancellationOperations
                 __typename
                 ... on CreateOrderCancellationSuccess {
                     orderCancellation {
+                        __typename
                         cancellationId
-                        status { code }
-                        requestedAt
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
                     }
                 }
-                ... on OrderCancellationEligibilityError { errorCode errorMessage }
-                ... on OrderLineItemCancellationEligibilityError { errorCode errorMessage }
-                ... on OrderNotFoundError { errorCode errorMessage }
+                ... on OrderCancellationEligibilityError {
+                    errorCode
+                    errorMessage
+                    ineligibilityReasons {
+                        __typename
+                        code
+                        displayMessage
+                        orderId
+                        ... on OrderCancellationReasonNotAllowed {
+                            availableReasons { code displayText }
+                        }
+                    }
+                }
+                ... on OrderLineItemCancellationEligibilityError {
+                    errorCode
+                    errorMessage
+                    ineligibilityReasons {
+                        __typename
+                        code
+                        displayMessage
+                        orderLineItemIds
+                    }
+                }
+                ... on OrderNotFoundError {
+                    errorCode
+                    errorMessage
+                    orderId
+                }
                 ... on RefundAuthorizationFailedError { errorCode errorMessage }
                 ... on RefundBlockedByPaymentDisputeError { errorCode errorMessage }
                 ... on RefundInstrumentDeclinedError { errorCode errorMessage }
@@ -90,13 +200,33 @@ final class CancellationOperations
                 __typename
                 ... on CreatePurchaseQuoteCancellationSuccess {
                     purchaseQuoteCancellation {
+                        __typename
                         cancellationId
-                        status { code }
-                        requestedAt
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
                     }
                 }
-                ... on PurchaseQuoteCancellationEligibilityError { errorCode errorMessage }
-                ... on PurchaseQuoteNotFoundError { errorCode errorMessage }
+                ... on PurchaseQuoteCancellationEligibilityError {
+                    errorCode
+                    errorMessage
+                    ineligibilityReasons {
+                        __typename
+                        code
+                        displayMessage
+                        purchaseQuoteId
+                        ... on PurchaseQuoteCancellationReasonNotAllowed {
+                            availableReasons { code displayText }
+                        }
+                    }
+                }
+                ... on PurchaseQuoteNotFoundError {
+                    errorCode
+                    errorMessage
+                    purchaseQuoteId
+                }
             }
         }
         GRAPHQL;
@@ -107,14 +237,55 @@ final class CancellationOperations
                 __typename
                 ... on DeclineContractCancellationSuccess {
                     contractCancellation {
+                        __typename
                         cancellationId
-                        status { code }
-                        requestedAt
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
                     }
                 }
-                ... on ContractCancellationActionNotPermittedError { errorCode errorMessage }
-                ... on ContractCancellationNotFoundError { errorCode errorMessage }
-                ... on DeclineCancellationInputValidationError { errorCode errorMessage }
+                ... on ContractCancellationActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions {
+                        __typename
+                        code
+                        displayText
+                    }
+                }
+                ... on ContractCancellationNotFoundError {
+                    errorCode
+                    errorMessage
+                    requestedContractCancellationId
+                }
+                ... on DeclineCancellationInputValidationError {
+                    errorCode
+                    errorMessage
+                    violations {
+                        __typename
+                        code
+                        displayMessage
+                        ... on CancellationTrackingNumberViolation {
+                            constraint {
+                                characterLimit { minLength maxLength }
+                            }
+                            exceededLength
+                            containsInvalidCharacters
+                        }
+                        ... on CancellationShippingCarrierCodeViolation {
+                            constraint {
+                                characterLimit { minLength maxLength }
+                            }
+                            exceededLength
+                            containsInvalidCharacters
+                        }
+                        ... on CancellationShippedDateViolation {
+                            constraint { fromDate toDate }
+                        }
+                    }
+                }
             }
         }
         GRAPHQL;
@@ -125,18 +296,79 @@ final class CancellationOperations
                 __typename
                 ... on SellerContractCancellationsSuccess {
                     contractCancellations {
+                        __typename
                         cancellationId
-                        status { code }
+                        lineItems {
+                            __typename
+                            cancellationLineItemId
+                            requestedQuantity
+                            cancelledQuantity
+                            listingRestockTasks {
+                                __typename
+                                ... on PostPurchaseListingRelistTask {
+                                    relistStatus {
+                                        __typename
+                                        code
+                                        displayText
+                                    }
+                                    relistedListing { listingId }
+                                }
+                            }
+                            ... on OrderCancellationLineItem {
+                                orderLineItem { orderLineItemId }
+                            }
+                            ... on PurchaseQuoteCancellationLineItem {
+                                purchaseQuoteLineItem { purchaseQuoteLineItemId }
+                            }
+                        }
                         requestedAt
+                        reason {
+                            __typename
+                            code
+                            displayText
+                        }
+                        requesterNote
+                        requester
+                        status {
+                            __typename
+                            code
+                            displayText
+                        }
+                        closedAt
+                        refunds { refundId }
+                        sellerAvailableActions {
+                            primaryActions {
+                                __typename
+                                code
+                                displayText
+                            }
+                            responseDueAt
+                        }
+                        ... on ItemCommitmentCancellation {
+                            itemCommitment { itemCommitmentId }
+                        }
+                        ... on PurchaseQuoteCancellation {
+                            purchaseQuote { purchaseQuoteId }
+                        }
                     }
                     pagination {
                         nextCursor
                         previousCursor
                     }
                 }
-                ... on ContractCancellationInvalidDateRangeError { errorCode errorMessage }
-                ... on ContractCancellationInvalidPageSizeError { errorCode errorMessage }
-                ... on ContractCancellationInvalidSearchInputError { errorCode errorMessage }
+                ... on ContractCancellationInvalidDateRangeError {
+                    errorCode
+                    errorMessage
+                }
+                ... on ContractCancellationInvalidPageSizeError {
+                    errorCode
+                    errorMessage
+                    maxAllowedPageSize
+                }
+                ... on ContractCancellationInvalidSearchInputError {
+                    errorCode
+                    errorMessage
+                }
             }
         }
         GRAPHQL;

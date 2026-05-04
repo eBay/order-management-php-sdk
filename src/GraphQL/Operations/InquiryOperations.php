@@ -10,9 +10,78 @@ final class InquiryOperations
                 __typename
                 ... on OrderInquirySuccess {
                     orderInquiry {
-                        inquiryId
-                        status { code }
-                        createdAt
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            status {
+                                __typename
+                                ... on OrderInquiryOpen { code displayText }
+                                ... on OrderInquiryClosed { code displayText }
+                            }
+                            createdAt
+                            closedAt
+                            initiator
+                            responder
+                            inquirers
+                            lineItems {
+                                inquiryLineItemId
+                                quantity
+                                orderLineItem { orderLineItemId }
+                            }
+                            sellerAvailableActions {
+                                respondByAction {
+                                    respondAction { code displayText }
+                                    responseDueAt
+                                }
+                                secondaryActions {
+                                    code
+                                    displayText
+                                    ... on OrderInquiryRefundAction { code displayText }
+                                    ... on OrderInquiryReferralAction {
+                                        code
+                                        displayText
+                                        referralReasons {
+                                            ... on ConfirmedDelivery { code displayText }
+                                            ... on BuyerConfirmedDelivery { code displayText }
+                                            ... on RefundedBuyer { code displayText }
+                                        }
+                                    }
+                                }
+                            }
+                            requestedInformation {
+                                ... on ShipmentTrackingInformationRequested { requester requestedAt }
+                                ... on SignatureConfirmationRequested { requester requestedAt }
+                            }
+                            providedInformation {
+                                submitter
+                                submittedAt
+                                submittedInformation {
+                                    __typename
+                                    ... on OrderInquiryShipmentTracking {
+                                        trackingNumber
+                                        shippingCarrier { carrierCode unsupportedCarrierName }
+                                    }
+                                    ... on OrderInquirySignatureConfirmation {
+                                        trackingNumber
+                                        signatureConfirmationProof {
+                                            documentId
+                                            filenameExtension
+                                            documentName
+                                            uploadedAt
+                                        }
+                                    }
+                                }
+                            }
+                            cases {
+                                caseId
+                                status {
+                                    ... on PostPurchaseCaseOpen { code displayText }
+                                    ... on PostPurchaseCaseClosed { code displayText }
+                                }
+                                initiator
+                                reason { code displayText }
+                            }
+                        }
                     }
                 }
                 ... on OrderInquiryNotFoundError { errorCode errorMessage }
@@ -26,12 +95,45 @@ final class InquiryOperations
                 __typename
                 ... on ProcessOrderInquiryRefundSuccess {
                     orderInquiry {
-                        inquiryId
-                        status { code }
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            status {
+                                __typename
+                                ... on OrderInquiryOpen { code displayText }
+                                ... on OrderInquiryClosed { code displayText }
+                            }
+                            createdAt
+                            closedAt
+                            initiator
+                            responder
+                            inquirers
+                            lineItems {
+                                inquiryLineItemId
+                                quantity
+                                orderLineItem { orderLineItemId }
+                            }
+                            sellerAvailableActions {
+                                respondByAction {
+                                    respondAction { code displayText }
+                                    responseDueAt
+                                }
+                                secondaryActions { code displayText }
+                            }
+                            refunds { refundId }
+                        }
                     }
                 }
-                ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
-                ... on OrderInquiryNotFoundError { errorCode errorMessage }
+                ... on OrderInquiryActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions { code displayText }
+                }
+                ... on OrderInquiryNotFoundError {
+                    errorCode
+                    errorMessage
+                    inquiryId
+                }
                 ... on RefundAuthorizationFailedError { errorCode errorMessage }
                 ... on RefundBlockedByPaymentDisputeError { errorCode errorMessage }
                 ... on RefundInstrumentDeclinedError { errorCode errorMessage }
@@ -48,13 +150,47 @@ final class InquiryOperations
                 __typename
                 ... on ProvideShipmentInfoForItemNotReceivedInquirySuccess {
                     orderInquiry {
-                        inquiryId
-                        status { code }
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            providedInformation {
+                                submitter
+                                submittedAt
+                                submittedInformation {
+                                    __typename
+                                    ... on OrderInquiryShipmentTracking {
+                                        trackingNumber
+                                        shippingCarrier { carrierCode unsupportedCarrierName }
+                                    }
+                                    ... on OrderInquirySignatureConfirmation {
+                                        trackingNumber
+                                        signatureConfirmationProof {
+                                            documentId
+                                            filenameExtension
+                                            documentName
+                                            uploadedAt
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
-                ... on OrderInquiryNotFoundError { errorCode errorMessage }
-                ... on ProvideShipmentInfoForInquiryInputValidationError { errorCode errorMessage }
+                ... on OrderInquiryActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions { code displayText }
+                }
+                ... on OrderInquiryNotFoundError {
+                    errorCode
+                    errorMessage
+                    inquiryId
+                }
+                ... on ProvideShipmentInfoForInquiryInputValidationError {
+                    errorCode
+                    errorMessage
+                    violations { code displayMessage }
+                }
             }
         }
         GRAPHQL;
@@ -65,9 +201,32 @@ final class InquiryOperations
                 __typename
                 ... on SellerOrderInquiries {
                     orderInquiries {
-                        inquiryId
-                        status { code }
-                        createdAt
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            status {
+                                __typename
+                                ... on OrderInquiryOpen { code displayText }
+                                ... on OrderInquiryClosed { code displayText }
+                            }
+                            createdAt
+                            closedAt
+                            initiator
+                            responder
+                            inquirers
+                            lineItems {
+                                inquiryLineItemId
+                                quantity
+                                orderLineItem { orderLineItemId }
+                            }
+                            sellerAvailableActions {
+                                respondByAction {
+                                    respondAction { code displayText }
+                                    responseDueAt
+                                }
+                                secondaryActions { code displayText }
+                            }
+                        }
                     }
                     pagination {
                         nextCursor
@@ -75,7 +234,13 @@ final class InquiryOperations
                     }
                 }
                 ... on OrderInquiryInvalidDateRangeError { errorCode errorMessage }
-                ... on OrderInquiryInvalidPageSizeError { errorCode errorMessage }
+                ... on OrderInquiryInvalidPageSizeError {
+                    errorCode
+                    errorMessage
+                    maxAllowedPageSize
+                    minAllowedPageSize
+                    requestedPageSize
+                }
                 ... on OrderInquiryInvalidSearchInputError { errorCode errorMessage }
             }
         }
@@ -87,13 +252,83 @@ final class InquiryOperations
                 __typename
                 ... on SendOrderInquiryMessageSuccess {
                     orderInquiry {
-                        inquiryId
-                        status { code }
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            status {
+                                __typename
+                                ... on OrderInquiryOpen { code displayText }
+                                ... on OrderInquiryClosed { code displayText }
+                            }
+                            createdAt
+                            closedAt
+                            initiator
+                            responder
+                            inquirers
+                            lineItems {
+                                inquiryLineItemId
+                                quantity
+                                orderLineItem { orderLineItemId }
+                            }
+                            sellerAvailableActions {
+                                respondByAction {
+                                    respondAction { code displayText }
+                                    responseDueAt
+                                }
+                                secondaryActions { code displayText }
+                            }
+                            requestedInformation {
+                                ... on ShipmentTrackingInformationRequested { requester requestedAt }
+                                ... on SignatureConfirmationRequested { requester requestedAt }
+                            }
+                            providedInformation {
+                                submitter
+                                submittedAt
+                                submittedInformation {
+                                    __typename
+                                    ... on OrderInquiryShipmentTracking {
+                                        trackingNumber
+                                        shippingCarrier { carrierCode unsupportedCarrierName }
+                                    }
+                                    ... on OrderInquirySignatureConfirmation {
+                                        trackingNumber
+                                        signatureConfirmationProof {
+                                            documentId
+                                            filenameExtension
+                                            documentName
+                                            uploadedAt
+                                        }
+                                    }
+                                }
+                            }
+                            cases {
+                                caseId
+                                status {
+                                    __typename
+                                    ... on PostPurchaseCaseOpen { code displayText }
+                                    ... on PostPurchaseCaseClosed { code displayText }
+                                }
+                                reason { code displayText }
+                            }
+                            refunds { refundId }
+                        }
                     }
                 }
-                ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
-                ... on OrderInquiryNotFoundError { errorCode errorMessage }
-                ... on SendOrderInquiryMessageInputValidationError { errorCode errorMessage }
+                ... on OrderInquiryNotFoundError {
+                    errorCode
+                    errorMessage
+                    inquiryId
+                }
+                ... on OrderInquiryActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions { code displayText }
+                }
+                ... on SendOrderInquiryMessageInputValidationError {
+                    errorCode
+                    errorMessage
+                    violations { code displayMessage }
+                }
             }
         }
         GRAPHQL;
@@ -104,13 +339,60 @@ final class InquiryOperations
                 __typename
                 ... on SubmitOrderInquiryReferralSuccess {
                     orderInquiry {
-                        inquiryId
-                        status { code }
+                        __typename
+                        ... on ItemNotReceivedInquiry {
+                            inquiryId
+                            status {
+                                __typename
+                                ... on OrderInquiryOpen { code displayText }
+                                ... on OrderInquiryClosed { code displayText }
+                            }
+                            createdAt
+                            closedAt
+                            initiator
+                            responder
+                            inquirers
+                            lineItems {
+                                inquiryLineItemId
+                                quantity
+                                orderLineItem { orderLineItemId }
+                            }
+                            sellerAvailableActions {
+                                respondByAction {
+                                    respondAction { code displayText }
+                                    responseDueAt
+                                }
+                                secondaryActions { code displayText }
+                            }
+                            cases {
+                                caseId
+                                status {
+                                    __typename
+                                    ... on PostPurchaseCaseOpen { code displayText }
+                                    ... on PostPurchaseCaseClosed { code displayText }
+                                }
+                                initiator
+                                reason { code displayText }
+                            }
+                            refunds { refundId }
+                        }
                     }
                 }
-                ... on OrderInquiryActionNotPermittedError { errorCode errorMessage }
-                ... on OrderInquiryNotFoundError { errorCode errorMessage }
-                ... on SubmitOrderInquiryReferralInputValidationError { errorCode errorMessage }
+                ... on OrderInquiryActionNotPermittedError {
+                    errorCode
+                    errorMessage
+                    availableActions { code displayText }
+                }
+                ... on OrderInquiryNotFoundError {
+                    inquiryId
+                    errorCode
+                    errorMessage
+                }
+                ... on SubmitOrderInquiryReferralInputValidationError {
+                    errorCode
+                    errorMessage
+                    violations { code displayMessage }
+                }
             }
         }
         GRAPHQL;

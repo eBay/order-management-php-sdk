@@ -9,6 +9,8 @@ readonly class ApproveReturnSuccess extends ApproveReturnOutput
     public function __construct(
         public ?string $returnId = null,
         public ?string $status = null,
+        public ?string $statusDisplayText = null,
+        public ?string $statusTypename = null,
         public ?string $requestedAt = null,
     ) {}
 
@@ -20,9 +22,11 @@ readonly class ApproveReturnSuccess extends ApproveReturnOutput
     public static function fromArray(array $data): self
     {
         return new self(
-            returnId:    $data['returnId'] ?? null,
-            status:      $data['status']['code'] ?? null,
-            requestedAt: $data['requestedAt'] ?? null,
+            returnId:          $data['returnId'] ?? null,
+            status:            $data['status']['code'] ?? null,
+            statusDisplayText: $data['status']['displayText'] ?? null,
+            statusTypename:    $data['status']['__typename'] ?? null,
+            requestedAt:       $data['requestedAt'] ?? null,
         );
     }
 }

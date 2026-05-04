@@ -9,19 +9,28 @@ readonly class OrderReturnData
     public function __construct(
         public ?string $returnId = null,
         public ?string $status = null,
+        public ?string $statusDisplayText = null,
+        public ?string $statusTypename = null,
+        public ?string $requester = null,
         public ?string $requestedAt = null,
         public ?string $closedAt = null,
+        /** @var array[] */
+        public array $returnLineItems = [],
+        public ?array $returnNegotiation = null,
     ) {}
 
     public static function fromArray(array $data): self
     {
-        $statusCode = isset($data['status']['code']) ? $data['status']['code'] : null;
-
         return new self(
-            returnId:    $data['returnId'] ?? null,
-            status:      $statusCode,
-            requestedAt: $data['requestedAt'] ?? null,
-            closedAt:    $data['closedAt'] ?? null,
+            returnId:          $data['returnId'] ?? null,
+            status:            $data['status']['code'] ?? null,
+            statusDisplayText: $data['status']['displayText'] ?? null,
+            statusTypename:    $data['status']['__typename'] ?? null,
+            requester:         $data['requester'] ?? null,
+            requestedAt:       $data['requestedAt'] ?? null,
+            closedAt:          $data['closedAt'] ?? null,
+            returnLineItems:   $data['returnLineItems'] ?? [],
+            returnNegotiation: $data['returnNegotiation'] ?? null,
         );
     }
 }

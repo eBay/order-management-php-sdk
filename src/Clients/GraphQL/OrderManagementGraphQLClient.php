@@ -13,8 +13,12 @@ use EBay\OrderManagement\GraphQL\Operations\ReturnOperations;
 use EBay\OrderManagement\GraphQL\Types\Results\ApproveContractCancellationOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ApproveReturnOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\AttachReturnShipmentLabelOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\BulkUpdateItemCommitmentTagsOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\BulkUpdatePurchaseQuotesOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ContractCancellationOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\CreateInStoreReturnOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\DeleteReturnRuleListingGroupOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\DeleteSellerReturnRuleOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\CreateItemCommitmentCancellationOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\CreateOrderCancellationOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\CreatePurchaseQuoteCancellationOutput;
@@ -23,6 +27,7 @@ use EBay\OrderManagement\GraphQL\Types\Results\DeclineContractCancellationOutput
 use EBay\OrderManagement\GraphQL\Types\Results\DeclineReturnOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ItemCommitmentsByIdsOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ItemCommitmentsOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\MarkItemCommitmentsPaidOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\MarkOrdersPaidOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\OrderInquiryOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\OrderLineItemsByIdsOutput;
@@ -32,6 +37,15 @@ use EBay\OrderManagement\GraphQL\Types\Results\OrdersOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ProcessOrderInquiryRefundOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ProcessReturnRefundOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ProposeKeepItemWithPartialRefundOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\PurchaseQuoteLineItemsByIdsOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\PurchaseQuotesByIdsOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\PurchaseQuotesOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\ReturnResponseRuleOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\ReturnRuleListingGroupOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\ReturnToAddressRuleOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\UpdateSellerReturnResponseRulesPrioritiesOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\UpdateSellerReturnRuleStatusOutput;
+use EBay\OrderManagement\GraphQL\Types\Results\UpdateSellerReturnToAddressRulesPrioritiesOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ProvideRmaNumberOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\ProvideShipmentInfoForItemNotReceivedInquiryOutput;
 use EBay\OrderManagement\GraphQL\Types\Results\RecordReturnLabelSentOfflineOutput;
@@ -111,6 +125,20 @@ final class OrderManagementGraphQLClient
     }
 
     // ── Item Commitments & Orders ─────────────────────────────────────────────
+
+    /** Mark up to 100 item commitments as payment received. */
+    public function markItemCommitmentsPaid(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): MarkItemCommitmentsPaidOutput
+    {
+        $data = $this->dynamic->execute(ItemCommitmentOperations::MARK_ITEM_COMMITMENTS_PAID, ['input' => $input], $accessToken, $requestOptions);
+        return MarkItemCommitmentsPaidOutput::fromArray($data['markItemCommitmentsPaid'] ?? []);
+    }
+
+    /** Bulk add/remove tags on item commitments. */
+    public function bulkUpdateItemCommitmentTags(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): BulkUpdateItemCommitmentTagsOutput
+    {
+        $data = $this->dynamic->execute(ItemCommitmentOperations::BULK_UPDATE_ITEM_COMMITMENT_TAGS, ['input' => $input], $accessToken, $requestOptions);
+        return BulkUpdateItemCommitmentTagsOutput::fromArray($data['bulkUpdateItemCommitmentTags'] ?? []);
+    }
 
     /** Retrieve item commitments for the authenticated user. */
     public function itemCommitments(?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsOutput
@@ -199,6 +227,27 @@ final class OrderManagementGraphQLClient
     }
 
     // ── Purchase Quotes ───────────────────────────────────────────────────────
+
+    /** Retrieve purchase quotes for the authenticated user. */
+    public function purchaseQuotes(?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuotesOutput
+    {
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES, [], $accessToken, $requestOptions);
+        return PurchaseQuotesOutput::fromArray($data['purchaseQuotes'] ?? []);
+    }
+
+    /** Retrieve up to 100 purchase quotes by their IDs. */
+    public function purchaseQuotesByIds(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuotesByIdsOutput
+    {
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES_BY_IDS, ['input' => $input], $accessToken, $requestOptions);
+        return PurchaseQuotesByIdsOutput::fromArray($data['purchaseQuotesByIds'] ?? []);
+    }
+
+    /** Retrieve purchase quote line items by their IDs. */
+    public function purchaseQuoteLineItemsByIds(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuoteLineItemsByIdsOutput
+    {
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTE_LINE_ITEMS_BY_IDS, ['input' => $input], $accessToken, $requestOptions);
+        return PurchaseQuoteLineItemsByIdsOutput::fromArray($data['purchaseQuoteLineItemsByIds'] ?? []);
+    }
 
     /** Bulk update up to 100 purchase quotes. */
     public function bulkUpdatePurchaseQuotes(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): BulkUpdatePurchaseQuotesOutput
@@ -312,6 +361,97 @@ final class OrderManagementGraphQLClient
     {
         $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RMA_PREFERENCE, ['input' => $input], $accessToken, $requestOptions);
         return UpdateSellerRmaPreferenceOutput::fromArray($data['updateSellerRmaPreference'] ?? []);
+    }
+
+    /** Create an in-store return. */
+    public function createInStoreReturn(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreateInStoreReturnOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::CREATE_IN_STORE_RETURN, ['input' => $input], $accessToken, $requestOptions);
+        return CreateInStoreReturnOutput::fromArray($data['createInStoreReturn'] ?? []);
+    }
+
+    /** Retrieve a return rule listing group by ID. */
+    public function returnRuleListingGroup(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnRuleListingGroupOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::RETURN_RULE_LISTING_GROUP, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnRuleListingGroupOutput::fromArray($data['returnRuleListingGroup'] ?? []);
+    }
+
+    /** Create a return rule listing group. */
+    public function createReturnRuleListingGroup(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnRuleListingGroupOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::CREATE_RETURN_RULE_LISTING_GROUP, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnRuleListingGroupOutput::fromArray($data['createReturnRuleListingGroup'] ?? []);
+    }
+
+    /** Add listings to a return rule listing group. */
+    public function addListingsToReturnRuleListingGroup(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnRuleListingGroupOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnRuleListingGroupOutput::fromArray($data['addListingsToReturnRuleListingGroup'] ?? []);
+    }
+
+    /** Delete a return rule listing group. */
+    public function deleteReturnRuleListingGroup(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeleteReturnRuleListingGroupOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::DELETE_RETURN_RULE_LISTING_GROUP, ['input' => $input], $accessToken, $requestOptions);
+        return DeleteReturnRuleListingGroupOutput::fromArray($data['deleteReturnRuleListingGroup'] ?? []);
+    }
+
+    /** Delete a seller return rule. */
+    public function deleteSellerReturnRule(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeleteSellerReturnRuleOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::DELETE_SELLER_RETURN_RULE, ['input' => $input], $accessToken, $requestOptions);
+        return DeleteSellerReturnRuleOutput::fromArray($data['deleteSellerReturnRule'] ?? []);
+    }
+
+    /** Append a seller return response rule. */
+    public function appendSellerReturnResponseRule(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnResponseRuleOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_RESPONSE_RULE, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnResponseRuleOutput::fromArray($data['appendSellerReturnResponseRule'] ?? []);
+    }
+
+    /** Append a seller return-to-address rule. */
+    public function appendSellerReturnToAddressRule(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnToAddressRuleOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_TO_ADDRESS_RULE, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnToAddressRuleOutput::fromArray($data['appendSellerReturnToAddressRule'] ?? []);
+    }
+
+    /** Update conditions on a seller return response rule. */
+    public function updateSellerReturnResponseRuleCondition(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnResponseRuleOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULE_CONDITION, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnResponseRuleOutput::fromArray($data['updateSellerReturnResponseRuleCondition'] ?? []);
+    }
+
+    /** Update priorities of seller return response rules. */
+    public function updateSellerReturnResponseRulesPriorities(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnResponseRulesPrioritiesOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULES_PRIORITIES, ['input' => $input], $accessToken, $requestOptions);
+        return UpdateSellerReturnResponseRulesPrioritiesOutput::fromArray($data['updateSellerReturnResponseRulesPriorities'] ?? []);
+    }
+
+    /** Enable or disable a seller return rule. */
+    public function updateSellerReturnRuleStatus(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnRuleStatusOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RULE_STATUS, ['input' => $input], $accessToken, $requestOptions);
+        return UpdateSellerReturnRuleStatusOutput::fromArray($data['updateSellerReturnRuleStatus'] ?? []);
+    }
+
+    /** Update conditions on a seller return-to-address rule. */
+    public function updateSellerReturnToAddressRuleCondition(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnToAddressRuleOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULE_CONDITION, ['input' => $input], $accessToken, $requestOptions);
+        return ReturnToAddressRuleOutput::fromArray($data['updateSellerReturnToAddressRuleCondition'] ?? []);
+    }
+
+    /** Update priorities of seller return-to-address rules. */
+    public function updateSellerReturnToAddressRulesPriorities(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnToAddressRulesPrioritiesOutput
+    {
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULES_PRIORITIES, ['input' => $input], $accessToken, $requestOptions);
+        return UpdateSellerReturnToAddressRulesPrioritiesOutput::fromArray($data['updateSellerReturnToAddressRulesPriorities'] ?? []);
     }
 
     // ── Escape Hatch ──────────────────────────────────────────────────────────

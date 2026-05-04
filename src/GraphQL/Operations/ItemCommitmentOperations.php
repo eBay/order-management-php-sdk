@@ -7,11 +7,40 @@ final class ItemCommitmentOperations
     public const ITEM_COMMITMENTS = <<<'GRAPHQL'
         query ItemCommitments {
             itemCommitments {
-                sellerItemCommitments(input: {}) {
+                buyerItemCommitments(input: {}) {
                     itemCommitments {
                         itemCommitmentId
                         createdAt
                         updatedAt
+                        committedMarketplace
+                        state {
+                            ... on ItemCommitmentActive { label }
+                            ... on ItemCommitmentCancelled { label cancelledAt reason }
+                            ... on ItemCommitmentLocked { label }
+                            ... on ItemCommitmentCompleted { label }
+                            ... on ItemCommitmentAbandoned { label }
+                        }
+                        cancellation { cancellationId }
+                        refunds { refundId }
+                        buyer { legacyUserId }
+                        seller { legacyUserId }
+                        totals {
+                            committedTotal {
+                                original { value currency }
+                            }
+                        }
+                        lineItem {
+                            quantity
+                            item { itemIdVersioned versionId }
+                            purchaseFlow {
+                                ... on PurchaseFlowBuyItNow { label }
+                                ... on PurchaseFlowAuction { label }
+                                ... on PurchaseFlowCommitToBuy { label }
+                                ... on PurchaseFlowSellerInitiatedOffer { label }
+                                ... on PurchaseFlowBestOffer { label }
+                                ... on PurchaseFlowRequestTotal { label }
+                            }
+                        }
                     }
                     pagination {
                         nextCursor
@@ -31,17 +60,80 @@ final class ItemCommitmentOperations
                         itemCommitmentId
                         createdAt
                         updatedAt
+                        state {
+                            ... on ItemCommitmentActive {
+                                label
+                                fundingState {
+                                    ... on PaymentsNotStarted { label }
+                                    ... on PaymentsInProgress { label }
+                                    ... on PaymentsCompleted { label }
+                                    ... on PaymentsFailure { label }
+                                }
+                                fulfillmentState {
+                                    ... on FulfillmentNotStarted { label }
+                                    ... on FulfillmentInProgress { label startedAt }
+                                    ... on FulfillmentCompleted { label completedAt }
+                                }
+                                cancelState {
+                                    ... on ContractCancelRequested { label requestedAt }
+                                    ... on ContractCancelRejected { label rejectedAt reason }
+                                    ... on ContractCancelPending { label startedAt }
+                                    ... on ContractCancelCompleted { label completedAt refundOutcome }
+                                }
+                                returnState {
+                                    ... on ItemCommitmentReturnRequested { label }
+                                    ... on ItemCommitmentReturnClosed { label }
+                                }
+                            }
+                            ... on ItemCommitmentCancelled {
+                                label
+                                cancelledAt
+                                reason
+                                cancelState {
+                                    ... on ContractCancelRequested { label requestedAt }
+                                    ... on ContractCancelRejected { label rejectedAt reason }
+                                    ... on ContractCancelPending { label startedAt }
+                                    ... on ContractCancelCompleted { label completedAt refundOutcome }
+                                }
+                            }
+                            ... on ItemCommitmentLocked { label }
+                            ... on ItemCommitmentCompleted { label }
+                            ... on ItemCommitmentAbandoned { label }
+                        }
                     }
                 }
                 ... on ItemCommitmentsByIdsPartialFailure {
                     itemCommitments {
                         itemCommitmentId
                         createdAt
+                        updatedAt
                     }
                     failures { errorCode displayMessage inputItemCommitmentId retryable }
                 }
                 ... on ItemCommitmentsByIdsCompleteFailure {
                     failures { errorCode displayMessage inputItemCommitmentId retryable }
+                }
+            }
+        }
+        GRAPHQL;
+
+    public const MARK_ITEM_COMMITMENTS_PAID = <<<'GRAPHQL'
+        mutation MarkItemCommitmentsPaid($input: MarkItemCommitmentsPaidInput!) {
+            markItemCommitmentsPaid(input: $input) {
+                __typename
+                ... on MarkItemCommitmentsPaidSuccess {
+                    markPaidItemCommitments { itemCommitmentId }
+                }
+                ... on MarkItemCommitmentsPaidPartialFailure {
+                    errorCode
+                    errorMessage
+                    markPaidItemCommitments { itemCommitmentId }
+                    failures { inputItemCommitmentId errorCode displayMessage retryable }
+                }
+                ... on MarkItemCommitmentsPaidCompleteFailure {
+                    errorCode
+                    errorMessage
+                    failures { inputItemCommitmentId errorCode displayMessage retryable }
                 }
             }
         }
@@ -130,6 +222,28 @@ final class ItemCommitmentOperations
                 }
                 ... on OrdersByIdsCompleteFailure {
                     failures { errorCode displayMessage inputOrderId retryable }
+                }
+            }
+        }
+        GRAPHQL;
+
+    public const BULK_UPDATE_ITEM_COMMITMENT_TAGS = <<<'GRAPHQL'
+        mutation BulkUpdateItemCommitmentTags($input: BulkUpdateItemCommitmentTagsInput!) {
+            bulkUpdateItemCommitmentTags(input: $input) {
+                __typename
+                ... on BulkUpdateItemCommitmentTagsSuccess {
+                    updatedItemCommitments { itemCommitmentId }
+                }
+                ... on BulkUpdateItemCommitmentTagsPartialFailure {
+                    errorCode
+                    errorMessage
+                    updatedItemCommitments { itemCommitmentId }
+                    failures { inputItemCommitmentId errorCode displayMessage retryable }
+                }
+                ... on BulkUpdateItemCommitmentTagsCompleteFailure {
+                    errorCode
+                    errorMessage
+                    failures { inputItemCommitmentId errorCode displayMessage retryable }
                 }
             }
         }

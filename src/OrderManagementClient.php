@@ -61,11 +61,11 @@ final class OrderManagementClient
 
         $auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider($config));
 
-        $fulfillmentAdapter = new GuzzleRequestAdapter($auth, client: $guzzle);
+        $fulfillmentAdapter = new GuzzleRequestAdapter($auth, guzzleClient: $guzzle);
         $fulfillmentAdapter->setBaseUrl($config->fulfillmentBaseUrl);
         $this->fulfillment = new FulfillmentClient(new FulfillmentApiClient($fulfillmentAdapter), $config);
 
-        $logisticsAdapter = new GuzzleRequestAdapter($auth, client: $guzzle);
+        $logisticsAdapter = new GuzzleRequestAdapter($auth, guzzleClient: $guzzle);
         $logisticsAdapter->setBaseUrl($config->logisticsBaseUrl);
         $this->logistics = new LogisticsClient(new LogisticsApiClient($logisticsAdapter), $config);
 

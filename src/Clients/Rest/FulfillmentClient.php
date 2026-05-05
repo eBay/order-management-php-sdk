@@ -248,7 +248,7 @@ final class FulfillmentClient
     {
         TokenContext::set($accessToken);
         $rc = new Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(null, $rc)->wait();
+        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post($rc)->wait();
     }
 
     // ── Internal ──────────────────────────────────────────────────────────────

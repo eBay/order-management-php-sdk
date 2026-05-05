@@ -52,22 +52,42 @@ final class FulfillmentClient
     // ── Orders ────────────────────────────────────────────────────────────────
 
     /**
+     * @param string|null $fieldGroups Controls what is returned in the response (e.g. TAX_BREAKDOWN).
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getOrder(string $orderId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Order
+    public function getOrder(string $orderId, ?string $fieldGroups = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Order
     {
         TokenContext::set($accessToken);
-        $rc = new OrderItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $rc = new OrderItemRequestBuilderGetRequestConfiguration(
+            headers: $this->mergeHeaders($requestOptions),
+            queryParameters: OrderItemRequestBuilderGetRequestConfiguration::createQueryParameters(
+                fieldGroups: $fieldGroups,
+            ),
+        );
         return $this->kiota->order()->byOrderId($orderId)->get($rc)->wait();
     }
 
     /**
+     * @param string|null $fieldGroups Controls what is returned in the response (e.g. TAX_BREAKDOWN).
+     * @param string|null $filter Comma-separated filter criteria (creationdate, lastmodifieddate, orderfulfillmentstatus).
+     * @param string|null $limit Maximum orders per page (default 50, max 200).
+     * @param string|null $offset Number of orders to skip (zero-based).
+     * @param string|null $orderIds Comma-separated list of order IDs to retrieve (max 50); ignores other filters.
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getOrders(?string $accessToken = null, ?RequestOptions $requestOptions = null): ?OrderSearchPagedCollection
+    public function getOrders(?string $fieldGroups = null, ?string $filter = null, ?string $limit = null, ?string $offset = null, ?string $orderIds = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?OrderSearchPagedCollection
     {
         TokenContext::set($accessToken);
-        $rc = new OrderRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $rc = new OrderRequestBuilderGetRequestConfiguration(
+            headers: $this->mergeHeaders($requestOptions),
+            queryParameters: OrderRequestBuilderGetRequestConfiguration::createQueryParameters(
+                fieldGroups: $fieldGroups,
+                filter: $filter,
+                limit: $limit,
+                offset: $offset,
+                orderIds: $orderIds,
+            ),
+        );
         return $this->kiota->order()->get($rc)->wait();
     }
 
@@ -126,12 +146,30 @@ final class FulfillmentClient
     }
 
     /**
+     * @param string|null $buyerUsername Filter by eBay buyer user ID.
+     * @param string|null $limit Maximum disputes per page (default 200, max 200).
+     * @param string|null $offset Number of records to skip (zero-based).
+     * @param string|null $openDateFrom Start of dispute open-date range (ISO 8601 UTC).
+     * @param string|null $openDateTo End of dispute open-date range (ISO 8601 UTC).
+     * @param string|null $orderId Filter by order ID; ignores all other filters.
+     * @param string|null $paymentDisputeStatus Filter by dispute status (e.g. OPEN, ACTION_NEEDED).
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function getPaymentDisputeSummaries(?string $accessToken = null, ?RequestOptions $requestOptions = null): ?DisputeSummaryResponse
+    public function getPaymentDisputeSummaries(?string $buyerUsername = null, ?string $limit = null, ?string $offset = null, ?string $openDateFrom = null, ?string $openDateTo = null, ?string $orderId = null, ?string $paymentDisputeStatus = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?DisputeSummaryResponse
     {
         TokenContext::set($accessToken);
-        $rc = new Payment_dispute_summaryRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $rc = new Payment_dispute_summaryRequestBuilderGetRequestConfiguration(
+            headers: $this->mergeHeaders($requestOptions),
+            queryParameters: Payment_dispute_summaryRequestBuilderGetRequestConfiguration::createQueryParameters(
+                buyer_username: $buyerUsername,
+                limit: $limit,
+                offset: $offset,
+                open_date_from: $openDateFrom,
+                open_date_to: $openDateTo,
+                order_id: $orderId,
+                payment_dispute_status: $paymentDisputeStatus,
+            ),
+        );
         return $this->kiota->payment_dispute_summary()->get($rc)->wait();
     }
 
@@ -186,12 +224,20 @@ final class FulfillmentClient
     }
 
     /**
+     * @param string|null $evidenceId Identifier of the evidential file set.
+     * @param string|null $fileId Identifier of the specific evidential file within the file set.
      * @param string|null $accessToken Per-call token; overrides configuration fallback.
      */
-    public function fetchEvidenceContent(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?StreamInterface
+    public function fetchEvidenceContent(string $paymentDisputeId, ?string $evidenceId = null, ?string $fileId = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?StreamInterface
     {
         TokenContext::set($accessToken);
-        $rc = new Fetch_evidence_contentRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
+        $rc = new Fetch_evidence_contentRequestBuilderGetRequestConfiguration(
+            headers: $this->mergeHeaders($requestOptions),
+            queryParameters: Fetch_evidence_contentRequestBuilderGetRequestConfiguration::createQueryParameters(
+                evidence_id: $evidenceId,
+                file_id: $fileId,
+            ),
+        );
         return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait();
     }
 

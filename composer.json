@@ -25,5 +25,8 @@
         "psr-4": {
             "EBay\\OrderManagement\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse"
     }
 }

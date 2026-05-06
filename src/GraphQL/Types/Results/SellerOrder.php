@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\Results;
 
-readonly class OrderData
+readonly class SellerOrder
 {
     public function __construct(
         public ?string $orderId = null,
         public ?string $placedAt = null,
         public ?string $updatedAt = null,
-        public ?BuyerData $buyer = null,
         public ?PurchaseLogistics $logistics = null,
         public ?OrderStateData $orderState = null,
     ) {}
@@ -21,9 +20,6 @@ readonly class OrderData
             orderId:    $data['orderId'] ?? null,
             placedAt:   $data['placedAt'] ?? null,
             updatedAt:  $data['updatedAt'] ?? null,
-            buyer:      isset($data['buyer'])
-                ? BuyerData::fromArray($data['buyer'])
-                : null,
             logistics:  isset($data['logistics'])
                 ? PurchaseLogistics::fromArray($data['logistics'])
                 : null,

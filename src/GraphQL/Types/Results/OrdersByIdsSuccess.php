@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrdersByIdsSuccess extends OrdersByIdsOutput
 {
     /**
-     * @param OrderData[] $orders
+     * @param OrderById[] $orders
      */
     public function __construct(
         public array $orders = [],
@@ -22,7 +22,7 @@ readonly class OrdersByIdsSuccess extends OrdersByIdsOutput
     {
         return new self(
             orders: array_map(
-                static fn(array $o) => OrderData::fromArray($o),
+                static fn(array $o) => OrderById::fromArray($o),
                 $data['orders'] ?? []
             ),
         );

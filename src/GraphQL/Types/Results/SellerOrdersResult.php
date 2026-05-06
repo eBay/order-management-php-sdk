@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class SellerOrdersResult
 {
     /**
-     * @param OrderData[] $orders
+     * @param SellerOrder[] $orders
      */
     public function __construct(
         public array $orders = [],
@@ -18,7 +18,7 @@ readonly class SellerOrdersResult
     {
         return new self(
             orders: array_map(
-                static fn(array $o) => OrderData::fromArray($o),
+                static fn(array $o) => SellerOrder::fromArray($o),
                 $data['orders'] ?? []
             ),
             pagination: isset($data['pagination'])

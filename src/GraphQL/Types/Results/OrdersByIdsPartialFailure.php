@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class OrdersByIdsPartialFailure extends OrdersByIdsOutput
 {
     /**
-     * @param OrderData[]    $orders
+     * @param OrderById[]    $orders
      * @param GraphQLError[] $failures
      */
     public function __construct(
@@ -24,7 +24,7 @@ readonly class OrdersByIdsPartialFailure extends OrdersByIdsOutput
     {
         return new self(
             orders: array_map(
-                static fn(array $o) => OrderData::fromArray($o),
+                static fn(array $o) => OrderById::fromArray($o),
                 $data['orders'] ?? []
             ),
             failures: array_map(

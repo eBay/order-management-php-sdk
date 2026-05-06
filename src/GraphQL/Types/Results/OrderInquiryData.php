@@ -8,7 +8,7 @@ readonly class OrderInquiryData
 {
     public function __construct(
         public ?string $inquiryId = null,
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public ?string $status = null,
         public ?string $statusDisplayText = null,
         public ?string $statusTypename = null,
@@ -33,7 +33,7 @@ readonly class OrderInquiryData
     {
         return new self(
             inquiryId:             $data['inquiryId'] ?? null,
-            typename:              $data['__typename'] ?? null,
+            __typename:              $data['__typename'] ?? null,
             status:                $data['status']['code'] ?? null,
             statusDisplayText:     $data['status']['displayText'] ?? null,
             statusTypename:        $data['status']['__typename'] ?? null,

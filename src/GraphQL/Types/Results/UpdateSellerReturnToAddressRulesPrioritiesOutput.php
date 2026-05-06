@@ -11,7 +11,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class UpdateSellerReturnToAddressRulesPrioritiesOutput
 {
     public function __construct(
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public array   $returnToAddressRules = [],
         public ?array  $error = null,
     ) {}
@@ -22,13 +22,13 @@ readonly class UpdateSellerReturnToAddressRulesPrioritiesOutput
 
         if ($typename === 'UpdateSellerReturnToAddressRulesPrioritiesSuccess') {
             return new self(
-                typename:           $typename,
+                __typename:           $typename,
                 returnToAddressRules: $data['returnToAddressRules'] ?? [],
             );
         }
 
         return new self(
-            typename: $typename,
+            __typename: $typename,
             error:    $data,
         );
     }

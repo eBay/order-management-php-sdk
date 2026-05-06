@@ -11,7 +11,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class CreateInStoreReturnOutput
 {
     public function __construct(
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public ?string $returnId = null,
         public ?string $status = null,
         public ?array  $error = null,
@@ -23,14 +23,14 @@ readonly class CreateInStoreReturnOutput
 
         if ($typename === 'OrderReturn') {
             return new self(
-                typename: $typename,
+                __typename: $typename,
                 returnId: $data['returnId'] ?? null,
                 status:   $data['status']['code'] ?? null,
             );
         }
 
         return new self(
-            typename: $typename,
+            __typename: $typename,
             error:    $data,
         );
     }

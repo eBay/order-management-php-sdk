@@ -12,7 +12,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class UpdateSellerReturnRuleStatusOutput
 {
     public function __construct(
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public ?string $ruleId = null,
         public ?string $name = null,
         public ?int    $priority = null,
@@ -28,7 +28,7 @@ readonly class UpdateSellerReturnRuleStatusOutput
 
         if (in_array($typename, ['ReturnToAddressRule', 'ReturnResponseRule'], true)) {
             return new self(
-                typename:              $typename,
+                __typename:              $typename,
                 ruleId:                $data['ruleId'] ?? null,
                 name:                  $data['name'] ?? null,
                 priority:              isset($data['priority']) ? (int) $data['priority'] : null,
@@ -39,7 +39,7 @@ readonly class UpdateSellerReturnRuleStatusOutput
         }
 
         return new self(
-            typename: $typename,
+            __typename: $typename,
             error:    $data,
         );
     }

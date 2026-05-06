@@ -11,7 +11,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class ReturnRuleListingGroupOutput
 {
     public function __construct(
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public ?string $returnRuleListingGroupId = null,
         public ?string $groupName = null,
         public array   $listings = [],
@@ -25,7 +25,7 @@ readonly class ReturnRuleListingGroupOutput
 
         if ($typename === 'ReturnRuleListingGroup') {
             return new self(
-                typename:                $typename,
+                __typename:                $typename,
                 returnRuleListingGroupId: $data['returnRuleListingGroupId'] ?? null,
                 groupName:               $data['groupName'] ?? null,
                 listings:                $data['listings'] ?? [],
@@ -36,7 +36,7 @@ readonly class ReturnRuleListingGroupOutput
         }
 
         return new self(
-            typename: $typename,
+            __typename: $typename,
             error:    $data,
         );
     }

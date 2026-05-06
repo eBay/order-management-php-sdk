@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class DeleteReturnRuleListingGroupOutput
 {
     public function __construct(
-        public ?string $typename = null,
+        public ?string $__typename = null,
         public ?string $groupId = null,
         public ?string $name = null,
         public ?array  $error = null,
@@ -19,14 +19,14 @@ readonly class DeleteReturnRuleListingGroupOutput
 
         if ($typename === 'DeleteReturnRuleListingGroupSuccess') {
             return new self(
-                typename: $typename,
+                __typename: $typename,
                 groupId:  $data['groupId'] ?? null,
                 name:     $data['name'] ?? null,
             );
         }
 
         return new self(
-            typename: $typename,
+            __typename: $typename,
             error:    $data,
         );
     }

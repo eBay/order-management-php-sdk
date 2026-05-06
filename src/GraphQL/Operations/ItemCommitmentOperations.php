@@ -245,6 +245,31 @@ final class ItemCommitmentOperations
                         orderId
                         placedAt
                         updatedAt
+                        buyer { legacyUserId }
+                        logistics {
+                            fulfillmentPlan {
+                                planType
+                                logisticsPlanSteps {
+                                    methodName { id displayName }
+                                }
+                            }
+                        }
+                        orderState {
+                            __typename
+                            ... on OrderAbandoned { label }
+                            ... on OrderCancelled { label }
+                            ... on OrderConfirmed {
+                                label
+                                fundingState {
+                                    __typename
+                                    ... on PaymentsCompleted { label }
+                                    ... on PaymentsFailure { label }
+                                    ... on PaymentsInProgress { label }
+                                    ... on PaymentsNotStarted { label }
+                                }
+                            }
+                            ... on OrderPlaced { label }
+                        }
                     }
                     pagination {
                         nextCursor

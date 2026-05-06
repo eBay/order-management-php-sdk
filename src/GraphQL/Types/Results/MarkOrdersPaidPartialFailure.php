@@ -13,6 +13,8 @@ readonly class MarkOrdersPaidPartialFailure extends MarkOrdersPaidOutput
     public function __construct(
         public array $markPaidOrders = [],
         public array $failures = [],
+        public ?string $errorCode = null,
+        public ?string $errorMessage = null,
     ) {}
 
     public function getTypename(): string
@@ -31,6 +33,8 @@ readonly class MarkOrdersPaidPartialFailure extends MarkOrdersPaidOutput
                 static fn(array $e) => GraphQLError::fromArray($e),
                 $data['failures'] ?? []
             ),
+            errorCode:    $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
         );
     }
 }

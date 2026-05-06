@@ -144,10 +144,64 @@ final class ItemCommitmentOperations
             markOrdersPaid(input: $input) {
                 __typename
                 ... on MarkOrdersPaidSuccess {
-                    markPaidOrders { orderId placedAt updatedAt }
+                    markPaidOrders {
+                        orderId placedAt updatedAt
+                        logistics {
+                            fulfillmentPlan {
+                                planType
+                                logisticsPlanSteps {
+                                    methodName { id displayName }
+                                }
+                            }
+                        }
+                        orderState {
+                            __typename
+                            ... on OrderAbandoned { label }
+                            ... on OrderCancelled { label }
+                            ... on OrderConfirmed {
+                                label
+                                fundingState {
+                                    __typename
+                                    ... on PaymentsCompleted { label }
+                                    ... on PaymentsFailure { label }
+                                    ... on PaymentsInProgress { label }
+                                    ... on PaymentsNotStarted { label }
+                                }
+                            }
+                            ... on OrderPlaced { label }
+                        }
+                    }
                 }
                 ... on MarkOrdersPaidPartialFailure {
-                    markPaidOrders { orderId placedAt updatedAt }
+                    errorCode
+                    errorMessage
+                    markPaidOrders {
+                        orderId placedAt updatedAt
+                        logistics {
+                            fulfillmentPlan {
+                                planType
+                                logisticsPlanSteps {
+                                    methodName { id displayName }
+                                }
+                            }
+                        }
+                        orderState {
+                            __typename
+                            ... on OrderAbandoned { label }
+                            ... on OrderCancelled { label }
+                            ... on OrderConfirmed {
+                                label
+                                fundingState {
+                                    __typename
+                                    ... on PaymentsCompleted { label }
+                                    ... on PaymentsFailure { label }
+                                    ... on PaymentsInProgress { label }
+                                    ... on PaymentsNotStarted { label }
+                                }
+                            }
+                            ... on OrderPlaced { label }
+                        }
+                    }
                     failures { errorCode displayMessage inputOrderId retryable }
                 }
                 ... on MarkOrdersPaidCompleteFailure {

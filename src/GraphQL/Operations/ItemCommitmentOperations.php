@@ -184,9 +184,9 @@ final class ItemCommitmentOperations
         GRAPHQL;
 
     public const ORDERS = <<<'GRAPHQL'
-        query Orders {
+        query Orders($input: OrdersInput!) {
             orders {
-                sellerOrders(input: {}) {
+                sellerOrders(input: $input) {
                     orders {
                         orderId
                         placedAt
@@ -210,6 +210,14 @@ final class ItemCommitmentOperations
                         orderId
                         placedAt
                         updatedAt
+                        logistics {
+                            fulfillmentPlan {
+                                planType
+                                logisticsPlanSteps {
+                                    methodName { id displayName }
+                                }
+                            }
+                        }
                     }
                 }
                 ... on OrdersByIdsPartialFailure {
@@ -217,6 +225,14 @@ final class ItemCommitmentOperations
                         orderId
                         placedAt
                         updatedAt
+                        logistics {
+                            fulfillmentPlan {
+                                planType
+                                logisticsPlanSteps {
+                                    methodName { id displayName }
+                                }
+                            }
+                        }
                     }
                     failures { errorCode displayMessage inputOrderId retryable }
                 }

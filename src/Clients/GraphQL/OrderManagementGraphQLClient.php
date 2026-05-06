@@ -169,9 +169,9 @@ final class OrderManagementGraphQLClient
     }
 
     /** Retrieve orders for the authenticated user. */
-    public function orders(?string $accessToken = null, ?RequestOptions $requestOptions = null): OrdersOutput
+    public function orders(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrdersOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS, [], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS, ['input' => $input], $accessToken, $requestOptions);
         return OrdersOutput::fromArray($data['orders'] ?? []);
     }
 

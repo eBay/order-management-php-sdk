@@ -159,7 +159,7 @@ final class CancellationOperations
                 ... on OrderCancellationEligibilityError {
                     errorCode
                     errorMessage
-                    ineligibilityReasons {
+                    orderIneligibilityReasons: ineligibilityReasons {
                         __typename
                         code
                         displayMessage
@@ -172,7 +172,7 @@ final class CancellationOperations
                 ... on OrderLineItemCancellationEligibilityError {
                     errorCode
                     errorMessage
-                    ineligibilityReasons {
+                    lineItemIneligibilityReasons: ineligibilityReasons {
                         __typename
                         code
                         displayMessage

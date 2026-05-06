@@ -10,6 +10,7 @@ readonly class OrderData
         public ?string $orderId = null,
         public ?string $placedAt = null,
         public ?string $updatedAt = null,
+        public ?PurchaseLogistics $logistics = null,
     ) {}
 
     public static function fromArray(array $data): self
@@ -18,6 +19,9 @@ readonly class OrderData
             orderId:   $data['orderId'] ?? null,
             placedAt:  $data['placedAt'] ?? null,
             updatedAt: $data['updatedAt'] ?? null,
+            logistics: isset($data['logistics'])
+                ? PurchaseLogistics::fromArray($data['logistics'])
+                : null,
         );
     }
 }

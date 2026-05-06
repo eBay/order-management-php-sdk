@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class SellerContractCancellationsSuccess extends SellerContractCancellationsOutput
 {
     /**
-     * @param CancellationData[] $contractCancellations
+     * @param CancellationDetail[] $contractCancellations
      */
     public function __construct(
         public array $contractCancellations = [],
@@ -23,7 +23,7 @@ readonly class SellerContractCancellationsSuccess extends SellerContractCancella
     {
         return new self(
             contractCancellations: array_map(
-                static fn(array $c) => CancellationData::fromArray($c),
+                static fn(array $c) => CancellationDetail::fromArray($c),
                 $data['contractCancellations'] ?? []
             ),
             pagination: isset($data['pagination'])

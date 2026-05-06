@@ -245,7 +245,6 @@ final class ItemCommitmentOperations
                         orderId
                         placedAt
                         updatedAt
-                        buyer { legacyUserId }
                         logistics {
                             fulfillmentPlan {
                                 planType

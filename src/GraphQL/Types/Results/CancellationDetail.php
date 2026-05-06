@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace EBay\OrderManagement\GraphQL\Types\Results;
+
+readonly class CancellationDetail
+{
+    public function __construct(
+        public ?string               $cancellationId = null,
+        public ?string               $__typename = null,
+        public ?CancellationStatusData $status = null,
+        public ?string               $requestedAt = null,
+        public ?string               $closedAt = null,
+        public ?string               $requester = null,
+        public ?string               $requesterNote = null,
+        public ?array                $reason = null,
+        /** @var array[] */
+        public array                 $lineItems = [],
+        /** @var array[] */
+        public array                 $refunds = [],
+        public ?array                $sellerAvailableActions = null,
+    ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            cancellationId:         $data['cancellationId'] ?? null,
+            __typename:             $data['__typename'] ?? null,
+            status:                 isset($data['status'])
+                ? CancellationStatusData::fromArray($data['status'])
+                : null,
+            requestedAt:            $data['requestedAt'] ?? null,
+            closedAt:               $data['closedAt'] ?? null,
+            requester:              $data['requester'] ?? null,
+            requesterNote:          $data['requesterNote'] ?? null,
+            reason:                 $data['reason'] ?? null,
+            lineItems:              $data['lineItems'] ?? [],
+            refunds:                $data['refunds'] ?? [],
+            sellerAvailableActions: $data['sellerAvailableActions'] ?? null,
+        );
+    }
+}

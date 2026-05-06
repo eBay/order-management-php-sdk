@@ -7,7 +7,7 @@ namespace EBay\OrderManagement\GraphQL\Types\Results;
 readonly class ContractCancellationSuccess extends ContractCancellationOutput
 {
     public function __construct(
-        public ?CancellationData $contractCancellation = null,
+        public ?CancellationDetail $contractCancellation = null,
     ) {}
 
     public function getTypename(): string
@@ -19,7 +19,7 @@ readonly class ContractCancellationSuccess extends ContractCancellationOutput
     {
         return new self(
             contractCancellation: isset($data['contractCancellation'])
-                ? CancellationData::fromArray($data['contractCancellation'])
+                ? CancellationDetail::fromArray($data['contractCancellation'])
                 : null,
         );
     }

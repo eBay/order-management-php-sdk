@@ -147,9 +147,9 @@ final class OrderManagementGraphQLClient
         return BulkUpdateItemCommitmentTagsOutput::fromArray($data['bulkUpdateItemCommitmentTags'] ?? []);
     }
 
-    public function itemCommitments(?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsOutput
+    public function itemCommitments(array $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS, [], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS, ['input' => $input], $accessToken, $requestOptions);
         return ItemCommitmentsOutput::fromArray($data['itemCommitments'] ?? []);
     }
 

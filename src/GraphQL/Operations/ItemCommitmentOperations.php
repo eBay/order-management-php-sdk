@@ -5,9 +5,9 @@ namespace EBay\OrderManagement\GraphQL\Operations;
 final class ItemCommitmentOperations
 {
     public const ITEM_COMMITMENTS = <<<'GRAPHQL'
-        query ItemCommitments {
+        query ItemCommitments($input: ItemCommitmentsInput!) {
             itemCommitments {
-                buyerItemCommitments(input: {}) {
+                buyerItemCommitments(input: $input) {
                     itemCommitments {
                         itemCommitmentId
                         createdAt
@@ -22,8 +22,8 @@ final class ItemCommitmentOperations
                         }
                         cancellation { cancellationId }
                         refunds { refundId }
-                        buyer { legacyUserId }
-                        seller { legacyUserId }
+                        buyer { userId }
+                        seller { userId }
                         totals {
                             committedTotal {
                                 original { value currency }
@@ -31,7 +31,7 @@ final class ItemCommitmentOperations
                         }
                         lineItem {
                             quantity
-                            item { itemIdVersioned versionId }
+                            item { itemId }
                             purchaseFlow {
                                 ... on PurchaseFlowBuyItNow { label }
                                 ... on PurchaseFlowAuction { label }

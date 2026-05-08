@@ -8,7 +8,7 @@ readonly class Input
 {
     public function __construct(
         public string $name,
-        public string $responseStrategyCode,
+        public string $responseStrategy,
         public ?ConditionSetInput $conditionSet = null,
     ) {}
 
@@ -16,7 +16,7 @@ readonly class Input
     {
         return new static(
             name: $data['name'],
-            responseStrategyCode: $data['responseStrategyCode'],
+            responseStrategy: $data['responseStrategy'],
             conditionSet: isset($data['conditionSet'])
                 ? ConditionSetInput::fromArray($data['conditionSet'])
                 : null,
@@ -27,7 +27,7 @@ readonly class Input
     {
         $data = [
             'name'                 => $this->name,
-            'responseStrategyCode' => $this->responseStrategyCode,
+            'responseStrategy' => $this->responseStrategy,
         ];
         if ($this->conditionSet !== null) {
             $data['conditionSet'] = $this->conditionSet->toArray();

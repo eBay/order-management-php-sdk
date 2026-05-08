@@ -8,22 +8,22 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
-        public string $referralReason,
+        public string $referralReasonCode,
     ) {}
 
     public static function fromArray(array $data): static
     {
         return new static(
-            returnId: $data['returnId'],
-            referralReason: $data['referralReason'],
+            returnId:           $data['returnId'],
+            referralReasonCode: $data['referralReasonCode'],
         );
     }
 
     public function toArray(): array
     {
         return [
-            'returnId'       => $this->returnId,
-            'referralReason' => $this->referralReason,
+            'returnId'           => $this->returnId,
+            'referralReasonCode' => $this->referralReasonCode,
         ];
     }
 }

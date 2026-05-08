@@ -8,14 +8,14 @@ readonly class Input
 {
     public function __construct(
         public string $listingMarketplace,
-        public string $preferenceStatus,
+        public RmaPreference $rmaPreference,
     ) {}
 
     public static function fromArray(array $data): static
     {
         return new static(
             listingMarketplace: $data['listingMarketplace'],
-            preferenceStatus: $data['preferenceStatus'],
+            rmaPreference:      RmaPreference::fromArray($data['rmaPreference']),
         );
     }
 
@@ -23,7 +23,7 @@ readonly class Input
     {
         return [
             'listingMarketplace' => $this->listingMarketplace,
-            'preferenceStatus'   => $this->preferenceStatus,
+            'rmaPreference'      => ['preferenceStatus' => $this->rmaPreference->preferenceStatus],
         ];
     }
 }

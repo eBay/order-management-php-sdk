@@ -8,17 +8,15 @@ readonly class Input
 {
     public function __construct(
         public string $name,
-        public string $addressRoutingStrategyCode,
-        public ?string $returnAddressId = null,
+        public AddressRouteInput $addressRoute,
         public ?ConditionSetInput $conditionSet = null,
     ) {}
 
     public static function fromArray(array $data): static
     {
         return new static(
-            name: $data['name'],
-            addressRoutingStrategyCode: $data['addressRoutingStrategyCode'],
-            returnAddressId: $data['returnAddressId'] ?? null,
+            name:         $data['name'],
+            addressRoute: AddressRouteInput::fromArray($data['addressRoute']),
             conditionSet: isset($data['conditionSet'])
                 ? ConditionSetInput::fromArray($data['conditionSet'])
                 : null,
@@ -28,12 +26,9 @@ readonly class Input
     public function toArray(): array
     {
         $data = [
-            'name'                      => $this->name,
-            'addressRoutingStrategyCode' => $this->addressRoutingStrategyCode,
+            'name'         => $this->name,
+            'addressRoute' => $this->addressRoute->toArray(),
         ];
-        if ($this->returnAddressId !== null) {
-            $data['returnAddressId'] = $this->returnAddressId;
-        }
         if ($this->conditionSet !== null) {
             $data['conditionSet'] = $this->conditionSet->toArray();
         }

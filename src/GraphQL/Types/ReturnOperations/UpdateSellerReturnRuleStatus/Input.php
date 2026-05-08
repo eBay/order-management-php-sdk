@@ -8,22 +8,22 @@ readonly class Input
 {
     public function __construct(
         public string $ruleId,
-        public string $statusCode,
+        public string $status,
     ) {}
 
     public static function fromArray(array $data): static
     {
         return new static(
             ruleId: $data['ruleId'],
-            statusCode: $data['statusCode'],
+            status: $data['status'],
         );
     }
 
     public function toArray(): array
     {
         return [
-            'ruleId'     => $this->ruleId,
-            'statusCode' => $this->statusCode,
+            'ruleId' => $this->ruleId,
+            'status' => $this->status,
         ];
     }
 }

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class InquiryFixtureTest extends TestCase
 {
-    private static string $fixturesDir = __DIR__ . '/../../fixtures/Inquiry';
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/output/Inquiry';
     private static string $namespace = 'EBay\\OrderManagement\\GraphQL\\Types\\InquiryOperations';
 
     public static function fixtures(): iterable

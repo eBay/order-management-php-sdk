@@ -15,6 +15,7 @@ abstract readonly class Output
             'ReturnCreationNotAllowedError'   => ReturnCreationNotAllowedError::fromArray($data),
             'OrderLineItemNotFoundError'                => GenericError::fromArray($data),
             'CreateInStoreReturnInputValidationError'   => InputValidationError::fromArray($data),
+            'ReturnRequestLineItemRequiredError'        => RequestLineItemRequiredError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

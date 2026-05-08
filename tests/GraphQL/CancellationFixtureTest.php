@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class CancellationFixtureTest extends TestCase
 {
-    private static string $fixturesDir = __DIR__ . '/../../fixtures/Cancellation';
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/output/Cancellation';
     private static string $namespace = 'EBay\\OrderManagement\\GraphQL\\Types\\CancellationOperations';
 
     public static function fixtures(): iterable

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class ItemCommitmentFixtureTest extends TestCase
 {
-    private static string $fixturesDir = __DIR__ . '/../../fixtures/ItemCommitment';
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/output/ItemCommitment';
     private static string $namespace = 'EBay\\OrderManagement\\GraphQL\\Types\\ItemCommitmentOperations';
 
     public static function fixtures(): iterable

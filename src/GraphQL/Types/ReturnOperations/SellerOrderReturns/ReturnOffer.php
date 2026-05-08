@@ -8,7 +8,8 @@ readonly class ReturnOffer
 {
     public function __construct(
         public ?ReturnOfferStatus $status = null,
-        public ?ProposedTerm $proposedTerm = null,
+        /** @var ProposedTerm[] */
+        public array $proposedTerm = [],
     ) {}
 
     public static function fromArray(array $data): self
@@ -17,9 +18,10 @@ readonly class ReturnOffer
             status:       isset($data['status'])
                 ? ReturnOfferStatus::fromArray($data['status'])
                 : null,
-            proposedTerm: isset($data['proposedTerm'])
-                ? ProposedTerm::fromArray($data['proposedTerm'])
-                : null,
+            proposedTerm: array_map(
+                fn(array $t) => ProposedTerm::fromArray($t),
+                $data['proposedTerm'] ?? []
+            ),
         );
     }
 }

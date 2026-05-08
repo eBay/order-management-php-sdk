@@ -8,7 +8,7 @@ readonly class KeepItemPartialRefundTerm extends ProposedTerm
 {
     public function __construct(
         public ?RefundAmount $refundAmount = null,
-        public ?string $itemPriceRefundPercentage = null,
+        public ?int $itemPriceRefundPercentage = null,
         public ?bool $itemShippingPriceWaived = null,
     ) {}
 

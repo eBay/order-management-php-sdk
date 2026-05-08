@@ -14,6 +14,7 @@ abstract readonly class Output
             'DeleteReturnRuleListingGroupSuccess' => Success::fromArray($data),
             'DeleteReturnRuleListingGroupError'   => DeleteError::fromArray($data),
             'ReturnRuleListingGroupNotFoundError' => ListingGroupNotFoundError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError'    => FeatureNotEnabledError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

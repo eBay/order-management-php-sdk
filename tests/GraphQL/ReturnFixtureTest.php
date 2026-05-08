@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class ReturnFixtureTest extends TestCase
 {
-    private static string $fixturesDir = __DIR__ . '/../../fixtures/Return';
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/output/Return';
     private static string $namespace = 'EBay\\OrderManagement\\GraphQL\\Types\\ReturnOperations';
 
     public static function fixtures(): iterable

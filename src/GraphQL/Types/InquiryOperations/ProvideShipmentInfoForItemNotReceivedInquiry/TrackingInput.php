@@ -10,6 +10,14 @@ readonly class TrackingInput
         public string $trackingNumber,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            shippingCarrier: CarrierInput::fromArray($data['shippingCarrier']),
+            trackingNumber: $data['trackingNumber'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

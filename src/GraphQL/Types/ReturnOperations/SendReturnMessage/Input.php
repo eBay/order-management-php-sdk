@@ -11,6 +11,14 @@ readonly class Input
         public string $message,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            message: $data['message'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

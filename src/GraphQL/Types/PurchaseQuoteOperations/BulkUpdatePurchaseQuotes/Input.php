@@ -13,6 +13,13 @@ readonly class Input
         public array $updates,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            updates: array_map(fn(array $u) => UpdatePurchaseQuoteInput::fromArray($u), $data['updates']),
+        );
+    }
+
     public function toArray(): array
     {
         return [

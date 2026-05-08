@@ -12,6 +12,15 @@ readonly class Input
         public ?int $limit = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnRuleListingGroupId: $data['returnRuleListingGroupId'],
+            cursor: $data['cursor'] ?? null,
+            limit: isset($data['limit']) ? (int) $data['limit'] : null,
+        );
+    }
+
     public function toArray(): array
     {
         $data = ['returnRuleListingGroupId' => $this->returnRuleListingGroupId];

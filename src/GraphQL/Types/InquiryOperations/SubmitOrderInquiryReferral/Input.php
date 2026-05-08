@@ -10,6 +10,14 @@ readonly class Input
         public string $referralReasonCode,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            inquiryId: $data['inquiryId'],
+            referralReasonCode: $data['referralReasonCode'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

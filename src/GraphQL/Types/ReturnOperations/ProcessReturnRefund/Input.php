@@ -12,6 +12,14 @@ readonly class Input
         public array $returnLineItemIds = [],
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            returnLineItemIds: $data['returnLineItemIds'] ?? [],
+        );
+    }
+
     public function toArray(): array
     {
         return [

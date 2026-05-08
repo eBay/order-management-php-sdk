@@ -13,6 +13,13 @@ readonly class Input
         public array $lineItemIds,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            lineItemIds: $data['lineItemIds'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

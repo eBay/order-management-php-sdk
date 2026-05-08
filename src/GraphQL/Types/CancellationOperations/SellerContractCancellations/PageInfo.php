@@ -11,6 +11,14 @@ readonly class PageInfo
         public ?string $pageCursor = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            maxPageSize: $data['maxPageSize'],
+            pageCursor: $data['pageCursor'] ?? null,
+        );
+    }
+
     public function toArray(): array
     {
         return array_filter([

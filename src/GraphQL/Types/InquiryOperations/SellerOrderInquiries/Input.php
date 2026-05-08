@@ -10,6 +10,14 @@ readonly class Input
         public ?PageInfoInput $pageInfo = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            initialPage: isset($data['initialPage']) ? InitialPageInput::fromArray($data['initialPage']) : null,
+            pageInfo: isset($data['pageInfo']) ? PageInfoInput::fromArray($data['pageInfo']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         $arr = [];

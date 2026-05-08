@@ -11,6 +11,14 @@ readonly class AmountInput
         public string $value,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            currency: $data['currency'],
+            value: $data['value'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

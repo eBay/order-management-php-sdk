@@ -11,6 +11,14 @@ readonly class ShipmentTrackingDetails
         public string $shippingCarrierCode,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            shipmentTrackingNumber: $data['shipmentTrackingNumber'],
+            shippingCarrierCode: $data['shippingCarrierCode'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

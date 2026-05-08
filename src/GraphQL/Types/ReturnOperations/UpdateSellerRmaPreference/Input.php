@@ -11,6 +11,14 @@ readonly class Input
         public string $preferenceStatus,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            listingMarketplace: $data['listingMarketplace'],
+            preferenceStatus: $data['preferenceStatus'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

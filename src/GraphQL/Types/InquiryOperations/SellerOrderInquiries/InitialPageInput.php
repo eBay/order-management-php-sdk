@@ -10,6 +10,14 @@ readonly class InitialPageInput
         public SortInput $sort,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            filter: FilterInput::fromArray($data['filter']),
+            sort: SortInput::fromArray($data['sort']),
+        );
+    }
+
     public function toArray(): array
     {
         return [

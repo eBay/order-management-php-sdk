@@ -11,6 +11,14 @@ readonly class OrdersSortInput
         public string $sortOrder,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            sortField: $data['sortField'],
+            sortOrder: $data['sortOrder'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

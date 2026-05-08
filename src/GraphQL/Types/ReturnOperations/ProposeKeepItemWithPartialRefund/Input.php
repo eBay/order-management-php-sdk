@@ -8,16 +8,26 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
-        public string $returnLineItemId,
-        public string $refundPercentage,
+        /** @var KeepItemPartialRefundTermInput[] */
+        public array $keepItemPartialRefundTerms,
     ) {}
+
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            keepItemPartialRefundTerms: array_map(
+                fn(array $t) => KeepItemPartialRefundTermInput::fromArray($t),
+                $data['keepItemPartialRefundTerms'],
+            ),
+        );
+    }
 
     public function toArray(): array
     {
         return [
-            'returnId'          => $this->returnId,
-            'returnLineItemId'  => $this->returnLineItemId,
-            'refundPercentage'  => $this->refundPercentage,
+            'returnId'                   => $this->returnId,
+            'keepItemPartialRefundTerms' => array_map(fn(KeepItemPartialRefundTermInput $t) => $t->toArray(), $this->keepItemPartialRefundTerms),
         ];
     }
 }

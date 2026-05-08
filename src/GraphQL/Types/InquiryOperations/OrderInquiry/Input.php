@@ -9,6 +9,13 @@ readonly class Input
         public string $inquiryId,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            inquiryId: $data['inquiryId'],
+        );
+    }
+
     public function toArray(): array
     {
         return ['inquiryId' => $this->inquiryId];

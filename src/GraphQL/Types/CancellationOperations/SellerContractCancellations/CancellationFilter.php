@@ -14,6 +14,14 @@ readonly class CancellationFilter
         public array $statuses = [],
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            createdBetween: isset($data['createdBetween']) ? DateTimeRange::fromArray($data['createdBetween']) : null,
+            statuses: $data['statuses'] ?? [],
+        );
+    }
+
     public function toArray(): array
     {
         $result = [];

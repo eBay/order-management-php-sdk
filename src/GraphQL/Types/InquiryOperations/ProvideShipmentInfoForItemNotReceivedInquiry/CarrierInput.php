@@ -10,6 +10,14 @@ readonly class CarrierInput
         public ?string $unsupportedCarrierName = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            carrierCode: $data['carrierCode'],
+            unsupportedCarrierName: $data['unsupportedCarrierName'] ?? null,
+        );
+    }
+
     public function toArray(): array
     {
         $arr = ['carrierCode' => $this->carrierCode];

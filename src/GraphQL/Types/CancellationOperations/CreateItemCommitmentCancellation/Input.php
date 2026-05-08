@@ -12,6 +12,15 @@ readonly class Input
         public bool $relistItem = false,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            contractCancellationReason: $data['contractCancellationReason'],
+            itemCommitmentId: $data['itemCommitmentId'],
+            relistItem: (bool)($data['relistItem'] ?? false),
+        );
+    }
+
     public function toArray(): array
     {
         return [

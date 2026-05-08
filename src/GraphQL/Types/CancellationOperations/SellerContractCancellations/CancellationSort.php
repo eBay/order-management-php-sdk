@@ -11,6 +11,14 @@ readonly class CancellationSort
         public string $sortOrder = 'ASC',
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            sortField: $data['sortField'] ?? 'REQUESTED_AT',
+            sortOrder: $data['sortOrder'] ?? 'ASC',
+        );
+    }
+
     public function toArray(): array
     {
         return [

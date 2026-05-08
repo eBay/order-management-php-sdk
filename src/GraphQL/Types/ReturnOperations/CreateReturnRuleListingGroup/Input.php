@@ -12,6 +12,14 @@ readonly class Input
         public array $listingIds = [],
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            groupName: $data['groupName'],
+            listingIds: $data['listingIds'] ?? [],
+        );
+    }
+
     public function toArray(): array
     {
         return [

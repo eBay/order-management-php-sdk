@@ -18,6 +18,22 @@ readonly class UpdatePurchaseQuoteInput
         public ?PurchaseQuoteTotalsInput $total = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            purchaseQuoteId: $data['purchaseQuoteId'],
+            emailCopyToSeller: (bool)($data['emailCopyToSeller'] ?? false),
+            lineItems: isset($data['lineItems'])
+                ? array_map(fn(array $li) => PurchaseQuoteItemInput::fromArray($li), $data['lineItems'])
+                : null,
+            logisticsOptions: isset($data['logisticsOptions'])
+                ? PurchaseQuoteLogisticsOptionInput::fromArray($data['logisticsOptions'])
+                : null,
+            messageToBuyer: $data['messageToBuyer'] ?? null,
+            total: isset($data['total']) ? PurchaseQuoteTotalsInput::fromArray($data['total']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [

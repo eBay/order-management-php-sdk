@@ -13,6 +13,13 @@ readonly class Input
         public array $orderIds,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            orderIds: $data['orderIds'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

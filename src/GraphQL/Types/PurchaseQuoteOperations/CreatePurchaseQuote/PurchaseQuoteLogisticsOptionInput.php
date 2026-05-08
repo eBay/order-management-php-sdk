@@ -15,6 +15,18 @@ readonly class PurchaseQuoteLogisticsOptionInput
         public ?array $shipping = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            pickup: isset($data['pickup'])
+                ? array_map(fn(array $p) => PickupLogisticsOptionInput::fromArray($p), $data['pickup'])
+                : null,
+            shipping: isset($data['shipping'])
+                ? array_map(fn(array $s) => ShippingLogisticsOptionInput::fromArray($s), $data['shipping'])
+                : null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [];

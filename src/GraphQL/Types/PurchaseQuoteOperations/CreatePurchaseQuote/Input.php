@@ -17,6 +17,17 @@ readonly class Input
         public ?PurchaseQuoteTotalsInput $total = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            lineItems: array_map(fn(array $li) => PurchaseQuoteItemInput::fromArray($li), $data['lineItems']),
+            logisticsOptions: PurchaseQuoteLogisticsOptionInput::fromArray($data['logisticsOptions']),
+            emailCopyToSeller: (bool)($data['emailCopyToSeller'] ?? false),
+            messageToBuyer: $data['messageToBuyer'] ?? null,
+            total: isset($data['total']) ? PurchaseQuoteTotalsInput::fromArray($data['total']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [

@@ -10,6 +10,13 @@ readonly class Input
         public string $cancellationId,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            cancellationId: $data['cancellationId'],
+        );
+    }
+
     public function toArray(): array
     {
         return ['cancellationId' => $this->cancellationId];

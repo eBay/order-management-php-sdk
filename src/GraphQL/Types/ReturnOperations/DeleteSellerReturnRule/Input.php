@@ -10,6 +10,13 @@ readonly class Input
         public string $ruleId,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            ruleId: $data['ruleId'],
+        );
+    }
+
     public function toArray(): array
     {
         return ['ruleId' => $this->ruleId];

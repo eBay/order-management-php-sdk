@@ -11,6 +11,14 @@ readonly class InitialPage
         public CancellationSort $sort,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            filter: CancellationFilter::fromArray($data['filter']),
+            sort: CancellationSort::fromArray($data['sort']),
+        );
+    }
+
     public function toArray(): array
     {
         return [

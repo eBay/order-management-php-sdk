@@ -11,6 +11,16 @@ readonly class Input
         public ?ConditionSetInput $conditionSet = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            ruleId: $data['ruleId'],
+            conditionSet: isset($data['conditionSet'])
+                ? ConditionSetInput::fromArray($data['conditionSet'])
+                : null,
+        );
+    }
+
     public function toArray(): array
     {
         $data = ['ruleId' => $this->ruleId];

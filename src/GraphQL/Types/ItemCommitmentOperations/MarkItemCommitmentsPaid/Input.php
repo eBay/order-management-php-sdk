@@ -13,6 +13,13 @@ readonly class Input
         public array $itemCommitmentIds,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            itemCommitmentIds: $data['itemCommitmentIds'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

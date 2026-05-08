@@ -8,14 +8,28 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
-        public string $rmaNumber,
+        public ?string $rmaNumber = null,
+        public bool $rmaRequirementWaived = false,
     ) {}
+
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            rmaNumber: $data['rmaNumber'] ?? null,
+            rmaRequirementWaived: (bool) ($data['rmaRequirementWaived'] ?? false),
+        );
+    }
 
     public function toArray(): array
     {
-        return [
-            'returnId'  => $this->returnId,
-            'rmaNumber' => $this->rmaNumber,
+        $data = [
+            'returnId'             => $this->returnId,
+            'rmaRequirementWaived' => $this->rmaRequirementWaived,
         ];
+        if ($this->rmaNumber !== null) {
+            $data['rmaNumber'] = $this->rmaNumber;
+        }
+        return $data;
     }
 }

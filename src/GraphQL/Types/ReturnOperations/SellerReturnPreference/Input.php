@@ -10,6 +10,13 @@ readonly class Input
         public string $listingMarketplace,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            listingMarketplace: $data['listingMarketplace'],
+        );
+    }
+
     public function toArray(): array
     {
         return ['listingMarketplace' => $this->listingMarketplace];

@@ -11,6 +11,14 @@ readonly class Input
         public string $statusCode,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            ruleId: $data['ruleId'],
+            statusCode: $data['statusCode'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

@@ -7,16 +7,24 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreRetur
 readonly class Input
 {
     public function __construct(
-        public string $orderId,
-        /** @var array<array{orderLineItemId: string, quantity: int, returnReason: string}> */
-        public array $returnLineItems = [],
+        /** @var CreateReturnLineItemInput[] */
+        public array $returnLineItemInput,
     ) {}
+
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnLineItemInput: array_map(
+                fn(array $i) => CreateReturnLineItemInput::fromArray($i),
+                $data['returnLineItemInput'],
+            ),
+        );
+    }
 
     public function toArray(): array
     {
         return [
-            'orderId'         => $this->orderId,
-            'returnLineItems' => $this->returnLineItems,
+            'returnLineItemInput' => array_map(fn(CreateReturnLineItemInput $i) => $i->toArray(), $this->returnLineItemInput),
         ];
     }
 }

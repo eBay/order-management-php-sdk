@@ -11,6 +11,14 @@ readonly class Input
         public ?string $note = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            note: $data['note'] ?? null,
+        );
+    }
+
     public function toArray(): array
     {
         $arr = ['returnId' => $this->returnId];

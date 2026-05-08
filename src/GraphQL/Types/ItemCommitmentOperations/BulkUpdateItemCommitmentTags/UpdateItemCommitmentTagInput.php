@@ -15,6 +15,15 @@ readonly class UpdateItemCommitmentTagInput
         public array $tags,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            action: $data['action'],
+            itemCommitment: $data['itemCommitment'],
+            tags: $data['tags'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

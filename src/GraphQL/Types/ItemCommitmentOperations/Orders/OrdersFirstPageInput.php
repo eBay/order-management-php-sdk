@@ -11,6 +11,14 @@ readonly class OrdersFirstPageInput
         public int $maxPageSize,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            filter: OrdersFirstFilterInput::fromArray($data['filter']),
+            maxPageSize: $data['maxPageSize'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

@@ -13,6 +13,18 @@ readonly class Input
         public ?ConditionSetInput $conditionSet = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            name: $data['name'],
+            addressRoutingStrategyCode: $data['addressRoutingStrategyCode'],
+            returnAddressId: $data['returnAddressId'] ?? null,
+            conditionSet: isset($data['conditionSet'])
+                ? ConditionSetInput::fromArray($data['conditionSet'])
+                : null,
+        );
+    }
+
     public function toArray(): array
     {
         $data = [

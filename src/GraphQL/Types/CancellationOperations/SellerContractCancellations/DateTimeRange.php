@@ -11,6 +11,14 @@ readonly class DateTimeRange
         public string $startDateTime,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            endDateTime: $data['endDateTime'],
+            startDateTime: $data['startDateTime'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

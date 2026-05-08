@@ -13,6 +13,14 @@ readonly class Input
         public array $trackings,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            inquiryId: $data['inquiryId'],
+            trackings: array_map(fn(array $t) => TrackingInput::fromArray($t), $data['trackings']),
+        );
+    }
+
     public function toArray(): array
     {
         return [

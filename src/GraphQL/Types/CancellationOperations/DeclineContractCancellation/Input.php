@@ -11,6 +11,14 @@ readonly class Input
         public ?FulfillmentDetails $fulfillmentDetails = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            cancellationId: $data['cancellationId'],
+            fulfillmentDetails: isset($data['fulfillmentDetails']) ? FulfillmentDetails::fromArray($data['fulfillmentDetails']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         return array_filter([

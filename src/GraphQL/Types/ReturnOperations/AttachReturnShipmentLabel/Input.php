@@ -8,14 +8,26 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
-        public string $documentId,
+        /** @var ReturnShipmentLabelInput[] */
+        public array $returnShipmentLabels,
     ) {}
+
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            returnId: $data['returnId'],
+            returnShipmentLabels: array_map(
+                fn(array $l) => ReturnShipmentLabelInput::fromArray($l),
+                $data['returnShipmentLabels'],
+            ),
+        );
+    }
 
     public function toArray(): array
     {
         return [
-            'returnId'   => $this->returnId,
-            'documentId' => $this->documentId,
+            'returnId'             => $this->returnId,
+            'returnShipmentLabels' => array_map(fn(ReturnShipmentLabelInput $l) => $l->toArray(), $this->returnShipmentLabels),
         ];
     }
 }

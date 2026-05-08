@@ -11,6 +11,14 @@ readonly class Input
         public ?PageInfo $pageInfo = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            initialPage: isset($data['initialPage']) ? InitialPage::fromArray($data['initialPage']) : null,
+            pageInfo: isset($data['pageInfo']) ? PageInfo::fromArray($data['pageInfo']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         return array_filter([

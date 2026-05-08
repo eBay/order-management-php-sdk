@@ -11,6 +11,14 @@ readonly class ShippingLogisticsOptionInput
         public string $shippingServiceCode,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            cost: AmountInput::fromArray($data['cost']),
+            shippingServiceCode: $data['shippingServiceCode'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

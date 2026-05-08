@@ -34,7 +34,8 @@ use Psr\Http\Message\RequestInterface;
  *   $quote = $sdk->logistics->createShippingQuote($shippingQuoteRequest);
  *
  *   // GraphQL — typed wrappers
- *   $result = $sdk->graphQL->createOrderCancellation(['orderId' => '...', ...]);
+ *   use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation\Input as CreateOrderCancellationInput;
+ *   $result = $sdk->graphQL->createOrderCancellation(new CreateOrderCancellationInput(contractCancellationReason: 'OUT_OF_STOCK', orderId: '12-34567-89012'));
  *
  *   // GraphQL — escape hatch
  *   $raw = $sdk->graphQL->executeRaw('{ orders { sellerOrders(input: {}) { orders { orderId } } } }');

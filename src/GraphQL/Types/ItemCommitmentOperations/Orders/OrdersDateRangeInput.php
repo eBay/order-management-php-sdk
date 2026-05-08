@@ -11,6 +11,14 @@ readonly class OrdersDateRangeInput
         public string $dateType,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            dateTimeRange: DateTimeRangeInput::fromArray($data['dateTimeRange']),
+            dateType: $data['dateType'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

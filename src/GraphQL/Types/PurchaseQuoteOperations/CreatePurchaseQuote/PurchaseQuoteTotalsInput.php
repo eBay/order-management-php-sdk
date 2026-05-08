@@ -11,6 +11,14 @@ readonly class PurchaseQuoteTotalsInput
         public ?AmountInput $shippingDiscount = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            additionalCharge: isset($data['additionalCharge']) ? AmountInput::fromArray($data['additionalCharge']) : null,
+            shippingDiscount: isset($data['shippingDiscount']) ? AmountInput::fromArray($data['shippingDiscount']) : null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [];

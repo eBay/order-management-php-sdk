@@ -10,6 +10,14 @@ readonly class SortInput
         public string $sortOrder = 'ASC',
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            sortField: $data['sortField'] ?? 'CREATED_AT',
+            sortOrder: $data['sortOrder'] ?? 'ASC',
+        );
+    }
+
     public function toArray(): array
     {
         return [

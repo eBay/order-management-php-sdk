@@ -16,6 +16,19 @@ readonly class OrdersFilterInput
         public ?string $listingId = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            includeAbandoned: (bool)($data['includeAbandoned'] ?? false),
+            includeCancelled: (bool)($data['includeCancelled'] ?? false),
+            includeConfirmed: (bool)($data['includeConfirmed'] ?? true),
+            includePlaced: (bool)($data['includePlaced'] ?? false),
+            fulfilled: isset($data['fulfilled']) ? (bool)$data['fulfilled'] : null,
+            funded: isset($data['funded']) ? (bool)$data['funded'] : null,
+            listingId: $data['listingId'] ?? null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [

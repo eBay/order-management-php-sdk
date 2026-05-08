@@ -13,6 +13,16 @@ readonly class Input
         public array $itemCommitmentTagUpdates,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            itemCommitmentTagUpdates: array_map(
+                fn(array $u) => UpdateItemCommitmentTagInput::fromArray($u),
+                $data['itemCommitmentTagUpdates'],
+            ),
+        );
+    }
+
     public function toArray(): array
     {
         return [

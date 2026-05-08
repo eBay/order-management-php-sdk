@@ -10,6 +10,13 @@ readonly class PurchaseQuoteItemInput
         public string $itemCommitmentId,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            itemCommitmentId: $data['itemCommitmentId'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

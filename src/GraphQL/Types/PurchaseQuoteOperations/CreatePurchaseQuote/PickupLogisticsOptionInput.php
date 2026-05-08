@@ -11,6 +11,14 @@ readonly class PickupLogisticsOptionInput
         public string $displayName,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            cost: AmountInput::fromArray($data['cost']),
+            displayName: $data['displayName'],
+        );
+    }
+
     public function toArray(): array
     {
         return [

@@ -14,6 +14,17 @@ readonly class FulfillmentDetails
         public ?string $shippedAt = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            shipmentTrackingDetails: array_map(
+                fn(array $item) => ShipmentTrackingDetails::fromArray($item),
+                $data['shipmentTrackingDetails'] ?? [],
+            ),
+            shippedAt: $data['shippedAt'] ?? null,
+        );
+    }
+
     public function toArray(): array
     {
         return array_filter([

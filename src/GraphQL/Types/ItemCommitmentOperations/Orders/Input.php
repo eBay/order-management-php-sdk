@@ -11,6 +11,18 @@ readonly class Input
         public ?PageInfoInput $ordersPage = null,
     ) {}
 
+    public static function fromArray(array $data): static
+    {
+        return new static(
+            ordersFirstPage: isset($data['ordersFirstPage'])
+                ? OrdersFirstPageInput::fromArray($data['ordersFirstPage'])
+                : null,
+            ordersPage: isset($data['ordersPage'])
+                ? PageInfoInput::fromArray($data['ordersPage'])
+                : null,
+        );
+    }
+
     public function toArray(): array
     {
         $result = [];

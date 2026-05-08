@@ -1,0 +1,13 @@
+{
+  "data": {
+    "submitReturnReferral": {
+      "__typename": "OrderReturn",
+      "returnId": "210f7042-5e3f-4e65-b7e6-087a6756435e",
+      "status": {
+        "__typename": "ReturnClosed",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

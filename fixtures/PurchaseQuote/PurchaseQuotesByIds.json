@@ -1,0 +1,21 @@
+{
+  "data": {
+    "purchaseQuotesByIds": {
+      "__typename": "PurchaseQuotesByIdsCompleteFailure",
+      "failures": [
+        {
+          "errorCode": "Hello World",
+          "displayMessage": "Hello World",
+          "inputPurchaseQuoteId": "a09f5082-1b07-47cf-879a-3e8186e74d09",
+          "retryable": true
+        },
+        {
+          "errorCode": "Hello World",
+          "displayMessage": "Hello World",
+          "inputPurchaseQuoteId": "a39cd723-ae48-4467-b30e-80e581530c25",
+          "retryable": false
+        }
+      ]
+    }
+  }
+}

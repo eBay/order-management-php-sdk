@@ -1,0 +1,19 @@
+{
+  "data": {
+    "orderLineItemsByIds": {
+      "__typename": "OrderLineItemsByIdsSuccess",
+      "lineItems": [
+        {
+          "orderLineItemId": "7dfda12b-b073-4ea2-bf92-b9f959a1fd8e",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z"
+        },
+        {
+          "orderLineItemId": "33dd478d-241c-46ab-9494-9a9c74ecd884",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "data": {
+    "sellerReturnPreference": {
+      "__typename": "SellerReturnPreferences",
+      "listingMarketplace": "EBAY_CA",
+      "rmaPreference": {
+        "preferenceStatus": "DISABLED"
+      }
+    }
+  }
+}

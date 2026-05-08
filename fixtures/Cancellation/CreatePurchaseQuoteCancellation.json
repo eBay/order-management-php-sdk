@@ -1,0 +1,10 @@
+{
+  "data": {
+    "createPurchaseQuoteCancellation": {
+      "__typename": "PurchaseQuoteNotFoundError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World",
+      "purchaseQuoteId": "84cf987b-d2cf-43eb-b405-c7e92018d581"
+    }
+  }
+}

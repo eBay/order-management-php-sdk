@@ -1,0 +1,31 @@
+{
+  "data": {
+    "itemCommitmentsByIds": {
+      "__typename": "ItemCommitmentsByIdsSuccess",
+      "itemCommitments": [
+        {
+          "itemCommitmentId": "cf9c9545-fc64-4b78-8b41-1df4024fce3c",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "state": {
+            "label": "Hello World"
+          }
+        },
+        {
+          "itemCommitmentId": "6da50968-b56b-4933-a03f-cd9cd8cceada",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "state": {
+            "label": "Hello World",
+            "cancelledAt": "2024-01-01T00:00:00.000Z",
+            "reason": "Hello World",
+            "cancelState": {
+              "label": "Hello World",
+              "startedAt": "2024-01-01T00:00:00.000Z"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

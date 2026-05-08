@@ -1,0 +1,21 @@
+{
+  "data": {
+    "approveReturn": {
+      "__typename": "ApproveReturnInputValidationError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World",
+      "violations": [
+        {
+          "__typename": "ReturnNoteViolation",
+          "code": "Hello World",
+          "displayMessage": "Hello World"
+        },
+        {
+          "__typename": "ReturnNoteViolation",
+          "code": "Hello World",
+          "displayMessage": "Hello World"
+        }
+      ]
+    }
+  }
+}

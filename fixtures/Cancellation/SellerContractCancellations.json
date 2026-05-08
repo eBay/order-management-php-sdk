@@ -1,0 +1,9 @@
+{
+  "data": {
+    "sellerContractCancellations": {
+      "__typename": "ContractCancellationInvalidDateRangeError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World"
+    }
+  }
+}

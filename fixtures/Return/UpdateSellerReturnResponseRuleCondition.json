@@ -1,0 +1,7 @@
+{
+  "data": {
+    "updateSellerReturnResponseRuleCondition": {
+      "__typename": "ReturnRuleMissingConditionError"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "data": {
+    "createPurchaseQuote": {
+      "__typename": "CreatePurchaseQuoteBusinessError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World",
+      "retryable": false
+    }
+  }
+}

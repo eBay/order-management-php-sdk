@@ -1,0 +1,10 @@
+{
+  "data": {
+    "declineContractCancellation": {
+      "__typename": "ContractCancellationNotFoundError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World",
+      "requestedContractCancellationId": "68353a93-7826-4db6-be5f-130c571baa7e"
+    }
+  }
+}

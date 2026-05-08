@@ -1,0 +1,15 @@
+{
+  "data": {
+    "bulkUpdateItemCommitmentTags": {
+      "__typename": "BulkUpdateItemCommitmentTagsSuccess",
+      "updatedItemCommitments": [
+        {
+          "itemCommitmentId": "7ed27e72-8cc5-427b-ba51-b4537a6bf510"
+        },
+        {
+          "itemCommitmentId": "4e7036f4-1689-44a1-a064-0cbea7a7903c"
+        }
+      ]
+    }
+  }
+}

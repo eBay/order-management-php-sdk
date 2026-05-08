@@ -1,0 +1,108 @@
+{
+  "data": {
+    "orders": {
+      "sellerOrders": {
+        "orders": [
+          {
+            "orderId": "cd64c472-4ac7-4273-af91-9361c8dedd61",
+            "placedAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "logistics": {
+              "fulfillmentPlan": [
+                {
+                  "planType": "b6824e3f-d09f-49f4-8a74-f93188674e4d",
+                  "logisticsPlanSteps": [
+                    {
+                      "methodName": {
+                        "id": "fa70143a-507b-498f-9354-2e6390fad9d0",
+                        "displayName": "Hello World"
+                      }
+                    },
+                    {
+                      "methodName": {
+                        "id": "e2467767-dbeb-4a6a-8821-450d4c23d3c5",
+                        "displayName": "Hello World"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "planType": "23c66ef2-4bf0-49ff-9405-452c3c0095cb",
+                  "logisticsPlanSteps": [
+                    {
+                      "methodName": {
+                        "id": "9476588f-d09f-4a0f-b629-ef6d06a17850",
+                        "displayName": "Hello World"
+                      }
+                    },
+                    {
+                      "methodName": {
+                        "id": "d32b784f-ff06-4c6b-8aed-377220681800",
+                        "displayName": "Hello World"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "orderState": {
+              "__typename": "OrderAbandoned",
+              "label": "Hello World"
+            }
+          },
+          {
+            "orderId": "84166f10-beae-429d-8b39-f2725a64a95e",
+            "placedAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "logistics": {
+              "fulfillmentPlan": [
+                {
+                  "planType": "1acf2169-5cd3-43d7-a47f-5537902cf63c",
+                  "logisticsPlanSteps": [
+                    {
+                      "methodName": {
+                        "id": "65bc334a-ce56-4ce2-bd0d-536cc8b564a7",
+                        "displayName": "Hello World"
+                      }
+                    },
+                    {
+                      "methodName": {
+                        "id": "a4c13bc8-e6bc-4d0f-bd4a-5f0c38c8b36b",
+                        "displayName": "Hello World"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "planType": "4cee6242-c39b-4619-8309-5078ffd05ac6",
+                  "logisticsPlanSteps": [
+                    {
+                      "methodName": {
+                        "id": "b2285de6-d4c7-4c42-acfe-bc2575b636f6",
+                        "displayName": "Hello World"
+                      }
+                    },
+                    {
+                      "methodName": {
+                        "id": "c4f5e9c0-5e10-4078-bb93-c69ecf569885",
+                        "displayName": "Hello World"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "orderState": {
+              "__typename": "OrderCancelled",
+              "label": "Hello World"
+            }
+          }
+        ],
+        "pagination": {
+          "nextCursor": "Hello World",
+          "previousCursor": "Hello World"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "data": {
+    "updateSellerReturnResponseRulesPriorities": {
+      "__typename": "ReturnRuleInvalidRuleIdsError",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World",
+      "invalidRuleIds": [
+        "ec6b7c8a-72d0-45d0-9745-79cb0346f69c",
+        "082072a6-ff05-4687-a319-16a6f42de98b"
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "data": {
+    "deleteSellerReturnRule": {
+      "__typename": "ReturnRuleFeatureNotEnabledError"
+    }
+  }
+}

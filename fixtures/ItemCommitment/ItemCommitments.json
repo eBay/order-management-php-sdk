@@ -1,0 +1,100 @@
+{
+  "data": {
+    "itemCommitments": {
+      "buyerItemCommitments": {
+        "itemCommitments": [
+          {
+            "itemCommitmentId": "4cff93ce-f312-4d1d-97fa-5d7e0a5005c5",
+            "createdAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "committedMarketplace": "EBAY_IE",
+            "state": {
+              "label": "Hello World"
+            },
+            "cancellation": {
+              "cancellationId": "a51c8313-f676-4e5a-a81f-6119a186dbf9"
+            },
+            "refunds": [
+              {
+                "refundId": "fa755848-39b2-4694-9939-400d7c77bf17"
+              },
+              {
+                "refundId": "b99a3080-8700-433f-a1f2-bba030823e37"
+              }
+            ],
+            "buyer": {
+              "userId": "aca46a27-38f7-4acf-b530-973b93d812ac"
+            },
+            "seller": {
+              "userId": "2c80fb55-45aa-4ad1-8579-d77c736f98c3"
+            },
+            "totals": {
+              "committedTotal": {
+                "original": {
+                  "value": "1.00",
+                  "currency": "FJD"
+                }
+              }
+            },
+            "lineItem": {
+              "quantity": 26,
+              "item": {
+                "itemId": "98aec9c9-7afe-4a89-be10-d8725ab58171"
+              },
+              "purchaseFlow": {
+                "label": "Hello World"
+              }
+            }
+          },
+          {
+            "itemCommitmentId": "9102d4ef-5ab3-41f6-a189-57ae8391eae3",
+            "createdAt": "2024-01-01T00:00:00.000Z",
+            "updatedAt": "2024-01-01T00:00:00.000Z",
+            "committedMarketplace": "EBAY_AU",
+            "state": {
+              "label": "Hello World"
+            },
+            "cancellation": {
+              "cancellationId": "90ffc485-1b7a-462d-a7da-ff45bcb3444e"
+            },
+            "refunds": [
+              {
+                "refundId": "118bfcb0-c7f3-4fc5-a0f3-4ef6511a39ca"
+              },
+              {
+                "refundId": "5c5ffbfa-bb5c-4edb-afce-14c0ab75d9bf"
+              }
+            ],
+            "buyer": {
+              "userId": "cfebe72b-0e27-430d-a821-faea36e49a43"
+            },
+            "seller": {
+              "userId": "155fb9bd-d28b-49c3-8d8f-d18fffe5e82b"
+            },
+            "totals": {
+              "committedTotal": {
+                "original": {
+                  "value": "1.00",
+                  "currency": "MDL"
+                }
+              }
+            },
+            "lineItem": {
+              "quantity": 26,
+              "item": {
+                "itemId": "7fb887a7-9b1c-4733-9411-a83f7b0ad26f"
+              },
+              "purchaseFlow": {
+                "label": "Hello World"
+              }
+            }
+          }
+        ],
+        "pagination": {
+          "nextCursor": "Hello World",
+          "previousCursor": "Hello World"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "data": {
+    "submitOrderInquiryReferral": {
+      "__typename": "OrderInquiryNotFoundError",
+      "inquiryId": "e32ab6a2-87ad-4bf9-82e0-ec4a8a31b523",
+      "errorCode": "Hello World",
+      "errorMessage": "Hello World"
+    }
+  }
+}

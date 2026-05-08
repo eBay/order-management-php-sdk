@@ -1,0 +1,75 @@
+mutation AppendSellerReturnToAddressRule($input: AppendSellerReturnToAddressRuleInput!) {
+    appendSellerReturnToAddressRule(input: $input) {
+        __typename
+        ... on ReturnToAddressRule {
+            ruleId
+            name
+            priority
+            status {
+                code
+                displayText
+                ... on ReturnRuleDisabledStatus { disabledBy }
+            }
+            conditionSet {
+                operator
+                conditions {
+                    __typename
+                    ... on ReturnReasonCondition {
+                        returnReasonList {
+                            __typename
+                            code
+                            displayText
+                        }
+                    }
+                    ... on ReturnItemCategoryCondition {
+                        categories { categoryId }
+                    }
+                    ... on ReturnShipmentOriginCountryCondition {
+                        returnShipmentOriginCountries
+                    }
+                    ... on ReturnItemLocationCountryCondition {
+                        itemLocationCountries
+                    }
+                    ... on ReturnRefundRangeCondition {
+                        minRefundAmount { currency value }
+                        maxRefundAmount { currency value }
+                    }
+                }
+            }
+        }
+        ... on ReturnRuleInvalidConditionsError {
+            errorCode
+            errorMessage
+            ruleConditionViolation {
+                __typename
+                code
+                displayMessage
+            }
+        }
+        ... on ReturnRuleLimitExceededError {
+            errorCode
+            errorMessage
+            maxAllowed
+        }
+        ... on ReturnToAddressValidationError {
+            errorCode
+            errorMessage
+            invalidAddressId
+        }
+        ... on ReturnToAddressRequiredError {
+            errorCode
+            errorMessage
+            addressRoutingStrategy { code displayText }
+        }
+        ... on ReturnRuleNameError {
+            errorCode
+            errorMessage
+            containsInvalidCharacters
+            duplicateRuleName
+            nameConstraint {
+                characterLimit { minLength maxLength }
+                allowedPattern
+            }
+        }
+    }
+}

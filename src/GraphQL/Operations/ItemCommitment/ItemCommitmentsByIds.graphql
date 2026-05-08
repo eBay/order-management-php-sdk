@@ -1,0 +1,63 @@
+query ItemCommitmentsByIds($input: ItemCommitmentsByIdsInput!) {
+    itemCommitmentsByIds(input: $input) {
+        __typename
+        ... on ItemCommitmentsByIdsSuccess {
+            itemCommitments {
+                itemCommitmentId
+                createdAt
+                updatedAt
+                state {
+                    ... on ItemCommitmentActive {
+                        label
+                        fundingState {
+                            ... on PaymentsNotStarted { label }
+                            ... on PaymentsInProgress { label }
+                            ... on PaymentsCompleted { label }
+                            ... on PaymentsFailure { label }
+                        }
+                        fulfillmentState {
+                            ... on FulfillmentNotStarted { label }
+                            ... on FulfillmentInProgress { label startedAt }
+                            ... on FulfillmentCompleted { label completedAt }
+                        }
+                        cancelState {
+                            ... on ContractCancelRequested { label requestedAt }
+                            ... on ContractCancelRejected { label rejectedAt reason }
+                            ... on ContractCancelPending { label startedAt }
+                            ... on ContractCancelCompleted { label completedAt refundOutcome }
+                        }
+                        returnState {
+                            ... on ItemCommitmentReturnRequested { label }
+                            ... on ItemCommitmentReturnClosed { label }
+                        }
+                    }
+                    ... on ItemCommitmentCancelled {
+                        label
+                        cancelledAt
+                        reason
+                        cancelState {
+                            ... on ContractCancelRequested { label requestedAt }
+                            ... on ContractCancelRejected { label rejectedAt reason }
+                            ... on ContractCancelPending { label startedAt }
+                            ... on ContractCancelCompleted { label completedAt refundOutcome }
+                        }
+                    }
+                    ... on ItemCommitmentLocked { label }
+                    ... on ItemCommitmentCompleted { label }
+                    ... on ItemCommitmentAbandoned { label }
+                }
+            }
+        }
+        ... on ItemCommitmentsByIdsPartialFailure {
+            itemCommitments {
+                itemCommitmentId
+                createdAt
+                updatedAt
+            }
+            failures { errorCode displayMessage inputItemCommitmentId retryable }
+        }
+        ... on ItemCommitmentsByIdsCompleteFailure {
+            failures { errorCode displayMessage inputItemCommitmentId retryable }
+        }
+    }
+}

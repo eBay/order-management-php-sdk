@@ -1,0 +1,48 @@
+mutation ProvideShipmentInfoForItemNotReceivedInquiry($input: ProvideShipmentInfoForItemNotReceivedInquiryInput!) {
+    provideShipmentInfoForItemNotReceivedInquiry(input: $input) {
+        __typename
+        ... on ProvideShipmentInfoForItemNotReceivedInquirySuccess {
+            orderInquiry {
+                __typename
+                ... on ItemNotReceivedInquiry {
+                    inquiryId
+                    providedInformation {
+                        submitter
+                        submittedAt
+                        submittedInformation {
+                            __typename
+                            ... on OrderInquiryShipmentTracking {
+                                trackingNumber
+                                shippingCarrier { carrierCode unsupportedCarrierName }
+                            }
+                            ... on OrderInquirySignatureConfirmation {
+                                trackingNumber
+                                signatureConfirmationProof {
+                                    documentId
+                                    filenameExtension
+                                    documentName
+                                    uploadedAt
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        ... on OrderInquiryActionNotPermittedError {
+            errorCode
+            errorMessage
+            availableActions { code displayText }
+        }
+        ... on OrderInquiryNotFoundError {
+            errorCode
+            errorMessage
+            inquiryId
+        }
+        ... on ProvideShipmentInfoForInquiryInputValidationError {
+            errorCode
+            errorMessage
+            violations { code displayMessage }
+        }
+    }
+}

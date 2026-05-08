@@ -157,43 +157,43 @@ final class OrderManagementGraphQLClient
 
     public function approveContractCancellation(ApproveContractCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ApproveContractCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::APPROVE_CONTRACT_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::APPROVE_CONTRACT_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ApproveContractCancellationOutput::fromArray($data['approveContractCancellation'] ?? []);
     }
 
     public function contractCancellation(ContractCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ContractCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::CONTRACT_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::CONTRACT_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ContractCancellationOutput::fromArray($data['contractCancellation'] ?? []);
     }
 
     public function createItemCommitmentCancellation(CreateItemCommitmentCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreateItemCommitmentCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::CREATE_ITEM_COMMITMENT_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::CREATE_ITEM_COMMITMENT_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreateItemCommitmentCancellationOutput::fromArray($data['createItemCommitmentCancellation'] ?? []);
     }
 
     public function createOrderCancellation(CreateOrderCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreateOrderCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::CREATE_ORDER_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::CREATE_ORDER_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreateOrderCancellationOutput::fromArray($data['createOrderCancellation'] ?? []);
     }
 
     public function createPurchaseQuoteCancellation(CreatePurchaseQuoteCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreatePurchaseQuoteCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::CREATE_PURCHASE_QUOTE_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::CREATE_PURCHASE_QUOTE_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreatePurchaseQuoteCancellationOutput::fromArray($data['createPurchaseQuoteCancellation'] ?? []);
     }
 
     public function declineContractCancellation(DeclineContractCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeclineContractCancellationOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::DECLINE_CONTRACT_CANCELLATION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::DECLINE_CONTRACT_CANCELLATION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return DeclineContractCancellationOutput::fromArray($data['declineContractCancellation'] ?? []);
     }
 
     public function sellerContractCancellations(SellerContractCancellationsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SellerContractCancellationsOutput
     {
-        $data = $this->dynamic->execute(CancellationOperations::SELLER_CONTRACT_CANCELLATIONS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(CancellationOperations::SELLER_CONTRACT_CANCELLATIONS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SellerContractCancellationsOutput::fromArray($data['sellerContractCancellations'] ?? []);
     }
 
@@ -201,49 +201,49 @@ final class OrderManagementGraphQLClient
 
     public function markItemCommitmentsPaid(MarkItemCommitmentsPaidInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): MarkItemCommitmentsPaidOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::MARK_ITEM_COMMITMENTS_PAID, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::MARK_ITEM_COMMITMENTS_PAID(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return MarkItemCommitmentsPaidOutput::fromArray($data['markItemCommitmentsPaid'] ?? []);
     }
 
     public function bulkUpdateItemCommitmentTags(BulkUpdateItemCommitmentTagsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): BulkUpdateItemCommitmentTagsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::BULK_UPDATE_ITEM_COMMITMENT_TAGS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::BULK_UPDATE_ITEM_COMMITMENT_TAGS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return BulkUpdateItemCommitmentTagsOutput::fromArray($data['bulkUpdateItemCommitmentTags'] ?? []);
     }
 
     public function itemCommitments(ItemCommitmentsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ItemCommitmentsOutput::fromArray($data['itemCommitments'] ?? []);
     }
 
     public function itemCommitmentsByIds(ItemCommitmentsByIdsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsByIdsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS_BY_IDS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS_BY_IDS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ItemCommitmentsByIdsOutput::fromArray($data['itemCommitmentsByIds'] ?? []);
     }
 
     public function markOrdersPaid(MarkOrdersPaidInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): MarkOrdersPaidOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::MARK_ORDERS_PAID, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::MARK_ORDERS_PAID(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return MarkOrdersPaidOutput::fromArray($data['markOrdersPaid'] ?? []);
     }
 
     public function orderLineItemsByIds(OrderLineItemsByIdsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrderLineItemsByIdsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDER_LINE_ITEMS_BY_IDS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDER_LINE_ITEMS_BY_IDS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return OrderLineItemsByIdsOutput::fromArray($data['orderLineItemsByIds'] ?? []);
     }
 
     public function orders(OrdersInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrdersOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return OrdersOutput::fromArray($data['orders'] ?? []);
     }
 
     public function ordersByIds(OrdersByIdsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrdersByIdsOutput
     {
-        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS_BY_IDS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ItemCommitmentOperations::ORDERS_BY_IDS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return OrdersByIdsOutput::fromArray($data['ordersByIds'] ?? []);
     }
 
@@ -251,37 +251,37 @@ final class OrderManagementGraphQLClient
 
     public function orderInquiry(OrderInquiryInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrderInquiryOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::ORDER_INQUIRY, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::ORDER_INQUIRY(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return OrderInquiryOutput::fromArray($data['orderInquiry'] ?? []);
     }
 
     public function processOrderInquiryRefund(ProcessOrderInquiryRefundInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ProcessOrderInquiryRefundOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::PROCESS_ORDER_INQUIRY_REFUND, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::PROCESS_ORDER_INQUIRY_REFUND(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ProcessOrderInquiryRefundOutput::fromArray($data['processOrderInquiryRefund'] ?? []);
     }
 
     public function provideShipmentInfoForItemNotReceivedInquiry(ProvideShipmentInfoForItemNotReceivedInquiryInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ProvideShipmentInfoForItemNotReceivedInquiryOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::PROVIDE_SHIPMENT_INFO_FOR_ITEM_NOT_RECEIVED_INQUIRY, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::PROVIDE_SHIPMENT_INFO_FOR_ITEM_NOT_RECEIVED_INQUIRY(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ProvideShipmentInfoForItemNotReceivedInquiryOutput::fromArray($data['provideShipmentInfoForItemNotReceivedInquiry'] ?? []);
     }
 
     public function sellerOrderInquiries(SellerOrderInquiriesInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SellerOrderInquiriesOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::SELLER_ORDER_INQUIRIES, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::SELLER_ORDER_INQUIRIES(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SellerOrderInquiriesOutput::fromArray($data['sellerOrderInquiries'] ?? []);
     }
 
     public function sendOrderInquiryMessage(SendOrderInquiryMessageInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SendOrderInquiryMessageOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::SEND_ORDER_INQUIRY_MESSAGE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::SEND_ORDER_INQUIRY_MESSAGE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SendOrderInquiryMessageOutput::fromArray($data['sendOrderInquiryMessage'] ?? []);
     }
 
     public function submitOrderInquiryReferral(SubmitOrderInquiryReferralInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SubmitOrderInquiryReferralOutput
     {
-        $data = $this->dynamic->execute(InquiryOperations::SUBMIT_ORDER_INQUIRY_REFERRAL, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(InquiryOperations::SUBMIT_ORDER_INQUIRY_REFERRAL(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SubmitOrderInquiryReferralOutput::fromArray($data['submitOrderInquiryReferral'] ?? []);
     }
 
@@ -289,31 +289,31 @@ final class OrderManagementGraphQLClient
 
     public function purchaseQuotes(?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuotesOutput
     {
-        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES, [], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES(), [], $accessToken, $requestOptions);
         return PurchaseQuotesOutput::fromArray($data['purchaseQuotes'] ?? []);
     }
 
     public function purchaseQuotesByIds(PurchaseQuotesByIdsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuotesByIdsOutput
     {
-        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES_BY_IDS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTES_BY_IDS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return PurchaseQuotesByIdsOutput::fromArray($data['purchaseQuotesByIds'] ?? []);
     }
 
     public function purchaseQuoteLineItemsByIds(PurchaseQuoteLineItemsByIdsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): PurchaseQuoteLineItemsByIdsOutput
     {
-        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTE_LINE_ITEMS_BY_IDS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::PURCHASE_QUOTE_LINE_ITEMS_BY_IDS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return PurchaseQuoteLineItemsByIdsOutput::fromArray($data['purchaseQuoteLineItemsByIds'] ?? []);
     }
 
     public function bulkUpdatePurchaseQuotes(BulkUpdatePurchaseQuotesInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): BulkUpdatePurchaseQuotesOutput
     {
-        $data = $this->dynamic->execute(PurchaseQuoteOperations::BULK_UPDATE_PURCHASE_QUOTES, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::BULK_UPDATE_PURCHASE_QUOTES(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return BulkUpdatePurchaseQuotesOutput::fromArray($data['bulkUpdatePurchaseQuotes'] ?? []);
     }
 
     public function createPurchaseQuote(CreatePurchaseQuoteInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreatePurchaseQuoteOutput
     {
-        $data = $this->dynamic->execute(PurchaseQuoteOperations::CREATE_PURCHASE_QUOTE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::CREATE_PURCHASE_QUOTE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreatePurchaseQuoteOutput::fromArray($data['createPurchaseQuote'] ?? []);
     }
 
@@ -321,91 +321,91 @@ final class OrderManagementGraphQLClient
 
     public function approveReturn(ApproveReturnInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ApproveReturnOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::APPROVE_RETURN, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::APPROVE_RETURN(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ApproveReturnOutput::fromArray($data['approveReturn'] ?? []);
     }
 
     public function attachReturnShipmentLabel(AttachReturnShipmentLabelInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): AttachReturnShipmentLabelOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::ATTACH_RETURN_SHIPMENT_LABEL, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::ATTACH_RETURN_SHIPMENT_LABEL(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return AttachReturnShipmentLabelOutput::fromArray($data['attachReturnShipmentLabel'] ?? []);
     }
 
     public function declineReturn(DeclineReturnInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeclineReturnOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::DECLINE_RETURN, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::DECLINE_RETURN(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return DeclineReturnOutput::fromArray($data['declineReturn'] ?? []);
     }
 
     public function orderReturn(OrderReturnInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): OrderReturnOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::ORDER_RETURN, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::ORDER_RETURN(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return OrderReturnOutput::fromArray($data['orderReturn'] ?? []);
     }
 
     public function processReturnRefund(ProcessReturnRefundInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ProcessReturnRefundOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::PROCESS_RETURN_REFUND, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::PROCESS_RETURN_REFUND(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ProcessReturnRefundOutput::fromArray($data['processReturnRefund'] ?? []);
     }
 
     public function proposeKeepItemWithPartialRefund(ProposeKeepItemWithPartialRefundInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ProposeKeepItemWithPartialRefundOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::PROPOSE_KEEP_ITEM_WITH_PARTIAL_REFUND, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::PROPOSE_KEEP_ITEM_WITH_PARTIAL_REFUND(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ProposeKeepItemWithPartialRefundOutput::fromArray($data['proposeKeepItemWithPartialRefund'] ?? []);
     }
 
     public function provideRmaNumber(ProvideRmaNumberInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ProvideRmaNumberOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::PROVIDE_RMA_NUMBER, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::PROVIDE_RMA_NUMBER(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ProvideRmaNumberOutput::fromArray($data['provideRmaNumber'] ?? []);
     }
 
     public function recordReturnLabelSentOffline(RecordReturnLabelSentOfflineInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): RecordReturnLabelSentOfflineOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::RECORD_RETURN_LABEL_SENT_OFFLINE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::RECORD_RETURN_LABEL_SENT_OFFLINE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return RecordReturnLabelSentOfflineOutput::fromArray($data['recordReturnLabelSentOffline'] ?? []);
     }
 
     public function recordReturnReceived(RecordReturnReceivedInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): RecordReturnReceivedOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::RECORD_RETURN_RECEIVED, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::RECORD_RETURN_RECEIVED(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return RecordReturnReceivedOutput::fromArray($data['recordReturnReceived'] ?? []);
     }
 
     public function sellerOrderReturns(SellerOrderReturnsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SellerOrderReturnsOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::SELLER_ORDER_RETURNS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::SELLER_ORDER_RETURNS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SellerOrderReturnsOutput::fromArray($data['sellerOrderReturns'] ?? []);
     }
 
     public function sellerReturnPreference(SellerReturnPreferenceInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SellerReturnPreferenceOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::SELLER_RETURN_PREFERENCE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::SELLER_RETURN_PREFERENCE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SellerReturnPreferenceOutput::fromArray($data['sellerReturnPreference'] ?? []);
     }
 
     public function sendReturnMessage(SendReturnMessageInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SendReturnMessageOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::SEND_RETURN_MESSAGE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::SEND_RETURN_MESSAGE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SendReturnMessageOutput::fromArray($data['sendReturnMessage'] ?? []);
     }
 
     public function submitReturnReferral(SubmitReturnReferralInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): SubmitReturnReferralOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::SUBMIT_RETURN_REFERRAL, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::SUBMIT_RETURN_REFERRAL(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return SubmitReturnReferralOutput::fromArray($data['submitReturnReferral'] ?? []);
     }
 
     public function updateSellerRmaPreference(UpdateSellerRmaPreferenceInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerRmaPreferenceOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RMA_PREFERENCE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RMA_PREFERENCE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerRmaPreferenceOutput::fromArray($data['updateSellerRmaPreference'] ?? []);
     }
 
     public function createInStoreReturn(CreateInStoreReturnInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreateInStoreReturnOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::CREATE_IN_STORE_RETURN, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::CREATE_IN_STORE_RETURN(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreateInStoreReturnOutput::fromArray($data['createInStoreReturn'] ?? []);
     }
 
@@ -413,73 +413,73 @@ final class OrderManagementGraphQLClient
 
     public function returnRuleListingGroup(ReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ReturnRuleListingGroupOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::RETURN_RULE_LISTING_GROUP, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::RETURN_RULE_LISTING_GROUP(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return ReturnRuleListingGroupOutput::fromArray($data['returnRuleListingGroup'] ?? []);
     }
 
     public function createReturnRuleListingGroup(CreateReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CreateReturnRuleListingGroupOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::CREATE_RETURN_RULE_LISTING_GROUP, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::CREATE_RETURN_RULE_LISTING_GROUP(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return CreateReturnRuleListingGroupOutput::fromArray($data['createReturnRuleListingGroup'] ?? []);
     }
 
     public function addListingsToReturnRuleListingGroup(AddListingsToReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): AddListingsToReturnRuleListingGroupOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return AddListingsToReturnRuleListingGroupOutput::fromArray($data['addListingsToReturnRuleListingGroup'] ?? []);
     }
 
     public function deleteReturnRuleListingGroup(DeleteReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeleteReturnRuleListingGroupOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::DELETE_RETURN_RULE_LISTING_GROUP, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::DELETE_RETURN_RULE_LISTING_GROUP(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return DeleteReturnRuleListingGroupOutput::fromArray($data['deleteReturnRuleListingGroup'] ?? []);
     }
 
     public function deleteSellerReturnRule(DeleteSellerReturnRuleInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): DeleteSellerReturnRuleOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::DELETE_SELLER_RETURN_RULE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::DELETE_SELLER_RETURN_RULE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return DeleteSellerReturnRuleOutput::fromArray($data['deleteSellerReturnRule'] ?? []);
     }
 
     public function appendSellerReturnResponseRule(AppendSellerReturnResponseRuleInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): AppendSellerReturnResponseRuleOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_RESPONSE_RULE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_RESPONSE_RULE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return AppendSellerReturnResponseRuleOutput::fromArray($data['appendSellerReturnResponseRule'] ?? []);
     }
 
     public function appendSellerReturnToAddressRule(AppendSellerReturnToAddressRuleInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): AppendSellerReturnToAddressRuleOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_TO_ADDRESS_RULE, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::APPEND_SELLER_RETURN_TO_ADDRESS_RULE(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return AppendSellerReturnToAddressRuleOutput::fromArray($data['appendSellerReturnToAddressRule'] ?? []);
     }
 
     public function updateSellerReturnResponseRuleCondition(UpdateSellerReturnResponseRuleConditionInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnResponseRuleConditionOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULE_CONDITION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULE_CONDITION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerReturnResponseRuleConditionOutput::fromArray($data['updateSellerReturnResponseRuleCondition'] ?? []);
     }
 
     public function updateSellerReturnResponseRulesPriorities(UpdateSellerReturnResponseRulesPrioritiesInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnResponseRulesPrioritiesOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULES_PRIORITIES, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RESPONSE_RULES_PRIORITIES(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerReturnResponseRulesPrioritiesOutput::fromArray($data['updateSellerReturnResponseRulesPriorities'] ?? []);
     }
 
     public function updateSellerReturnRuleStatus(UpdateSellerReturnRuleStatusInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnRuleStatusOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RULE_STATUS, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_RULE_STATUS(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerReturnRuleStatusOutput::fromArray($data['updateSellerReturnRuleStatus'] ?? []);
     }
 
     public function updateSellerReturnToAddressRuleCondition(UpdateSellerReturnToAddressRuleConditionInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnToAddressRuleConditionOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULE_CONDITION, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULE_CONDITION(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerReturnToAddressRuleConditionOutput::fromArray($data['updateSellerReturnToAddressRuleCondition'] ?? []);
     }
 
     public function updateSellerReturnToAddressRulesPriorities(UpdateSellerReturnToAddressRulesPrioritiesInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): UpdateSellerReturnToAddressRulesPrioritiesOutput
     {
-        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULES_PRIORITIES, ['input' => $input->toArray()], $accessToken, $requestOptions);
+        $data = $this->dynamic->execute(ReturnOperations::UPDATE_SELLER_RETURN_TO_ADDRESS_RULES_PRIORITIES(), ['input' => $input->toArray()], $accessToken, $requestOptions);
         return UpdateSellerReturnToAddressRulesPrioritiesOutput::fromArray($data['updateSellerReturnToAddressRulesPriorities'] ?? []);
     }
 

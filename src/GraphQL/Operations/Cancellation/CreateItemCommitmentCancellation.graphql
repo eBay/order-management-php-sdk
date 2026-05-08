@@ -1,0 +1,34 @@
+mutation CreateItemCommitmentCancellation($input: CreateItemCommitmentCancellationInput!) {
+    createItemCommitmentCancellation(input: $input) {
+        __typename
+        ... on CreateItemCommitmentCancellationSuccess {
+            itemCommitmentCancellation {
+                __typename
+                cancellationId
+                status {
+                    __typename
+                    code
+                    displayText
+                }
+            }
+        }
+        ... on ItemCommitmentCancellationEligibilityError {
+            errorCode
+            errorMessage
+            ineligibilityReasons {
+                __typename
+                code
+                displayMessage
+                itemCommitmentId
+                ... on ItemCommitmentCancellationReasonNotAllowed {
+                    availableReasons { code displayText }
+                }
+            }
+        }
+        ... on ItemCommitmentNotFoundError {
+            errorCode
+            errorMessage
+            itemCommitmentId
+        }
+    }
+}

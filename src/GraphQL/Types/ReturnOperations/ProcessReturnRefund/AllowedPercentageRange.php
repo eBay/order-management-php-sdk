@@ -7,8 +7,8 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProcessReturnRefun
 readonly class AllowedPercentageRange
 {
     public function __construct(
-        public ?string $minValue = null,
-        public ?string $maxValue = null,
+        public ?int $minValue = null,
+        public ?int $maxValue = null,
     ) {}
 
     public static function fromArray(array $data): self

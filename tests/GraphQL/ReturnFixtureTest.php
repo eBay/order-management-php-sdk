@@ -13,40 +13,29 @@ class ReturnFixtureTest extends TestCase
 
     public static function fixtures(): iterable
     {
-        yield 'AddListingsToReturnRuleListingGroup'        => ['AddListingsToReturnRuleListingGroup', 'addListingsToReturnRuleListingGroup'];
-        yield 'AppendSellerReturnResponseRule'             => ['AppendSellerReturnResponseRule', 'appendSellerReturnResponseRule'];
-        yield 'AppendSellerReturnToAddressRule'            => ['AppendSellerReturnToAddressRule', 'appendSellerReturnToAddressRule'];
-        yield 'ApproveReturn'                              => ['ApproveReturn', 'approveReturn'];
-        yield 'AttachReturnShipmentLabel'                  => ['AttachReturnShipmentLabel', 'attachReturnShipmentLabel'];
-        yield 'CreateInStoreReturn'                        => ['CreateInStoreReturn', 'createInStoreReturn'];
-        yield 'CreateReturnRuleListingGroup'               => ['CreateReturnRuleListingGroup', 'createReturnRuleListingGroup'];
-        yield 'DeclineReturn'                              => ['DeclineReturn', 'declineReturn'];
-        yield 'DeleteReturnRuleListingGroup'               => ['DeleteReturnRuleListingGroup', 'deleteReturnRuleListingGroup'];
-        yield 'DeleteSellerReturnRule'                     => ['DeleteSellerReturnRule', 'deleteSellerReturnRule'];
-        yield 'OrderReturn'                                => ['OrderReturn', 'orderReturn'];
-        yield 'ProcessReturnRefund'                        => ['ProcessReturnRefund', 'processReturnRefund'];
-        yield 'ProposeKeepItemWithPartialRefund'           => ['ProposeKeepItemWithPartialRefund', 'proposeKeepItemWithPartialRefund'];
-        yield 'ProvideRmaNumber'                           => ['ProvideRmaNumber', 'provideRmaNumber'];
-        yield 'RecordReturnLabelSentOffline'               => ['RecordReturnLabelSentOffline', 'recordReturnLabelSentOffline'];
-        yield 'RecordReturnReceived'                       => ['RecordReturnReceived', 'recordReturnReceived'];
-        yield 'ReturnRuleListingGroup'                     => ['ReturnRuleListingGroup', 'returnRuleListingGroup'];
-        yield 'SellerOrderReturns'                         => ['SellerOrderReturns', 'sellerOrderReturns'];
-        yield 'SellerReturnPreference'                     => ['SellerReturnPreference', 'sellerReturnPreference'];
-        yield 'SendReturnMessage'                          => ['SendReturnMessage', 'sendReturnMessage'];
-        yield 'SubmitReturnReferral'                       => ['SubmitReturnReferral', 'submitReturnReferral'];
-        yield 'UpdateSellerReturnResponseRuleCondition'    => ['UpdateSellerReturnResponseRuleCondition', 'updateSellerReturnResponseRuleCondition'];
-        yield 'UpdateSellerReturnResponseRulesPriorities'  => ['UpdateSellerReturnResponseRulesPriorities', 'updateSellerReturnResponseRulesPriorities'];
-        yield 'UpdateSellerReturnRuleStatus'               => ['UpdateSellerReturnRuleStatus', 'updateSellerReturnRuleStatus'];
-        yield 'UpdateSellerReturnToAddressRuleCondition'   => ['UpdateSellerReturnToAddressRuleCondition', 'updateSellerReturnToAddressRuleCondition'];
-        yield 'UpdateSellerReturnToAddressRulesPriorities' => ['UpdateSellerReturnToAddressRulesPriorities', 'updateSellerReturnToAddressRulesPriorities'];
-        yield 'UpdateSellerRmaPreference'                  => ['UpdateSellerRmaPreference', 'updateSellerRmaPreference'];
+        $base = self::$fixturesDir;
+
+        foreach (new \DirectoryIterator($base) as $entry) {
+            if ($entry->isDot()) {
+                continue;
+            }
+            $operation = $entry->isDir() ? $entry->getFilename() : basename($entry->getFilename(), '.json');
+            $key = lcfirst($operation);
+
+            if ($entry->isDir()) {
+                foreach (glob($entry->getPathname() . '/*.json') as $file) {
+                    yield $operation . '/' . basename($file, '.json') => [$operation, $key, $file];
+                }
+            } else {
+                yield $operation => [$operation, $key, $entry->getPathname()];
+            }
+        }
     }
 
     /** @dataProvider fixtures */
-    public function testFixtureParsing(string $operation, string $key): void
+    public function testFixtureParsing(string $operation, string $key, string $file): void
     {
-        $json = file_get_contents(self::$fixturesDir . '/' . $operation . '.json');
-        $data = json_decode($json, true);
+        $data = json_decode(file_get_contents($file), true);
 
         $class = self::$namespace . '\\' . $operation . '\\Output';
         $result = $class::fromArray($data[$key]);

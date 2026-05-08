@@ -9,7 +9,7 @@ readonly class ReturnShipmentLabelNotFoundError extends Output
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
-        public ?string $requestedDocumentId = null,
+        public array $requestedDocumentId = [],
     ) {}
 
     public function getTypename(): string
@@ -22,7 +22,7 @@ readonly class ReturnShipmentLabelNotFoundError extends Output
         return new self(
             errorCode:           $data['errorCode'] ?? null,
             errorMessage:        $data['errorMessage'] ?? null,
-            requestedDocumentId: $data['requestedDocumentId'] ?? null,
+            requestedDocumentId: $data['requestedDocumentId'] ?? [],
         );
     }
 }

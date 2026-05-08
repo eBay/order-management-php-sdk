@@ -1,0 +1,38 @@
+{
+  "updateSellerReturnToAddressRuleCondition": {
+    "__typename": "ReturnToAddressRule",
+    "ruleId": "983c8bf3-ee80-40d7-b4e3-b94a4f457628",
+    "name": "Hello World",
+    "priority": -43,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "addressRoutingStrategy": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "conditions": [
+        {
+          "__typename": "ReturnListingGroupCondition",
+          "returnRuleListingGroupId": "d1794a5d-a532-4a1d-b1de-65d8de5da674"
+        },
+        {
+          "__typename": "ReturnReasonCondition",
+          "returnReasonList": [
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

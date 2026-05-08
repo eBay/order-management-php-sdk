@@ -1,0 +1,47 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnToAddressRule",
+    "ruleId": "60a76144-b5fd-4cee-98c5-b2f2be8c1627",
+    "name": "Hello World",
+    "priority": 14,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "conditions": [
+        {
+          "__typename": "ReturnReasonCondition",
+          "returnReasonList": [
+            {
+              "__typename": "ReturnReasonUndisclosed",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "Counterfeit",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        },
+        {
+          "__typename": "ReturnReasonCondition",
+          "returnReasonList": [
+            {
+              "__typename": "ReturnReasonUndisclosed",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "ItemNotPickedUp",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

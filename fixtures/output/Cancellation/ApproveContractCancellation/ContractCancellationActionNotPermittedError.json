@@ -1,0 +1,19 @@
+{
+  "approveContractCancellation": {
+    "__typename": "ContractCancellationActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "__typename": "RetryRefundContractCancellationAction",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "__typename": "RetryRefundContractCancellationAction",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    ]
+  }
+}

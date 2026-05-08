@@ -1,0 +1,8 @@
+{
+  "input": {
+    "listingMarketplace": "EBAY_AT",
+    "prioritizedRuleIds": [
+      "mock-id"
+    ]
+  }
+}

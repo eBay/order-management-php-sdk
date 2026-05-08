@@ -1,0 +1,11 @@
+{
+  "input": {
+    "conditionSet": {
+      "operator": "AND",
+      "ruleConditions": [
+        {}
+      ]
+    },
+    "ruleId": "mock-id"
+  }
+}

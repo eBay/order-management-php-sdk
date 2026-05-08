@@ -1,0 +1,7 @@
+{
+  "processReturnRefund": {
+    "__typename": "RefundProcessingError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

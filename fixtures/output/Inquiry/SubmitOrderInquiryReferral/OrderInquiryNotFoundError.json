@@ -1,0 +1,8 @@
+{
+  "submitOrderInquiryReferral": {
+    "__typename": "OrderInquiryNotFoundError",
+    "inquiryId": "ce4af74e-d25d-4a7f-af50-f35baabbfddd",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

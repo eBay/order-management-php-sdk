@@ -1,0 +1,11 @@
+{
+  "createInStoreReturn": {
+    "__typename": "OrderReturn",
+    "returnId": "da26c0d6-d8c4-4ab2-b689-517c47b78e30",
+    "status": {
+      "__typename": "ReturnOpen",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

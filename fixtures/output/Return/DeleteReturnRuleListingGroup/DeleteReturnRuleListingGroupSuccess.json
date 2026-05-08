@@ -1,0 +1,5 @@
+{
+  "deleteReturnRuleListingGroup": {
+    "__typename": "DeleteReturnRuleListingGroupSuccess"
+  }
+}

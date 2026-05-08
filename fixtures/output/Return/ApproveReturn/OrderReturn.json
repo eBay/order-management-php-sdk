@@ -1,0 +1,11 @@
+{
+  "approveReturn": {
+    "__typename": "OrderReturn",
+    "returnId": "3b8800ce-6508-4c6d-aaf0-47c82852a94b",
+    "status": {
+      "__typename": "ReturnRequested",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

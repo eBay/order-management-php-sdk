@@ -1,0 +1,14 @@
+{
+  "approveContractCancellation": {
+    "__typename": "ApproveContractCancellationSuccess",
+    "contractCancellation": {
+      "__typename": "PurchaseQuoteCancellation",
+      "cancellationId": "ff17cbc5-307d-422a-b3c3-6ca67da8d952",
+      "status": {
+        "__typename": "ContractCancellationPending",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

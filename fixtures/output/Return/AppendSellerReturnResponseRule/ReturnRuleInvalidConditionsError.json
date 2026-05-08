@@ -1,0 +1,19 @@
+{
+  "appendSellerReturnResponseRule": {
+    "__typename": "ReturnRuleInvalidConditionsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ruleConditionViolation": [
+      {
+        "__typename": "ReturnRuleShipmentOriginCountryViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      },
+      {
+        "__typename": "ReturnRuleItemLocationCountryViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      }
+    ]
+  }
+}

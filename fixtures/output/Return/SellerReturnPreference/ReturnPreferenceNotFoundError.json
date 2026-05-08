@@ -1,0 +1,7 @@
+{
+  "sellerReturnPreference": {
+    "__typename": "ReturnPreferenceNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

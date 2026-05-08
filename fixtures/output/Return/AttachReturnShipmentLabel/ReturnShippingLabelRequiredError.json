@@ -1,0 +1,7 @@
+{
+  "attachReturnShipmentLabel": {
+    "__typename": "ReturnShippingLabelRequiredError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

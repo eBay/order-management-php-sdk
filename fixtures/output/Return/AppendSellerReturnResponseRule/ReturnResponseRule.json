@@ -1,0 +1,47 @@
+{
+  "appendSellerReturnResponseRule": {
+    "__typename": "ReturnResponseRule",
+    "ruleId": "87b83f86-174f-41d8-bfb1-0a97965fb97a",
+    "name": "Hello World",
+    "priority": 41,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "responseStrategy": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "conditions": [
+        {
+          "__typename": "ReturnReasonCondition",
+          "returnReasonList": [
+            {
+              "__typename": "ReturnReasonUndisclosed",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "NoLongerNeedItem",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        },
+        {
+          "__typename": "ReturnRefundRangeCondition",
+          "minRefundAmount": {
+            "currency": "PEN",
+            "value": "1.00"
+          },
+          "maxRefundAmount": {
+            "currency": "STN",
+            "value": "1.00"
+          }
+        }
+      ]
+    }
+  }
+}

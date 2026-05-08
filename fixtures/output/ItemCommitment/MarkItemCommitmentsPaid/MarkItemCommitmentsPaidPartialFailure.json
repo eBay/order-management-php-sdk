@@ -1,0 +1,29 @@
+{
+  "markItemCommitmentsPaid": {
+    "__typename": "MarkItemCommitmentsPaidPartialFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "markPaidItemCommitments": [
+      {
+        "itemCommitmentId": "e9d94163-57dd-4277-bfa9-f71f006c2c33"
+      },
+      {
+        "itemCommitmentId": "b98d366b-9c6a-4dbc-bed7-dc4f53ef501b"
+      }
+    ],
+    "failures": [
+      {
+        "inputItemCommitmentId": "999b6f56-83c6-4406-abb0-6257ea107fca",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      },
+      {
+        "inputItemCommitmentId": "f9a1a7b2-f239-4803-adf5-57413e2c9a64",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      }
+    ]
+  }
+}

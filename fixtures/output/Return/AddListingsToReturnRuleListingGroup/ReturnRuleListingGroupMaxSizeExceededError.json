@@ -1,0 +1,8 @@
+{
+  "addListingsToReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupMaxSizeExceededError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "groupListingLimit": 46
+  }
+}

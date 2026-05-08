@@ -1,9 +1,0 @@
-{
-  "sellerReturnPreference": {
-    "__typename": "SellerReturnPreferences",
-    "listingMarketplace": "EBAY_NL",
-    "rmaPreference": {
-      "preferenceStatus": "DISABLED"
-    }
-  }
-}

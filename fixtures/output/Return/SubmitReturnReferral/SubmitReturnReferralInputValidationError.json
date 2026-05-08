@@ -1,0 +1,45 @@
+{
+  "submitReturnReferral": {
+    "__typename": "SubmitReturnReferralInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnReferralReasonViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "invalidReferralReason": false,
+        "constraint": {
+          "validReferralReasons": [
+            {
+              "__typename": "ReplacementSent"
+            },
+            {
+              "__typename": "UnresponsiveTradingPartner",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "ReturnReferralReasonViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "invalidReferralReason": true,
+        "constraint": {
+          "validReferralReasons": [
+            {
+              "__typename": "RefundNotReceived",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "RefundedBuyer"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

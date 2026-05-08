@@ -1,0 +1,78 @@
+{
+  "proposeKeepItemWithPartialRefund": {
+    "__typename": "OrderReturn",
+    "returnId": "d75c73e8-cdb6-427a-93c7-f35762ba3766",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "returnNegotiation": {
+      "latestReturnOffer": {
+        "status": {
+          "__typename": "ReturnOfferExpired",
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "proposedTerm": [
+          {
+            "__typename": "KeepItemPartialRefundTerm",
+            "refundAmount": {
+              "original": {
+                "value": "1.00",
+                "currency": "GHS"
+              },
+              "exchangeScenario": {
+                "__typename": "InvalidExchangeScenarioInputError",
+                "errorCode": "Hello World",
+                "errorMessage": "Hello World"
+              }
+            },
+            "itemPriceRefundPercentage": -56,
+            "itemShippingPriceWaived": true,
+            "returnLineItem": {
+              "returnLineItemId": "18ccf8ec-f51b-4574-bc70-36afaba48828",
+              "requestedQuantity": 0,
+              "returnReason": {
+                "code": "Hello World",
+                "displayText": "Hello World"
+              },
+              "returnNote": "Hello World",
+              "orderLineItem": {
+                "orderLineItemId": "63981b17-ce4b-466e-bd3b-6ed90eeced67"
+              }
+            }
+          },
+          {
+            "__typename": "KeepItemPartialRefundTerm",
+            "refundAmount": {
+              "original": {
+                "value": "1.00",
+                "currency": "ETB"
+              },
+              "exchangeScenario": {
+                "__typename": "InvalidExchangeScenarioInputError",
+                "errorCode": "Hello World",
+                "errorMessage": "Hello World"
+              }
+            },
+            "itemPriceRefundPercentage": 7,
+            "itemShippingPriceWaived": true,
+            "returnLineItem": {
+              "returnLineItemId": "9023e229-c84a-4b89-86b4-5ef60aa7a834",
+              "requestedQuantity": -47,
+              "returnReason": {
+                "code": "Hello World",
+                "displayText": "Hello World"
+              },
+              "returnNote": "Hello World",
+              "orderLineItem": {
+                "orderLineItemId": "4001c3e5-6c62-45a7-9d23-7c3e84ac886b"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "createOrderCancellation": {
+    "__typename": "OrderLineItemCancellationEligibilityError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "lineItemIneligibilityReasons": [
+      {
+        "__typename": "CancellationConflictWithFulfillment",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItemIds": [
+          "3a4667e4-fa91-48b9-94f4-f311097c990b",
+          "58ef34b8-f573-4a39-97fb-4a518599f60f"
+        ]
+      },
+      {
+        "__typename": "CancellationConflictWithReturn",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItemIds": [
+          "3e54240c-54a8-49a7-9a1c-3c2e88cac0a1",
+          "554dccd1-5d4c-4921-a4ba-e0496deff286"
+        ]
+      }
+    ]
+  }
+}

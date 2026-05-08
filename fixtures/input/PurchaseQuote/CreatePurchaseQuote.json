@@ -1,0 +1,10 @@
+{
+  "input": {
+    "lineItems": [
+      {
+        "itemCommitmentId": "mock-id"
+      }
+    ],
+    "logisticsOptions": {}
+  }
+}

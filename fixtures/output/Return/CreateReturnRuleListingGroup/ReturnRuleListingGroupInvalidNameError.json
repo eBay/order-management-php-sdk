@@ -1,0 +1,16 @@
+{
+  "createReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupInvalidNameError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "containsInvalidCharacters": true,
+    "duplicateGroupName": false,
+    "nameConstraint": {
+      "characterLimit": {
+        "minLength": 79,
+        "maxLength": -32
+      },
+      "allowedPattern": "Hello World"
+    }
+  }
+}

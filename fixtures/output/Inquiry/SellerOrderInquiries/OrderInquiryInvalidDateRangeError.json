@@ -1,0 +1,7 @@
+{
+  "sellerOrderInquiries": {
+    "__typename": "OrderInquiryInvalidDateRangeError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

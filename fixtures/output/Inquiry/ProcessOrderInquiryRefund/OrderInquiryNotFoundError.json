@@ -1,0 +1,8 @@
+{
+  "processOrderInquiryRefund": {
+    "__typename": "OrderInquiryNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "inquiryId": "46cc0b57-9feb-4162-ae27-6999f5163d30"
+  }
+}

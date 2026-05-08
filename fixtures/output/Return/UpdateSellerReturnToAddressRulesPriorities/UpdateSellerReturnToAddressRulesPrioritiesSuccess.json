@@ -1,0 +1,66 @@
+{
+  "updateSellerReturnToAddressRulesPriorities": {
+    "__typename": "UpdateSellerReturnToAddressRulesPrioritiesSuccess",
+    "returnToAddressRules": [
+      {
+        "ruleId": "85cc32db-ddf0-4b6e-9348-6a514c57c5fb",
+        "name": "Hello World",
+        "priority": 46,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "addressRoutingStrategy": {
+          "__typename": "ReturnToSpecificAddressStrategy",
+          "code": "Hello World",
+          "displayText": "Hello World",
+          "returnAddress": {
+            "addressId": "d0c1e7af-2895-4543-a819-5d92eaa1a58f",
+            "addressLine1": "Hello World",
+            "addressLine2": "Hello World",
+            "city": "Hello World",
+            "stateOrProvince": "Hello World",
+            "postalCode": "Hello World",
+            "countryCode": "HT"
+          }
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnItemLocationCountryCondition"
+            },
+            {
+              "__typename": "ReturnListingGroupCondition"
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "a81ebb40-45a2-4b5e-ad6e-913522212cb7",
+        "name": "Hello World",
+        "priority": 95,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "addressRoutingStrategy": {
+          "__typename": "ReturnToNearestSellerAddressStrategy",
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnItemCategoryCondition"
+            },
+            {
+              "__typename": "ReturnReasonCondition"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

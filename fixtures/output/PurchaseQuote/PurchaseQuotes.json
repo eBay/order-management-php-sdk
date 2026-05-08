@@ -1,0 +1,33 @@
+{
+  "purchaseQuotes": {
+    "sellerPurchaseQuotes": {
+      "pagination": {
+        "nextCursor": "Hello World",
+        "previousCursor": "Hello World"
+      },
+      "purchaseQuotes": [
+        {
+          "purchaseQuoteId": "624395ae-d200-441e-87ea-9115eb85a9fb",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "state": {
+            "label": "Hello World"
+          }
+        },
+        {
+          "purchaseQuoteId": "70dc787a-797c-470e-97f7-df7a471f5032",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "state": {
+            "label": "Hello World",
+            "cancelledAt": "2024-01-01T00:00:00.000Z",
+            "reason": {
+              "displayName": "Hello World",
+              "id": "04ffcb56-2374-4cb4-8913-00d3a6a2fd34"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "processReturnRefund": {
+    "__typename": "RefundAuthorizationFailedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

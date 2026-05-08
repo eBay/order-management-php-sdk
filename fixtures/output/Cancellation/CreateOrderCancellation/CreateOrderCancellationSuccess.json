@@ -1,0 +1,14 @@
+{
+  "createOrderCancellation": {
+    "__typename": "CreateOrderCancellationSuccess",
+    "orderCancellation": {
+      "__typename": "OrderCancellation",
+      "cancellationId": "55d7ebfa-7378-42fd-bda3-61f1087c9031",
+      "status": {
+        "__typename": "ContractCancellationCompleted",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

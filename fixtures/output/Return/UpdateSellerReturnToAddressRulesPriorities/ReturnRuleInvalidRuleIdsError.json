@@ -1,0 +1,11 @@
+{
+  "updateSellerReturnToAddressRulesPriorities": {
+    "__typename": "ReturnRuleInvalidRuleIdsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "invalidRuleIds": [
+      "44352ad7-08bc-4e00-a9a9-e7cad6547808",
+      "83ad8c33-557d-4371-bf27-2cbde4dc5ad1"
+    ]
+  }
+}

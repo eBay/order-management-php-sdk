@@ -1,0 +1,7 @@
+{
+  "approveContractCancellation": {
+    "__typename": "RefundInstrumentInsufficientFundsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

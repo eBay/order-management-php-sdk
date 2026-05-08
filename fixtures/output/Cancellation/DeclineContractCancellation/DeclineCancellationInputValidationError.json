@@ -1,0 +1,31 @@
+{
+  "declineContractCancellation": {
+    "__typename": "DeclineCancellationInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "CancellationTrackingNumberViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "constraint": {
+          "characterLimit": {
+            "minLength": 95,
+            "maxLength": -28
+          }
+        },
+        "exceededLength": true,
+        "containsInvalidCharacters": false
+      },
+      {
+        "__typename": "CancellationShippedDateViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "constraint": {
+          "fromDate": "2024-01-01T00:00:00.000Z",
+          "toDate": "2024-01-01T00:00:00.000Z"
+        }
+      }
+    ]
+  }
+}

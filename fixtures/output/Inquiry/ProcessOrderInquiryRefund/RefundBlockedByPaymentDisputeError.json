@@ -1,0 +1,7 @@
+{
+  "processOrderInquiryRefund": {
+    "__typename": "RefundBlockedByPaymentDisputeError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "createItemCommitmentCancellation": {
+    "__typename": "ItemCommitmentCancellationEligibilityError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ineligibilityReasons": [
+      {
+        "__typename": "CancellationItemCommitmentIneligible",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "itemCommitmentId": "67707797-d381-4529-b43e-f92d2dcee9d0"
+      },
+      {
+        "__typename": "ItemCommitmentCancellationReasonNotAllowed",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "itemCommitmentId": "dcbbc9fb-c540-44c5-a6f8-e4493dff406c",
+        "availableReasons": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
+      }
+    ]
+  }
+}

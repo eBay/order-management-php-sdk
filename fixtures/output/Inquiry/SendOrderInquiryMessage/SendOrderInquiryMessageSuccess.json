@@ -1,0 +1,153 @@
+{
+  "sendOrderInquiryMessage": {
+    "__typename": "SendOrderInquiryMessageSuccess",
+    "orderInquiry": {
+      "__typename": "ItemNotReceivedInquiry",
+      "inquiryId": "555cf613-fa0b-4052-8153-9b38f9014ba8",
+      "status": {
+        "__typename": "OrderInquiryOpen",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "closedAt": "2024-01-01T00:00:00.000Z",
+      "initiator": "BUYER",
+      "responder": "SELLER",
+      "inquirers": [
+        "SELLER",
+        "SELLER"
+      ],
+      "lineItems": [
+        {
+          "inquiryLineItemId": "d507b0de-79c5-4323-9356-1211b3627ec9",
+          "quantity": 63,
+          "orderLineItem": {
+            "orderLineItemId": "6bd7d4c8-1a19-47e4-bdbe-433025fdf884"
+          }
+        },
+        {
+          "inquiryLineItemId": "2df5adf7-b3bf-40f7-83db-693513a5a983",
+          "quantity": 35,
+          "orderLineItem": {
+            "orderLineItemId": "175149ab-4f62-45f4-99b0-0cfed2551a8c"
+          }
+        }
+      ],
+      "sellerAvailableActions": {
+        "respondByAction": {
+          "respondAction": {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          "responseDueAt": "2024-01-01T00:00:00.000Z"
+        },
+        "secondaryActions": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
+      },
+      "requestedInformation": [
+        {
+          "requester": "SELLER",
+          "requestedAt": "2024-01-01T00:00:00.000Z"
+        },
+        {
+          "requester": "EBAY",
+          "requestedAt": "2024-01-01T00:00:00.000Z"
+        }
+      ],
+      "providedInformation": [
+        {
+          "submitter": "SELLER",
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "trackingNumber": "Hello World",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              }
+            },
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "trackingNumber": "Hello World",
+              "signatureConfirmationProof": {
+                "documentId": "06230902-ccbc-439c-bf0d-974358b5ff94",
+                "filenameExtension": "GIF",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              }
+            }
+          ]
+        },
+        {
+          "submitter": "BUYER",
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "trackingNumber": "Hello World",
+              "signatureConfirmationProof": {
+                "documentId": "19f3239e-5485-4630-9398-d8d3e5015f36",
+                "filenameExtension": "DOC",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              }
+            },
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "trackingNumber": "Hello World",
+              "signatureConfirmationProof": {
+                "documentId": "c6eaf23c-0988-4ef5-bdce-4826dbde283e",
+                "filenameExtension": "DOCX",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              }
+            }
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "caseId": "d502b2fc-0a11-4b25-bace-e3f6af4f91da",
+          "status": {
+            "__typename": "PostPurchaseCaseClosed",
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          "reason": {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        },
+        {
+          "caseId": "d54e449c-9611-48ab-a54d-d6917772262e",
+          "status": {
+            "__typename": "PostPurchaseCaseOpen",
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          "reason": {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        }
+      ],
+      "refunds": [
+        {
+          "refundId": "76eb8c23-633c-436c-b418-fe98707d4de3"
+        },
+        {
+          "refundId": "5f73e6b3-2321-46cd-9ee1-248a3243aff1"
+        }
+      ]
+    }
+  }
+}

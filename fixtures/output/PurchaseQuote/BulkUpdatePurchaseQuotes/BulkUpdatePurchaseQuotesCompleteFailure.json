@@ -1,0 +1,21 @@
+{
+  "bulkUpdatePurchaseQuotes": {
+    "__typename": "BulkUpdatePurchaseQuotesCompleteFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "inputPurchaseQuoteId": "94461660-de5b-4262-86c8-18f698c2c5e3",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      },
+      {
+        "inputPurchaseQuoteId": "e3264d06-424b-4331-a230-8caca92e0d60",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      }
+    ]
+  }
+}

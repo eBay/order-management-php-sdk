@@ -1,0 +1,19 @@
+{
+  "orderLineItemsByIds": {
+    "__typename": "OrderLineItemsByIdsCompleteFailure",
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputLineItemId": "42f1d53d-3e7b-477d-a5a5-7e0de00a7cf7",
+        "retryable": false
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputLineItemId": "aab12c83-2c05-41d6-9c8c-c0405d49dfd4",
+        "retryable": true
+      }
+    ]
+  }
+}

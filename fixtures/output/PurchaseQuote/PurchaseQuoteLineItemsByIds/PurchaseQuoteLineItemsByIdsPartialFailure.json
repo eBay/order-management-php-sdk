@@ -1,0 +1,27 @@
+{
+  "purchaseQuoteLineItemsByIds": {
+    "__typename": "PurchaseQuoteLineItemsByIdsPartialFailure",
+    "purchaseQuoteLineItems": [
+      {
+        "purchaseQuoteLineItemId": "24443fe1-b3a8-4a93-ae4f-c3989eb9770a"
+      },
+      {
+        "purchaseQuoteLineItemId": "46786822-547e-406c-befc-2366eae15069"
+      }
+    ],
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputPurchaseQuoteLineItemId": "3fb27843-9ac9-4767-98e9-5dfd47d25bf2",
+        "retryable": true
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputPurchaseQuoteLineItemId": "154dcc50-fbe0-4a01-8901-8eb1a8d60893",
+        "retryable": false
+      }
+    ]
+  }
+}

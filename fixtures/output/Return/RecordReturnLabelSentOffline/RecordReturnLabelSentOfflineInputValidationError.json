@@ -1,0 +1,36 @@
+{
+  "recordReturnLabelSentOffline": {
+    "__typename": "RecordReturnLabelSentOfflineInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnShippingCarrierNameViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": -20,
+            "maxLength": -4
+          }
+        }
+      },
+      {
+        "__typename": "ReturnTrackingNumberViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": true,
+        "duplicateTrackingNumber": true,
+        "constraint": {
+          "characterLimit": {
+            "minLength": -2,
+            "maxLength": -87
+          }
+        }
+      }
+    ]
+  }
+}

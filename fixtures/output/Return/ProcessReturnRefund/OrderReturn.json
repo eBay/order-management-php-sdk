@@ -1,0 +1,11 @@
+{
+  "processReturnRefund": {
+    "__typename": "OrderReturn",
+    "returnId": "f967ea14-3b37-4158-a303-71ceaaef6af9",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

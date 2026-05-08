@@ -1,0 +1,11 @@
+{
+  "recordReturnLabelSentOffline": {
+    "__typename": "OrderReturn",
+    "returnId": "ae6e72f5-7cf1-4006-b357-31ae51cc272f",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

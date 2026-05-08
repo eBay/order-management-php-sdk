@@ -1,0 +1,31 @@
+{
+  "purchaseQuotesByIds": {
+    "__typename": "PurchaseQuotesByIdsPartialFailure",
+    "purchaseQuotes": [
+      {
+        "purchaseQuoteId": "930f73a6-2078-4bb0-aea0-d8c22b3c8db4",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      },
+      {
+        "purchaseQuoteId": "5d81f284-8549-484c-a9fa-b79a963129a9",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      }
+    ],
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputPurchaseQuoteId": "8bd67c77-ae47-4411-a557-5f8291fab170",
+        "retryable": false
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputPurchaseQuoteId": "82c41dbb-c3fa-4d73-9af6-f285051f80d4",
+        "retryable": false
+      }
+    ]
+  }
+}

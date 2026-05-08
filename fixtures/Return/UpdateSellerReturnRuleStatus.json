@@ -1,5 +1,0 @@
-{
-  "updateSellerReturnRuleStatus": {
-    "__typename": "ReturnRuleFeatureNotEnabledError"
-  }
-}

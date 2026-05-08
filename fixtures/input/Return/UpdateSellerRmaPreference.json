@@ -1,0 +1,8 @@
+{
+  "input": {
+    "listingMarketplace": "EBAY_AT",
+    "rmaPreference": {
+      "preferenceStatus": "DISABLED"
+    }
+  }
+}

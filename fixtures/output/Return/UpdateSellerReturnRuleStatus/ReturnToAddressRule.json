@@ -1,0 +1,17 @@
+{
+  "updateSellerReturnRuleStatus": {
+    "__typename": "ReturnToAddressRule",
+    "ruleId": "d75ca4f3-7403-47a3-92c0-757e2ef42d26",
+    "name": "Hello World",
+    "priority": -59,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "addressRoutingStrategy": {
+      "__typename": "ReturnToOriginalShipFromAddressStrategy",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

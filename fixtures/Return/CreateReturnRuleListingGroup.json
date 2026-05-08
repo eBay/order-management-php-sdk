@@ -1,8 +1,0 @@
-{
-  "createReturnRuleListingGroup": {
-    "__typename": "ReturnRuleListingGroupQuotaExceededError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "maxAllowedLists": -25
-  }
-}

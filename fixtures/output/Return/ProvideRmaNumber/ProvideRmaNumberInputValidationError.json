@@ -1,0 +1,37 @@
+{
+  "provideRmaNumber": {
+    "__typename": "ProvideRmaNumberInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnRmaNumberViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": false,
+        "constraint": {
+          "rmaNumberRequired": false,
+          "characterLimit": {
+            "minLength": 91,
+            "maxLength": -99
+          }
+        }
+      },
+      {
+        "__typename": "ReturnRmaNumberViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": true,
+        "constraint": {
+          "rmaNumberRequired": true,
+          "characterLimit": {
+            "minLength": 45,
+            "maxLength": -8
+          }
+        }
+      }
+    ]
+  }
+}

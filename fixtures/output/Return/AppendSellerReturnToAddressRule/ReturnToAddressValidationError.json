@@ -1,0 +1,8 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnToAddressValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "invalidAddressId": "Hello World"
+  }
+}

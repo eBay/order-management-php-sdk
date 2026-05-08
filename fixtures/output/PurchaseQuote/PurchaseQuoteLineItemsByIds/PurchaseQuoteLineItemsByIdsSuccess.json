@@ -1,0 +1,35 @@
+{
+  "purchaseQuoteLineItemsByIds": {
+    "__typename": "PurchaseQuoteLineItemsByIdsSuccess",
+    "purchaseQuoteLineItems": [
+      {
+        "purchaseQuoteLineItemId": "234b6606-c879-4fe4-b58b-c6029f5af992",
+        "lineItemSource": {
+          "itemCommitmentId": "11065269-f96c-445f-8b71-9e4911477d50"
+        },
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "EGP"
+            }
+          }
+        }
+      },
+      {
+        "purchaseQuoteLineItemId": "9006f73a-d039-443b-9328-a39ddb8770c4",
+        "lineItemSource": {
+          "itemCommitmentId": "a3100151-6c1e-45a8-b3cb-bf92b882b3f2"
+        },
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "CHF"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

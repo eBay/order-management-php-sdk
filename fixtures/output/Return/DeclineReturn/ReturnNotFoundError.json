@@ -1,0 +1,8 @@
+{
+  "declineReturn": {
+    "__typename": "ReturnNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedReturnId": "ac8383a5-b123-4247-8b7c-eb14a59b4696"
+  }
+}

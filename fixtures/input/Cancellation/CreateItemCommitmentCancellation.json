@@ -1,0 +1,7 @@
+{
+  "input": {
+    "contractCancellationReason": "BUYER_REQUESTED",
+    "itemCommitmentId": "mock-id",
+    "relistItem": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "provideShipmentInfoForItemNotReceivedInquiry": {
+    "__typename": "ProvideShipmentInfoForItemNotReceivedInquirySuccess",
+    "orderInquiry": {
+      "__typename": "ItemNotReceivedInquiry",
+      "inquiryId": "502bb214-b356-4be8-bdc1-705969119356",
+      "providedInformation": [
+        {
+          "submitter": "SELLER",
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "trackingNumber": "Hello World",
+              "signatureConfirmationProof": {
+                "documentId": "fb6abf1c-842a-4431-8f87-3140ec21eab6",
+                "filenameExtension": "DOC",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              }
+            },
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "trackingNumber": "Hello World",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              }
+            }
+          ]
+        },
+        {
+          "submitter": "EBAY",
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "trackingNumber": "Hello World",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              }
+            },
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "trackingNumber": "Hello World",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

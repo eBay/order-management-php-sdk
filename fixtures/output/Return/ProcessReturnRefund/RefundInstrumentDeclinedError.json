@@ -1,0 +1,7 @@
+{
+  "processReturnRefund": {
+    "__typename": "RefundInstrumentDeclinedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

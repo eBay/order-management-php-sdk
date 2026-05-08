@@ -1,0 +1,16 @@
+{
+  "updateSellerReturnResponseRuleCondition": {
+    "__typename": "ReturnRuleNameError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "containsInvalidCharacters": true,
+    "duplicateRuleName": false,
+    "nameConstraint": {
+      "characterLimit": {
+        "minLength": 50,
+        "maxLength": 83
+      },
+      "allowedPattern": "Hello World"
+    }
+  }
+}

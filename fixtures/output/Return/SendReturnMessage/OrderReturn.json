@@ -1,0 +1,11 @@
+{
+  "sendReturnMessage": {
+    "__typename": "OrderReturn",
+    "returnId": "5552a4a6-e856-4acf-b85d-8d7ed1dcc2db",
+    "status": {
+      "__typename": "ReturnRequested",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

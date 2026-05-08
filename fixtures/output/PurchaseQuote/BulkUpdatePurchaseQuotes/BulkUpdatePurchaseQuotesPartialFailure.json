@@ -1,0 +1,29 @@
+{
+  "bulkUpdatePurchaseQuotes": {
+    "__typename": "BulkUpdatePurchaseQuotesPartialFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "updatedPurchaseQuotes": [
+      {
+        "purchaseQuoteId": "75beb83b-9687-4702-8b40-23c9af112387"
+      },
+      {
+        "purchaseQuoteId": "b34eba4a-eb54-4c0e-a7b0-a06ccd93d509"
+      }
+    ],
+    "failures": [
+      {
+        "inputPurchaseQuoteId": "da2a2077-8983-49b0-b7bc-582dcda49b93",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      },
+      {
+        "inputPurchaseQuoteId": "30af2014-3d27-4514-9e4a-43715f09b789",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      }
+    ]
+  }
+}

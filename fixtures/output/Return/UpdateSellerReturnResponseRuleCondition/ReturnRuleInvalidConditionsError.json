@@ -1,0 +1,19 @@
+{
+  "updateSellerReturnResponseRuleCondition": {
+    "__typename": "ReturnRuleInvalidConditionsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ruleConditionViolation": [
+      {
+        "__typename": "ReturnRuleListingGroupConditionViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      },
+      {
+        "__typename": "ReturnRuleRefundRangeConditionViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      }
+    ]
+  }
+}

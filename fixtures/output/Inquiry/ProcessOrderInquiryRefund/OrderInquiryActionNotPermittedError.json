@@ -1,0 +1,17 @@
+{
+  "processOrderInquiryRefund": {
+    "__typename": "OrderInquiryActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "attachReturnShipmentLabel": {
+    "__typename": "OrderReturn",
+    "returnId": "ffae8fce-c6bf-4dfb-8092-76ae360c6aa4",
+    "status": {
+      "__typename": "ReturnCancelled",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

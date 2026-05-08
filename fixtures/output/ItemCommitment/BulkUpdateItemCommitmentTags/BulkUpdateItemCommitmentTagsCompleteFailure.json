@@ -1,0 +1,21 @@
+{
+  "bulkUpdateItemCommitmentTags": {
+    "__typename": "BulkUpdateItemCommitmentTagsCompleteFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "inputItemCommitmentId": "618e1654-0640-4554-9b47-a0d6df10d147",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      },
+      {
+        "inputItemCommitmentId": "b5a02968-bcb6-44d6-9054-6ced64326770",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      }
+    ]
+  }
+}

@@ -1,5 +1,0 @@
-{
-  "appendSellerReturnToAddressRule": {
-    "__typename": "ReturnRuleMissingConditionError"
-  }
-}

@@ -1,11 +1,9 @@
 {
-  "data": {
-    "sellerReturnPreference": {
-      "__typename": "SellerReturnPreferences",
-      "listingMarketplace": "EBAY_CA",
-      "rmaPreference": {
-        "preferenceStatus": "DISABLED"
-      }
+  "sellerReturnPreference": {
+    "__typename": "SellerReturnPreferences",
+    "listingMarketplace": "EBAY_NL",
+    "rmaPreference": {
+      "preferenceStatus": "DISABLED"
     }
   }
 }

@@ -1,31 +1,13 @@
 {
-  "data": {
-    "bulkUpdatePurchaseQuotes": {
-      "__typename": "BulkUpdatePurchaseQuotesPartialFailure",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "updatedPurchaseQuotes": [
-        {
-          "purchaseQuoteId": "80811d62-41c8-4126-8eb2-665be8074bf3"
-        },
-        {
-          "purchaseQuoteId": "6b99fc0b-dbd8-4123-bb0f-8a69bb1402f4"
-        }
-      ],
-      "failures": [
-        {
-          "inputPurchaseQuoteId": "4483347a-f37c-4c55-bb0c-6c902bc0562c",
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "retryable": true
-        },
-        {
-          "inputPurchaseQuoteId": "e3cc48ff-1feb-4ab9-84e8-f1cc9417eab7",
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "retryable": false
-        }
-      ]
-    }
+  "bulkUpdatePurchaseQuotes": {
+    "__typename": "BulkUpdatePurchaseQuotesSuccess",
+    "updatedPurchaseQuotes": [
+      {
+        "purchaseQuoteId": "c0cb833b-fd32-477a-b845-92de0d72e250"
+      },
+      {
+        "purchaseQuoteId": "f04a65d8-5f90-470b-bdd8-fa7251f9e0a6"
+      }
+    ]
   }
 }

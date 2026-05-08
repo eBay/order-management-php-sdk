@@ -1,7 +1,7 @@
 {
-  "data": {
-    "deleteSellerReturnRule": {
-      "__typename": "ReturnRuleFeatureNotEnabledError"
-    }
+  "deleteSellerReturnRule": {
+    "__typename": "DeleteSellerReturnRuleSuccess",
+    "ruleId": "17374b18-08f1-4a28-bb73-9379a92c5331",
+    "name": "Hello World"
   }
 }

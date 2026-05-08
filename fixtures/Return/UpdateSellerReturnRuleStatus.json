@@ -1,28 +1,5 @@
 {
-  "data": {
-    "updateSellerReturnRuleStatus": {
-      "__typename": "ReturnToAddressRule",
-      "ruleId": "87586cc4-f7fe-4c10-89d3-ab1b5c9dbbbb",
-      "name": "Hello World",
-      "priority": -94,
-      "status": {
-        "code": "Hello World",
-        "displayText": "Hello World"
-      },
-      "addressRoutingStrategy": {
-        "__typename": "ReturnToSpecificAddressStrategy",
-        "code": "Hello World",
-        "displayText": "Hello World",
-        "returnAddress": {
-          "addressId": "d04e3451-12be-4257-ad7e-7c6427520abf",
-          "addressLine1": "Hello World",
-          "addressLine2": "Hello World",
-          "city": "Hello World",
-          "stateOrProvince": "Hello World",
-          "postalCode": "Hello World",
-          "countryCode": "UZ"
-        }
-      }
-    }
+  "updateSellerReturnRuleStatus": {
+    "__typename": "ReturnRuleFeatureNotEnabledError"
   }
 }

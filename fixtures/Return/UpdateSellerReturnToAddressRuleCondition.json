@@ -1,9 +1,7 @@
 {
-  "data": {
-    "updateSellerReturnToAddressRuleCondition": {
-      "__typename": "ReturnRuleMissingConditionError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World"
-    }
+  "updateSellerReturnToAddressRuleCondition": {
+    "__typename": "ReturnRuleInvalidConditionsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

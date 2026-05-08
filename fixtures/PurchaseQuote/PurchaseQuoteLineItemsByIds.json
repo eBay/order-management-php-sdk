@@ -1,21 +1,35 @@
 {
-  "data": {
-    "purchaseQuoteLineItemsByIds": {
-      "__typename": "PurchaseQuoteLineItemsByIdsCompleteFailure",
-      "failures": [
-        {
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "inputPurchaseQuoteLineItemId": "44fcd838-1f50-483e-a9ec-19754d48fff6",
-          "retryable": true
+  "purchaseQuoteLineItemsByIds": {
+    "__typename": "PurchaseQuoteLineItemsByIdsSuccess",
+    "purchaseQuoteLineItems": [
+      {
+        "purchaseQuoteLineItemId": "d6dc7425-8250-4978-b03c-1136a44b0432",
+        "lineItemSource": {
+          "itemCommitmentId": "c2c3bfae-4457-4b4a-8e40-cbf25782932d"
         },
-        {
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "inputPurchaseQuoteLineItemId": "cb81db58-9055-4e7c-80a0-1e0f18092af4",
-          "retryable": true
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "COP"
+            }
+          }
         }
-      ]
-    }
+      },
+      {
+        "purchaseQuoteLineItemId": "9ab87796-4ace-4c47-99ca-8e7e91252a48",
+        "lineItemSource": {
+          "itemCommitmentId": "a4e7aeea-274d-4345-89dc-47817a32182f"
+        },
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "FKP"
+            }
+          }
+        }
+      }
+    ]
   }
 }

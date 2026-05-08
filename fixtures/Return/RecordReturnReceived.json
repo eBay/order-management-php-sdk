@@ -1,21 +1,19 @@
 {
-  "data": {
-    "recordReturnReceived": {
-      "__typename": "ReturnActionNotPermittedError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "availableActions": [
-        {
-          "__typename": "DeclineReturnAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        },
-        {
-          "__typename": "ProcessReturnRefundAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        }
-      ]
-    }
+  "recordReturnReceived": {
+    "__typename": "ReturnActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "__typename": "ProvideRmaNumberReturnAction",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "__typename": "RecordReturnReceivedAction",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    ]
   }
 }

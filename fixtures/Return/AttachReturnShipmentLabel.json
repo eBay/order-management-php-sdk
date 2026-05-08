@@ -1,9 +1,7 @@
 {
-  "data": {
-    "attachReturnShipmentLabel": {
-      "__typename": "MultipleReturnLabelsNotSupportedError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World"
-    }
+  "attachReturnShipmentLabel": {
+    "__typename": "MultipleReturnLabelsNotSupportedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

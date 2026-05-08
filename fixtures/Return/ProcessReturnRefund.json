@@ -1,21 +1,7 @@
 {
-  "data": {
-    "processReturnRefund": {
-      "__typename": "ReturnActionNotPermittedError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "availableActions": [
-        {
-          "__typename": "ProcessReturnRefundAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        },
-        {
-          "__typename": "SendMessageReturnAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        }
-      ]
-    }
+  "processReturnRefund": {
+    "__typename": "RefundBlockedByPaymentDisputeError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

@@ -1,10 +1,14 @@
 {
-  "data": {
-    "declineContractCancellation": {
-      "__typename": "ContractCancellationNotFoundError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "requestedContractCancellationId": "68353a93-7826-4db6-be5f-130c571baa7e"
+  "declineContractCancellation": {
+    "__typename": "DeclineContractCancellationSuccess",
+    "contractCancellation": {
+      "__typename": "ItemCommitmentCancellation",
+      "cancellationId": "34abb670-5949-4810-87a3-31f51726aa1a",
+      "status": {
+        "__typename": "ContractCancellationPending",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
     }
   }
 }

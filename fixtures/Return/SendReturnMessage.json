@@ -1,21 +1,11 @@
 {
-  "data": {
-    "sendReturnMessage": {
-      "__typename": "ReturnActionNotPermittedError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "availableActions": [
-        {
-          "__typename": "ProvideRmaNumberReturnAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        },
-        {
-          "__typename": "RecordReturnReceivedAction",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        }
-      ]
+  "sendReturnMessage": {
+    "__typename": "OrderReturn",
+    "returnId": "b0c34488-ee41-4261-a642-d55a7303a398",
+    "status": {
+      "__typename": "ReturnRequested",
+      "code": "Hello World",
+      "displayText": "Hello World"
     }
   }
 }

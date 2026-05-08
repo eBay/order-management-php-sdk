@@ -1,13 +1,33 @@
 {
-  "data": {
-    "declineReturn": {
-      "__typename": "OrderReturn",
-      "returnId": "6e08100b-21fb-43fe-8eed-470e7d9e88ba",
-      "status": {
-        "__typename": "ReturnDeclined",
+  "declineReturn": {
+    "__typename": "DeclineReturnInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnNoteViolation",
         "code": "Hello World",
-        "displayText": "Hello World"
+        "displayMessage": "Hello World",
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": 59,
+            "maxLength": 13
+          }
+        }
+      },
+      {
+        "__typename": "ReturnNoteViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": 47,
+            "maxLength": 90
+          }
+        }
       }
-    }
+    ]
   }
 }

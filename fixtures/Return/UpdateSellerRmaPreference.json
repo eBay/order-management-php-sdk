@@ -1,11 +1,7 @@
 {
-  "data": {
-    "updateSellerRmaPreference": {
-      "__typename": "SellerReturnPreferences",
-      "listingMarketplace": "EBAY_CA",
-      "rmaPreference": {
-        "preferenceStatus": "ENABLED"
-      }
-    }
+  "updateSellerRmaPreference": {
+    "__typename": "ReturnPreferenceNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

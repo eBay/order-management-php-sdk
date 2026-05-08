@@ -1,149 +1,17 @@
 {
-  "data": {
-    "sendOrderInquiryMessage": {
-      "__typename": "SendOrderInquiryMessageSuccess",
-      "orderInquiry": {
-        "__typename": "ItemNotReceivedInquiry",
-        "inquiryId": "3e9706e3-e203-411e-9a6c-e66cdd7e3352",
-        "status": {
-          "__typename": "OrderInquiryOpen",
-          "code": "Hello World",
-          "displayText": "Hello World"
-        },
-        "createdAt": "2024-01-01T00:00:00.000Z",
-        "closedAt": "2024-01-01T00:00:00.000Z",
-        "initiator": "SELLER",
-        "responder": "SELLER",
-        "inquirers": [
-          "EBAY",
-          "SELLER"
-        ],
-        "lineItems": [
-          {
-            "inquiryLineItemId": "a156b758-f338-422a-a1e0-04a83b8e1f17",
-            "quantity": 20,
-            "orderLineItem": {
-              "orderLineItemId": "0cbe804e-ab08-4b7a-905e-dc68ea8218ea"
-            }
-          },
-          {
-            "inquiryLineItemId": "a54adf6d-aaa6-459a-9633-d52b2800fcc6",
-            "quantity": -54,
-            "orderLineItem": {
-              "orderLineItemId": "5ebe4fd1-4694-472f-8ca7-cf470357c0c0"
-            }
-          }
-        ],
-        "sellerAvailableActions": {
-          "respondByAction": {
-            "respondAction": {
-              "code": "Hello World",
-              "displayText": "Hello World"
-            },
-            "responseDueAt": "2024-01-01T00:00:00.000Z"
-          },
-          "secondaryActions": [
-            {
-              "code": "Hello World",
-              "displayText": "Hello World"
-            },
-            {
-              "code": "Hello World",
-              "displayText": "Hello World"
-            }
-          ]
-        },
-        "requestedInformation": [
-          {
-            "requester": "BUYER",
-            "requestedAt": "2024-01-01T00:00:00.000Z"
-          },
-          {
-            "requester": "SELLER",
-            "requestedAt": "2024-01-01T00:00:00.000Z"
-          }
-        ],
-        "providedInformation": [
-          {
-            "submitter": "EBAY",
-            "submittedAt": "2024-01-01T00:00:00.000Z",
-            "submittedInformation": [
-              {
-                "__typename": "OrderInquiryShipmentTracking",
-                "trackingNumber": "Hello World",
-                "shippingCarrier": {
-                  "carrierCode": "Hello World",
-                  "unsupportedCarrierName": "Hello World"
-                }
-              },
-              {
-                "__typename": "OrderInquiryShipmentTracking",
-                "trackingNumber": "Hello World",
-                "shippingCarrier": {
-                  "carrierCode": "Hello World",
-                  "unsupportedCarrierName": "Hello World"
-                }
-              }
-            ]
-          },
-          {
-            "submitter": "BUYER",
-            "submittedAt": "2024-01-01T00:00:00.000Z",
-            "submittedInformation": [
-              {
-                "__typename": "OrderInquiryShipmentTracking",
-                "trackingNumber": "Hello World",
-                "shippingCarrier": {
-                  "carrierCode": "Hello World",
-                  "unsupportedCarrierName": "Hello World"
-                }
-              },
-              {
-                "__typename": "OrderInquirySignatureConfirmation",
-                "trackingNumber": "Hello World",
-                "signatureConfirmationProof": {
-                  "documentId": "3cd0eee2-079a-4fb5-afcb-885e1943a468",
-                  "filenameExtension": "DOC",
-                  "documentName": "Hello World",
-                  "uploadedAt": "2024-01-01T00:00:00.000Z"
-                }
-              }
-            ]
-          }
-        ],
-        "cases": [
-          {
-            "caseId": "fe103bb9-7965-4ef3-9c2f-f08ff62837cb",
-            "status": {
-              "__typename": "PostPurchaseCaseOpen",
-              "code": "Hello World",
-              "displayText": "Hello World"
-            },
-            "reason": {
-              "code": "Hello World",
-              "displayText": "Hello World"
-            }
-          },
-          {
-            "caseId": "8b157468-f465-4259-9f65-c39e95fb9a09",
-            "status": {
-              "__typename": "PostPurchaseCaseOnHold"
-            },
-            "reason": {
-              "code": "Hello World",
-              "displayText": "Hello World"
-            }
-          }
-        ],
-        "refunds": [
-          {
-            "refundId": "45baaa2e-26a8-47c2-be28-85753dc8c188"
-          },
-          {
-            "refundId": "fa679fd7-4350-40f2-a5e7-2a272b499fac"
-          }
-        ]
+  "sendOrderInquiryMessage": {
+    "__typename": "OrderInquiryActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
       }
-    }
+    ]
   }
 }

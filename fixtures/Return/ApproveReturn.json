@@ -1,21 +1,11 @@
 {
-  "data": {
-    "approveReturn": {
-      "__typename": "ApproveReturnInputValidationError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "violations": [
-        {
-          "__typename": "ReturnNoteViolation",
-          "code": "Hello World",
-          "displayMessage": "Hello World"
-        },
-        {
-          "__typename": "ReturnNoteViolation",
-          "code": "Hello World",
-          "displayMessage": "Hello World"
-        }
-      ]
+  "approveReturn": {
+    "__typename": "OrderReturn",
+    "returnId": "6276490a-cd11-4787-942b-f5c8d3883fac",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
     }
   }
 }

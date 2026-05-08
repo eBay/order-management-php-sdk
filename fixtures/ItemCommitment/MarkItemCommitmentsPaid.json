@@ -1,31 +1,21 @@
 {
-  "data": {
-    "markItemCommitmentsPaid": {
-      "__typename": "MarkItemCommitmentsPaidPartialFailure",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "markPaidItemCommitments": [
-        {
-          "itemCommitmentId": "71169b56-110c-447e-86f5-f3346df973be"
-        },
-        {
-          "itemCommitmentId": "b6ce7757-ec6b-4e8c-9dad-52e56af8b527"
-        }
-      ],
-      "failures": [
-        {
-          "inputItemCommitmentId": "4d1cad61-0e7b-4d4e-81a0-094b7f95b9e3",
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "retryable": false
-        },
-        {
-          "inputItemCommitmentId": "dc189518-2b5c-45cb-9176-dfa6a35d42ba",
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "retryable": false
-        }
-      ]
-    }
+  "markItemCommitmentsPaid": {
+    "__typename": "MarkItemCommitmentsPaidCompleteFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "inputItemCommitmentId": "c5af9ed5-95f0-4df0-8141-189667825ad9",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      },
+      {
+        "inputItemCommitmentId": "b65290ab-ac88-4555-81d0-c7530b0dc572",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      }
+    ]
   }
 }

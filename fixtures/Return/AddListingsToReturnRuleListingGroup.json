@@ -1,10 +1,9 @@
 {
-  "data": {
-    "addListingsToReturnRuleListingGroup": {
-      "__typename": "ReturnRuleListingGroupNotFoundError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "returnRuleListingGroupId": "7e9085af-14c6-4ab2-90a7-15b7cef0640c"
-    }
+  "addListingsToReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingIdsPerRequestLimitExceededError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedCount": -50,
+    "perRequestLimit": 28
   }
 }

@@ -1,13 +1,8 @@
 {
-  "data": {
-    "createReturnRuleListingGroup": {
-      "__typename": "ReturnRuleListingGroupDuplicateListingError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "duplicateListingIds": [
-        "5f1c81f2-5634-48c7-bac7-66c4bf6e0c86",
-        "675d0667-2fde-4344-8c7b-5bc5038a6eb6"
-      ]
-    }
+  "createReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupQuotaExceededError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "maxAllowedLists": -25
   }
 }

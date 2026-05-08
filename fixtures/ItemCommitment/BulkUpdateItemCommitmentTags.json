@@ -1,15 +1,21 @@
 {
-  "data": {
-    "bulkUpdateItemCommitmentTags": {
-      "__typename": "BulkUpdateItemCommitmentTagsSuccess",
-      "updatedItemCommitments": [
-        {
-          "itemCommitmentId": "7ed27e72-8cc5-427b-ba51-b4537a6bf510"
-        },
-        {
-          "itemCommitmentId": "4e7036f4-1689-44a1-a064-0cbea7a7903c"
-        }
-      ]
-    }
+  "bulkUpdateItemCommitmentTags": {
+    "__typename": "BulkUpdateItemCommitmentTagsCompleteFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "inputItemCommitmentId": "9f49dec4-80a7-4cd0-9510-04990cf07705",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      },
+      {
+        "inputItemCommitmentId": "aafe0f5a-58df-430d-9df4-9ff433b3930b",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      }
+    ]
   }
 }

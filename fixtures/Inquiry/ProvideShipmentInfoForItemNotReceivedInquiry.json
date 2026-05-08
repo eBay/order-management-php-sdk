@@ -1,19 +1,17 @@
 {
-  "data": {
-    "provideShipmentInfoForItemNotReceivedInquiry": {
-      "__typename": "ProvideShipmentInfoForInquiryInputValidationError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "violations": [
-        {
-          "code": "Hello World",
-          "displayMessage": "Hello World"
-        },
-        {
-          "code": "Hello World",
-          "displayMessage": "Hello World"
-        }
-      ]
-    }
+  "provideShipmentInfoForItemNotReceivedInquiry": {
+    "__typename": "OrderInquiryActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    ]
   }
 }

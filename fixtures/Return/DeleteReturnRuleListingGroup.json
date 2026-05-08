@@ -1,7 +1,5 @@
 {
-  "data": {
-    "deleteReturnRuleListingGroup": {
-      "__typename": "DeleteReturnRuleListingGroupSuccess"
-    }
+  "deleteReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupNotFoundError"
   }
 }

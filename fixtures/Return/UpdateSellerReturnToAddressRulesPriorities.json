@@ -1,13 +1,5 @@
 {
-  "data": {
-    "updateSellerReturnToAddressRulesPriorities": {
-      "__typename": "ReturnRuleMissingRuleIdsError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World",
-      "missingRuleIds": [
-        "0418eb0e-9ea0-48f4-8119-073e498dd476",
-        "b210cdd9-7932-4bad-9cd9-aa1043789a1e"
-      ]
-    }
+  "updateSellerReturnToAddressRulesPriorities": {
+    "__typename": "ReturnRuleFeatureNotEnabledError"
   }
 }

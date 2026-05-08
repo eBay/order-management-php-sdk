@@ -1,9 +1,7 @@
 {
-  "data": {
-    "sellerOrderInquiries": {
-      "__typename": "OrderInquiryInvalidSearchInputError",
-      "errorCode": "Hello World",
-      "errorMessage": "Hello World"
-    }
+  "sellerOrderInquiries": {
+    "__typename": "OrderInquiryInvalidSearchInputError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

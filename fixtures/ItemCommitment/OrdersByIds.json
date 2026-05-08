@@ -1,21 +1,93 @@
 {
-  "data": {
-    "ordersByIds": {
-      "__typename": "OrdersByIdsCompleteFailure",
-      "failures": [
-        {
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "inputOrderId": "54939c4a-36cf-4aab-81af-8b657b7827fe",
-          "retryable": false
-        },
-        {
-          "errorCode": "Hello World",
-          "displayMessage": "Hello World",
-          "inputOrderId": "82a98f89-b43f-47dc-8b43-9c804cbb3060",
-          "retryable": false
+  "ordersByIds": {
+    "__typename": "OrdersByIdsSuccess",
+    "orders": [
+      {
+        "orderId": "971335f3-4a81-4d93-9a01-02ac7d3315e2",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "3a96db5e-c5ac-4f21-ad0b-a32d9e249e89",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "baf8db54-6bae-44d1-8255-1324ae46128e",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "6208e8c8-259b-4c6e-a586-247071e601b9",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "e434a037-0a4f-4bea-a0d2-3142145d53d1",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "14aabed1-27ac-4306-b749-47ffc4517141",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "ccff4571-4770-4386-a71b-5249650ae9ca",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
         }
-      ]
-    }
+      },
+      {
+        "orderId": "26f81764-bf4c-469d-baa6-821b8f4d2726",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "5a32099c-f12d-4498-90cd-d60682c41b41",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "3d03d17e-5fc7-4204-94d5-6be7827799d0",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "d50f8fe8-65ea-40a2-bba6-f3fc0f6ea26c",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "659377ec-1755-4d91-a68f-e6508a6ea99b",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "47cf700f-8de4-4ae3-a86f-aeaf10dcaa1b",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "3c4eb7ab-dcc6-4a30-9780-4a855692b44a",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 }

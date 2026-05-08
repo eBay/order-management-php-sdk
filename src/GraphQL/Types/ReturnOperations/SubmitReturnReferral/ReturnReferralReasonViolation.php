@@ -9,7 +9,7 @@ readonly class ReturnReferralReasonViolation extends Violation
     public function __construct(
         public ?string $code = null,
         public ?string $displayMessage = null,
-        public ?string $invalidReferralReason = null,
+        public ?bool $invalidReferralReason = null,
         public ?ReferralReasonConstraint $constraint = null,
     ) {}
 
@@ -23,8 +23,8 @@ readonly class ReturnReferralReasonViolation extends Violation
         return new self(
             code:                 $data['code'] ?? null,
             displayMessage:       $data['displayMessage'] ?? null,
-            invalidReferralReason: is_string($data['invalidReferralReason'] ?? null)
-                ? $data['invalidReferralReason']
+            invalidReferralReason: isset($data['invalidReferralReason'])
+                ? (bool) $data['invalidReferralReason']
                 : null,
             constraint:           isset($data['constraint'])
                 ? ReferralReasonConstraint::fromArray($data['constraint'])

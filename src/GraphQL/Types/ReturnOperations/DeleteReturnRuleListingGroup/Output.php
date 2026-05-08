@@ -13,6 +13,7 @@ abstract readonly class Output
         return match ($data['__typename'] ?? null) {
             'DeleteReturnRuleListingGroupSuccess' => Success::fromArray($data),
             'DeleteReturnRuleListingGroupError'   => DeleteError::fromArray($data),
+            'ReturnRuleListingGroupNotFoundError' => ListingGroupNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

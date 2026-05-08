@@ -23,7 +23,9 @@ readonly class ReturnReferralReasonViolation extends Violation
         return new self(
             code:                 $data['code'] ?? null,
             displayMessage:       $data['displayMessage'] ?? null,
-            invalidReferralReason: $data['invalidReferralReason'] ?? null,
+            invalidReferralReason: is_string($data['invalidReferralReason'] ?? null)
+                ? $data['invalidReferralReason']
+                : null,
             constraint:           isset($data['constraint'])
                 ? ReferralReasonConstraint::fromArray($data['constraint'])
                 : null,

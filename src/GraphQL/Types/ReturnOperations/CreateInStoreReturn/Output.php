@@ -13,7 +13,8 @@ abstract readonly class Output
         return match ($data['__typename'] ?? null) {
             'OrderReturn'                     => OrderReturnData::fromArray($data),
             'ReturnCreationNotAllowedError'   => ReturnCreationNotAllowedError::fromArray($data),
-            'OrderLineItemNotFoundError'      => GenericError::fromArray($data),
+            'OrderLineItemNotFoundError'                => GenericError::fromArray($data),
+            'CreateInStoreReturnInputValidationError'   => InputValidationError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

@@ -15,6 +15,7 @@ abstract readonly class Output
             'ReturnResponseRule'                 => ReturnResponseRule::fromArray($data),
             'ReturnRuleNotFoundError'            => NotFoundError::fromArray($data),
             'ReturnRuleStatusUpdateBlockedError' => StatusUpdateBlockedError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError'   => FeatureNotEnabledError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

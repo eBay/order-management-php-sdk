@@ -4,7 +4,7 @@
     "orderInquiries": [
       {
         "__typename": "ItemNotReceivedInquiry",
-        "inquiryId": "224bb838-9044-49a6-a6c6-6ebb6e0b911a",
+        "inquiryId": "b0bc6ba1-6cc3-4588-b258-6f85f1a9bfb3",
         "status": {
           "__typename": "OrderInquiryOpen",
           "code": "Hello World",
@@ -12,25 +12,25 @@
         },
         "createdAt": "2024-01-01T00:00:00.000Z",
         "closedAt": "2024-01-01T00:00:00.000Z",
-        "initiator": "SELLER",
-        "responder": "EBAY",
+        "initiator": "BUYER",
+        "responder": "SELLER",
         "inquirers": [
-          "BUYER",
-          "SELLER"
+          "SELLER",
+          "EBAY"
         ],
         "lineItems": [
           {
-            "inquiryLineItemId": "b500c6e0-82ce-4aa3-b729-4d31e6b0a47c",
-            "quantity": -36,
+            "inquiryLineItemId": "f1dc4e94-6a0c-4494-a321-6373a1bfe6f6",
+            "quantity": 65,
             "orderLineItem": {
-              "orderLineItemId": "13db2a17-bba0-41f3-927c-d84285aa8795"
+              "orderLineItemId": "bce308e2-8736-4339-a527-0c0e2380c5f6"
             }
           },
           {
-            "inquiryLineItemId": "2beaf96d-b76b-45bf-80a7-17eb08677f1e",
-            "quantity": 71,
+            "inquiryLineItemId": "3fc1a0bc-4d9d-454b-b2cb-743af49f8712",
+            "quantity": -28,
             "orderLineItem": {
-              "orderLineItemId": "842ba46f-b1f6-445e-80ff-7c7816cea865"
+              "orderLineItemId": "83cf94c3-f534-418a-898c-681e49ed92e4"
             }
           }
         ],
@@ -56,7 +56,7 @@
       },
       {
         "__typename": "ItemNotReceivedInquiry",
-        "inquiryId": "dfc27b49-cb09-4dcc-9e57-64e94517c67f",
+        "inquiryId": "17a53691-b4e7-48be-99d5-598b74d14707",
         "status": {
           "__typename": "OrderInquiryClosed",
           "code": "Hello World",
@@ -64,25 +64,25 @@
         },
         "createdAt": "2024-01-01T00:00:00.000Z",
         "closedAt": "2024-01-01T00:00:00.000Z",
-        "initiator": "EBAY",
+        "initiator": "SELLER",
         "responder": "BUYER",
         "inquirers": [
           "EBAY",
-          "SELLER"
+          "EBAY"
         ],
         "lineItems": [
           {
-            "inquiryLineItemId": "35cd802e-a440-44fe-8b64-fc1731b8c9e1",
-            "quantity": -81,
+            "inquiryLineItemId": "89b4cbd4-a1f5-432b-84b4-b2c5ff96112d",
+            "quantity": 34,
             "orderLineItem": {
-              "orderLineItemId": "5b600285-4a33-495c-b14a-1093040ff2b4"
+              "orderLineItemId": "a8d81785-a4a2-4d77-a085-d7696e801215"
             }
           },
           {
-            "inquiryLineItemId": "01369727-5858-4c09-8b71-9dfbfb9cc655",
-            "quantity": 1,
+            "inquiryLineItemId": "963fb85c-d0f0-42da-a7ed-d1fae02b0ac5",
+            "quantity": 6,
             "orderLineItem": {
-              "orderLineItemId": "6dea3f21-0125-4220-a933-42742a58698f"
+              "orderLineItemId": "8327ba44-5103-445e-be7b-d87cb7982e41"
             }
           }
         ],

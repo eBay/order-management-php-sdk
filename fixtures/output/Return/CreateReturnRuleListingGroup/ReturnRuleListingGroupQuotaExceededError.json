@@ -3,6 +3,6 @@
     "__typename": "ReturnRuleListingGroupQuotaExceededError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "maxAllowedLists": 42
+    "maxAllowedLists": -36
   }
 }

@@ -3,33 +3,37 @@
     "__typename": "PurchaseQuotesByIdsSuccess",
     "purchaseQuotes": [
       {
-        "purchaseQuoteId": "2b00daba-175a-4015-ab7c-5bd8930f13a5",
+        "purchaseQuoteId": "b5b0c9cc-32e6-48af-a0a7-8d2eb835557e",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z",
         "state": {
-          "label": "Hello World"
+          "label": "Hello World",
+          "reason": {
+            "displayName": "Hello World",
+            "id": "82050da0-84b6-4cf1-af18-8f3f373e207d"
+          }
         },
         "cancellation": {
-          "cancellationId": "70b7b4c1-0e63-4333-af1b-a1483e8dd902"
+          "cancellationId": "1ba4bc09-8afd-4652-852a-ed7a80fb70dc"
         },
         "buyer": {},
         "seller": {},
         "lineItems": [
           {
-            "purchaseQuoteLineItemId": "dc1c503f-3cd0-47c4-ab9a-034f8e8c3c30",
+            "purchaseQuoteLineItemId": "13a30cb1-e3c4-425f-9173-f50e08226818",
             "lineItemSource": {
-              "itemCommitmentId": "6839884d-4290-42cb-8876-bce6046f3227"
+              "itemCommitmentId": "fce8e8ef-12af-40ee-8f24-b15c3beb09c8"
             },
             "cancellation": {
-              "cancellationId": "2263056b-0e7d-4626-8130-d3fd1c4226ca"
+              "cancellationId": "22458448-95d9-4792-a1b8-b04299c054a4"
             },
             "return": {
               "return": [
                 {
-                  "returnId": "1235cb99-f5a0-4673-8265-0d625e72f267"
+                  "returnId": "b36734cb-c1a9-49aa-add9-93d5bf4f739a"
                 },
                 {
-                  "returnId": "63e0891a-7d93-4b61-88dd-e05fbfdd04ab"
+                  "returnId": "e6f3c077-43d3-4fe8-b9e6-63fd31b40608"
                 }
               ]
             },
@@ -49,26 +53,26 @@
               "total": {
                 "original": {
                   "value": "1.00",
-                  "currency": "CVE"
+                  "currency": "OMR"
                 }
               }
             }
           },
           {
-            "purchaseQuoteLineItemId": "62aa5c00-6afb-4b6c-b7ee-eaed2686524b",
+            "purchaseQuoteLineItemId": "67c64783-f5a6-4175-b1ec-04d67182c71b",
             "lineItemSource": {
-              "itemCommitmentId": "c31cdd1d-3c79-419b-8dff-62cd9c4784d7"
+              "itemCommitmentId": "17d0783f-c279-4f85-b024-65582a2b6d9c"
             },
             "cancellation": {
-              "cancellationId": "bfecbe59-c01e-432b-a505-1d678b78ec6c"
+              "cancellationId": "81dfd0c4-da0b-4ae8-8da0-e8f997ff1479"
             },
             "return": {
               "return": [
                 {
-                  "returnId": "c81e877a-caf2-4ea7-9afa-27f936b6402a"
+                  "returnId": "fba7cdb5-3e07-40c1-8bf1-24a205d3b004"
                 },
                 {
-                  "returnId": "91c7d300-d73b-494e-b425-023142860781"
+                  "returnId": "0716ca0b-80c7-4800-9cfd-f2dedecb8471"
                 }
               ]
             },
@@ -88,7 +92,7 @@
               "total": {
                 "original": {
                   "value": "1.00",
-                  "currency": "BAM"
+                  "currency": "IRR"
                 }
               }
             }
@@ -96,38 +100,33 @@
         ]
       },
       {
-        "purchaseQuoteId": "a3c31924-6df4-43c3-8690-962263077ace",
+        "purchaseQuoteId": "beef804f-b0dd-4eaf-b77b-59f3e2735b62",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z",
         "state": {
-          "label": "Hello World",
-          "cancelledAt": "2024-01-01T00:00:00.000Z",
-          "reason": {
-            "displayName": "Hello World",
-            "id": "c4190892-1be8-40c5-9197-11a3d2beb382"
-          }
+          "label": "Hello World"
         },
         "cancellation": {
-          "cancellationId": "56be2d27-1aca-49d6-a69b-00cca6e3e6ab"
+          "cancellationId": "51969303-fbc4-4752-8d2d-32ba7ae41052"
         },
         "buyer": {},
         "seller": {},
         "lineItems": [
           {
-            "purchaseQuoteLineItemId": "aa47729f-d5cd-4483-96d2-8a28da467b38",
+            "purchaseQuoteLineItemId": "9811430c-b05a-41ff-b1a3-75a5f847fd10",
             "lineItemSource": {
-              "itemCommitmentId": "921d1564-62a5-4010-83c4-f147533dd892"
+              "itemCommitmentId": "4b96a321-2dc4-4a0e-9611-f3139f8026e1"
             },
             "cancellation": {
-              "cancellationId": "0ee451b3-efe9-4b35-9a9a-dedaab040ddb"
+              "cancellationId": "b51dc0ac-058d-49d4-80eb-929c961dce2f"
             },
             "return": {
               "return": [
                 {
-                  "returnId": "9d8c24ef-b4b2-43f6-b211-f7d95bf1e0d2"
+                  "returnId": "b3a87368-e01e-4c17-a393-54e329a7b0ed"
                 },
                 {
-                  "returnId": "a8d71b6b-8e62-40f5-8c19-cf2fbc0c4011"
+                  "returnId": "b129748d-4605-46c4-8164-5a36b739ab7f"
                 }
               ]
             },
@@ -147,26 +146,26 @@
               "total": {
                 "original": {
                   "value": "1.00",
-                  "currency": "CZK"
+                  "currency": "SYP"
                 }
               }
             }
           },
           {
-            "purchaseQuoteLineItemId": "aadc4860-1600-405e-9cbe-736481cf63cf",
+            "purchaseQuoteLineItemId": "13facf3e-b5c0-4efa-ac38-94f076ec0e10",
             "lineItemSource": {
-              "itemCommitmentId": "42639f3c-5829-499b-94de-6fd348135f8c"
+              "itemCommitmentId": "e28be425-b206-466a-a654-8c647e2d591f"
             },
             "cancellation": {
-              "cancellationId": "4e7eb0e7-596d-4646-b91f-764d4854dd6a"
+              "cancellationId": "2f819fcc-b0b8-4813-938b-0b899ac29fa8"
             },
             "return": {
               "return": [
                 {
-                  "returnId": "b8a6dd0b-3d5b-409b-ae7a-acbb40c257f8"
+                  "returnId": "ccaa9981-fe3c-4b1c-99d1-900293c8b8f8"
                 },
                 {
-                  "returnId": "14da2d01-a604-4e2a-9f86-5424cae90145"
+                  "returnId": "abe4d8fe-3e28-4e71-b10e-7fcad1b04a82"
                 }
               ]
             },
@@ -186,7 +185,7 @@
               "total": {
                 "original": {
                   "value": "1.00",
-                  "currency": "RUB"
+                  "currency": "AUD"
                 }
               }
             }

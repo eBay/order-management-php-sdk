@@ -1,34 +1,42 @@
 {
   "updateSellerReturnToAddressRuleCondition": {
     "__typename": "ReturnToAddressRule",
-    "ruleId": "983c8bf3-ee80-40d7-b4e3-b94a4f457628",
+    "ruleId": "0fe48b37-4ac7-49f9-aaa9-66c30bc7e86b",
     "name": "Hello World",
-    "priority": -43,
+    "priority": 62,
     "status": {
       "code": "Hello World",
       "displayText": "Hello World"
     },
     "addressRoutingStrategy": {
       "code": "Hello World",
-      "displayText": "Hello World"
+      "displayText": "Hello World",
+      "returnAddress": {
+        "addressLine1": "Hello World",
+        "city": "Hello World",
+        "stateOrProvince": "Hello World",
+        "postalCode": "Hello World",
+        "countryCode": "BH"
+      }
     },
     "conditionSet": {
       "operator": "AND",
       "conditions": [
         {
-          "__typename": "ReturnListingGroupCondition",
-          "returnRuleListingGroupId": "d1794a5d-a532-4a1d-b1de-65d8de5da674"
+          "__typename": "ReturnShipmentOriginCountryCondition",
+          "returnShipmentOriginCountries": [
+            "TK",
+            "BN"
+          ]
         },
         {
-          "__typename": "ReturnReasonCondition",
-          "returnReasonList": [
+          "__typename": "ReturnItemCategoryCondition",
+          "categories": [
             {
-              "code": "Hello World",
-              "displayText": "Hello World"
+              "categoryId": "b043306e-210f-4df1-be84-9cf4bc3e047e"
             },
             {
-              "code": "Hello World",
-              "displayText": "Hello World"
+              "categoryId": "3303a292-e12a-4491-8c35-7bd595464910"
             }
           ]
         }

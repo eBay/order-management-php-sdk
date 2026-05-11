@@ -3,40 +3,40 @@
     "sellerOrders": {
       "orders": [
         {
-          "orderId": "36855ab9-d90a-48f5-a4d4-8cf861a26a22",
+          "orderId": "26eb3345-1eba-4903-80e0-c030fe8dd3e8",
           "placedAt": "2024-01-01T00:00:00.000Z",
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "logistics": {
             "fulfillmentPlan": [
               {
-                "planType": "9e801888-a791-468f-b9e6-6245e0b2d10d",
+                "planType": "f811ad86-29ee-498c-bc62-bd84b0068bed",
                 "logisticsPlanSteps": [
                   {
                     "methodName": {
-                      "id": "57f5e149-4bac-4c49-a629-2a0cf94ee2b6",
+                      "id": "4099ec79-f374-4254-a3d1-ad1490f8d8f1",
                       "displayName": "Hello World"
                     }
                   },
                   {
                     "methodName": {
-                      "id": "02fe4bb5-eabc-439a-b52a-a2abcc3cd38f",
+                      "id": "4badb795-449c-461f-8e1f-c2b6101cdb95",
                       "displayName": "Hello World"
                     }
                   }
                 ]
               },
               {
-                "planType": "15b07754-f011-4783-a173-73372016dd0d",
+                "planType": "52510e8d-48fa-452a-b04d-cb238a70fbac",
                 "logisticsPlanSteps": [
                   {
                     "methodName": {
-                      "id": "ffc9a76e-7d0b-4026-9972-8b4efa546128",
+                      "id": "a49a867e-91d1-4898-bdc7-16a24de419f1",
                       "displayName": "Hello World"
                     }
                   },
                   {
                     "methodName": {
-                      "id": "2d4a1843-ab3c-4753-8884-ffa2598aa9eb",
+                      "id": "249aba1b-f0d3-4a5f-821e-9b4ef1790821",
                       "displayName": "Hello World"
                     }
                   }
@@ -45,49 +45,45 @@
             ]
           },
           "orderState": {
-            "__typename": "OrderConfirmed",
-            "label": "Hello World",
-            "fundingState": {
-              "__typename": "PaymentsCompleted",
-              "label": "Hello World"
-            }
+            "__typename": "OrderAbandoned",
+            "label": "Hello World"
           }
         },
         {
-          "orderId": "46b6c69c-e7b4-431e-bf6f-d8be62cb3b5c",
+          "orderId": "466dd053-44dc-4d7e-86c8-a53767fbb411",
           "placedAt": "2024-01-01T00:00:00.000Z",
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "logistics": {
             "fulfillmentPlan": [
               {
-                "planType": "52f5c3a6-a817-4604-9502-de2f4ba41244",
+                "planType": "1dd8e582-a316-425c-a5f1-332fccda47f8",
                 "logisticsPlanSteps": [
                   {
                     "methodName": {
-                      "id": "cb02b317-9766-4c6f-978d-5a0f4b688704",
+                      "id": "78bdf3c4-f11c-4baa-949f-494c3db7e4bf",
                       "displayName": "Hello World"
                     }
                   },
                   {
                     "methodName": {
-                      "id": "0de9c11f-5c24-42a1-b0fa-35b16faa44e0",
+                      "id": "1c1304cd-ec02-453e-9b2b-afd1b747a4c5",
                       "displayName": "Hello World"
                     }
                   }
                 ]
               },
               {
-                "planType": "257affab-ec0f-4a75-b96e-b9eb71d398d9",
+                "planType": "c50837e9-9638-4502-9351-2b337f81f60c",
                 "logisticsPlanSteps": [
                   {
                     "methodName": {
-                      "id": "97864654-6066-41fd-a043-9018c8d41aec",
+                      "id": "19a2ba07-cf92-4498-b1b5-344ab47b1eb4",
                       "displayName": "Hello World"
                     }
                   },
                   {
                     "methodName": {
-                      "id": "ded2fb1c-be9b-41d9-badd-1451bdfcd3a3",
+                      "id": "46ca6d8a-c0ff-4e5d-b005-e8abc602210b",
                       "displayName": "Hello World"
                     }
                   }
@@ -96,7 +92,7 @@
             ]
           },
           "orderState": {
-            "__typename": "OrderPlaced",
+            "__typename": "OrderAbandoned",
             "label": "Hello World"
           }
         }

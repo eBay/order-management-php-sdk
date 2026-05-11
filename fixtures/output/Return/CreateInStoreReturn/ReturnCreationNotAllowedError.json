@@ -5,22 +5,30 @@
     "errorMessage": "Hello World",
     "returnIneligibilityReasons": [
       {
-        "__typename": "ReturnIneligibleQuantityExceeded",
+        "__typename": "ReturnIneligibleTooEarly",
         "code": "Hello World",
         "displayMessage": "Hello World",
         "orderLineItem": {
-          "orderLineItemId": "12e1aa52-e006-4318-aee0-feac6d31f3d2"
-        },
-        "requestedQuantity": -80,
-        "returnableQuantity": 88
+          "orderLineItemId": "17d73753-00ed-4de2-9457-c00d44bcdd4c"
+        }
       },
       {
-        "__typename": "ReturnIneligibleInStoreReturnNotSupported",
+        "__typename": "ReturnIneligibleReasonNotAllowed",
         "code": "Hello World",
         "displayMessage": "Hello World",
         "orderLineItem": {
-          "orderLineItemId": "1ba6c514-0e6a-42a0-90cc-c09c195270bf"
-        }
+          "orderLineItemId": "1c528e00-6c29-423d-ab89-165d2167d36b"
+        },
+        "allowedReasons": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
       }
     ]
   }

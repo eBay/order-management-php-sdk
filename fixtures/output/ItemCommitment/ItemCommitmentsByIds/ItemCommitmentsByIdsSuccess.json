@@ -3,15 +3,29 @@
     "__typename": "ItemCommitmentsByIdsSuccess",
     "itemCommitments": [
       {
-        "itemCommitmentId": "2b4a4c50-9511-466e-8587-2b5dc750be29",
+        "itemCommitmentId": "2365fb39-5f85-4dac-aa78-2aca6aa291b4",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z",
         "state": {
-          "label": "Hello World"
+          "label": "Hello World",
+          "fundingState": {
+            "label": "Hello World"
+          },
+          "fulfillmentState": {
+            "label": "Hello World",
+            "startedAt": "2024-01-01T00:00:00.000Z"
+          },
+          "cancelState": {
+            "label": "Hello World",
+            "requestedAt": "2024-01-01T00:00:00.000Z"
+          },
+          "returnState": {
+            "label": "Hello World"
+          }
         }
       },
       {
-        "itemCommitmentId": "3d02b4ea-4445-4dec-ab84-351bc9f71249",
+        "itemCommitmentId": "4db7b2eb-1944-4cb4-be68-f42e595b868c",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z",
         "state": {

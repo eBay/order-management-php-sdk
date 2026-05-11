@@ -4,11 +4,11 @@
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
     "containsInvalidCharacters": true,
-    "duplicateRuleName": false,
+    "duplicateRuleName": true,
     "nameConstraint": {
       "characterLimit": {
-        "minLength": -29,
-        "maxLength": -30
+        "minLength": 24,
+        "maxLength": -26
       },
       "allowedPattern": "Hello World"
     }

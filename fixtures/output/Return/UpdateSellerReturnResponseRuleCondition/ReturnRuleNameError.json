@@ -3,12 +3,12 @@
     "__typename": "ReturnRuleNameError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "containsInvalidCharacters": true,
+    "containsInvalidCharacters": false,
     "duplicateRuleName": false,
     "nameConstraint": {
       "characterLimit": {
-        "minLength": 50,
-        "maxLength": 83
+        "minLength": 27,
+        "maxLength": -77
       },
       "allowedPattern": "Hello World"
     }

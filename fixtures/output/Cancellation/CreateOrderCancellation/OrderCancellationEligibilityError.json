@@ -8,13 +8,23 @@
         "__typename": "OrderCancellationConflictWithWindowElapsed",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "orderId": "c1901849-7da0-4f84-bfb7-a01491dc5b29"
+        "orderId": "fd9729b5-b5c8-42f7-975e-cebd7ec189d6"
       },
       {
-        "__typename": "OrderCancellationExistsConflict",
+        "__typename": "OrderCancellationReasonNotAllowed",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "orderId": "6359348d-d0bd-41cd-99b9-e43559820eed"
+        "orderId": "24886496-a909-45d1-b660-650f95c8dd34",
+        "availableReasons": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
       }
     ]
   }

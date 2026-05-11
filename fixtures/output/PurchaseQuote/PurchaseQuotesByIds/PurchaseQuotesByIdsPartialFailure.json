@@ -3,12 +3,12 @@
     "__typename": "PurchaseQuotesByIdsPartialFailure",
     "purchaseQuotes": [
       {
-        "purchaseQuoteId": "930f73a6-2078-4bb0-aea0-d8c22b3c8db4",
+        "purchaseQuoteId": "7496c866-e5d9-48c3-95bc-f7c0d6b74aed",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z"
       },
       {
-        "purchaseQuoteId": "5d81f284-8549-484c-a9fa-b79a963129a9",
+        "purchaseQuoteId": "807b1470-2d9b-4402-8a27-f050dcbe2047",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z"
       }
@@ -17,14 +17,14 @@
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputPurchaseQuoteId": "8bd67c77-ae47-4411-a557-5f8291fab170",
-        "retryable": false
+        "inputPurchaseQuoteId": "1c717e9f-0884-4efc-b5d5-5eda4a68857a",
+        "retryable": true
       },
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputPurchaseQuoteId": "82c41dbb-c3fa-4d73-9af6-f285051f80d4",
-        "retryable": false
+        "inputPurchaseQuoteId": "eaaee69b-2457-4b95-bca2-e38ce1e48100",
+        "retryable": true
       }
     ]
   }

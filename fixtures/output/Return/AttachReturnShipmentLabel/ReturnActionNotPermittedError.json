@@ -5,7 +5,7 @@
     "errorMessage": "Hello World",
     "availableActions": [
       {
-        "__typename": "RecordReturnReceivedAction",
+        "__typename": "DeclineReturnAction",
         "code": "Hello World",
         "displayText": "Hello World"
       },

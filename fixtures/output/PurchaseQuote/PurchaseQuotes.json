@@ -7,7 +7,7 @@
       },
       "purchaseQuotes": [
         {
-          "purchaseQuoteId": "624395ae-d200-441e-87ea-9115eb85a9fb",
+          "purchaseQuoteId": "656d50fb-49ca-4ade-a5b9-44cedec5edcc",
           "createdAt": "2024-01-01T00:00:00.000Z",
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "state": {
@@ -15,16 +15,11 @@
           }
         },
         {
-          "purchaseQuoteId": "70dc787a-797c-470e-97f7-df7a471f5032",
+          "purchaseQuoteId": "8891877b-5292-40ab-ad03-3af1923b4b3a",
           "createdAt": "2024-01-01T00:00:00.000Z",
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "state": {
-            "label": "Hello World",
-            "cancelledAt": "2024-01-01T00:00:00.000Z",
-            "reason": {
-              "displayName": "Hello World",
-              "id": "04ffcb56-2374-4cb4-8913-00d3a6a2fd34"
-            }
+            "label": "Hello World"
           }
         }
       ]

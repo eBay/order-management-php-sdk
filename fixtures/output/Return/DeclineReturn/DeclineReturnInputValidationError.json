@@ -11,8 +11,8 @@
         "exceededLength": false,
         "constraint": {
           "characterLimit": {
-            "minLength": 50,
-            "maxLength": -64
+            "minLength": -9,
+            "maxLength": 63
           }
         }
       },
@@ -23,8 +23,8 @@
         "exceededLength": true,
         "constraint": {
           "characterLimit": {
-            "minLength": 57,
-            "maxLength": 50
+            "minLength": -85,
+            "maxLength": -81
           }
         }
       }

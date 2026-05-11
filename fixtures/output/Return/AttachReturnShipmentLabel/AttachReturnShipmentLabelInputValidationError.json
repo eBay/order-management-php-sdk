@@ -5,15 +5,16 @@
     "errorMessage": "Hello World",
     "violations": [
       {
-        "__typename": "ReturnShippingCarrierNameViolation",
+        "__typename": "ReturnTrackingNumberViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
         "containsInvalidCharacters": true,
         "exceededLength": true,
+        "duplicateTrackingNumber": true,
         "constraint": {
           "characterLimit": {
-            "minLength": 81,
-            "maxLength": -77
+            "minLength": -30,
+            "maxLength": -23
           }
         }
       },
@@ -25,8 +26,8 @@
         "exceededLength": false,
         "constraint": {
           "characterLimit": {
-            "minLength": -40,
-            "maxLength": -75
+            "minLength": 14,
+            "maxLength": 17
           }
         }
       }

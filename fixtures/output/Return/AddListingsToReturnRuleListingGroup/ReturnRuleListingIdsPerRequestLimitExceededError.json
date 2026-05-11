@@ -3,7 +3,7 @@
     "__typename": "ReturnRuleListingIdsPerRequestLimitExceededError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "requestedCount": 89,
-    "perRequestLimit": -69
+    "requestedCount": -82,
+    "perRequestLimit": 10
   }
 }

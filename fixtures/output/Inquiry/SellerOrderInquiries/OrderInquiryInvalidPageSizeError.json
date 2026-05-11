@@ -3,8 +3,8 @@
     "__typename": "OrderInquiryInvalidPageSizeError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "maxAllowedPageSize": 58,
-    "minAllowedPageSize": -20,
-    "requestedPageSize": 89
+    "maxAllowedPageSize": -4,
+    "minAllowedPageSize": -54,
+    "requestedPageSize": -66
   }
 }

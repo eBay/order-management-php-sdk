@@ -3,9 +3,9 @@
     "__typename": "UpdateSellerReturnResponseRulesPrioritiesSuccess",
     "returnResponseRules": [
       {
-        "ruleId": "c5a2c988-60ba-41c7-8fd7-53daa4f0c5a0",
+        "ruleId": "d3942259-9b05-4b0b-bc9d-16b8ce7208d3",
         "name": "Hello World",
-        "priority": -46,
+        "priority": -82,
         "status": {
           "code": "Hello World",
           "displayText": "Hello World"
@@ -18,18 +18,18 @@
           "operator": "AND",
           "conditions": [
             {
-              "__typename": "ReturnRefundRangeCondition"
+              "__typename": "ReturnListingGroupCondition"
             },
             {
-              "__typename": "ReturnListingGroupCondition"
+              "__typename": "ReturnReasonCondition"
             }
           ]
         }
       },
       {
-        "ruleId": "5edb34b8-3f5b-4577-a895-4e1c09266969",
+        "ruleId": "a24a7755-ed69-4835-a3e3-968853429d68",
         "name": "Hello World",
-        "priority": 35,
+        "priority": 77,
         "status": {
           "code": "Hello World",
           "displayText": "Hello World"
@@ -42,10 +42,10 @@
           "operator": "AND",
           "conditions": [
             {
-              "__typename": "ReturnItemCategoryCondition"
+              "__typename": "ReturnReasonCondition"
             },
             {
-              "__typename": "ReturnItemLocationCountryCondition"
+              "__typename": "ReturnRefundRangeCondition"
             }
           ]
         }

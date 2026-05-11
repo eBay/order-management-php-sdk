@@ -3,12 +3,12 @@
     "__typename": "ReturnRuleListingGroupInvalidNameError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "containsInvalidCharacters": true,
+    "containsInvalidCharacters": false,
     "duplicateGroupName": false,
     "nameConstraint": {
       "characterLimit": {
-        "minLength": 79,
-        "maxLength": -32
+        "minLength": -6,
+        "maxLength": 43
       },
       "allowedPattern": "Hello World"
     }

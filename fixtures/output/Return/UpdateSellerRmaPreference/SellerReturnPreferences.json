@@ -1,7 +1,7 @@
 {
   "updateSellerRmaPreference": {
     "__typename": "SellerReturnPreferences",
-    "listingMarketplace": "EBAY_SG",
+    "listingMarketplace": "EBAY_ES",
     "rmaPreference": {
       "preferenceStatus": "DISABLED"
     }

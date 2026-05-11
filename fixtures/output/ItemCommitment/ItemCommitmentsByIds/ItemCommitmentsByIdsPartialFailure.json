@@ -3,12 +3,12 @@
     "__typename": "ItemCommitmentsByIdsPartialFailure",
     "itemCommitments": [
       {
-        "itemCommitmentId": "4bd7ba4d-177c-47e4-9188-3e4e248b91d8",
+        "itemCommitmentId": "05bd2c70-32ff-4511-a9e5-d5b241813cf1",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z"
       },
       {
-        "itemCommitmentId": "dd56ad57-6cf8-4932-a2e5-cc07d4a9b523",
+        "itemCommitmentId": "c00a62fd-608b-4153-bc7e-23e209677ef8",
         "createdAt": "2024-01-01T00:00:00.000Z",
         "updatedAt": "2024-01-01T00:00:00.000Z"
       }
@@ -17,13 +17,13 @@
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputItemCommitmentId": "af52cf9e-095c-49a1-9572-8cadf9a1d5a0",
+        "inputItemCommitmentId": "7fd6fef8-e491-442d-94e9-521f7194dad8",
         "retryable": true
       },
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputItemCommitmentId": "67a3f781-557a-4305-9f59-63609ffa78c0",
+        "inputItemCommitmentId": "529b7d45-6469-43be-987c-f59aea156949",
         "retryable": false
       }
     ]

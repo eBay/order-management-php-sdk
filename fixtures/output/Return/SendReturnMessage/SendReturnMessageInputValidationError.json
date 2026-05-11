@@ -11,8 +11,8 @@
         "exceededLength": true,
         "constraint": {
           "characterLimit": {
-            "minLength": 75,
-            "maxLength": -55
+            "minLength": 30,
+            "maxLength": -36
           }
         }
       },
@@ -20,11 +20,11 @@
         "__typename": "ReturnNoteViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "exceededLength": false,
+        "exceededLength": true,
         "constraint": {
           "characterLimit": {
-            "minLength": -89,
-            "maxLength": 27
+            "minLength": 62,
+            "maxLength": -76
           }
         }
       }

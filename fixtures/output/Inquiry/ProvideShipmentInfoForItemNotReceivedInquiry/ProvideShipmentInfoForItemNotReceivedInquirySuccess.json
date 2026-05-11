@@ -3,7 +3,7 @@
     "__typename": "ProvideShipmentInfoForItemNotReceivedInquirySuccess",
     "orderInquiry": {
       "__typename": "ItemNotReceivedInquiry",
-      "inquiryId": "502bb214-b356-4be8-bdc1-705969119356",
+      "inquiryId": "6bcf5388-ccff-4dec-a336-c56049fe04fb",
       "providedInformation": [
         {
           "submitter": "SELLER",
@@ -13,18 +13,20 @@
               "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
               "signatureConfirmationProof": {
-                "documentId": "fb6abf1c-842a-4431-8f87-3140ec21eab6",
-                "filenameExtension": "DOC",
+                "documentId": "e552113a-d509-4118-9611-7eb5c73c0f3c",
+                "filenameExtension": "PDF",
                 "documentName": "Hello World",
                 "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
             },
             {
-              "__typename": "OrderInquiryShipmentTracking",
+              "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
-              "shippingCarrier": {
-                "carrierCode": "Hello World",
-                "unsupportedCarrierName": "Hello World"
+              "signatureConfirmationProof": {
+                "documentId": "6122737c-dafc-4d0a-99bc-c80aa0b91e22",
+                "filenameExtension": "DOC",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
             }
           ]
@@ -34,19 +36,23 @@
           "submittedAt": "2024-01-01T00:00:00.000Z",
           "submittedInformation": [
             {
-              "__typename": "OrderInquiryShipmentTracking",
+              "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
-              "shippingCarrier": {
-                "carrierCode": "Hello World",
-                "unsupportedCarrierName": "Hello World"
+              "signatureConfirmationProof": {
+                "documentId": "52aaa504-5191-48b0-83a9-8dcb052e2242",
+                "filenameExtension": "JPG",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
             },
             {
-              "__typename": "OrderInquiryShipmentTracking",
+              "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
-              "shippingCarrier": {
-                "carrierCode": "Hello World",
-                "unsupportedCarrierName": "Hello World"
+              "signatureConfirmationProof": {
+                "documentId": "4e8e108d-9329-4bcf-8c37-a1acc7e53917",
+                "filenameExtension": "PDF",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
             }
           ]

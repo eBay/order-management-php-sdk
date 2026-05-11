@@ -1,9 +1,9 @@
 {
   "appendSellerReturnResponseRule": {
     "__typename": "ReturnResponseRule",
-    "ruleId": "87b83f86-174f-41d8-bfb1-0a97965fb97a",
+    "ruleId": "58f5814d-25a0-439b-80c8-94d9b35dacf2",
     "name": "Hello World",
-    "priority": 41,
+    "priority": 45,
     "status": {
       "code": "Hello World",
       "displayText": "Hello World"
@@ -16,30 +16,30 @@
       "operator": "AND",
       "conditions": [
         {
-          "__typename": "ReturnReasonCondition",
-          "returnReasonList": [
+          "__typename": "ReturnItemCategoryCondition",
+          "categories": [
             {
-              "__typename": "ReturnReasonUndisclosed",
-              "code": "Hello World",
-              "displayText": "Hello World"
+              "categoryId": "ff08d3fb-fd39-4ae5-b795-ecfa6977108b"
             },
             {
-              "__typename": "NoLongerNeedItem",
-              "code": "Hello World",
-              "displayText": "Hello World"
+              "categoryId": "f2da4f4d-71da-4b79-b97c-961bdf6b9267"
             }
           ]
         },
         {
-          "__typename": "ReturnRefundRangeCondition",
-          "minRefundAmount": {
-            "currency": "PEN",
-            "value": "1.00"
-          },
-          "maxRefundAmount": {
-            "currency": "STN",
-            "value": "1.00"
-          }
+          "__typename": "ReturnReasonCondition",
+          "returnReasonList": [
+            {
+              "__typename": "NoLongerNeedItem",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "MissingParts",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
         }
       ]
     }

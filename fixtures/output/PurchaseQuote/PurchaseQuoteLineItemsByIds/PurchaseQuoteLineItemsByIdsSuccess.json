@@ -3,29 +3,29 @@
     "__typename": "PurchaseQuoteLineItemsByIdsSuccess",
     "purchaseQuoteLineItems": [
       {
-        "purchaseQuoteLineItemId": "234b6606-c879-4fe4-b58b-c6029f5af992",
+        "purchaseQuoteLineItemId": "260320aa-f3b5-4553-ad5b-104e8b0d61f8",
         "lineItemSource": {
-          "itemCommitmentId": "11065269-f96c-445f-8b71-9e4911477d50"
+          "itemCommitmentId": "33477d77-d6ae-433f-92f8-582c9c72ec19"
         },
         "totals": {
           "total": {
             "original": {
               "value": "1.00",
-              "currency": "EGP"
+              "currency": "BRL"
             }
           }
         }
       },
       {
-        "purchaseQuoteLineItemId": "9006f73a-d039-443b-9328-a39ddb8770c4",
+        "purchaseQuoteLineItemId": "0cc10dc5-2dac-4b23-9d04-a3dbab9c4660",
         "lineItemSource": {
-          "itemCommitmentId": "a3100151-6c1e-45a8-b3cb-bf92b882b3f2"
+          "itemCommitmentId": "1ee8e88e-045d-406a-96b2-d8a454703f3e"
         },
         "totals": {
           "total": {
             "original": {
               "value": "1.00",
-              "currency": "CHF"
+              "currency": "LYD"
             }
           }
         }

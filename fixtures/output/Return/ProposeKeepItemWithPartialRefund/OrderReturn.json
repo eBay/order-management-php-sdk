@@ -1,9 +1,9 @@
 {
   "proposeKeepItemWithPartialRefund": {
     "__typename": "OrderReturn",
-    "returnId": "d75c73e8-cdb6-427a-93c7-f35762ba3766",
+    "returnId": "acd4df29-a945-4132-8345-a44c9beafb40",
     "status": {
-      "__typename": "ReturnDeclined",
+      "__typename": "ReturnCancelled",
       "code": "Hello World",
       "displayText": "Hello World"
     },
@@ -20,7 +20,7 @@
             "refundAmount": {
               "original": {
                 "value": "1.00",
-                "currency": "GHS"
+                "currency": "SYP"
               },
               "exchangeScenario": {
                 "__typename": "InvalidExchangeScenarioInputError",
@@ -28,18 +28,18 @@
                 "errorMessage": "Hello World"
               }
             },
-            "itemPriceRefundPercentage": -56,
-            "itemShippingPriceWaived": true,
+            "itemPriceRefundPercentage": -57,
+            "itemShippingPriceWaived": false,
             "returnLineItem": {
-              "returnLineItemId": "18ccf8ec-f51b-4574-bc70-36afaba48828",
-              "requestedQuantity": 0,
+              "returnLineItemId": "161f29aa-4d4b-4af3-8ae5-e14806ea03c2",
+              "requestedQuantity": 98,
               "returnReason": {
                 "code": "Hello World",
                 "displayText": "Hello World"
               },
               "returnNote": "Hello World",
               "orderLineItem": {
-                "orderLineItemId": "63981b17-ce4b-466e-bd3b-6ed90eeced67"
+                "orderLineItemId": "16a30732-7d84-493e-b6d1-db9c5174cbc7"
               }
             }
           },
@@ -48,7 +48,7 @@
             "refundAmount": {
               "original": {
                 "value": "1.00",
-                "currency": "ETB"
+                "currency": "MZN"
               },
               "exchangeScenario": {
                 "__typename": "InvalidExchangeScenarioInputError",
@@ -56,18 +56,18 @@
                 "errorMessage": "Hello World"
               }
             },
-            "itemPriceRefundPercentage": 7,
+            "itemPriceRefundPercentage": -65,
             "itemShippingPriceWaived": true,
             "returnLineItem": {
-              "returnLineItemId": "9023e229-c84a-4b89-86b4-5ef60aa7a834",
-              "requestedQuantity": -47,
+              "returnLineItemId": "e82b1429-b1d3-4de3-8c59-111338797d3a",
+              "requestedQuantity": 41,
               "returnReason": {
                 "code": "Hello World",
                 "displayText": "Hello World"
               },
               "returnNote": "Hello World",
               "orderLineItem": {
-                "orderLineItemId": "4001c3e5-6c62-45a7-9d23-7c3e84ac886b"
+                "orderLineItemId": "4ccf6467-70d6-4e20-8b7b-7c7b9d2b0454"
               }
             }
           }

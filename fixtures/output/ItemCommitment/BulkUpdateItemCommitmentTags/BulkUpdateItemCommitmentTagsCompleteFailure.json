@@ -5,16 +5,16 @@
     "errorMessage": "Hello World",
     "failures": [
       {
-        "inputItemCommitmentId": "618e1654-0640-4554-9b47-a0d6df10d147",
+        "inputItemCommitmentId": "df88c819-ca97-4562-97d2-7b8e07bc4265",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "retryable": true
+        "retryable": false
       },
       {
-        "inputItemCommitmentId": "b5a02968-bcb6-44d6-9054-6ced64326770",
+        "inputItemCommitmentId": "5a8129ed-2557-40d8-957c-545773861830",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "retryable": true
+        "retryable": false
       }
     ]
   }

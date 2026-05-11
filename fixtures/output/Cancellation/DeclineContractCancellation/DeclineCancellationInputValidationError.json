@@ -10,21 +10,25 @@
         "displayMessage": "Hello World",
         "constraint": {
           "characterLimit": {
-            "minLength": 95,
-            "maxLength": -28
+            "minLength": -97,
+            "maxLength": 83
           }
         },
-        "exceededLength": true,
+        "exceededLength": false,
         "containsInvalidCharacters": false
       },
       {
-        "__typename": "CancellationShippedDateViolation",
+        "__typename": "CancellationTrackingNumberViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
         "constraint": {
-          "fromDate": "2024-01-01T00:00:00.000Z",
-          "toDate": "2024-01-01T00:00:00.000Z"
-        }
+          "characterLimit": {
+            "minLength": -44,
+            "maxLength": 58
+          }
+        },
+        "exceededLength": false,
+        "containsInvalidCharacters": true
       }
     ]
   }

@@ -5,12 +5,12 @@
     "errorMessage": "Hello World",
     "availableActions": [
       {
-        "__typename": "DeclineReturnAction",
+        "__typename": "ProvideRmaNumberReturnAction",
         "code": "Hello World",
         "displayText": "Hello World"
       },
       {
-        "__typename": "ProvideRmaNumberReturnAction",
+        "__typename": "ProcessReturnRefundAction",
         "code": "Hello World",
         "displayText": "Hello World"
       }

@@ -5,24 +5,24 @@
     "errorMessage": "Hello World",
     "updatedPurchaseQuotes": [
       {
-        "purchaseQuoteId": "75beb83b-9687-4702-8b40-23c9af112387"
+        "purchaseQuoteId": "8dbcb54a-236e-4596-899c-39fa11cd7e11"
       },
       {
-        "purchaseQuoteId": "b34eba4a-eb54-4c0e-a7b0-a06ccd93d509"
+        "purchaseQuoteId": "08962e1c-760e-4d7d-9697-f9343b4fb5db"
       }
     ],
     "failures": [
       {
-        "inputPurchaseQuoteId": "da2a2077-8983-49b0-b7bc-582dcda49b93",
+        "inputPurchaseQuoteId": "7d895327-4dee-4f80-bcb4-74023d19a4b4",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "retryable": false
+        "retryable": true
       },
       {
-        "inputPurchaseQuoteId": "30af2014-3d27-4514-9e4a-43715f09b789",
+        "inputPurchaseQuoteId": "0b3effb3-d97d-44cc-b189-f52bc0fa2d55",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "retryable": false
+        "retryable": true
       }
     ]
   }

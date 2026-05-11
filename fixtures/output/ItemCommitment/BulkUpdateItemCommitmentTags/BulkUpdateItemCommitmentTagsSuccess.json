@@ -3,10 +3,10 @@
     "__typename": "BulkUpdateItemCommitmentTagsSuccess",
     "updatedItemCommitments": [
       {
-        "itemCommitmentId": "c1fcf3f4-a764-470e-883b-1afd5c2955a7"
+        "itemCommitmentId": "0088c03f-7c00-4fed-b62b-cdd98163b0d3"
       },
       {
-        "itemCommitmentId": "38faf5db-b725-4a97-9ec5-2b6be344dd5b"
+        "itemCommitmentId": "f6e20a91-96c4-42d3-b48b-d6c82887e647"
       }
     ]
   }

@@ -3,9 +3,9 @@
     "__typename": "CreatePurchaseQuoteCancellationSuccess",
     "purchaseQuoteCancellation": {
       "__typename": "PurchaseQuoteCancellation",
-      "cancellationId": "00091a81-a4c1-4efc-9ba5-fab51c06388c",
+      "cancellationId": "86a04b30-a609-4446-ba15-5d4c8fb463e1",
       "status": {
-        "__typename": "ContractCancellationAwaitingActionFromSeller",
+        "__typename": "ContractCancellationDeclined",
         "code": "Hello World",
         "displayText": "Hello World"
       }

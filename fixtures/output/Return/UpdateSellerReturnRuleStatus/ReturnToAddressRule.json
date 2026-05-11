@@ -1,17 +1,26 @@
 {
   "updateSellerReturnRuleStatus": {
     "__typename": "ReturnToAddressRule",
-    "ruleId": "d75ca4f3-7403-47a3-92c0-757e2ef42d26",
+    "ruleId": "b67413ff-f99b-4317-8cc4-8181c67b6952",
     "name": "Hello World",
-    "priority": -59,
+    "priority": -45,
     "status": {
       "code": "Hello World",
       "displayText": "Hello World"
     },
     "addressRoutingStrategy": {
-      "__typename": "ReturnToOriginalShipFromAddressStrategy",
+      "__typename": "ReturnToSpecificAddressStrategy",
       "code": "Hello World",
-      "displayText": "Hello World"
+      "displayText": "Hello World",
+      "returnAddress": {
+        "addressId": "77899366-dcd3-4f1f-9d41-a25b1cd81eeb",
+        "addressLine1": "Hello World",
+        "addressLine2": "Hello World",
+        "city": "Hello World",
+        "stateOrProvince": "Hello World",
+        "postalCode": "Hello World",
+        "countryCode": "ML"
+      }
     }
   }
 }

@@ -5,16 +5,16 @@
     "errorMessage": "Hello World",
     "failures": [
       {
-        "inputPurchaseQuoteId": "94461660-de5b-4262-86c8-18f698c2c5e3",
+        "inputPurchaseQuoteId": "b314d6b4-510d-4482-836d-98fa1218a956",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
         "retryable": true
       },
       {
-        "inputPurchaseQuoteId": "e3264d06-424b-4331-a230-8caca92e0d60",
+        "inputPurchaseQuoteId": "346a2e04-bcdc-42c7-9f15-97c2b49d7125",
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "retryable": false
+        "retryable": true
       }
     ]
   }

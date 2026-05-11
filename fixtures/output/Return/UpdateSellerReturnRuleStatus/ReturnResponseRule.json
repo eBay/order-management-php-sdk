@@ -1,9 +1,9 @@
 {
   "updateSellerReturnRuleStatus": {
     "__typename": "ReturnResponseRule",
-    "ruleId": "2c571ca0-03e7-4b86-97e8-2c3ed373fe9a",
+    "ruleId": "ca5de4a5-19b1-4b22-9194-a56946e0f38e",
     "name": "Hello World",
-    "priority": -43,
+    "priority": 62,
     "status": {
       "code": "Hello World",
       "displayText": "Hello World"

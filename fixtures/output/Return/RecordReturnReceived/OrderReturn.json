@@ -1,9 +1,9 @@
 {
   "recordReturnReceived": {
     "__typename": "OrderReturn",
-    "returnId": "652599db-310b-454c-85c1-8015a8103bff",
+    "returnId": "d3203fda-3537-4697-844e-f664c4f21f87",
     "status": {
-      "__typename": "ReturnClosed",
+      "__typename": "ReturnOpen",
       "code": "Hello World",
       "displayText": "Hello World"
     }

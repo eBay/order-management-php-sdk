@@ -3,7 +3,7 @@
     "__typename": "MultipleRefundWithholdingsNotAllowedError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "maxAllowed": -77,
-    "providedCount": -52
+    "maxAllowed": -17,
+    "providedCount": -48
   }
 }

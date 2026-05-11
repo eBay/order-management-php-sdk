@@ -1,9 +1,9 @@
 {
   "sellerReturnPreference": {
     "__typename": "SellerReturnPreferences",
-    "listingMarketplace": "EBAY_CA",
+    "listingMarketplace": "EBAY_CH",
     "rmaPreference": {
-      "preferenceStatus": "DISABLED"
+      "preferenceStatus": "ENABLED"
     }
   }
 }

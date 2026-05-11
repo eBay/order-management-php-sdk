@@ -5,12 +5,12 @@
     "errorMessage": "Hello World",
     "availableActions": [
       {
-        "__typename": "ProcessReturnRefundAction",
+        "__typename": "ApproveReturnAction",
         "code": "Hello World",
         "displayText": "Hello World"
       },
       {
-        "__typename": "ProvideShipmentInfoReturnAction",
+        "__typename": "RecordReturnReceivedAction",
         "code": "Hello World",
         "displayText": "Hello World"
       }

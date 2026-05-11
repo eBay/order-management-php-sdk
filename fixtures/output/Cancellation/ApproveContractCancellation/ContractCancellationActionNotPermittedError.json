@@ -10,7 +10,7 @@
         "displayText": "Hello World"
       },
       {
-        "__typename": "RetryRefundContractCancellationAction",
+        "__typename": "DeclineContractCancellationAction",
         "code": "Hello World",
         "displayText": "Hello World"
       }

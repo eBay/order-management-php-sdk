@@ -3,9 +3,9 @@
     "__typename": "CreateOrderCancellationSuccess",
     "orderCancellation": {
       "__typename": "OrderCancellation",
-      "cancellationId": "55d7ebfa-7378-42fd-bda3-61f1087c9031",
+      "cancellationId": "db61ad9f-ac58-4e32-a8a9-7fc355588457",
       "status": {
-        "__typename": "ContractCancellationCompleted",
+        "__typename": "ContractCancellationAwaitingActionFromSeller",
         "code": "Hello World",
         "displayText": "Hello World"
       }

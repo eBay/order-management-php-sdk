@@ -1,9 +1,9 @@
 {
   "updateSellerReturnResponseRuleCondition": {
     "__typename": "ReturnResponseRule",
-    "ruleId": "bad03e01-026d-49f0-92f7-2753f89daf61",
+    "ruleId": "a1897e9b-6ec9-455f-9d9b-79c608f8c258",
     "name": "Hello World",
-    "priority": 25,
+    "priority": -79,
     "responseStrategy": {
       "code": "Hello World",
       "displayText": "Hello World"
@@ -16,29 +16,13 @@
       "operator": "AND",
       "conditions": [
         {
-          "__typename": "ReturnRefundRangeCondition",
-          "minRefundAmount": {
-            "value": "1.00",
-            "currency": "STN"
-          },
-          "maxRefundAmount": {
-            "value": "1.00",
-            "currency": "FKP"
-          }
+          "__typename": "ReturnListingGroupCondition"
         },
         {
-          "__typename": "ReturnReasonCondition",
-          "returnReasonList": [
-            {
-              "__typename": "NotAsDescribed",
-              "code": "Hello World",
-              "displayText": "Hello World"
-            },
-            {
-              "__typename": "FitCompatibilityIssue",
-              "code": "Hello World",
-              "displayText": "Hello World"
-            }
+          "__typename": "ReturnShipmentOriginCountryCondition",
+          "returnShipmentOriginCountries": [
+            "HT",
+            "IL"
           ]
         }
       ]

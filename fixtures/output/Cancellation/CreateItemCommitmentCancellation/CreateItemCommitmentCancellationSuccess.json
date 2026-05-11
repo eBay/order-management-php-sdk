@@ -3,9 +3,9 @@
     "__typename": "CreateItemCommitmentCancellationSuccess",
     "itemCommitmentCancellation": {
       "__typename": "ItemCommitmentCancellation",
-      "cancellationId": "7ad6105b-a729-476a-9476-d16e151c5fd3",
+      "cancellationId": "f220b8d8-058c-4aa5-8a3e-1a6e08aa96c2",
       "status": {
-        "__typename": "ContractCancellationCompleted",
+        "__typename": "ContractCancellationAwaitingActionFromSeller",
         "code": "Hello World",
         "displayText": "Hello World"
       }

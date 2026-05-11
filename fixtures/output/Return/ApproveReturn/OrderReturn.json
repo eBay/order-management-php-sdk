@@ -1,9 +1,9 @@
 {
   "approveReturn": {
     "__typename": "OrderReturn",
-    "returnId": "3b8800ce-6508-4c6d-aaf0-47c82852a94b",
+    "returnId": "1992bfd7-55ce-42e2-a74f-3e06f7bf6087",
     "status": {
-      "__typename": "ReturnRequested",
+      "__typename": "ReturnCancelled",
       "code": "Hello World",
       "displayText": "Hello World"
     }

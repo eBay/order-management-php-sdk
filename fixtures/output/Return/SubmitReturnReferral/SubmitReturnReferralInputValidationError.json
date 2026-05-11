@@ -8,14 +8,16 @@
         "__typename": "ReturnReferralReasonViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "invalidReferralReason": false,
+        "invalidReferralReason": true,
         "constraint": {
           "validReferralReasons": [
             {
-              "__typename": "ReplacementSent"
+              "__typename": "UnresponsiveTradingPartner",
+              "code": "Hello World",
+              "displayText": "Hello World"
             },
             {
-              "__typename": "UnresponsiveTradingPartner",
+              "__typename": "OtherReferralReason",
               "code": "Hello World",
               "displayText": "Hello World"
             }
@@ -26,16 +28,16 @@
         "__typename": "ReturnReferralReasonViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "invalidReferralReason": true,
+        "invalidReferralReason": false,
         "constraint": {
           "validReferralReasons": [
             {
-              "__typename": "RefundNotReceived",
-              "code": "Hello World",
-              "displayText": "Hello World"
+              "__typename": "RefundedBuyer"
             },
             {
-              "__typename": "RefundedBuyer"
+              "__typename": "OtherReferralReason",
+              "code": "Hello World",
+              "displayText": "Hello World"
             }
           ]
         }

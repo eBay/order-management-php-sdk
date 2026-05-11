@@ -9,17 +9,17 @@
         "code": "Hello World",
         "displayMessage": "Hello World",
         "orderLineItemIds": [
-          "3a4667e4-fa91-48b9-94f4-f311097c990b",
-          "58ef34b8-f573-4a39-97fb-4a518599f60f"
+          "a6898845-cafc-4d39-a9d0-ee3f72214363",
+          "0d081c5d-2f61-4837-9a9d-efa5314e2a13"
         ]
       },
       {
-        "__typename": "CancellationConflictWithReturn",
+        "__typename": "CancellationConflictWithPaymentIssue",
         "code": "Hello World",
         "displayMessage": "Hello World",
         "orderLineItemIds": [
-          "3e54240c-54a8-49a7-9a1c-3c2e88cac0a1",
-          "554dccd1-5d4c-4921-a4ba-e0496deff286"
+          "e2410277-03bf-48e6-9115-b5de198d7b69",
+          "41e4cbe9-8d0c-4d7c-bd99-2926c46d9506"
         ]
       }
     ]

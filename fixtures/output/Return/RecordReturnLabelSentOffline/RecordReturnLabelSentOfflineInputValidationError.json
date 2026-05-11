@@ -8,26 +8,25 @@
         "__typename": "ReturnShippingCarrierNameViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "containsInvalidCharacters": true,
-        "exceededLength": false,
+        "containsInvalidCharacters": false,
+        "exceededLength": true,
         "constraint": {
           "characterLimit": {
-            "minLength": -20,
-            "maxLength": -4
+            "minLength": -89,
+            "maxLength": 99
           }
         }
       },
       {
-        "__typename": "ReturnTrackingNumberViolation",
+        "__typename": "ReturnShippingCarrierNameViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "containsInvalidCharacters": true,
-        "exceededLength": true,
-        "duplicateTrackingNumber": true,
+        "containsInvalidCharacters": false,
+        "exceededLength": false,
         "constraint": {
           "characterLimit": {
-            "minLength": -2,
-            "maxLength": -87
+            "minLength": 19,
+            "maxLength": -62
           }
         }
       }

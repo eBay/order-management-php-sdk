@@ -3,7 +3,7 @@
     "__typename": "ProcessOrderInquiryRefundSuccess",
     "orderInquiry": {
       "__typename": "ItemNotReceivedInquiry",
-      "inquiryId": "006de5e3-1484-4ef0-9e81-e3785c927f30",
+      "inquiryId": "4feffcbf-c471-41e5-a280-70e14683d27c",
       "status": {
         "__typename": "OrderInquiryClosed",
         "code": "Hello World",
@@ -11,25 +11,25 @@
       },
       "createdAt": "2024-01-01T00:00:00.000Z",
       "closedAt": "2024-01-01T00:00:00.000Z",
-      "initiator": "BUYER",
-      "responder": "SELLER",
+      "initiator": "EBAY",
+      "responder": "EBAY",
       "inquirers": [
-        "EBAY",
-        "EBAY"
+        "BUYER",
+        "BUYER"
       ],
       "lineItems": [
         {
-          "inquiryLineItemId": "41660cd2-5b45-4f50-9732-1f91ff304f8f",
-          "quantity": -95,
+          "inquiryLineItemId": "934b0434-e1f6-4fc0-a134-2ec425dff897",
+          "quantity": -6,
           "orderLineItem": {
-            "orderLineItemId": "4982cdd7-94ef-4800-aa37-479bb068f9ac"
+            "orderLineItemId": "b7cc1afe-5519-4042-b1fa-fc5a86229c6a"
           }
         },
         {
-          "inquiryLineItemId": "11c7e83f-371b-40d7-b623-67a54276cac0",
-          "quantity": -2,
+          "inquiryLineItemId": "f6806bef-d260-4c30-8ac3-eaffe76906f4",
+          "quantity": 54,
           "orderLineItem": {
-            "orderLineItemId": "f7234590-d7a7-484f-b323-e46f0a11a666"
+            "orderLineItemId": "b4f21658-1cad-4ca6-a921-f1949aff7b13"
           }
         }
       ],
@@ -54,10 +54,10 @@
       },
       "refunds": [
         {
-          "refundId": "61306fb9-27c8-458f-8b78-06fda2104c63"
+          "refundId": "167f9ede-8191-497d-8bb0-f885672745ae"
         },
         {
-          "refundId": "377adda9-300f-408e-968d-531e8351f486"
+          "refundId": "9f943311-8659-4624-a8f6-682dffb727b3"
         }
       ]
     }

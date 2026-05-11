@@ -3,10 +3,10 @@
     "__typename": "BulkUpdatePurchaseQuotesSuccess",
     "updatedPurchaseQuotes": [
       {
-        "purchaseQuoteId": "ab6ccdf4-b26f-43a2-b4ae-fad3d3ebdbab"
+        "purchaseQuoteId": "219a85e1-3ee1-4714-a90a-3829525872c1"
       },
       {
-        "purchaseQuoteId": "87384744-72a3-4f34-bd3e-7e263cb82760"
+        "purchaseQuoteId": "9740e4e3-bd8f-45c6-8ab3-6b406f794cd7"
       }
     ]
   }

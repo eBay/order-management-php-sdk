@@ -2,7 +2,7 @@
   "createPurchaseQuote": {
     "__typename": "CreatePurchaseQuoteSuccess",
     "purchaseQuote": {
-      "purchaseQuoteId": "5b49aa31-a1ed-404e-be76-ca98a253cbcc"
+      "purchaseQuoteId": "f79b28cb-ea76-4e40-a0ef-94fbd78308a1"
     }
   }
 }

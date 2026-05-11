@@ -3,6 +3,6 @@
     "__typename": "OrderInquiryNotFoundError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "inquiryId": "924c2327-77a5-49ff-a613-3e4053ae7626"
+    "inquiryId": "e162569f-6829-4a7e-bcce-1ae9d98cc0a9"
   }
 }

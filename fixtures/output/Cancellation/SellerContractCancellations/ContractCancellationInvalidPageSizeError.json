@@ -3,6 +3,6 @@
     "__typename": "ContractCancellationInvalidPageSizeError",
     "errorCode": "Hello World",
     "errorMessage": "Hello World",
-    "maxAllowedPageSize": 10
+    "maxAllowedPageSize": -4
   }
 }

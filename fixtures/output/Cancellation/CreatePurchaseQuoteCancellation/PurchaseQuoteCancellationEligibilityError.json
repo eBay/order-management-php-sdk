@@ -5,16 +5,16 @@
     "errorMessage": "Hello World",
     "ineligibilityReasons": [
       {
-        "__typename": "PurchaseQuoteCancellationExistsConflict",
+        "__typename": "CancellationPurchaseQuoteIneligible",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "purchaseQuoteId": "b998cc31-5487-464c-ba97-4732a6d2614a"
+        "purchaseQuoteId": "3661a4f2-ce94-42e0-bdc4-6387ea82c92b"
       },
       {
         "__typename": "CancellationPurchaseQuoteIneligible",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "purchaseQuoteId": "8a24299a-633e-4e53-8b80-ffec80e2604a"
+        "purchaseQuoteId": "674b8dbd-217d-4592-9209-c30be9cd5b2e"
       }
     ]
   }

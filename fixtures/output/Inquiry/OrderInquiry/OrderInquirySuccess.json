@@ -3,9 +3,9 @@
     "__typename": "OrderInquirySuccess",
     "orderInquiry": {
       "__typename": "ItemNotReceivedInquiry",
-      "inquiryId": "5237d2c8-d639-4e73-a17d-a822415386e2",
+      "inquiryId": "855d77aa-1467-40d9-8c80-8e728f6c6607",
       "status": {
-        "__typename": "OrderInquiryClosed",
+        "__typename": "OrderInquiryOpen",
         "code": "Hello World",
         "displayText": "Hello World"
       },
@@ -14,22 +14,22 @@
       "initiator": "BUYER",
       "responder": "EBAY",
       "inquirers": [
-        "EBAY",
+        "BUYER",
         "EBAY"
       ],
       "lineItems": [
         {
-          "inquiryLineItemId": "51c0abab-7e37-48c8-affb-637b11a482a1",
-          "quantity": 13,
+          "inquiryLineItemId": "677ca56a-a847-431d-862e-b8c1de7a89fe",
+          "quantity": 50,
           "orderLineItem": {
-            "orderLineItemId": "bc2154bb-b374-4d99-a7c4-e90ceebda697"
+            "orderLineItemId": "5461a121-45b3-4382-ad24-2c20b7530283"
           }
         },
         {
-          "inquiryLineItemId": "699dbb61-083d-4ff6-b84c-8b8f1aceae99",
-          "quantity": -98,
+          "inquiryLineItemId": "ba18e0c2-62f1-4d06-9440-5c8c932b1fdb",
+          "quantity": 76,
           "orderLineItem": {
-            "orderLineItemId": "82f84940-0bec-4cf0-8a1a-465e557103a2"
+            "orderLineItemId": "c1701a7a-a6dd-4929-9b8b-b89b333e4133"
           }
         }
       ],
@@ -52,30 +52,23 @@
           },
           {
             "code": "Hello World",
-            "displayText": "Hello World",
-            "referralReasons": [
-              {},
-              {
-                "code": "Hello World",
-                "displayText": "Hello World"
-              }
-            ]
+            "displayText": "Hello World"
           }
         ]
       },
       "requestedInformation": [
         {
-          "requester": "EBAY",
+          "requester": "BUYER",
           "requestedAt": "2024-01-01T00:00:00.000Z"
         },
         {
-          "requester": "SELLER",
+          "requester": "EBAY",
           "requestedAt": "2024-01-01T00:00:00.000Z"
         }
       ],
       "providedInformation": [
         {
-          "submitter": "EBAY",
+          "submitter": "BUYER",
           "submittedAt": "2024-01-01T00:00:00.000Z",
           "submittedInformation": [
             {
@@ -90,8 +83,8 @@
               "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
               "signatureConfirmationProof": {
-                "documentId": "164d2f7e-69b4-4b07-8a57-6400c4c0dced",
-                "filenameExtension": "JPG",
+                "documentId": "17df4055-78e9-4d71-83d8-78349e082d25",
+                "filenameExtension": "GIF",
                 "documentName": "Hello World",
                 "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
@@ -99,23 +92,25 @@
           ]
         },
         {
-          "submitter": "EBAY",
+          "submitter": "BUYER",
           "submittedAt": "2024-01-01T00:00:00.000Z",
           "submittedInformation": [
             {
-              "__typename": "OrderInquiryShipmentTracking",
+              "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
-              "shippingCarrier": {
-                "carrierCode": "Hello World",
-                "unsupportedCarrierName": "Hello World"
+              "signatureConfirmationProof": {
+                "documentId": "ebd24018-ea8c-4348-9b36-92ff953b2e81",
+                "filenameExtension": "DOC",
+                "documentName": "Hello World",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
             },
             {
               "__typename": "OrderInquirySignatureConfirmation",
               "trackingNumber": "Hello World",
               "signatureConfirmationProof": {
-                "documentId": "ed9471d6-66e8-478e-a8fe-37dce30062b1",
-                "filenameExtension": "DOCX",
+                "documentId": "854bed7a-9003-49b8-9f64-a846d675c8d2",
+                "filenameExtension": "DOC",
                 "documentName": "Hello World",
                 "uploadedAt": "2024-01-01T00:00:00.000Z"
               }
@@ -125,21 +120,18 @@
       ],
       "cases": [
         {
-          "caseId": "acc1dd1b-eb43-43e2-878d-880afa7388ca",
-          "status": {
-            "code": "Hello World",
-            "displayText": "Hello World"
-          },
-          "initiator": "BUYER",
+          "caseId": "109a97f4-3f34-41ff-977b-0ba406d43418",
+          "status": {},
+          "initiator": "EBAY",
           "reason": {
             "code": "Hello World",
             "displayText": "Hello World"
           }
         },
         {
-          "caseId": "45a7530c-d232-46b4-9b27-724e3e3b9083",
+          "caseId": "03109763-5e19-45e2-a14f-1b735186e3cc",
           "status": {},
-          "initiator": "BUYER",
+          "initiator": "SELLER",
           "reason": {
             "code": "Hello World",
             "displayText": "Hello World"

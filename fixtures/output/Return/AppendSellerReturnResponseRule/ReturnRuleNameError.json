@@ -7,8 +7,8 @@
     "duplicateRuleName": false,
     "nameConstraint": {
       "characterLimit": {
-        "minLength": 29,
-        "maxLength": 86
+        "minLength": 65,
+        "maxLength": -83
       },
       "allowedPattern": "Hello World"
     }

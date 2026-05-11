@@ -3,26 +3,26 @@
     "__typename": "SellerOrderReturns",
     "orderReturns": [
       {
-        "returnId": "a4cb4d92-f4d9-4788-8622-8da92efab605",
-        "requester": "BUYER",
+        "returnId": "407b6077-7a26-4327-afa8-5abaa4aac808",
+        "requester": "EBAY",
         "requestedAt": "2024-01-01T00:00:00.000Z",
         "closedAt": "2024-01-01T00:00:00.000Z",
         "status": {
-          "__typename": "ReturnDeclined",
+          "__typename": "ReturnRequested",
           "code": "Hello World",
           "displayText": "Hello World"
         },
         "returnLineItems": [
           {
-            "returnLineItemId": "0ca00355-2300-4d96-93ab-3637101773e7",
-            "requestedQuantity": 83,
+            "returnLineItemId": "5c67845b-f91b-4a17-bf9e-c30cc5c3ee15",
+            "requestedQuantity": 49,
             "returnReason": {
               "code": "Hello World",
               "displayText": "Hello World"
             },
             "returnNote": "Hello World",
             "orderLineItem": {
-              "orderLineItemId": "977bb152-07be-4f16-9959-96a188fa3fc2"
+              "orderLineItemId": "6dec21e7-7612-451b-baec-421210f381dd"
             },
             "listingRestockTasks": [
               {
@@ -33,7 +33,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "8be62c2d-4ade-4675-91c0-e971c65268d6"
+                  "listingId": "03c11368-1a0a-457a-abd2-e54f98423dc7"
                 }
               },
               {
@@ -44,21 +44,21 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "36e4c973-22dc-4f7f-a23a-6fb16e50e49a"
+                  "listingId": "28a75951-ec5d-4fc5-b2ec-821b6c390cae"
                 }
               }
             ]
           },
           {
-            "returnLineItemId": "269851fc-153e-432e-8e5e-5b8399b51bbf",
-            "requestedQuantity": 96,
+            "returnLineItemId": "65bc4803-b25c-44d8-9530-5cc023789ca8",
+            "requestedQuantity": 2,
             "returnReason": {
               "code": "Hello World",
               "displayText": "Hello World"
             },
             "returnNote": "Hello World",
             "orderLineItem": {
-              "orderLineItemId": "322789dc-5178-448f-8b2b-34c0a398a692"
+              "orderLineItemId": "c968e20f-71e1-4dc1-abb0-2ea70a903b4b"
             },
             "listingRestockTasks": [
               {
@@ -69,7 +69,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "28a4f53b-ec0b-432c-b9b8-5a70b295e7d0"
+                  "listingId": "f54902b0-60ec-42be-953b-ac2221acfbc9"
                 }
               },
               {
@@ -80,7 +80,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "e4687c54-5e97-45d8-bfe5-0d683c4b14c4"
+                  "listingId": "e081a488-5161-4b78-81e4-e17926f64d11"
                 }
               }
             ]
@@ -89,7 +89,7 @@
         "returnNegotiation": {
           "latestReturnOffer": {
             "status": {
-              "__typename": "ReturnOfferAccepted",
+              "__typename": "ReturnOfferExpired",
               "code": "Hello World",
               "displayText": "Hello World"
             },
@@ -99,23 +99,27 @@
                 "refundAmount": {
                   "original": {
                     "value": "1.00",
-                    "currency": "AED"
+                    "currency": "TND"
                   },
                   "exchangeScenario": {
-                    "__typename": "InvalidExchangeScenarioInputError",
-                    "errorCode": "Hello World",
-                    "errorMessage": "Hello World"
+                    "__typename": "ExchangeAmount",
+                    "amount": {
+                      "value": "1.00",
+                      "currency": "ILS"
+                    },
+                    "exchangeRate": "1.00",
+                    "exchangeAt": "2024-01-01T00:00:00.000Z"
                   }
                 },
-                "itemPriceRefundPercentage": 13,
-                "itemShippingPriceWaived": false
+                "itemPriceRefundPercentage": 56,
+                "itemShippingPriceWaived": true
               },
               {
                 "__typename": "KeepItemPartialRefundTerm",
                 "refundAmount": {
                   "original": {
                     "value": "1.00",
-                    "currency": "MRU"
+                    "currency": "BOB"
                   },
                   "exchangeScenario": {
                     "__typename": "InvalidExchangeScenarioInputError",
@@ -123,7 +127,7 @@
                     "errorMessage": "Hello World"
                   }
                 },
-                "itemPriceRefundPercentage": 76,
+                "itemPriceRefundPercentage": 88,
                 "itemShippingPriceWaived": true
               }
             ]
@@ -131,26 +135,26 @@
         }
       },
       {
-        "returnId": "f32c71a8-e1c3-409b-9a46-5901e366ef1f",
+        "returnId": "f99c8132-eb7f-4cf9-8478-d3aeef380558",
         "requester": "BUYER",
         "requestedAt": "2024-01-01T00:00:00.000Z",
         "closedAt": "2024-01-01T00:00:00.000Z",
         "status": {
-          "__typename": "ReturnDeclined",
+          "__typename": "ReturnClosed",
           "code": "Hello World",
           "displayText": "Hello World"
         },
         "returnLineItems": [
           {
-            "returnLineItemId": "ffd45644-c5d9-4ca3-9b52-d5a4e58868e0",
-            "requestedQuantity": -30,
+            "returnLineItemId": "a79f160b-5419-404d-a53a-e76624fafb5f",
+            "requestedQuantity": -4,
             "returnReason": {
               "code": "Hello World",
               "displayText": "Hello World"
             },
             "returnNote": "Hello World",
             "orderLineItem": {
-              "orderLineItemId": "4e91b019-fe84-4eb5-9ff6-3db3f954356f"
+              "orderLineItemId": "69d99a94-1cb5-4874-9790-6e7798efddd5"
             },
             "listingRestockTasks": [
               {
@@ -161,7 +165,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "d53f6579-fd88-4c81-9991-8f82249fbde3"
+                  "listingId": "fd69935d-9bde-469d-8549-adc92702c533"
                 }
               },
               {
@@ -172,21 +176,21 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "f75d7d7c-8a0f-4742-939d-35bf8d28ada0"
+                  "listingId": "cd64c1a1-bdcc-494b-a77a-ec9f8fa1881d"
                 }
               }
             ]
           },
           {
-            "returnLineItemId": "be5ec498-d8b2-4dd3-82e0-3eb35888ad0f",
-            "requestedQuantity": -18,
+            "returnLineItemId": "cdd60d38-5be2-48ac-89d0-0fdbcd4bde39",
+            "requestedQuantity": -90,
             "returnReason": {
               "code": "Hello World",
               "displayText": "Hello World"
             },
             "returnNote": "Hello World",
             "orderLineItem": {
-              "orderLineItemId": "a53df947-2ad3-4753-ac21-e9d2a7a09e05"
+              "orderLineItemId": "10c8218a-f7d1-4724-a377-bb0eb2b9bd6e"
             },
             "listingRestockTasks": [
               {
@@ -197,7 +201,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "0f7be459-f1b5-4ea3-8ae3-0fc4bb400859"
+                  "listingId": "79095e4a-4c4e-4c63-ba6f-933518d50fdf"
                 }
               },
               {
@@ -208,7 +212,7 @@
                 },
                 "relistedListing": {
                   "__typename": "ListingReference",
-                  "listingId": "5c326c6d-ac85-437f-b0f0-a416e58bdac0"
+                  "listingId": "ec46ae2b-938d-4c09-90f0-ba0902367f2a"
                 }
               }
             ]
@@ -227,15 +231,19 @@
                 "refundAmount": {
                   "original": {
                     "value": "1.00",
-                    "currency": "VUV"
+                    "currency": "KMF"
                   },
                   "exchangeScenario": {
-                    "__typename": "InvalidExchangeScenarioInputError",
-                    "errorCode": "Hello World",
-                    "errorMessage": "Hello World"
+                    "__typename": "ExchangeAmount",
+                    "amount": {
+                      "value": "1.00",
+                      "currency": "MUR"
+                    },
+                    "exchangeRate": "1.00",
+                    "exchangeAt": "2024-01-01T00:00:00.000Z"
                   }
                 },
-                "itemPriceRefundPercentage": 67,
+                "itemPriceRefundPercentage": -98,
                 "itemShippingPriceWaived": true
               },
               {
@@ -243,7 +251,7 @@
                 "refundAmount": {
                   "original": {
                     "value": "1.00",
-                    "currency": "SSP"
+                    "currency": "THB"
                   },
                   "exchangeScenario": {
                     "__typename": "InvalidExchangeScenarioInputError",
@@ -251,7 +259,7 @@
                     "errorMessage": "Hello World"
                   }
                 },
-                "itemPriceRefundPercentage": -79,
+                "itemPriceRefundPercentage": -11,
                 "itemShippingPriceWaived": true
               }
             ]

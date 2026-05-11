@@ -5,12 +5,12 @@
     "errorMessage": "Hello World",
     "availableActions": [
       {
-        "__typename": "RecordReturnReceivedAction",
+        "__typename": "ReturnReferralAction",
         "code": "Hello World",
         "displayText": "Hello World"
       },
       {
-        "__typename": "NegotiateOnReturnAction",
+        "__typename": "ProvideRmaNumberReturnAction",
         "code": "Hello World",
         "displayText": "Hello World"
       }

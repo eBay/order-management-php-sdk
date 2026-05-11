@@ -5,14 +5,14 @@
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputPurchaseQuoteLineItemId": "c2170ce1-714b-400e-bff5-7452ac316646",
-        "retryable": false
+        "inputPurchaseQuoteLineItemId": "2695bd2f-9b4f-4d91-ab4c-b857c4693801",
+        "retryable": true
       },
       {
         "errorCode": "Hello World",
         "displayMessage": "Hello World",
-        "inputPurchaseQuoteLineItemId": "07a6c129-32fe-43b3-a123-6221e4536dc9",
-        "retryable": true
+        "inputPurchaseQuoteLineItemId": "a59200ab-1965-4c63-a68c-d7e1d8813636",
+        "retryable": false
       }
     ]
   }

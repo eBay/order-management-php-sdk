@@ -1,14 +1,14 @@
 {
   "returnRuleListingGroup": {
     "__typename": "ReturnRuleListingGroup",
-    "returnRuleListingGroupId": "227a05d0-2b6d-41bc-80fb-fa6be35adbc5",
+    "returnRuleListingGroupId": "cb29c101-fc51-4439-aaa2-d9a6fd502c1d",
     "groupName": "Hello World",
     "listings": [
       {
-        "listingId": "a5f447c9-f77f-43bb-939a-7cb4ef771856"
+        "listingId": "14d95b3d-ea70-4a70-ad5f-631590fb1af7"
       },
       {
-        "listingId": "85ff1041-11c9-4217-8e80-018ed6ebe6bd"
+        "listingId": "3cffcdbd-249a-4991-bf57-1bbe8578c1f9"
       }
     ],
     "pagination": {

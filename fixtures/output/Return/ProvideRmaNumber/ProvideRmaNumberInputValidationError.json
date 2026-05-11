@@ -9,12 +9,12 @@
         "code": "Hello World",
         "displayMessage": "Hello World",
         "containsInvalidCharacters": true,
-        "exceededLength": false,
+        "exceededLength": true,
         "constraint": {
-          "rmaNumberRequired": false,
+          "rmaNumberRequired": true,
           "characterLimit": {
-            "minLength": 91,
-            "maxLength": -99
+            "minLength": 25,
+            "maxLength": 75
           }
         }
       },
@@ -22,13 +22,13 @@
         "__typename": "ReturnRmaNumberViolation",
         "code": "Hello World",
         "displayMessage": "Hello World",
-        "containsInvalidCharacters": true,
-        "exceededLength": true,
+        "containsInvalidCharacters": false,
+        "exceededLength": false,
         "constraint": {
-          "rmaNumberRequired": true,
+          "rmaNumberRequired": false,
           "characterLimit": {
-            "minLength": 45,
-            "maxLength": -8
+            "minLength": 17,
+            "maxLength": -9
           }
         }
       }

@@ -10,15 +10,9 @@
         "displayMessage": "Hello World"
       },
       {
-        "__typename": "ItemPriceRefundWithholdViolation",
+        "__typename": "ShippingPriceRefundWithholdViolation",
         "code": "Hello World",
-        "displayMessage": "Hello World",
-        "constraint": {
-          "allowedPercentageRange": {
-            "minValue": -81,
-            "maxValue": 2
-          }
-        }
+        "displayMessage": "Hello World"
       }
     ]
   }

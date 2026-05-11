@@ -3,52 +3,7 @@
     "buyerItemCommitments": {
       "itemCommitments": [
         {
-          "itemCommitmentId": "9dfd9b06-eb69-4a59-aa45-4c48e1497ebe",
-          "createdAt": "2024-01-01T00:00:00.000Z",
-          "updatedAt": "2024-01-01T00:00:00.000Z",
-          "committedMarketplace": "EBAY_NL",
-          "state": {
-            "label": "Hello World",
-            "cancelledAt": "2024-01-01T00:00:00.000Z",
-            "reason": "Hello World"
-          },
-          "cancellation": {
-            "cancellationId": "ef279f60-0f82-4584-af00-82b057051488"
-          },
-          "refunds": [
-            {
-              "refundId": "d3bf6686-436e-484b-b096-d15c08ccd54b"
-            },
-            {
-              "refundId": "2d476dd0-ffa2-44cc-b1aa-781bc4d30403"
-            }
-          ],
-          "buyer": {
-            "userId": "c2fc44ea-9503-4078-9c88-45a762087878"
-          },
-          "seller": {
-            "userId": "f743e631-4842-42e1-979a-657a11b5098e"
-          },
-          "totals": {
-            "committedTotal": {
-              "original": {
-                "value": "1.00",
-                "currency": "XCD"
-              }
-            }
-          },
-          "lineItem": {
-            "quantity": -29,
-            "item": {
-              "itemId": "b63521c6-2351-4c1a-a8f6-46df5c89e649"
-            },
-            "purchaseFlow": {
-              "label": "Hello World"
-            }
-          }
-        },
-        {
-          "itemCommitmentId": "9fc976ed-76fa-434d-a85c-df602b764f3a",
+          "itemCommitmentId": "87b72486-d6c7-4e66-b4de-bf9c21e77390",
           "createdAt": "2024-01-01T00:00:00.000Z",
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "committedMarketplace": "EBAY_SG",
@@ -56,34 +11,77 @@
             "label": "Hello World"
           },
           "cancellation": {
-            "cancellationId": "61961729-f0f3-4f82-ab7d-999b0897d2a5"
+            "cancellationId": "dba34dbd-fc39-49a6-9d50-819c8843e87a"
           },
           "refunds": [
             {
-              "refundId": "dfcff8ee-b04b-49b5-8543-106aa784961c"
+              "refundId": "995da42e-053f-410c-a80b-8a1dbe5200e3"
             },
             {
-              "refundId": "999885b5-86fb-4bb5-bd54-add4ec1f4a9f"
+              "refundId": "144bbb97-e6d3-4d3e-9157-e283fbc62a56"
             }
           ],
           "buyer": {
-            "userId": "a2397849-e483-46bf-b5c8-26a67e1cc1c9"
+            "userId": "c4f51ad8-0c2e-4718-ab8b-be769be69676"
           },
           "seller": {
-            "userId": "7a29fdd7-6231-4639-a7c8-6e7eb4b642c8"
+            "userId": "9c62dfe2-c854-4bb8-a564-c80ade800b7f"
           },
           "totals": {
             "committedTotal": {
               "original": {
                 "value": "1.00",
-                "currency": "OMR"
+                "currency": "NPR"
               }
             }
           },
           "lineItem": {
-            "quantity": 1,
+            "quantity": 10,
             "item": {
-              "itemId": "f8d1168c-2c37-4523-bfc6-b0cba72e2408"
+              "itemId": "bfdfbb10-305a-4b4d-bf03-00410f0ec471"
+            },
+            "purchaseFlow": {
+              "label": "Hello World"
+            }
+          }
+        },
+        {
+          "itemCommitmentId": "b346fb95-b7c5-4fc0-b79e-b07e8cba572a",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "committedMarketplace": "EBAY_US",
+          "state": {
+            "label": "Hello World"
+          },
+          "cancellation": {
+            "cancellationId": "c8fb963c-ccca-4872-b15a-f0f3ff872e13"
+          },
+          "refunds": [
+            {
+              "refundId": "204f16d5-3446-431e-997a-ff8be30952a5"
+            },
+            {
+              "refundId": "5559fda5-b306-4e2b-836d-218b41781512"
+            }
+          ],
+          "buyer": {
+            "userId": "53b79263-97ee-4dbd-b2dc-7f4a9b50fe5a"
+          },
+          "seller": {
+            "userId": "5ca62e29-a2be-4be6-b5ce-67de158858e7"
+          },
+          "totals": {
+            "committedTotal": {
+              "original": {
+                "value": "1.00",
+                "currency": "MYR"
+              }
+            }
+          },
+          "lineItem": {
+            "quantity": 35,
+            "item": {
+              "itemId": "04c72c12-d5f4-4205-a899-cd615ed8bec7"
             },
             "purchaseFlow": {
               "label": "Hello World"

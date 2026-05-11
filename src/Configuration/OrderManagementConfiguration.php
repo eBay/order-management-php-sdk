@@ -6,8 +6,8 @@ namespace EBay\OrderManagement\Configuration;
 
 final class OrderManagementConfiguration
 {
-    public string $fulfillmentBaseUrl = 'https://api.ebay.com';
-    public string $logisticsBaseUrl   = 'https://api.ebay.com';
+    public string $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1';
+    public string $logisticsBaseUrl   = 'https://api.ebay.com/sell/logistics/v1';
     public string $graphQLBaseUrl     = 'https://api.ebay.com/graphql';
 
     /** Static fallback token; per-call token takes precedence when provided. */

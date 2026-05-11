@@ -1,8 +1,36 @@
 {
-  "input": {
-    "listingIds": [
-      "mock-id"
-    ],
-    "returnRuleListingGroupId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with listing ids",
+      "input": {
+        "listingIds": ["mock-id"],
+        "returnRuleListingGroupId": "mock-id"
+      },
+      "expected": {
+        "returnRuleListingGroupId": "mock-id",
+        "listingIds": ["mock-id"]
+      }
+    },
+    {
+      "label": "multiple listing ids",
+      "input": {
+        "listingIds": ["listing-1", "listing-2"],
+        "returnRuleListingGroupId": "group-123"
+      },
+      "expected": {
+        "returnRuleListingGroupId": "group-123",
+        "listingIds": ["listing-1", "listing-2"]
+      }
+    },
+    {
+      "label": "empty listing ids",
+      "input": {
+        "returnRuleListingGroupId": "group-456"
+      },
+      "expected": {
+        "returnRuleListingGroupId": "group-456",
+        "listingIds": []
+      }
+    }
+  ]
 }

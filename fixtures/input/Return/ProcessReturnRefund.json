@@ -1,5 +1,25 @@
 {
-  "input": {
-    "returnId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "minimal — no line item ids",
+      "input": {
+        "returnId": "mock-id"
+      },
+      "expected": {
+        "returnId": "mock-id",
+        "returnLineItemIds": []
+      }
+    },
+    {
+      "label": "with line item ids",
+      "input": {
+        "returnId": "return-123",
+        "returnLineItemIds": ["rli-1", "rli-2"]
+      },
+      "expected": {
+        "returnId": "return-123",
+        "returnLineItemIds": ["rli-1", "rli-2"]
+      }
+    }
+  ]
 }

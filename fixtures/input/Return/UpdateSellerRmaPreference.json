@@ -1,8 +1,47 @@
 {
-  "input": {
-    "listingMarketplace": "EBAY_AT",
-    "rmaPreference": {
-      "preferenceStatus": "DISABLED"
+  "cases": [
+    {
+      "label": "with rmaPreference",
+      "input": {
+        "listingMarketplace": "EBAY_AT",
+        "rmaPreference": {
+          "preferenceStatus": "DISABLED"
+        }
+      },
+      "expected": {
+        "listingMarketplace": "EBAY_AT",
+        "rmaPreference": {
+          "preferenceStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "label": "enabled status",
+      "input": {
+        "listingMarketplace": "EBAY_US",
+        "rmaPreference": {
+          "preferenceStatus": "ENABLED"
+        }
+      },
+      "expected": {
+        "listingMarketplace": "EBAY_US",
+        "rmaPreference": {
+          "preferenceStatus": "ENABLED"
+        }
+      }
+    },
+    {
+      "label": "null preferenceStatus",
+      "input": {
+        "listingMarketplace": "EBAY_GB",
+        "rmaPreference": {}
+      },
+      "expected": {
+        "listingMarketplace": "EBAY_GB",
+        "rmaPreference": {
+          "preferenceStatus": null
+        }
+      }
     }
-  }
+  ]
 }

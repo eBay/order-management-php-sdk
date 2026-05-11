@@ -32,7 +32,7 @@ readonly class Input
     {
         $result = [
             'lineItems'         => array_map(fn(PurchaseQuoteItemInput $li) => $li->toArray(), $this->lineItems),
-            'logisticsOptions'  => $this->logisticsOptions->toArray(),
+            'logisticsOptions'  => (object)$this->logisticsOptions->toArray(),
             'emailCopyToSeller' => $this->emailCopyToSeller,
         ];
         if ($this->messageToBuyer !== null) {

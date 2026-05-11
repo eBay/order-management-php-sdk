@@ -1,3 +1,49 @@
 {
-  "input": {}
+  "cases": [
+    {
+      "label": "empty input",
+      "input": {},
+      "expected": {}
+    },
+    {
+      "label": "with initialPage",
+      "input": {
+        "initialPage": {
+          "filter": {
+            "presets": "AWAITING_ACTION_FROM_SELLER"
+          },
+          "sort": {
+            "sortField": "CREATED_AT",
+            "sortOrder": "DESC"
+          }
+        }
+      },
+      "expected": {
+        "initialPage": {
+          "filter": {
+            "presets": "AWAITING_ACTION_FROM_SELLER"
+          },
+          "sort": {
+            "sortField": "CREATED_AT",
+            "sortOrder": "DESC"
+          }
+        }
+      }
+    },
+    {
+      "label": "with pageInfo",
+      "input": {
+        "pageInfo": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-xyz"
+        }
+      },
+      "expected": {
+        "pageInfo": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-xyz"
+        }
+      }
+    }
+  ]
 }

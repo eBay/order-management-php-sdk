@@ -1,5 +1,22 @@
 {
-  "input": {
-    "cancellationId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with cancellationId",
+      "input": {
+        "cancellationId": "mock-id"
+      },
+      "expected": {
+        "cancellationId": "mock-id"
+      }
+    },
+    {
+      "label": "different id",
+      "input": {
+        "cancellationId": "cancel-999"
+      },
+      "expected": {
+        "cancellationId": "cancel-999"
+      }
+    }
+  ]
 }

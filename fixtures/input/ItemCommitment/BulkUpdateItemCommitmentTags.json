@@ -1,13 +1,81 @@
 {
-  "input": {
-    "itemCommitmentTagUpdates": [
-      {
-        "action": "ADD",
-        "itemCommitment": "mock-id",
-        "tags": [
-          "mock"
+  "cases": [
+    {
+      "label": "add single tag",
+      "input": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "ADD",
+            "itemCommitment": "mock-id",
+            "tags": [
+              "mock"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "ADD",
+            "itemCommitment": "mock-id",
+            "tags": [
+              "mock"
+            ]
+          }
         ]
       }
-    ]
-  }
+    },
+    {
+      "label": "remove multiple tags",
+      "input": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "REMOVE",
+            "itemCommitment": "item-123",
+            "tags": ["tag1", "tag2"]
+          }
+        ]
+      },
+      "expected": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "REMOVE",
+            "itemCommitment": "item-123",
+            "tags": ["tag1", "tag2"]
+          }
+        ]
+      }
+    },
+    {
+      "label": "multiple updates",
+      "input": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "ADD",
+            "itemCommitment": "item-a",
+            "tags": ["tagA"]
+          },
+          {
+            "action": "REMOVE",
+            "itemCommitment": "item-b",
+            "tags": ["tagB"]
+          }
+        ]
+      },
+      "expected": {
+        "itemCommitmentTagUpdates": [
+          {
+            "action": "ADD",
+            "itemCommitment": "item-a",
+            "tags": ["tagA"]
+          },
+          {
+            "action": "REMOVE",
+            "itemCommitment": "item-b",
+            "tags": ["tagB"]
+          }
+        ]
+      }
+    }
+  ]
 }

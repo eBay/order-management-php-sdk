@@ -1,13 +1,83 @@
 {
-  "input": {
-    "returnId": "mock-id",
-    "returnShipmentLabels": [
-      {
-        "documentId": "mock",
-        "shippingCarrier": {
-          "carrierCode": "mock"
-        }
+  "cases": [
+    {
+      "label": "with single label",
+      "input": {
+        "returnId": "mock-id",
+        "returnShipmentLabels": [
+          {
+            "documentId": "mock",
+            "shippingCarrier": {
+              "carrierCode": "mock"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "returnId": "mock-id",
+        "returnShipmentLabels": [
+          {
+            "documentId": "mock",
+            "shippingCarrier": {
+              "carrierCode": "mock"
+            }
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "label": "with tracking number",
+      "input": {
+        "returnId": "return-123",
+        "returnShipmentLabels": [
+          {
+            "documentId": "doc-123",
+            "shippingCarrier": {
+              "carrierCode": "UPS"
+            },
+            "trackingNumber": "1Z999AA10123456784"
+          }
+        ]
+      },
+      "expected": {
+        "returnId": "return-123",
+        "returnShipmentLabels": [
+          {
+            "documentId": "doc-123",
+            "shippingCarrier": {
+              "carrierCode": "UPS"
+            },
+            "trackingNumber": "1Z999AA10123456784"
+          }
+        ]
+      }
+    },
+    {
+      "label": "with unsupported carrier name",
+      "input": {
+        "returnId": "return-456",
+        "returnShipmentLabels": [
+          {
+            "documentId": "doc-456",
+            "shippingCarrier": {
+              "carrierCode": "OTHER",
+              "unsupportedCarrierName": "Custom Carrier"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "returnId": "return-456",
+        "returnShipmentLabels": [
+          {
+            "documentId": "doc-456",
+            "shippingCarrier": {
+              "carrierCode": "OTHER",
+              "unsupportedCarrierName": "Custom Carrier"
+            }
+          }
+        ]
+      }
+    }
+  ]
 }

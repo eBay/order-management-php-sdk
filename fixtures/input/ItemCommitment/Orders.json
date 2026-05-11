@@ -1,3 +1,69 @@
 {
-  "input": {}
+  "cases": [
+    {
+      "label": "empty input",
+      "input": {},
+      "expected": {}
+    },
+    {
+      "label": "with ordersPage",
+      "input": {
+        "ordersPage": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-abc"
+        }
+      },
+      "expected": {
+        "ordersPage": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-abc"
+        }
+      }
+    },
+    {
+      "label": "with ordersFirstPage",
+      "input": {
+        "ordersFirstPage": {
+          "filter": {
+            "dateRange": {
+              "dateTimeRange": {
+                "startDateTime": "2024-01-01T00:00:00.000Z",
+                "endDateTime": "2024-12-31T23:59:59.000Z"
+              },
+              "dateType": "CREATED_AT"
+            },
+            "sort": {
+              "sortField": "CREATED_AT",
+              "sortOrder": "DESC"
+            }
+          },
+          "maxPageSize": 20
+        }
+      },
+      "expected": {
+        "ordersFirstPage": {
+          "filter": {
+            "dateRange": {
+              "dateTimeRange": {
+                "startDateTime": "2024-01-01T00:00:00.000Z",
+                "endDateTime": "2024-12-31T23:59:59.000Z"
+              },
+              "dateType": "CREATED_AT"
+            },
+            "filter": {
+              "includeAbandoned": false,
+              "includeCancelled": false,
+              "includeConfirmed": true,
+              "includePlaced": false
+            },
+            "sort": {
+              "sortField": "CREATED_AT",
+              "sortOrder": "DESC"
+            }
+          },
+          "maxPageSize": 20
+        }
+      }
+    }
+  ]
 }

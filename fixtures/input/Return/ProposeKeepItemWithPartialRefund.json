@@ -1,12 +1,83 @@
 {
-  "input": {
-    "keepItemPartialRefundTerms": [
-      {
-        "itemPriceRefundPercentage": 0,
-        "itemShippingPriceWaived": false,
-        "returnLineItemId": "mock-id"
+  "cases": [
+    {
+      "label": "with single term",
+      "input": {
+        "keepItemPartialRefundTerms": [
+          {
+            "itemPriceRefundPercentage": 0,
+            "itemShippingPriceWaived": false,
+            "returnLineItemId": "mock-id"
+          }
+        ],
+        "returnId": "mock-id"
+      },
+      "expected": {
+        "returnId": "mock-id",
+        "keepItemPartialRefundTerms": [
+          {
+            "returnLineItemId": "mock-id",
+            "itemPriceRefundPercentage": 0,
+            "itemShippingPriceWaived": false
+          }
+        ]
       }
-    ],
-    "returnId": "mock-id"
-  }
+    },
+    {
+      "label": "shipping waived",
+      "input": {
+        "keepItemPartialRefundTerms": [
+          {
+            "itemPriceRefundPercentage": 50,
+            "itemShippingPriceWaived": true,
+            "returnLineItemId": "rli-123"
+          }
+        ],
+        "returnId": "return-123"
+      },
+      "expected": {
+        "returnId": "return-123",
+        "keepItemPartialRefundTerms": [
+          {
+            "returnLineItemId": "rli-123",
+            "itemPriceRefundPercentage": 50,
+            "itemShippingPriceWaived": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "multiple terms",
+      "input": {
+        "keepItemPartialRefundTerms": [
+          {
+            "returnLineItemId": "rli-a",
+            "itemPriceRefundPercentage": 25,
+            "itemShippingPriceWaived": false
+          },
+          {
+            "returnLineItemId": "rli-b",
+            "itemPriceRefundPercentage": 75,
+            "itemShippingPriceWaived": true
+          }
+        ],
+        "returnId": "return-456"
+      },
+      "expected": {
+        "returnId": "return-456",
+        "keepItemPartialRefundTerms": [
+          {
+            "returnLineItemId": "rli-a",
+            "itemPriceRefundPercentage": 25,
+            "itemShippingPriceWaived": false
+          },
+          {
+            "returnLineItemId": "rli-b",
+            "itemPriceRefundPercentage": 75,
+            "itemShippingPriceWaived": true
+          }
+        ]
+      }
+    }
+  ]
 }

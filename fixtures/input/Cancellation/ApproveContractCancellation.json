@@ -1,6 +1,36 @@
 {
-  "input": {
-    "cancellationId": "mock-id",
-    "relistAllItems": false
-  }
+  "cases": [
+    {
+      "label": "with values",
+      "input": {
+        "cancellationId": "mock-id",
+        "relistAllItems": false
+      },
+      "expected": {
+        "cancellationId": "mock-id",
+        "relistAllItems": false
+      }
+    },
+    {
+      "label": "relist all items true",
+      "input": {
+        "cancellationId": "cancel-123",
+        "relistAllItems": true
+      },
+      "expected": {
+        "cancellationId": "cancel-123",
+        "relistAllItems": true
+      }
+    },
+    {
+      "label": "default relistAllItems",
+      "input": {
+        "cancellationId": "cancel-456"
+      },
+      "expected": {
+        "cancellationId": "cancel-456",
+        "relistAllItems": false
+      }
+    }
+  ]
 }

@@ -1,6 +1,26 @@
 {
-  "input": {
-    "ruleId": "mock-id",
-    "status": "DISABLED"
-  }
+  "cases": [
+    {
+      "label": "disabled status",
+      "input": {
+        "ruleId": "mock-id",
+        "status": "DISABLED"
+      },
+      "expected": {
+        "ruleId": "mock-id",
+        "status": "DISABLED"
+      }
+    },
+    {
+      "label": "enabled status",
+      "input": {
+        "ruleId": "rule-123",
+        "status": "ENABLED"
+      },
+      "expected": {
+        "ruleId": "rule-123",
+        "status": "ENABLED"
+      }
+    }
+  ]
 }

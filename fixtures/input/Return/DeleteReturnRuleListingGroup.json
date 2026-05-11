@@ -1,5 +1,22 @@
 {
-  "input": {
-    "returnRuleListingGroupId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with returnRuleListingGroupId",
+      "input": {
+        "returnRuleListingGroupId": "mock-id"
+      },
+      "expected": {
+        "returnRuleListingGroupId": "mock-id"
+      }
+    },
+    {
+      "label": "different id",
+      "input": {
+        "returnRuleListingGroupId": "group-999"
+      },
+      "expected": {
+        "returnRuleListingGroupId": "group-999"
+      }
+    }
+  ]
 }

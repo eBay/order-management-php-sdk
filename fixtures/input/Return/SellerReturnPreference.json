@@ -1,5 +1,22 @@
 {
-  "input": {
-    "listingMarketplace": "EBAY_AT"
-  }
+  "cases": [
+    {
+      "label": "with listingMarketplace",
+      "input": {
+        "listingMarketplace": "EBAY_AT"
+      },
+      "expected": {
+        "listingMarketplace": "EBAY_AT"
+      }
+    },
+    {
+      "label": "US marketplace",
+      "input": {
+        "listingMarketplace": "EBAY_US"
+      },
+      "expected": {
+        "listingMarketplace": "EBAY_US"
+      }
+    }
+  ]
 }

@@ -1,6 +1,26 @@
 {
-  "input": {
-    "message": "mock",
-    "returnId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with returnId and message",
+      "input": {
+        "message": "mock",
+        "returnId": "mock-id"
+      },
+      "expected": {
+        "returnId": "mock-id",
+        "message": "mock"
+      }
+    },
+    {
+      "label": "with longer message",
+      "input": {
+        "returnId": "return-123",
+        "message": "Please ship the item back to us."
+      },
+      "expected": {
+        "returnId": "return-123",
+        "message": "Please ship the item back to us."
+      }
+    }
+  ]
 }

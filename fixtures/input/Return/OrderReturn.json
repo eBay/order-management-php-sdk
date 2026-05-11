@@ -1,5 +1,22 @@
 {
-  "input": {
-    "returnId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with returnId",
+      "input": {
+        "returnId": "mock-id"
+      },
+      "expected": {
+        "returnId": "mock-id"
+      }
+    },
+    {
+      "label": "different returnId",
+      "input": {
+        "returnId": "return-123"
+      },
+      "expected": {
+        "returnId": "return-123"
+      }
+    }
+  ]
 }

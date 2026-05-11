@@ -1,8 +1,29 @@
 {
-  "input": {
-    "listingMarketplace": "EBAY_AT",
-    "prioritizedRuleIds": [
-      "mock-id"
-    ]
-  }
+  "cases": [
+    {
+      "label": "with ruleIds",
+      "input": {
+        "ruleIds": ["mock-id"]
+      },
+      "expected": {
+        "ruleIds": ["mock-id"]
+      }
+    },
+    {
+      "label": "multiple ruleIds",
+      "input": {
+        "ruleIds": ["rule-1", "rule-2", "rule-3"]
+      },
+      "expected": {
+        "ruleIds": ["rule-1", "rule-2", "rule-3"]
+      }
+    },
+    {
+      "label": "empty ruleIds",
+      "input": {},
+      "expected": {
+        "ruleIds": []
+      }
+    }
+  ]
 }

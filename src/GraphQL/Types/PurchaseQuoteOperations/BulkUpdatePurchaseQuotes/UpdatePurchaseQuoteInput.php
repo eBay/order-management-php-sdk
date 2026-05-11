@@ -44,7 +44,7 @@ readonly class UpdatePurchaseQuoteInput
             $result['lineItems'] = array_map(fn(PurchaseQuoteItemInput $li) => $li->toArray(), $this->lineItems);
         }
         if ($this->logisticsOptions !== null) {
-            $result['logisticsOptions'] = $this->logisticsOptions->toArray();
+            $result['logisticsOptions'] = (object)$this->logisticsOptions->toArray();
         }
         if ($this->messageToBuyer !== null) {
             $result['messageToBuyer'] = $this->messageToBuyer;

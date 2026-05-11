@@ -23,7 +23,7 @@ readonly class Input
     {
         return array_filter([
             'cancellationId' => $this->cancellationId,
-            'fulfillmentDetails' => $this->fulfillmentDetails?->toArray(),
+            'fulfillmentDetails' => $this->fulfillmentDetails !== null ? (object)$this->fulfillmentDetails->toArray() : null,
         ], static fn($v) => $v !== null);
     }
 }

@@ -1,13 +1,53 @@
 {
-  "input": {
-    "conditionSet": {
-      "operator": "AND",
-      "ruleConditions": [
-        {}
-      ]
+  "cases": [
+    {
+      "label": "with conditionSet",
+      "input": {
+        "conditionSet": {
+          "operator": "AND",
+          "ruleConditions": [{"type": "MARKETPLACE"}]
+        },
+        "name": "mock",
+        "responseStrategy": "APPROVE_KEEP_THE_ITEM"
+      },
+      "expected": {
+        "name": "mock",
+        "responseStrategy": "APPROVE_KEEP_THE_ITEM",
+        "conditionSet": {
+          "operator": "AND",
+          "ruleConditions": [{"type": "MARKETPLACE"}]
+        }
+      }
     },
-    "listingMarketplace": "EBAY_AT",
-    "name": "mock",
-    "responseStrategy": "APPROVE_KEEP_THE_ITEM"
-  }
+    {
+      "label": "without conditionSet",
+      "input": {
+        "name": "my-rule",
+        "responseStrategy": "APPROVE"
+      },
+      "expected": {
+        "name": "my-rule",
+        "responseStrategy": "APPROVE"
+      }
+    },
+    {
+      "label": "with OR conditionSet",
+      "input": {
+        "name": "or-rule",
+        "responseStrategy": "DECLINE",
+        "conditionSet": {
+          "operator": "OR",
+          "ruleConditions": [{"key": "val"}]
+        }
+      },
+      "expected": {
+        "name": "or-rule",
+        "responseStrategy": "DECLINE",
+        "conditionSet": {
+          "operator": "OR",
+          "ruleConditions": [{"key": "val"}]
+        }
+      }
+    }
+  ]
 }

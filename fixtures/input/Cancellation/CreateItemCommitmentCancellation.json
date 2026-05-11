@@ -1,7 +1,42 @@
 {
-  "input": {
-    "contractCancellationReason": "BUYER_REQUESTED",
-    "itemCommitmentId": "mock-id",
-    "relistItem": false
-  }
+  "cases": [
+    {
+      "label": "with values",
+      "input": {
+        "contractCancellationReason": "BUYER_REQUESTED",
+        "itemCommitmentId": "mock-id",
+        "relistItem": false
+      },
+      "expected": {
+        "contractCancellationReason": "BUYER_REQUESTED",
+        "itemCommitmentId": "mock-id",
+        "relistItem": false
+      }
+    },
+    {
+      "label": "relist item true",
+      "input": {
+        "contractCancellationReason": "OUT_OF_STOCK",
+        "itemCommitmentId": "item-123",
+        "relistItem": true
+      },
+      "expected": {
+        "contractCancellationReason": "OUT_OF_STOCK",
+        "itemCommitmentId": "item-123",
+        "relistItem": true
+      }
+    },
+    {
+      "label": "default relistItem",
+      "input": {
+        "contractCancellationReason": "BUYER_REQUESTED",
+        "itemCommitmentId": "item-456"
+      },
+      "expected": {
+        "contractCancellationReason": "BUYER_REQUESTED",
+        "itemCommitmentId": "item-456",
+        "relistItem": false
+      }
+    }
+  ]
 }

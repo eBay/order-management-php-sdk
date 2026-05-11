@@ -1,5 +1,22 @@
 {
-  "input": {
-    "inquiryId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with inquiryId",
+      "input": {
+        "inquiryId": "mock-id"
+      },
+      "expected": {
+        "inquiryId": "mock-id"
+      }
+    },
+    {
+      "label": "different id",
+      "input": {
+        "inquiryId": "inq-999"
+      },
+      "expected": {
+        "inquiryId": "inq-999"
+      }
+    }
+  ]
 }

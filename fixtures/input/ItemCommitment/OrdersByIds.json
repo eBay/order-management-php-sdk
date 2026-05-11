@@ -1,7 +1,26 @@
 {
-  "input": {
-    "orderIds": [
-      "mock-id"
-    ]
-  }
+  "cases": [
+    {
+      "label": "single order",
+      "input": {
+        "orderIds": [
+          "mock-id"
+        ]
+      },
+      "expected": {
+        "orderIds": [
+          "mock-id"
+        ]
+      }
+    },
+    {
+      "label": "multiple orders",
+      "input": {
+        "orderIds": ["order-1", "order-2"]
+      },
+      "expected": {
+        "orderIds": ["order-1", "order-2"]
+      }
+    }
+  ]
 }

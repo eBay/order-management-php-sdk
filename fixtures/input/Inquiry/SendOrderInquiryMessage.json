@@ -1,6 +1,26 @@
 {
-  "input": {
-    "inquiryId": "mock-id",
-    "message": "mock"
-  }
+  "cases": [
+    {
+      "label": "with inquiryId and message",
+      "input": {
+        "inquiryId": "mock-id",
+        "message": "mock"
+      },
+      "expected": {
+        "inquiryId": "mock-id",
+        "message": "mock"
+      }
+    },
+    {
+      "label": "with longer message",
+      "input": {
+        "inquiryId": "inq-123",
+        "message": "Please contact me to resolve this issue."
+      },
+      "expected": {
+        "inquiryId": "inq-123",
+        "message": "Please contact me to resolve this issue."
+      }
+    }
+  ]
 }

@@ -1,3 +1,55 @@
 {
-  "input": {}
+  "cases": [
+    {
+      "label": "empty input",
+      "input": {},
+      "expected": {}
+    },
+    {
+      "label": "with itemCommitmentsPage",
+      "input": {
+        "itemCommitmentsPage": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-abc"
+        }
+      },
+      "expected": {
+        "itemCommitmentsPage": {
+          "maxPageSize": 10,
+          "pageCursor": "cursor-abc"
+        }
+      }
+    },
+    {
+      "label": "with itemCommitmentsFirstPage",
+      "input": {
+        "itemCommitmentsFirstPage": {
+          "filter": {
+            "dateRange": {
+              "dateTimeRange": {
+                "startDateTime": "2024-01-01T00:00:00.000Z",
+                "endDateTime": "2024-12-31T23:59:59.000Z"
+              },
+              "dateType": "CREATED_AT"
+            }
+          },
+          "maxPageSize": 20
+        }
+      },
+      "expected": {
+        "itemCommitmentsFirstPage": {
+          "filter": {
+            "dateRange": {
+              "dateTimeRange": {
+                "startDateTime": "2024-01-01T00:00:00.000Z",
+                "endDateTime": "2024-12-31T23:59:59.000Z"
+              },
+              "dateType": "CREATED_AT"
+            }
+          },
+          "maxPageSize": 20
+        }
+      }
+    }
+  ]
 }

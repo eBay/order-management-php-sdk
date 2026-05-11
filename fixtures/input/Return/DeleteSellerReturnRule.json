@@ -1,5 +1,22 @@
 {
-  "input": {
-    "ruleId": "mock-id"
-  }
+  "cases": [
+    {
+      "label": "with ruleId",
+      "input": {
+        "ruleId": "mock-id"
+      },
+      "expected": {
+        "ruleId": "mock-id"
+      }
+    },
+    {
+      "label": "different ruleId",
+      "input": {
+        "ruleId": "rule-999"
+      },
+      "expected": {
+        "ruleId": "rule-999"
+      }
+    }
+  ]
 }

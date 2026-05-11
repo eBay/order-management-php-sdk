@@ -1,7 +1,26 @@
 {
-  "input": {
-    "purchaseQuoteIds": [
-      "mock-id"
-    ]
-  }
+  "cases": [
+    {
+      "label": "single id",
+      "input": {
+        "purchaseQuoteIds": [
+          "mock-id"
+        ]
+      },
+      "expected": {
+        "purchaseQuoteIds": [
+          "mock-id"
+        ]
+      }
+    },
+    {
+      "label": "multiple ids",
+      "input": {
+        "purchaseQuoteIds": ["pq-1", "pq-2"]
+      },
+      "expected": {
+        "purchaseQuoteIds": ["pq-1", "pq-2"]
+      }
+    }
+  ]
 }

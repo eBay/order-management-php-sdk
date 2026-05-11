@@ -1,6 +1,26 @@
 {
-  "input": {
-    "inquiryId": "mock-id",
-    "referralReasonCode": "mock"
-  }
+  "cases": [
+    {
+      "label": "with inquiryId and referralReasonCode",
+      "input": {
+        "inquiryId": "mock-id",
+        "referralReasonCode": "mock"
+      },
+      "expected": {
+        "inquiryId": "mock-id",
+        "referralReasonCode": "mock"
+      }
+    },
+    {
+      "label": "different reason code",
+      "input": {
+        "inquiryId": "inq-123",
+        "referralReasonCode": "ITEM_NOT_RECEIVED"
+      },
+      "expected": {
+        "inquiryId": "inq-123",
+        "referralReasonCode": "ITEM_NOT_RECEIVED"
+      }
+    }
+  ]
 }

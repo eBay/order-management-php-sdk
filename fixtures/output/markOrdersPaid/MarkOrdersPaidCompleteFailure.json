@@ -1,0 +1,21 @@
+{
+  "markOrdersPaid": {
+    "__typename": "MarkOrdersPaidCompleteFailure",
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "c3509b28-5e30-4bb1-a698-3366df60eb34",
+        "retryable": true
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "ecdfa97a-1c3c-4df2-8b63-417aafaa7ee0",
+        "retryable": true
+      }
+    ],
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

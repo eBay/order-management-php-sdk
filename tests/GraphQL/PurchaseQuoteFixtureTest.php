@@ -8,26 +8,37 @@ use PHPUnit\Framework\TestCase;
 
 class PurchaseQuoteFixtureTest extends TestCase
 {
-    private static string $fixturesDir = __DIR__ . '/../../fixtures/output/PurchaseQuote';
+    private static string $fixturesDir = __DIR__ . '/../../fixtures/output';
     private static string $namespace = 'EBay\\OrderManagement\\GraphQL\\Types\\PurchaseQuoteOperations';
+
+    /** @return list<string> camelCase operation keys */
+    private static function operations(): array
+    {
+        return [
+            'bulkUpdatePurchaseQuotes',
+            'commitToPurchase',
+            'createPurchaseQuote',
+            'purchaseQuoteLineItemsByIds',
+            'purchaseQuotes',
+            'purchaseQuotesByIds',
+            'requestPurchaseQuote',
+        ];
+    }
 
     public static function fixtures(): iterable
     {
         $base = self::$fixturesDir;
 
-        foreach (new \DirectoryIterator($base) as $entry) {
-            if ($entry->isDot()) {
-                continue;
-            }
-            $operation = $entry->isDir() ? $entry->getFilename() : basename($entry->getFilename(), '.json');
-            $key = lcfirst($operation);
+        foreach (self::operations() as $opKey) {
+            $operation = ucfirst($opKey);
+            $dir = $base . '/' . $opKey;
 
-            if ($entry->isDir()) {
-                foreach (glob($entry->getPathname() . '/*.json') as $file) {
-                    yield $operation . '/' . basename($file, '.json') => [$operation, $key, $file];
+            if (is_dir($dir)) {
+                foreach (glob($dir . '/*.json') as $file) {
+                    yield $operation . '/' . basename($file, '.json') => [$operation, $opKey, $file];
                 }
             } else {
-                yield $operation => [$operation, $key, $entry->getPathname()];
+                yield $operation => [$operation, $opKey, $dir . '.json'];
             }
         }
     }

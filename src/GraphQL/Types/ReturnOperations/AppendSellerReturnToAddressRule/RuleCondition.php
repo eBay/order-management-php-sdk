@@ -16,6 +16,7 @@ abstract readonly class RuleCondition
             'ReturnShipmentOriginCountryCondition' => ShipmentOriginCountryCondition::fromArray($data),
             'ReturnItemLocationCountryCondition'  => ItemLocationCountryCondition::fromArray($data),
             'ReturnRefundRangeCondition'          => RefundRangeCondition::fromArray($data),
+            'ReturnListingGroupCondition'         => ListingGroupCondition::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown condition __typename: ' . ($data['__typename'] ?? 'null')
             ),

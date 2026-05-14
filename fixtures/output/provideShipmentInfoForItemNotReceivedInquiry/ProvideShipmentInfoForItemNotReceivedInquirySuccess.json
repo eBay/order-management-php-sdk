@@ -1,0 +1,81 @@
+{
+  "provideShipmentInfoForItemNotReceivedInquiry": {
+    "__typename": "ProvideShipmentInfoForItemNotReceivedInquirySuccess",
+    "orderInquiry": {
+      "__typename": "ItemNotReceivedInquiry",
+      "closedAt": "2024-01-01T00:00:00.000Z",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "initiator": "EBAY",
+      "inquirers": [
+        "BUYER",
+        "BUYER"
+      ],
+      "inquiryId": "61d1616e-8a0c-4e8a-af31-db1b44aa30ba",
+      "providedInformation": [
+        {
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "signatureConfirmationProof": {
+                "documentId": "5360fe9a-cee2-424d-8f10-1e8c83c15605",
+                "documentName": "Hello World",
+                "filenameExtension": "JPG",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              },
+              "trackingNumber": "Hello World"
+            },
+            {
+              "__typename": "OrderInquirySignatureConfirmation",
+              "signatureConfirmationProof": {
+                "documentId": "1c4e68ef-6bd4-496d-8bd8-331fae9a0553",
+                "documentName": "Hello World",
+                "filenameExtension": "JPG",
+                "uploadedAt": "2024-01-01T00:00:00.000Z"
+              },
+              "trackingNumber": "Hello World"
+            }
+          ],
+          "submitter": "SELLER"
+        },
+        {
+          "submittedAt": "2024-01-01T00:00:00.000Z",
+          "submittedInformation": [
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              },
+              "trackingNumber": "Hello World"
+            },
+            {
+              "__typename": "OrderInquiryShipmentTracking",
+              "shippingCarrier": {
+                "carrierCode": "Hello World",
+                "unsupportedCarrierName": "Hello World"
+              },
+              "trackingNumber": "Hello World"
+            }
+          ],
+          "submitter": "SELLER"
+        }
+      ],
+      "requestedInformation": [
+        {
+          "requestedAt": "2024-01-01T00:00:00.000Z",
+          "requester": "BUYER"
+        },
+        {
+          "requestedAt": "2024-01-01T00:00:00.000Z",
+          "requester": "EBAY"
+        }
+      ],
+      "responder": "SELLER",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

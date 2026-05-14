@@ -15,6 +15,7 @@ abstract readonly class Output
             'ReturnRuleMissingRuleIdsError'                   => MissingRuleIdsError::fromArray($data),
             'ReturnRuleDuplicateRuleIdsError'                 => DuplicateRuleIdsError::fromArray($data),
             'ReturnRuleInvalidRuleIdsError'                   => InvalidRuleIdsError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError'                => FeatureNotEnabledError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

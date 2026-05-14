@@ -1,0 +1,25 @@
+{
+  "createOrderCancellation": {
+    "__typename": "OrderLineItemCancellationEligibilityError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ineligibilityReasons": [
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItemIds": [
+          "66fba8b5-7c1d-4f19-82a1-3f6a9c1b336c",
+          "b6b402ea-e7dd-4495-afc0-4324d306b42a"
+        ]
+      },
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItemIds": [
+          "f2fad437-b484-4674-a0de-36e196bfc5be",
+          "27096058-e5d3-4729-b977-9c61bb2ee610"
+        ]
+      }
+    ]
+  }
+}

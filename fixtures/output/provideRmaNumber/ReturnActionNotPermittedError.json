@@ -1,0 +1,17 @@
+{
+  "provideRmaNumber": {
+    "__typename": "ReturnActionNotPermittedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "availableActions": [
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    ]
+  }
+}

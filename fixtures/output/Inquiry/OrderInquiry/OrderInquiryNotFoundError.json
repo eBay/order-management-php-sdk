@@ -1,7 +1,0 @@
-{
-  "orderInquiry": {
-    "__typename": "OrderInquiryNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
-  }
-}

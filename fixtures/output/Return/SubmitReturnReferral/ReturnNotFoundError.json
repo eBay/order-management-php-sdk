@@ -1,8 +1,0 @@
-{
-  "submitReturnReferral": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "03956b06-90a4-42b2-97d5-a054e7cf450b"
-  }
-}

@@ -1,0 +1,271 @@
+{
+  "sellerOrderReturns": {
+    "__typename": "SellerOrderReturns",
+    "orderReturns": [
+      {
+        "returnId": "f9dbebdd-3b2c-44d7-bdfb-a4547c15b2dc",
+        "requester": "SELLER",
+        "requestedAt": "2024-01-01T00:00:00.000Z",
+        "closedAt": "2024-01-01T00:00:00.000Z",
+        "status": {
+          "__typename": "ReturnRequested",
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "returnLineItems": [
+          {
+            "returnLineItemId": "360ddbae-6889-459d-88c2-defa3c1e591f",
+            "requestedQuantity": -56,
+            "returnReason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "returnNote": "Hello World",
+            "orderLineItem": {
+              "orderLineItemId": "8d5cd33f-d1d7-4f1e-b09c-086654022592"
+            },
+            "listingRestockTasks": [
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "8cbc91e6-f306-4443-977c-57f01cd9723a"
+                }
+              },
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "9ad4f4f5-c962-423d-862d-3030b808cf20"
+                }
+              }
+            ]
+          },
+          {
+            "returnLineItemId": "6896fb77-4ca1-44f0-ba80-1a0b92f7d5e4",
+            "requestedQuantity": 77,
+            "returnReason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "returnNote": "Hello World",
+            "orderLineItem": {
+              "orderLineItemId": "5efd923d-aaee-4a84-8d71-55349cad3154"
+            },
+            "listingRestockTasks": [
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "2d701f94-dd76-4b99-a800-22d36fe0482f"
+                }
+              },
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "fe5480bf-9aec-4725-8ffb-d6bab9b7aa09"
+                }
+              }
+            ]
+          }
+        ],
+        "returnNegotiation": {
+          "latestReturnOffer": {
+            "status": {
+              "__typename": "ReturnOfferPending",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "proposedTerm": [
+              {
+                "__typename": "KeepItemPartialRefundTerm",
+                "refundAmount": {
+                  "original": {
+                    "value": "1.00",
+                    "currency": "XPF"
+                  },
+                  "exchangeScenario": {
+                    "__typename": "InvalidExchangeScenarioInputError",
+                    "errorCode": "Hello World",
+                    "errorMessage": "Hello World"
+                  }
+                },
+                "itemPriceRefundPercentage": -69,
+                "itemShippingPriceWaived": false
+              },
+              {
+                "__typename": "KeepItemPartialRefundTerm",
+                "refundAmount": {
+                  "original": {
+                    "value": "1.00",
+                    "currency": "TWD"
+                  },
+                  "exchangeScenario": {
+                    "__typename": "InvalidExchangeScenarioInputError",
+                    "errorCode": "Hello World",
+                    "errorMessage": "Hello World"
+                  }
+                },
+                "itemPriceRefundPercentage": -3,
+                "itemShippingPriceWaived": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "returnId": "bb6fe249-b454-4d8e-9888-a6972af46616",
+        "requester": "BUYER",
+        "requestedAt": "2024-01-01T00:00:00.000Z",
+        "closedAt": "2024-01-01T00:00:00.000Z",
+        "status": {
+          "__typename": "ReturnClosed",
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "returnLineItems": [
+          {
+            "returnLineItemId": "561e6b93-5763-4391-b080-ec9ca7e6a4fc",
+            "requestedQuantity": 79,
+            "returnReason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "returnNote": "Hello World",
+            "orderLineItem": {
+              "orderLineItemId": "75cd61a7-d072-4697-83db-710227eb7cfc"
+            },
+            "listingRestockTasks": [
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "983efc20-0931-4b76-b3ac-672fa3825115"
+                }
+              },
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "f678c47c-02ec-423b-a77c-36439841be49"
+                }
+              }
+            ]
+          },
+          {
+            "returnLineItemId": "cdd21dae-504f-428e-a2fd-63aa6760cab7",
+            "requestedQuantity": 98,
+            "returnReason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "returnNote": "Hello World",
+            "orderLineItem": {
+              "orderLineItemId": "6a59f4e7-c7ff-416f-ad0f-8742ef429fe3"
+            },
+            "listingRestockTasks": [
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "102aa683-a18c-4f5c-b466-4b1911db798e"
+                }
+              },
+              {
+                "__typename": "PostPurchaseListingRelistTask",
+                "relistStatus": {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                "relistedListing": {
+                  "__typename": "ListingReference",
+                  "listingId": "9b401e5e-3750-4da1-ba0e-a2b05e15a988"
+                }
+              }
+            ]
+          }
+        ],
+        "returnNegotiation": {
+          "latestReturnOffer": {
+            "status": {
+              "__typename": "ReturnOfferPending",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "proposedTerm": [
+              {
+                "__typename": "KeepItemPartialRefundTerm",
+                "refundAmount": {
+                  "original": {
+                    "value": "1.00",
+                    "currency": "LYD"
+                  },
+                  "exchangeScenario": {
+                    "__typename": "ExchangeAmount",
+                    "amount": {
+                      "value": "1.00",
+                      "currency": "SEK"
+                    },
+                    "exchangeRate": "1.00",
+                    "exchangeAt": "2024-01-01T00:00:00.000Z"
+                  }
+                },
+                "itemPriceRefundPercentage": 90,
+                "itemShippingPriceWaived": true
+              },
+              {
+                "__typename": "KeepItemPartialRefundTerm",
+                "refundAmount": {
+                  "original": {
+                    "value": "1.00",
+                    "currency": "RSD"
+                  },
+                  "exchangeScenario": {
+                    "__typename": "InvalidExchangeScenarioInputError",
+                    "errorCode": "Hello World",
+                    "errorMessage": "Hello World"
+                  }
+                },
+                "itemPriceRefundPercentage": 19,
+                "itemShippingPriceWaived": false
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "pagination": {
+      "nextCursor": "Hello World",
+      "previousCursor": "Hello World"
+    }
+  }
+}

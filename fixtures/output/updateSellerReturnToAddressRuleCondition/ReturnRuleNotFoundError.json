@@ -1,0 +1,8 @@
+{
+  "updateSellerReturnToAddressRuleCondition": {
+    "__typename": "ReturnRuleNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedRuleId": "06d843d3-e63b-4235-8690-e099024de146"
+  }
+}

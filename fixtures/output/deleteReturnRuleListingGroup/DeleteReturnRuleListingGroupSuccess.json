@@ -1,0 +1,7 @@
+{
+  "deleteReturnRuleListingGroup": {
+    "__typename": "DeleteReturnRuleListingGroupSuccess",
+    "groupName": "Hello World",
+    "returnRuleListingGroupId": "c58ad6bd-73a3-41b8-83ba-0404681a7eda"
+  }
+}

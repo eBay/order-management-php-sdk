@@ -1,0 +1,10 @@
+{
+  "sellerOrderInquiries": {
+    "__typename": "OrderInquiryInvalidPageSizeError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "maxAllowedPageSize": 83,
+    "minAllowedPageSize": 76,
+    "requestedPageSize": 16
+  }
+}

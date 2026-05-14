@@ -1,0 +1,9 @@
+{
+  "input": {
+    "groupName": "mock",
+    "listingIds": [
+      "mock-id"
+    ],
+    "listingMarketplace": "EBAY_AT"
+  }
+}

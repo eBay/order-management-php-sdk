@@ -18,6 +18,7 @@ abstract readonly class Output
             'ReturnToAddressRequiredError'     => AddressRequiredError::fromArray($data),
             'ReturnRuleNameError'              => NameError::fromArray($data),
             'ReturnRuleMissingConditionError'  => MissingConditionError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => FeatureNotEnabledError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

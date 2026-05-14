@@ -1,0 +1,8 @@
+{
+  "deleteReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "returnRuleListingGroupId": "314e0f5e-8f11-4051-98af-ffa24a17f875"
+  }
+}

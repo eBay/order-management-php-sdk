@@ -12,7 +12,8 @@ abstract readonly class Output
     {
         return match ($data['__typename'] ?? null) {
             'DeleteSellerReturnRuleSuccess' => Success::fromArray($data),
-            'ReturnRuleNotFoundError'       => NotFoundError::fromArray($data),
+            'ReturnRuleNotFoundError'          => NotFoundError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => FeatureNotEnabledError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

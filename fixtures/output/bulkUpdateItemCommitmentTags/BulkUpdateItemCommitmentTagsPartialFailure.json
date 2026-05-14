@@ -1,0 +1,29 @@
+{
+  "bulkUpdateItemCommitmentTags": {
+    "__typename": "BulkUpdateItemCommitmentTagsPartialFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "updatedItemCommitments": [
+      {
+        "itemCommitmentId": "063483f1-31dc-4572-ad86-0aa5b843ea6f"
+      },
+      {
+        "itemCommitmentId": "7db637ec-b7b4-418a-b71b-6722bb1e3bd2"
+      }
+    ],
+    "failures": [
+      {
+        "inputItemCommitmentId": "cb5ef1e3-4ec0-41c2-ae29-e8aa290efe1b",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      },
+      {
+        "inputItemCommitmentId": "1c67b9c4-a5ed-49d0-a2ec-8e396918577d",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      }
+    ]
+  }
+}

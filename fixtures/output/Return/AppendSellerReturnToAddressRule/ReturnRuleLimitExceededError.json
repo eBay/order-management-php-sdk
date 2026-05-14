@@ -1,8 +1,0 @@
-{
-  "appendSellerReturnToAddressRule": {
-    "__typename": "ReturnRuleLimitExceededError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "maxAllowed": 53
-  }
-}

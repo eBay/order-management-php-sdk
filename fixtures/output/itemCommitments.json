@@ -1,0 +1,102 @@
+{
+  "itemCommitments": {
+    "buyerItemCommitments": {
+      "itemCommitments": [
+        {
+          "itemCommitmentId": "ba47ebeb-b339-4f86-b83a-c0a211efa529",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "committedMarketplace": "EBAY_PH",
+          "state": {
+            "__typename": "ItemCommitmentCompleted",
+            "label": "Hello World"
+          },
+          "cancellation": {
+            "cancellationId": "f86b24b3-9109-48d5-971f-2a757649e00b"
+          },
+          "refunds": [
+            {
+              "refundId": "16f6e67b-cdf3-4e7e-add6-fd553c687678"
+            },
+            {
+              "refundId": "a2402d31-5a69-42db-84d5-b7e1e8c9cfc1"
+            }
+          ],
+          "buyer": {
+            "userId": "274b3efe-b864-4f2d-aacf-020097e83cf1"
+          },
+          "seller": {
+            "userId": "56a39ee6-3fcf-42d6-be7f-5096de4b7b61"
+          },
+          "totals": {
+            "committedTotal": {
+              "original": {
+                "value": "1.00",
+                "currency": "COP"
+              }
+            }
+          },
+          "lineItem": {
+            "quantity": 22,
+            "item": {
+              "itemId": "d70b6931-ae00-4444-9e19-fefe1b2b6266"
+            },
+            "purchaseFlow": {
+              "__typename": "PurchaseFlowCommitToBuy",
+              "label": "Hello World"
+            }
+          }
+        },
+        {
+          "itemCommitmentId": "f2d458c5-eff8-489c-86a7-a79e14281b95",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "committedMarketplace": "EBAY_AT",
+          "state": {
+            "__typename": "ItemCommitmentLocked",
+            "label": "Hello World"
+          },
+          "cancellation": {
+            "cancellationId": "f38cf9af-29ae-47ff-96d1-e0e7041241ee"
+          },
+          "refunds": [
+            {
+              "refundId": "8c80264a-6dd4-44b8-be10-423562a60bb3"
+            },
+            {
+              "refundId": "31c59263-e864-4038-b660-86a45c6acc4b"
+            }
+          ],
+          "buyer": {
+            "userId": "ac279673-c72b-43c2-8c81-ceaf31e73439"
+          },
+          "seller": {
+            "userId": "ca98a8da-6379-4c94-9f34-c012d3324002"
+          },
+          "totals": {
+            "committedTotal": {
+              "original": {
+                "value": "1.00",
+                "currency": "BGN"
+              }
+            }
+          },
+          "lineItem": {
+            "quantity": 88,
+            "item": {
+              "itemId": "1c5bc2c0-5d5a-4e67-a574-4d2027651ffc"
+            },
+            "purchaseFlow": {
+              "__typename": "PurchaseFlowBuyItNow",
+              "label": "Hello World"
+            }
+          }
+        }
+      ],
+      "pagination": {
+        "nextCursor": "Hello World",
+        "previousCursor": "Hello World"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "bulkUpdatePurchaseQuotes": {
+    "__typename": "BulkUpdatePurchaseQuotesSuccess",
+    "updatedPurchaseQuotes": [
+      {
+        "purchaseQuoteId": "21485eed-466c-41f9-88c1-00cc6d9959fb"
+      },
+      {
+        "purchaseQuoteId": "d9a03b78-09b9-4885-bfe7-876ba8a1594e"
+      }
+    ]
+  }
+}

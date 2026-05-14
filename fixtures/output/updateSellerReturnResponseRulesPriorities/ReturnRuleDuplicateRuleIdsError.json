@@ -1,0 +1,11 @@
+{
+  "updateSellerReturnResponseRulesPriorities": {
+    "__typename": "ReturnRuleDuplicateRuleIdsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "duplicateRuleIds": [
+      "dd7b1cef-df54-4b48-a010-5201fee1ad83",
+      "fa5eb6a5-e553-45ad-8456-1c65778bc85d"
+    ]
+  }
+}

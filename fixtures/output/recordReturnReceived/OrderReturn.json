@@ -1,0 +1,12 @@
+{
+  "recordReturnReceived": {
+    "__typename": "OrderReturn",
+    "returnId": "a3a1d6ef-91ec-4b64-945d-a4077f7d088a",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "closedAt": "2024-01-01T00:00:00.000Z"
+  }
+}

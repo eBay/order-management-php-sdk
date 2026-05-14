@@ -1,0 +1,11 @@
+{
+  "createReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroupDuplicateListingError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "duplicateListingIds": [
+      "fd3254d7-19ad-42a3-b7c5-a8a50d3f4f53",
+      "f3447f76-bb66-40f0-86c0-f77c589725c7"
+    ]
+  }
+}

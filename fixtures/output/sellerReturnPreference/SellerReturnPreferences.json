@@ -1,0 +1,9 @@
+{
+  "sellerReturnPreference": {
+    "__typename": "SellerReturnPreferences",
+    "listingMarketplace": "EBAY_GB",
+    "rmaPreference": {
+      "preferenceStatus": "DISABLED"
+    }
+  }
+}

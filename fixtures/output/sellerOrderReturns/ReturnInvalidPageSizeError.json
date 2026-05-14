@@ -1,0 +1,10 @@
+{
+  "sellerOrderReturns": {
+    "__typename": "ReturnInvalidPageSizeError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "maxAllowedPageSize": -41,
+    "minAllowedPageSize": 22,
+    "requestedPageSize": 28
+  }
+}

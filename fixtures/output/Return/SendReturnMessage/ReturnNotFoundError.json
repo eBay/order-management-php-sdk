@@ -1,8 +1,0 @@
-{
-  "sendReturnMessage": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "3d242fd9-dc95-415d-a21f-3c915f7f0dca"
-  }
-}

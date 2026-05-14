@@ -1,0 +1,8 @@
+{
+  "contractCancellation": {
+    "__typename": "ContractCancellationNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedContractCancellationId": "7cdd475f-e6ce-4bc6-8c9b-e92e40e6eeb7"
+  }
+}

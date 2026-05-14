@@ -1,0 +1,44 @@
+{
+  "updateSellerReturnToAddressRuleCondition": {
+    "__typename": "ReturnToAddressRule",
+    "ruleId": "7abed555-babe-4a6a-a442-97fc2f7ce584",
+    "name": "Hello World",
+    "priority": 39,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "addressRoutingStrategy": {
+      "__typename": "ReturnToNearestSellerAddressStrategy",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "conditions": [
+        {
+          "__typename": "ReturnItemCategoryCondition",
+          "categories": [
+            {
+              "categoryId": "509aea5f-3062-485f-a446-870a6cba2331"
+            },
+            {
+              "categoryId": "95c94318-2e8c-4587-93f9-fe52c8a59a5b"
+            }
+          ]
+        },
+        {
+          "__typename": "ReturnItemCategoryCondition",
+          "categories": [
+            {
+              "categoryId": "2cb17f79-eb7d-4c8a-9575-b74e1d34ef10"
+            },
+            {
+              "categoryId": "3f032c7f-79c1-47ba-87c9-f315c6aafaa9"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "updateSellerRmaPreference": {
+    "__typename": "SellerReturnPreferences",
+    "listingMarketplace": "EBAY_DE",
+    "rmaPreference": {
+      "preferenceStatus": "ENABLED"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "input": {
+    "offlineReturnLabelChannel": "COMMUNICATED_TO_BUYER",
+    "returnId": "mock-id"
+  }
+}

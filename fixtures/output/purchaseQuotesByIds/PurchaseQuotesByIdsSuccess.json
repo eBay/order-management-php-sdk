@@ -1,0 +1,25 @@
+{
+  "purchaseQuotesByIds": {
+    "__typename": "PurchaseQuotesByIdsSuccess",
+    "purchaseQuotes": [
+      {
+        "purchaseQuoteId": "76617453-fd1b-4f06-bd29-963e07f620fa",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "state": {
+          "__typename": "PurchaseQuoteActive",
+          "label": "Hello World"
+        }
+      },
+      {
+        "purchaseQuoteId": "27fdefa9-2d9f-403b-9294-6318d47ea1ac",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "state": {
+          "__typename": "PurchaseQuoteActive",
+          "label": "Hello World"
+        }
+      }
+    ]
+  }
+}

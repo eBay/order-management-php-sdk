@@ -1,0 +1,43 @@
+{
+  "bulkUpdateOrderTags": {
+    "__typename": "BulkUpdateOrderTagsPartialFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "displayMessage": "Hello World",
+        "errorCode": "Hello World",
+        "inputOrderId": "0379c212-fa69-4d75-86d3-bee1949997f5",
+        "retryable": true
+      },
+      {
+        "displayMessage": "Hello World",
+        "errorCode": "Hello World",
+        "inputOrderId": "77b0546f-4c2a-46f4-9d35-f97e4a6a5e78",
+        "retryable": false
+      }
+    ],
+    "updatedOrders": [
+      {
+        "orderId": "6450b1b6-bb48-445e-9aac-1f45e547b275",
+        "orderTags": {
+          "tags": [
+            "Hello World",
+            "Hello World"
+          ],
+          "sellerAcknowledged": false
+        }
+      },
+      {
+        "orderId": "9049314e-304a-4e6d-8f0a-0aab1bc5125e",
+        "orderTags": {
+          "tags": [
+            "Hello World",
+            "Hello World"
+          ],
+          "sellerAcknowledged": true
+        }
+      }
+    ]
+  }
+}

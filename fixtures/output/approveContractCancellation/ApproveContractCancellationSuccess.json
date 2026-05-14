@@ -1,0 +1,14 @@
+{
+  "approveContractCancellation": {
+    "__typename": "ApproveContractCancellationSuccess",
+    "contractCancellation": {
+      "cancellationId": "9a1b449e-d449-4bae-8e59-56be3d63ba91",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "closedAt": "2024-01-01T00:00:00.000Z",
+      "requestedAt": "2024-01-01T00:00:00.000Z"
+    }
+  }
+}

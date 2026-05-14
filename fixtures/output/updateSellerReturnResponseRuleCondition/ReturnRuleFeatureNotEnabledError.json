@@ -1,0 +1,7 @@
+{
+  "updateSellerReturnResponseRuleCondition": {
+    "__typename": "ReturnRuleFeatureNotEnabledError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

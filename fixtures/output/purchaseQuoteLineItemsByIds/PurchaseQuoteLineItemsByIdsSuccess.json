@@ -1,0 +1,37 @@
+{
+  "purchaseQuoteLineItemsByIds": {
+    "__typename": "PurchaseQuoteLineItemsByIdsSuccess",
+    "purchaseQuoteLineItems": [
+      {
+        "purchaseQuoteLineItemId": "41d7bb84-47fa-4aaf-a10d-ffd6da9d0bf7",
+        "lineItemSource": {
+          "__typename": "ItemCommitment",
+          "itemCommitmentId": "5fbadaaf-3fcd-4651-8bc9-3ee554e77504"
+        },
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "ARS"
+            }
+          }
+        }
+      },
+      {
+        "purchaseQuoteLineItemId": "811ed3a1-dbf2-4638-b264-609341050272",
+        "lineItemSource": {
+          "__typename": "ItemCommitment",
+          "itemCommitmentId": "6103e2dc-94e3-4ccd-a699-dcd47bf39faf"
+        },
+        "totals": {
+          "total": {
+            "original": {
+              "value": "1.00",
+              "currency": "DOP"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

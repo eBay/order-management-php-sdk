@@ -1,0 +1,7 @@
+{
+  "deleteSellerReturnRule": {
+    "__typename": "DeleteSellerReturnRuleSuccess",
+    "ruleId": "a8669aef-5f7c-40b9-bf7a-e6876dd08f0a",
+    "name": "Hello World"
+  }
+}

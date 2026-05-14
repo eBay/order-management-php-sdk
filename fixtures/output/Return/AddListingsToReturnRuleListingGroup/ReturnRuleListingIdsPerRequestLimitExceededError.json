@@ -1,9 +1,0 @@
-{
-  "addListingsToReturnRuleListingGroup": {
-    "__typename": "ReturnRuleListingIdsPerRequestLimitExceededError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedCount": -82,
-    "perRequestLimit": 10
-  }
-}

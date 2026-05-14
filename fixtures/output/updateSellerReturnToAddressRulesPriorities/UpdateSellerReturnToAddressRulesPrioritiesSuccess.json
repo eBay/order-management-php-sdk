@@ -1,0 +1,91 @@
+{
+  "updateSellerReturnToAddressRulesPriorities": {
+    "__typename": "UpdateSellerReturnToAddressRulesPrioritiesSuccess",
+    "returnToAddressRules": [
+      {
+        "ruleId": "a306696e-59de-47c8-9249-a294a94ad481",
+        "name": "Hello World",
+        "priority": -19,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "addressRoutingStrategy": {
+          "__typename": "ReturnToSpecificAddressStrategy",
+          "code": "Hello World",
+          "displayText": "Hello World",
+          "returnAddress": {
+            "addressId": "92d56d07-5127-41dc-bcf2-a474dc666ec6",
+            "addressLine1": "Hello World",
+            "addressLine2": "Hello World",
+            "city": "Hello World",
+            "stateOrProvince": "Hello World",
+            "postalCode": "Hello World",
+            "countryCode": "NG"
+          }
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnListingGroupCondition",
+              "returnRuleListingGroupId": "9d8f50fa-e8ca-47af-a25e-76d3f3d6ed2b"
+            },
+            {
+              "__typename": "ReturnListingGroupCondition",
+              "returnRuleListingGroupId": "2c63e19a-b1e6-4909-9d7d-3b3a92da2ea1"
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "df1634be-d9a3-4950-83f3-2746b60ea48e",
+        "name": "Hello World",
+        "priority": -11,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "addressRoutingStrategy": {
+          "__typename": "ReturnToSpecificAddressStrategy",
+          "code": "Hello World",
+          "displayText": "Hello World",
+          "returnAddress": {
+            "addressId": "cd93614b-ef39-4684-982a-863f5d97eb7b",
+            "addressLine1": "Hello World",
+            "addressLine2": "Hello World",
+            "city": "Hello World",
+            "stateOrProvince": "Hello World",
+            "postalCode": "Hello World",
+            "countryCode": "HU"
+          }
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnReasonCondition",
+              "returnReasonList": [
+                {
+                  "displayText": "Hello World",
+                  "code": "Hello World"
+                },
+                {
+                  "displayText": "Hello World",
+                  "code": "Hello World"
+                }
+              ]
+            },
+            {
+              "__typename": "ReturnShipmentOriginCountryCondition",
+              "returnShipmentOriginCountries": [
+                "BE",
+                "CL"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

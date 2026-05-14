@@ -1,8 +1,0 @@
-{
-  "approveReturn": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "cdc81988-8b9f-4d3f-b991-86c06ae8ccd7"
-  }
-}

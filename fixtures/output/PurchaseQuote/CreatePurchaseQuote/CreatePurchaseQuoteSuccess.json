@@ -1,8 +1,0 @@
-{
-  "createPurchaseQuote": {
-    "__typename": "CreatePurchaseQuoteSuccess",
-    "purchaseQuote": {
-      "purchaseQuoteId": "f79b28cb-ea76-4e40-a0ef-94fbd78308a1"
-    }
-  }
-}

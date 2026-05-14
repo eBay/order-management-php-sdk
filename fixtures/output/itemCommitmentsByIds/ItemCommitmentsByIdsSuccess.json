@@ -1,0 +1,25 @@
+{
+  "itemCommitmentsByIds": {
+    "__typename": "ItemCommitmentsByIdsSuccess",
+    "itemCommitments": [
+      {
+        "itemCommitmentId": "6733d892-66dc-45a5-b9e5-25de225bb2b4",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "state": {
+          "__typename": "ItemCommitmentLocked",
+          "label": "Hello World"
+        }
+      },
+      {
+        "itemCommitmentId": "b919a16a-a6ca-4ad9-b3cf-ec002f91a4a4",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "state": {
+          "__typename": "ItemCommitmentCompleted",
+          "label": "Hello World"
+        }
+      }
+    ]
+  }
+}

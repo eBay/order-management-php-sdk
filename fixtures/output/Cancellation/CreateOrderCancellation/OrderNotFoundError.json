@@ -1,8 +1,0 @@
-{
-  "createOrderCancellation": {
-    "__typename": "OrderNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "orderId": "da832f04-3f2e-48ed-9ef9-19152332fd0d"
-  }
-}

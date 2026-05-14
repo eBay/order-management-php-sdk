@@ -1,0 +1,9 @@
+{
+  "input": {
+    "updates": [
+      {
+        "purchaseQuoteId": "mock-id"
+      }
+    ]
+  }
+}

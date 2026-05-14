@@ -12,9 +12,11 @@ abstract readonly class Output
     {
         return match ($data['__typename'] ?? null) {
             'ReturnResponseRule'              => ReturnResponseRule::fromArray($data),
-            'ReturnRuleLimitExceededError'    => LimitExceededError::fromArray($data),
-            'ReturnRuleInvalidConditionsError' => InvalidConditionsError::fromArray($data),
-            'ReturnRuleNameError'             => NameError::fromArray($data),
+            'ReturnRuleLimitExceededError'      => LimitExceededError::fromArray($data),
+            'ReturnRuleInvalidConditionsError'  => InvalidConditionsError::fromArray($data),
+            'ReturnRuleNameError'               => NameError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError'  => FeatureNotEnabledError::fromArray($data),
+            'ReturnRuleMissingConditionError'   => MissingConditionError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

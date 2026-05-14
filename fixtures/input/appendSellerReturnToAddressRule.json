@@ -1,0 +1,15 @@
+{
+  "input": {
+    "addressRoute": {
+      "returnToAddressRoutingStrategy": "RETURN_TO_ADDRESS_CLOSEST_TO_BUYER"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "ruleConditions": [
+        {}
+      ]
+    },
+    "listingMarketplace": "EBAY_AT",
+    "name": "mock"
+  }
+}

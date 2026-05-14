@@ -6,136 +6,136 @@ final class ReturnOperations
 {
     public static function APPROVE_RETURN(): string
     {
-        return file_get_contents(__DIR__ . '/Return/ApproveReturn.graphql');
+        return file_get_contents(__DIR__ . '/approveReturn.graphql');
     }
 
     public static function ATTACH_RETURN_SHIPMENT_LABEL(): string
     {
-        return file_get_contents(__DIR__ . '/Return/AttachReturnShipmentLabel.graphql');
+        return file_get_contents(__DIR__ . '/attachReturnShipmentLabel.graphql');
     }
 
     public static function DECLINE_RETURN(): string
     {
-        return file_get_contents(__DIR__ . '/Return/DeclineReturn.graphql');
+        return file_get_contents(__DIR__ . '/declineReturn.graphql');
     }
 
     public static function ORDER_RETURN(): string
     {
-        return file_get_contents(__DIR__ . '/Return/OrderReturn.graphql');
+        return file_get_contents(__DIR__ . '/orderReturn.graphql');
     }
 
     public static function PROCESS_RETURN_REFUND(): string
     {
-        return file_get_contents(__DIR__ . '/Return/ProcessReturnRefund.graphql');
+        return file_get_contents(__DIR__ . '/processReturnRefund.graphql');
     }
 
     public static function PROPOSE_KEEP_ITEM_WITH_PARTIAL_REFUND(): string
     {
-        return file_get_contents(__DIR__ . '/Return/ProposeKeepItemWithPartialRefund.graphql');
+        return file_get_contents(__DIR__ . '/proposeKeepItemWithPartialRefund.graphql');
     }
 
     public static function PROVIDE_RMA_NUMBER(): string
     {
-        return file_get_contents(__DIR__ . '/Return/ProvideRmaNumber.graphql');
+        return file_get_contents(__DIR__ . '/provideRmaNumber.graphql');
     }
 
     public static function RECORD_RETURN_LABEL_SENT_OFFLINE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/RecordReturnLabelSentOffline.graphql');
+        return file_get_contents(__DIR__ . '/recordReturnLabelSentOffline.graphql');
     }
 
     public static function RECORD_RETURN_RECEIVED(): string
     {
-        return file_get_contents(__DIR__ . '/Return/RecordReturnReceived.graphql');
+        return file_get_contents(__DIR__ . '/recordReturnReceived.graphql');
     }
 
     public static function SELLER_ORDER_RETURNS(): string
     {
-        return file_get_contents(__DIR__ . '/Return/SellerOrderReturns.graphql');
+        return file_get_contents(__DIR__ . '/sellerOrderReturns.graphql');
     }
 
     public static function SELLER_RETURN_PREFERENCE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/SellerReturnPreference.graphql');
+        return file_get_contents(__DIR__ . '/sellerReturnPreference.graphql');
     }
 
     public static function SEND_RETURN_MESSAGE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/SendReturnMessage.graphql');
+        return file_get_contents(__DIR__ . '/sendReturnMessage.graphql');
     }
 
     public static function SUBMIT_RETURN_REFERRAL(): string
     {
-        return file_get_contents(__DIR__ . '/Return/SubmitReturnReferral.graphql');
+        return file_get_contents(__DIR__ . '/submitReturnReferral.graphql');
     }
 
     public static function UPDATE_SELLER_RMA_PREFERENCE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerRmaPreference.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerRmaPreference.graphql');
     }
 
     public static function CREATE_IN_STORE_RETURN(): string
     {
-        return file_get_contents(__DIR__ . '/Return/CreateInStoreReturn.graphql');
+        return file_get_contents(__DIR__ . '/createInStoreReturn.graphql');
     }
 
     public static function RETURN_RULE_LISTING_GROUP(): string
     {
-        return file_get_contents(__DIR__ . '/Return/ReturnRuleListingGroup.graphql');
+        return file_get_contents(__DIR__ . '/returnRuleListingGroup.graphql');
     }
 
     public static function CREATE_RETURN_RULE_LISTING_GROUP(): string
     {
-        return file_get_contents(__DIR__ . '/Return/CreateReturnRuleListingGroup.graphql');
+        return file_get_contents(__DIR__ . '/createReturnRuleListingGroup.graphql');
     }
 
     public static function ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP(): string
     {
-        return file_get_contents(__DIR__ . '/Return/AddListingsToReturnRuleListingGroup.graphql');
+        return file_get_contents(__DIR__ . '/addListingsToReturnRuleListingGroup.graphql');
     }
 
     public static function DELETE_RETURN_RULE_LISTING_GROUP(): string
     {
-        return file_get_contents(__DIR__ . '/Return/DeleteReturnRuleListingGroup.graphql');
+        return file_get_contents(__DIR__ . '/deleteReturnRuleListingGroup.graphql');
     }
 
     public static function DELETE_SELLER_RETURN_RULE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/DeleteSellerReturnRule.graphql');
+        return file_get_contents(__DIR__ . '/deleteSellerReturnRule.graphql');
     }
 
     public static function APPEND_SELLER_RETURN_RESPONSE_RULE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/AppendSellerReturnResponseRule.graphql');
+        return file_get_contents(__DIR__ . '/appendSellerReturnResponseRule.graphql');
     }
 
     public static function APPEND_SELLER_RETURN_TO_ADDRESS_RULE(): string
     {
-        return file_get_contents(__DIR__ . '/Return/AppendSellerReturnToAddressRule.graphql');
+        return file_get_contents(__DIR__ . '/appendSellerReturnToAddressRule.graphql');
     }
 
     public static function UPDATE_SELLER_RETURN_RESPONSE_RULE_CONDITION(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerReturnResponseRuleCondition.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerReturnResponseRuleCondition.graphql');
     }
 
     public static function UPDATE_SELLER_RETURN_RESPONSE_RULES_PRIORITIES(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerReturnResponseRulesPriorities.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerReturnResponseRulesPriorities.graphql');
     }
 
     public static function UPDATE_SELLER_RETURN_RULE_STATUS(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerReturnRuleStatus.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerReturnRuleStatus.graphql');
     }
 
     public static function UPDATE_SELLER_RETURN_TO_ADDRESS_RULE_CONDITION(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerReturnToAddressRuleCondition.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerReturnToAddressRuleCondition.graphql');
     }
 
     public static function UPDATE_SELLER_RETURN_TO_ADDRESS_RULES_PRIORITIES(): string
     {
-        return file_get_contents(__DIR__ . '/Return/UpdateSellerReturnToAddressRulesPriorities.graphql');
+        return file_get_contents(__DIR__ . '/updateSellerReturnToAddressRulesPriorities.graphql');
     }
 }

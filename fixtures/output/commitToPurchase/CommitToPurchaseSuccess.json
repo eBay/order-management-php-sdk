@@ -1,0 +1,8 @@
+{
+  "commitToPurchase": {
+    "__typename": "CommitToPurchaseSuccess",
+    "commitment": {
+      "itemCommitmentId": "9747647f-f44b-4978-ab97-59dee9d43561"
+    }
+  }
+}

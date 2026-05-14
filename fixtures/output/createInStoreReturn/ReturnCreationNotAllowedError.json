@@ -1,0 +1,31 @@
+{
+  "createInStoreReturn": {
+    "__typename": "ReturnCreationNotAllowedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "returnIneligibilityReasons": [
+      {
+        "__typename": "ReturnIneligibleRefundIssued",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItem": {
+          "orderLineItemId": "a32e1fce-fae8-494b-b9ad-b285a57e537e",
+          "buyerNotes": "Hello World",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z"
+        }
+      },
+      {
+        "__typename": "ReturnIneligiblePaymentDisputeExists",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderLineItem": {
+          "orderLineItemId": "57e3fce2-3526-4f4a-8b39-b7824487e1d7",
+          "buyerNotes": "Hello World",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z"
+        }
+      }
+    ]
+  }
+}

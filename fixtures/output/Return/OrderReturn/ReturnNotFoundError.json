@@ -1,7 +1,0 @@
-{
-  "orderReturn": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
-  }
-}

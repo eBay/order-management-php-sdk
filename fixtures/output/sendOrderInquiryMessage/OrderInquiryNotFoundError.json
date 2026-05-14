@@ -1,0 +1,8 @@
+{
+  "sendOrderInquiryMessage": {
+    "__typename": "OrderInquiryNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "inquiryId": "f79c9d40-7724-44e8-add6-888fbfcdf071"
+  }
+}

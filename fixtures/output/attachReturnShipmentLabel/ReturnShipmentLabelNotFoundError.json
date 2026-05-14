@@ -1,0 +1,11 @@
+{
+  "attachReturnShipmentLabel": {
+    "__typename": "ReturnShipmentLabelNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedDocumentId": [
+      "9a049a19-7568-4fb2-ab69-9e6869446642",
+      "46a71dd2-7863-41a9-9377-0a16ade074ee"
+    ]
+  }
+}

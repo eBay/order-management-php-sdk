@@ -1,7 +1,0 @@
-{
-  "proposeKeepItemWithPartialRefund": {
-    "__typename": "MultipleRefundTermsNotAllowedError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
-  }
-}

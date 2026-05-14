@@ -1,0 +1,7 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnRuleMissingConditionError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "commitToPurchase": {
+    "__typename": "ReferenceArgumentsNotFound",
+    "argumentNames": [
+      "Hello World",
+      "Hello World"
+    ],
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

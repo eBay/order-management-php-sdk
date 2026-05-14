@@ -1,0 +1,11 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnToAddressRequiredError",
+    "errorCode": "Hello World",
+    "addressRoutingStrategy": {
+      "displayText": "Hello World",
+      "code": "Hello World"
+    },
+    "errorMessage": "Hello World"
+  }
+}

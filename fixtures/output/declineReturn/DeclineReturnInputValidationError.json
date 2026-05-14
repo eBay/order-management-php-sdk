@@ -1,0 +1,33 @@
+{
+  "declineReturn": {
+    "__typename": "DeclineReturnInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnNoteViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": 13,
+            "maxLength": -57
+          }
+        }
+      },
+      {
+        "__typename": "ReturnNoteViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "exceededLength": true,
+        "constraint": {
+          "characterLimit": {
+            "minLength": 55,
+            "maxLength": 93
+          }
+        }
+      }
+    ]
+  }
+}

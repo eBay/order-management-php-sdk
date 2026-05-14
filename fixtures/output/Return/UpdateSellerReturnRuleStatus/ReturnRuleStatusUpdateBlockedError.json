@@ -1,8 +1,0 @@
-{
-  "updateSellerReturnRuleStatus": {
-    "__typename": "ReturnRuleStatusUpdateBlockedError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedRuleId": "7b527c09-b578-4067-b005-dbc1c5ed1097"
-  }
-}

@@ -1,0 +1,11 @@
+{
+  "provideRmaNumber": {
+    "__typename": "OrderReturn",
+    "returnId": "3eb7054d-1c83-4859-9754-5fcbe144aadd",
+    "status": {
+      "__typename": "ReturnClosed",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

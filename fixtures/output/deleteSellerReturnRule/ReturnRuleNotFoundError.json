@@ -1,0 +1,8 @@
+{
+  "deleteSellerReturnRule": {
+    "__typename": "ReturnRuleNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedRuleId": "7f0616bc-d464-447e-bddf-b86589c6002e"
+  }
+}

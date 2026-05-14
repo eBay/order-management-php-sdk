@@ -1,0 +1,21 @@
+{
+  "ordersByIds": {
+    "__typename": "OrdersByIdsCompleteFailure",
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "7355e027-3884-4169-a1e1-5a957585661a",
+        "retryable": false
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "796b6f7b-56b1-44c2-b044-dceb8c3cc911",
+        "retryable": true
+      }
+    ],
+    "errorMessage": "Hello World",
+    "errorCode": "Hello World"
+  }
+}

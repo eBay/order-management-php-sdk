@@ -1,9 +1,0 @@
-{
-  "sellerReturnPreference": {
-    "__typename": "SellerReturnPreferences",
-    "listingMarketplace": "EBAY_CH",
-    "rmaPreference": {
-      "preferenceStatus": "ENABLED"
-    }
-  }
-}

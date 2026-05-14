@@ -1,0 +1,17 @@
+{
+  "approveReturn": {
+    "__typename": "ApproveReturnInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      }
+    ]
+  }
+}

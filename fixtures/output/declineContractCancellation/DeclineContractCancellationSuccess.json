@@ -1,0 +1,12 @@
+{
+  "declineContractCancellation": {
+    "__typename": "DeclineContractCancellationSuccess",
+    "contractCancellation": {
+      "cancellationId": "6c86ab92-e746-4af5-91c4-f598b62e29e4",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

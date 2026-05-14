@@ -1,0 +1,35 @@
+{
+  "attachReturnShipmentLabel": {
+    "__typename": "AttachReturnShipmentLabelInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnShippingCarrierNameViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": true,
+        "constraint": {
+          "characterLimit": {
+            "minLength": 30,
+            "maxLength": -21
+          }
+        }
+      },
+      {
+        "__typename": "ReturnShippingCarrierNameViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "containsInvalidCharacters": true,
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": -39,
+            "maxLength": 41
+          }
+        }
+      }
+    ]
+  }
+}

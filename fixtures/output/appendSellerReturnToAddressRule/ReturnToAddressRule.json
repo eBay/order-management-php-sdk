@@ -1,0 +1,36 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnToAddressRule",
+    "addressRoutingStrategy": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "conditions": [
+        {
+          "__typename": "ReturnRefundRangeCondition",
+          "maxRefundAmount": {
+            "currency": "BGN",
+            "value": "1.00"
+          },
+          "minRefundAmount": {
+            "currency": "ALL",
+            "value": "1.00"
+          }
+        },
+        {
+          "__typename": "ReturnListingGroupCondition",
+          "returnRuleListingGroupId": "5c53f405-97a4-4a51-be64-cf78a5df94e2"
+        }
+      ],
+      "operator": "AND"
+    },
+    "name": "Hello World",
+    "priority": 90,
+    "ruleId": "c680722c-aec6-49d4-8a29-085051f5a3d7",
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

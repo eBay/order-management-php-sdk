@@ -1,0 +1,17 @@
+{
+  "createInStoreReturn": {
+    "__typename": "CreateInStoreReturnInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayMessage": "Hello World"
+      }
+    ]
+  }
+}

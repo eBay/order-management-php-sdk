@@ -1,0 +1,12 @@
+{
+  "createPurchaseQuoteCancellation": {
+    "__typename": "CreatePurchaseQuoteCancellationSuccess",
+    "purchaseQuoteCancellation": {
+      "cancellationId": "47b1fbc8-7756-441f-a4f8-cb4297e5768a",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
+    }
+  }
+}

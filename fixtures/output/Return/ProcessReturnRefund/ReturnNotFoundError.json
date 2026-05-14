@@ -1,8 +1,0 @@
-{
-  "processReturnRefund": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "b4321aec-0734-4e34-9e5f-53346d1d9f5e"
-  }
-}

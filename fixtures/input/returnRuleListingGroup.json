@@ -1,0 +1,8 @@
+{
+  "input": {
+    "pageInfo": {
+      "maxPageSize": 0
+    },
+    "returnRuleListingGroupId": "mock-id"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "proposeKeepItemWithPartialRefund": {
-    "__typename": "ProposeKeepItemWithPartialRefundInputValidationError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
-  }
-}

@@ -1,0 +1,12 @@
+{
+  "submitReturnReferral": {
+    "__typename": "OrderReturn",
+    "returnId": "cc9094fb-e5fd-4554-b969-4352a685c4f4",
+    "status": {
+      "__typename": "ReturnCancelled",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "closedAt": "2024-01-01T00:00:00.000Z"
+  }
+}

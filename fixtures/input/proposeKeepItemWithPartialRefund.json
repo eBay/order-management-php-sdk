@@ -1,0 +1,13 @@
+{
+  "input": {
+    "keepItemPartialRefundTerms": [
+      {
+        "itemPriceRefundPercentage": 0,
+        "itemShippingPriceWaived": false,
+        "returnLineItemId": "mock-id"
+      }
+    ],
+    "returnId": "mock-id"
+  },
+  "scenario": "BUYER_CURRENCY"
+}

@@ -1,0 +1,13 @@
+{
+  "markItemCommitmentsPaid": {
+    "__typename": "MarkItemCommitmentsPaidSuccess",
+    "markPaidItemCommitments": [
+      {
+        "itemCommitmentId": "3fb1e5aa-897f-4e61-b434-16275597c2c1"
+      },
+      {
+        "itemCommitmentId": "e55c1cfd-96bf-4d8b-9d60-710a6c034b7a"
+      }
+    ]
+  }
+}

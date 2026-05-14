@@ -1,0 +1,85 @@
+{
+  "updateSellerReturnResponseRulesPriorities": {
+    "__typename": "UpdateSellerReturnResponseRulesPrioritiesSuccess",
+    "returnResponseRules": [
+      {
+        "ruleId": "6bf05fbb-298e-4459-8b52-29badeb09844",
+        "name": "Hello World",
+        "priority": 9,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "responseStrategy": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnItemCategoryCondition",
+              "categories": [
+                {
+                  "categoryId": "cd52e786-c995-4a87-99b0-f28ce9f0bf65"
+                },
+                {
+                  "categoryId": "f73caf8e-e7eb-4481-9e0d-27168defe0b6"
+                }
+              ]
+            },
+            {
+              "__typename": "ReturnRefundRangeCondition",
+              "maxRefundAmount": {
+                "currency": "RON",
+                "value": "1.00"
+              },
+              "minRefundAmount": {
+                "currency": "PHP",
+                "value": "1.00"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "63082c65-f642-41ec-8256-2162d3508137",
+        "name": "Hello World",
+        "priority": 51,
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "responseStrategy": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "conditionSet": {
+          "operator": "AND",
+          "conditions": [
+            {
+              "__typename": "ReturnReasonCondition",
+              "returnReasonList": [
+                {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                },
+                {
+                  "code": "Hello World",
+                  "displayText": "Hello World"
+                }
+              ]
+            },
+            {
+              "__typename": "ReturnItemLocationCountryCondition",
+              "itemLocationCountries": [
+                "FJ",
+                "GG"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

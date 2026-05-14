@@ -1,7 +1,0 @@
-{
-  "updateSellerReturnToAddressRuleCondition": {
-    "__typename": "ReturnRuleInvalidConditionsError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
-  }
-}

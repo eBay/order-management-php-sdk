@@ -14,7 +14,10 @@ abstract readonly class Output
             'ReturnRuleListingGroup'                    => ListingGroupSuccess::fromArray($data),
             'ReturnRuleListingGroupInvalidNameError'    => InvalidNameError::fromArray($data),
             'ReturnRuleListingGroupDuplicateListingError' => DuplicateListingError::fromArray($data),
-            'ReturnRuleListingGroupQuotaExceededError'  => QuotaExceededError::fromArray($data),
+            'ReturnRuleListingGroupQuotaExceededError'           => QuotaExceededError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError'                   => FeatureNotEnabledError::fromArray($data),
+            'ReturnRuleListingGroupMaxSizeExceededError'         => MaxSizeExceededError::fromArray($data),
+            'ReturnRuleListingIdsPerRequestLimitExceededError'   => IdsPerRequestLimitExceededError::fromArray($data),
             default => throw new \UnexpectedValueException(
                 'Unknown __typename: ' . ($data['__typename'] ?? 'null')
             ),

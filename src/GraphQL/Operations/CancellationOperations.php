@@ -6,36 +6,36 @@ final class CancellationOperations
 {
     public static function APPROVE_CONTRACT_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/ApproveContractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/approveContractCancellation.graphql');
     }
 
     public static function CONTRACT_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/ContractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/contractCancellation.graphql');
     }
 
     public static function CREATE_ITEM_COMMITMENT_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/CreateItemCommitmentCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createItemCommitmentCancellation.graphql');
     }
 
     public static function CREATE_ORDER_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/CreateOrderCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createOrderCancellation.graphql');
     }
 
     public static function CREATE_PURCHASE_QUOTE_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/CreatePurchaseQuoteCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createPurchaseQuoteCancellation.graphql');
     }
 
     public static function DECLINE_CONTRACT_CANCELLATION(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/DeclineContractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/declineContractCancellation.graphql');
     }
 
     public static function SELLER_CONTRACT_CANCELLATIONS(): string
     {
-        return file_get_contents(__DIR__ . '/Cancellation/SellerContractCancellations.graphql');
+        return file_get_contents(__DIR__ . '/sellerContractCancellations.graphql');
     }
 }

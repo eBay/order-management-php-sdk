@@ -1,0 +1,36 @@
+{
+  "updateSellerReturnResponseRuleCondition": {
+    "__typename": "ReturnResponseRule",
+    "ruleId": "f1508f18-50fe-4cc5-87e1-bcc8bb1d6961",
+    "name": "Hello World",
+    "priority": 64,
+    "responseStrategy": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "operator": "AND",
+      "conditions": [
+        {
+          "__typename": "ReturnListingGroupCondition",
+          "returnRuleListingGroupId": "a688b7ee-8568-4ad7-a44a-7ea5a5beaea4"
+        },
+        {
+          "__typename": "ReturnItemCategoryCondition",
+          "categories": [
+            {
+              "categoryId": "be9e1bcd-5c40-4285-9cea-1c85e9bcfe33"
+            },
+            {
+              "categoryId": "be4418a3-4d58-45da-bbf2-c47e2c52cd5b"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

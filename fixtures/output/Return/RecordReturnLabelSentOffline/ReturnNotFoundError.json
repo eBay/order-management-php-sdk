@@ -1,8 +1,0 @@
-{
-  "recordReturnLabelSentOffline": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "615180ad-7c8a-40e2-96a4-a09cd764b98e"
-  }
-}

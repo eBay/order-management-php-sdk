@@ -1,0 +1,33 @@
+{
+  "orderLineItemsByIds": {
+    "__typename": "OrderLineItemsByIdsPartialFailure",
+    "lineItems": [
+      {
+        "orderLineItemId": "29e6e8cd-7da6-4207-a949-4fadcead32b7",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      },
+      {
+        "orderLineItemId": "16e8b6ea-4069-4752-8af3-29e842d45a3e",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      }
+    ],
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputLineItemId": "15c3e1c9-8771-4e11-813d-ff7dd2e1e2d5",
+        "retryable": true
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputLineItemId": "700b3f50-79f9-4888-991d-d58d3da3a4fa",
+        "retryable": true
+      }
+    ],
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

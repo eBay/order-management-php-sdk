@@ -1,0 +1,8 @@
+{
+  "input": {
+    "listingIds": [
+      "mock-id"
+    ],
+    "returnRuleListingGroupId": "mock-id"
+  }
+}

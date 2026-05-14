@@ -1,0 +1,31 @@
+{
+  "createPurchaseQuoteCancellation": {
+    "__typename": "PurchaseQuoteCancellationEligibilityError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ineligibilityReasons": [
+      {
+        "__typename": "PurchaseQuoteCancellationReasonNotAllowed",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "purchaseQuoteId": "d2c1847d-ed7e-4cd1-8d7d-a07ca3c3a181",
+        "availableReasons": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
+      },
+      {
+        "__typename": "PurchaseQuoteCancellationConflictWithWindowElapsed",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "purchaseQuoteId": "ae05c959-9f17-4313-9e42-cb574d895c99"
+      }
+    ]
+  }
+}

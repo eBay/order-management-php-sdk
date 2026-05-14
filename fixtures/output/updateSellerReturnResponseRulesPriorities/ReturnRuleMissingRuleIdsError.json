@@ -1,0 +1,11 @@
+{
+  "updateSellerReturnResponseRulesPriorities": {
+    "__typename": "ReturnRuleMissingRuleIdsError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "missingRuleIds": [
+      "492b9fb3-a56f-421a-9483-7d5ed884e47d",
+      "d03d6cbf-02c9-4a0f-9905-5ff5ecf1e8b6"
+    ]
+  }
+}

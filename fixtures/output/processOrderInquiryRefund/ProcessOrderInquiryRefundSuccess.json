@@ -1,0 +1,65 @@
+{
+  "processOrderInquiryRefund": {
+    "__typename": "ProcessOrderInquiryRefundSuccess",
+    "orderInquiry": {
+      "__typename": "ItemNotReceivedInquiry",
+      "inquiryId": "d51c1944-ebf2-422e-b9ff-70eb33878465",
+      "status": {
+        "__typename": "OrderInquiryClosed",
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "closedAt": "2024-01-01T00:00:00.000Z",
+      "initiator": "BUYER",
+      "responder": "SELLER",
+      "inquirers": [
+        "SELLER",
+        "SELLER"
+      ],
+      "lineItems": [
+        {
+          "inquiryLineItemId": "c9b949e6-a2ad-4ce0-94f5-e424997dbf21",
+          "quantity": -89,
+          "orderLineItem": {
+            "orderLineItemId": "d2bd850a-3d26-442c-a2c3-b889a2cd671c"
+          }
+        },
+        {
+          "inquiryLineItemId": "3bd4a74a-c4e7-4527-adbf-a9c10e501dee",
+          "quantity": -29,
+          "orderLineItem": {
+            "orderLineItemId": "f551115e-d1fa-47f2-bb56-3e309ccae0bb"
+          }
+        }
+      ],
+      "sellerAvailableActions": {
+        "respondByAction": {
+          "respondAction": {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          "responseDueAt": "2024-01-01T00:00:00.000Z"
+        },
+        "secondaryActions": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
+      },
+      "refunds": [
+        {
+          "refundId": "1b366174-bd03-44d9-b9cb-c4237688bba9"
+        },
+        {
+          "refundId": "97b2739f-a1d3-417e-ab06-30b2303d5f0a"
+        }
+      ]
+    }
+  }
+}

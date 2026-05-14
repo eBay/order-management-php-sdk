@@ -1,8 +1,0 @@
-{
-  "recordReturnReceived": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "32948f1c-7bd2-42ea-adc4-7c9a9ca051ec"
-  }
-}

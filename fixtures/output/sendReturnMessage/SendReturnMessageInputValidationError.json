@@ -1,0 +1,33 @@
+{
+  "sendReturnMessage": {
+    "__typename": "SendReturnMessageInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnNoteViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": -48,
+            "maxLength": 82
+          }
+        }
+      },
+      {
+        "__typename": "ReturnNoteViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "exceededLength": false,
+        "constraint": {
+          "characterLimit": {
+            "minLength": -64,
+            "maxLength": 35
+          }
+        }
+      }
+    ]
+  }
+}

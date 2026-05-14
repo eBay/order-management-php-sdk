@@ -1,0 +1,16 @@
+{
+  "appendSellerReturnToAddressRule": {
+    "__typename": "ReturnRuleNameError",
+    "containsInvalidCharacters": false,
+    "duplicateRuleName": false,
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "nameConstraint": {
+      "allowedPattern": "Hello World",
+      "characterLimit": {
+        "maxLength": 85,
+        "minLength": -90
+      }
+    }
+  }
+}

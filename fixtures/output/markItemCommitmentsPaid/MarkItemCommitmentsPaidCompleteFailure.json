@@ -1,0 +1,21 @@
+{
+  "markItemCommitmentsPaid": {
+    "__typename": "MarkItemCommitmentsPaidCompleteFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "failures": [
+      {
+        "inputItemCommitmentId": "14ac9893-f68f-49a3-8f7e-4db49d0a225c",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": false
+      },
+      {
+        "inputItemCommitmentId": "c03b500e-4eff-4819-8b94-f95c95607314",
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "retryable": true
+      }
+    ]
+  }
+}

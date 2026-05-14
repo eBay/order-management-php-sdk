@@ -1,0 +1,8 @@
+{
+  "proposeKeepItemWithPartialRefund": {
+    "__typename": "ReturnNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedReturnId": "dea7aa88-a0e8-493f-9793-59a9be0be017"
+  }
+}

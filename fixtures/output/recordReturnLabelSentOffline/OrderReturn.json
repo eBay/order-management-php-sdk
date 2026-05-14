@@ -1,0 +1,14 @@
+{
+  "recordReturnLabelSentOffline": {
+    "__typename": "OrderReturn",
+    "returnId": "01a0dfc0-da1e-44eb-a638-bc9e04329c38",
+    "status": {
+      "__typename": "ReturnCancelled",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "closedAt": "2024-01-01T00:00:00.000Z",
+    "requestedAt": "2024-01-01T00:00:00.000Z",
+    "requester": "EBAY"
+  }
+}

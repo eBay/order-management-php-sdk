@@ -1,8 +1,0 @@
-{
-  "provideShipmentInfoForItemNotReceivedInquiry": {
-    "__typename": "OrderInquiryNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "inquiryId": "637632b8-bafa-4524-a533-03a721b3fc78"
-  }
-}

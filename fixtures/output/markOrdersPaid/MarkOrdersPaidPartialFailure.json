@@ -1,0 +1,124 @@
+{
+  "markOrdersPaid": {
+    "__typename": "MarkOrdersPaidPartialFailure",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "markPaidOrders": [
+      {
+        "orderId": "8d3c52ce-1aa8-4d8d-985c-df881964e2a4",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "0075c465-16a4-4f12-b0de-fbda999f40f7",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "f443b3d9-8d04-41f6-88e4-4963bcb15f34",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "f17b9e32-f863-43c0-a6c6-d64425215759",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "aa847678-473d-4c4c-bcd3-fa1a43ba4ae3",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "205e650e-8b31-41b8-bff5-f30f056bfd4c",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "a5adc522-4d8e-407e-8681-dcd9d380d3f6",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "orderState": {
+          "__typename": "OrderConfirmed",
+          "label": "Hello World",
+          "fundingState": {
+            "__typename": "PaymentsFailure",
+            "label": "Hello World"
+          },
+          "confirmedAt": "2024-01-01T00:00:00.000Z"
+        }
+      },
+      {
+        "orderId": "ef798bd3-f84a-4dc6-90c5-82943414384f",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "bdbde3e7-4495-488f-a348-65f78ffeb92f",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "95455272-7fbb-4fd2-bb21-ce3c9c318ab3",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "ad0e5c85-3b53-44df-9a2c-4cb103c48bbb",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "7a5462e3-15ce-43ee-b76a-abbf06c40f3a",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "ae1667ff-6d9b-46fc-945d-2077036ec310",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "ba41f647-a6b7-433d-80dd-f13dd6009679",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "orderState": {
+          "__typename": "OrderAbandoned",
+          "label": "Hello World",
+          "abandonedAt": "2024-01-01T00:00:00.000Z",
+          "reason": "Hello World"
+        }
+      }
+    ],
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "77ad52e2-ab61-485e-81be-79573ee40cff",
+        "retryable": true
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputOrderId": "3b5cf971-3e9d-46fe-b28c-b5b007db3f9d",
+        "retryable": false
+      }
+    ]
+  }
+}

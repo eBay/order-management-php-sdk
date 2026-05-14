@@ -1,0 +1,14 @@
+{
+  "sendReturnMessage": {
+    "__typename": "OrderReturn",
+    "returnId": "f24c7c8c-a254-4b60-9998-a16644c9d2b6",
+    "status": {
+      "__typename": "ReturnDeclined",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "closedAt": "2024-01-01T00:00:00.000Z",
+    "requester": "BUYER",
+    "requestedAt": "2024-01-01T00:00:00.000Z"
+  }
+}

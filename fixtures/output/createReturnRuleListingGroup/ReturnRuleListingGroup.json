@@ -1,0 +1,19 @@
+{
+  "createReturnRuleListingGroup": {
+    "__typename": "ReturnRuleListingGroup",
+    "returnRuleListingGroupId": "0ed30fbf-d8df-408b-b0c9-bb082e934719",
+    "groupName": "Hello World",
+    "listings": [
+      {
+        "listingId": "a8187632-1c3e-47b2-a3e9-9f1f94f6ce59"
+      },
+      {
+        "listingId": "49f165f8-2cae-4bbb-a4eb-86266719b057"
+      }
+    ],
+    "pagination": {
+      "nextCursor": "Hello World",
+      "previousCursor": "Hello World"
+    }
+  }
+}

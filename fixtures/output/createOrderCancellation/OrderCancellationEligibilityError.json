@@ -1,0 +1,31 @@
+{
+  "createOrderCancellation": {
+    "__typename": "OrderCancellationEligibilityError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "ineligibilityReasons": [
+      {
+        "__typename": "OrderCancellationConflictWithWindowElapsed",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderId": "253ed9ab-026a-4d3d-99ca-74d7dfa4cd83"
+      },
+      {
+        "__typename": "OrderCancellationReasonNotAllowed",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "orderId": "eabb32f3-a5c6-4b1a-a484-60b446134dde",
+        "availableReasons": [
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          },
+          {
+            "code": "Hello World",
+            "displayText": "Hello World"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "createInStoreReturn": {
+    "__typename": "OrderReturn",
+    "returnId": "7144ce5a-576c-4669-bb23-937d7ea13d4c",
+    "status": {
+      "__typename": "ReturnClosed",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "closedAt": "2024-01-01T00:00:00.000Z",
+    "requester": "BUYER",
+    "requestedAt": "2024-01-01T00:00:00.000Z",
+    "sellerAvailableActions": {
+      "respondByAction": {
+        "respondAction": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "responseDueAt": "2024-01-01T00:00:00.000Z"
+      },
+      "secondaryActions": [
+        {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        }
+      ]
+    },
+    "refunds": [
+      {
+        "refundId": "bfc882db-4999-4f29-9168-f56f4b6529a1"
+      },
+      {
+        "refundId": "5e45deda-3194-40a8-871b-444770541ae3"
+      }
+    ],
+    "cases": [
+      {
+        "caseId": "7ca9d139-630f-43f0-87c1-d820d6933985",
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "reason": {
+          "displayText": "Hello World",
+          "code": "Hello World"
+        },
+        "latestDecision": {
+          "decidedAt": "2024-01-01T00:00:00.000Z",
+          "decisionId": "d5104a55-134d-4685-bd4a-2c185ef8eeec",
+          "inFavorOf": "NONE",
+          "note": "Hello World",
+          "outcomes": [
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ],
+          "reviewRequest": {
+            "reason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "requestedAt": "2024-01-01T00:00:00.000Z",
+            "requester": "SELLER",
+            "requesterNote": "Hello World"
+          }
+        },
+        "initiator": "EBAY"
+      },
+      {
+        "caseId": "3e25968d-ce02-4eb3-9614-5892784aeb91",
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "reason": {
+          "displayText": "Hello World",
+          "code": "Hello World"
+        },
+        "latestDecision": {
+          "decidedAt": "2024-01-01T00:00:00.000Z",
+          "decisionId": "18134bc6-4ab1-4ebc-ac04-ae420523e3b2",
+          "inFavorOf": "BOTH",
+          "note": "Hello World",
+          "outcomes": [
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ],
+          "reviewRequest": {
+            "reason": {
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            "requestedAt": "2024-01-01T00:00:00.000Z",
+            "requester": "SELLER",
+            "requesterNote": "Hello World"
+          }
+        },
+        "initiator": "BUYER"
+      }
+    ]
+  }
+}

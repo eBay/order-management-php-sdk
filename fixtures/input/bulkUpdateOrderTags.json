@@ -1,0 +1,13 @@
+{
+  "input": {
+    "updates": [
+      {
+        "action": "ADD",
+        "orderId": "mock-id",
+        "tags": [
+          "mock"
+        ]
+      }
+    ]
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "returnRuleListingGroup": {
-    "__typename": "ReturnRuleListingGroupNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "returnRuleListingGroupId": "5b1729d6-516d-4a23-bbfe-f8f818ef3e36"
-  }
-}

@@ -1,0 +1,13 @@
+{
+  "input": {
+    "conditionSet": {
+      "operator": "AND",
+      "ruleConditions": [
+        {}
+      ]
+    },
+    "listingMarketplace": "EBAY_AT",
+    "name": "mock",
+    "responseStrategy": "APPROVE_KEEP_THE_ITEM"
+  }
+}

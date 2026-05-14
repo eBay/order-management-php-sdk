@@ -1,0 +1,40 @@
+{
+  "updateSellerReturnRuleStatus": {
+    "__typename": "ReturnToAddressRule",
+    "ruleId": "51aab690-7838-4889-b79d-9affc2718332",
+    "name": "Hello World",
+    "priority": -23,
+    "status": {
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "addressRoutingStrategy": {
+      "__typename": "ReturnToNearestSellerAddressStrategy",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    },
+    "conditionSet": {
+      "conditions": [
+        {
+          "__typename": "ReturnRefundRangeCondition",
+          "maxRefundAmount": {
+            "currency": "GYD",
+            "value": "1.00"
+          },
+          "minRefundAmount": {
+            "currency": "TMT",
+            "value": "1.00"
+          }
+        },
+        {
+          "__typename": "ReturnShipmentOriginCountryCondition",
+          "returnShipmentOriginCountries": [
+            "KR",
+            "LS"
+          ]
+        }
+      ],
+      "operator": "AND"
+    }
+  }
+}

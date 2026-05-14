@@ -1,8 +1,0 @@
-{
-  "sellerContractCancellations": {
-    "__typename": "ContractCancellationInvalidPageSizeError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "maxAllowedPageSize": -4
-  }
-}

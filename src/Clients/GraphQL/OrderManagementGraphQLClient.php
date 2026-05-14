@@ -31,6 +31,7 @@ use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCanc
 
 // ── Item commitment & order input types ───────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateItemCommitmentTags\Input as BulkUpdateItemCommitmentTagsInput;
+use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateOrderTags\Input as BulkUpdateOrderTagsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Input as ItemCommitmentsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitmentsByIds\Input as ItemCommitmentsByIdsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCommitmentsPaid\Input as MarkItemCommitmentsPaidInput;
@@ -41,6 +42,7 @@ use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\OrdersByIds\Inpu
 
 // ── Item commitment & order output types ──────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateItemCommitmentTags\Output as BulkUpdateItemCommitmentTagsOutput;
+use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateOrderTags\Output as BulkUpdateOrderTagsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Output as ItemCommitmentsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitmentsByIds\Output as ItemCommitmentsByIdsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCommitmentsPaid\Output as MarkItemCommitmentsPaidOutput;
@@ -67,12 +69,16 @@ use EBay\OrderManagement\GraphQL\Types\InquiryOperations\SubmitOrderInquiryRefer
 
 // ── Purchase quote input types ────────────────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\BulkUpdatePurchaseQuotes\Input as BulkUpdatePurchaseQuotesInput;
+use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CommitToPurchase\Input as CommitToPurchaseInput;
+use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurchaseQuote\Input as RequestPurchaseQuoteInput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CreatePurchaseQuote\Input as CreatePurchaseQuoteInput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuoteLineItemsByIds\Input as PurchaseQuoteLineItemsByIdsInput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuotesByIds\Input as PurchaseQuotesByIdsInput;
 
 // ── Purchase quote output types ───────────────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\BulkUpdatePurchaseQuotes\Output as BulkUpdatePurchaseQuotesOutput;
+use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CommitToPurchase\Output as CommitToPurchaseOutput;
+use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurchaseQuote\Output as RequestPurchaseQuoteOutput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CreatePurchaseQuote\Output as CreatePurchaseQuoteOutput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuoteLineItemsByIds\Output as PurchaseQuoteLineItemsByIdsOutput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuotes\Output as PurchaseQuotesOutput;
@@ -211,6 +217,12 @@ final class OrderManagementGraphQLClient
         return BulkUpdateItemCommitmentTagsOutput::fromArray($data['bulkUpdateItemCommitmentTags'] ?? []);
     }
 
+    public function bulkUpdateOrderTags(BulkUpdateOrderTagsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): BulkUpdateOrderTagsOutput
+    {
+        $data = $this->dynamic->execute(ItemCommitmentOperations::BULK_UPDATE_ORDER_TAGS(), ['input' => (object)$input->toArray()], $accessToken, $requestOptions);
+        return BulkUpdateOrderTagsOutput::fromArray($data['bulkUpdateOrderTags'] ?? []);
+    }
+
     public function itemCommitments(ItemCommitmentsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ItemCommitmentsOutput
     {
         $data = $this->dynamic->execute(ItemCommitmentOperations::ITEM_COMMITMENTS(), ['input' => (object)$input->toArray()], $accessToken, $requestOptions);
@@ -315,6 +327,18 @@ final class OrderManagementGraphQLClient
     {
         $data = $this->dynamic->execute(PurchaseQuoteOperations::CREATE_PURCHASE_QUOTE(), ['input' => (object)$input->toArray()], $accessToken, $requestOptions);
         return CreatePurchaseQuoteOutput::fromArray($data['createPurchaseQuote'] ?? []);
+    }
+
+    public function commitToPurchase(CommitToPurchaseInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): CommitToPurchaseOutput
+    {
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::COMMIT_TO_PURCHASE(), ['input' => (object)$input->toArray()], $accessToken, $requestOptions);
+        return CommitToPurchaseOutput::fromArray($data['commitToPurchase'] ?? []);
+    }
+
+    public function requestPurchaseQuote(RequestPurchaseQuoteInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): RequestPurchaseQuoteOutput
+    {
+        $data = $this->dynamic->execute(PurchaseQuoteOperations::REQUEST_PURCHASE_QUOTE(), ['input' => (object)$input->toArray()], $accessToken, $requestOptions);
+        return RequestPurchaseQuoteOutput::fromArray($data['requestPurchaseQuote'] ?? []);
     }
 
     // ── Returns ───────────────────────────────────────────────────────────────

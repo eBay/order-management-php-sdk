@@ -1,0 +1,11 @@
+{
+  "declineReturn": {
+    "__typename": "OrderReturn",
+    "returnId": "a6f3e0fc-2527-4ca3-b9ae-e7573464700f",
+    "status": {
+      "__typename": "ReturnClosed",
+      "code": "Hello World",
+      "displayText": "Hello World"
+    }
+  }
+}

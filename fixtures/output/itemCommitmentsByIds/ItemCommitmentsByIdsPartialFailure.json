@@ -1,0 +1,33 @@
+{
+  "itemCommitmentsByIds": {
+    "__typename": "ItemCommitmentsByIdsPartialFailure",
+    "itemCommitments": [
+      {
+        "itemCommitmentId": "d2d37179-262a-4f7b-8577-fc21d7880e01",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      },
+      {
+        "itemCommitmentId": "3b91e9e3-ff5d-45c1-a171-161cbd308e3e",
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z"
+      }
+    ],
+    "failures": [
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputItemCommitmentId": "63e5b398-8542-4287-95e4-f9afefdad461",
+        "retryable": false
+      },
+      {
+        "errorCode": "Hello World",
+        "displayMessage": "Hello World",
+        "inputItemCommitmentId": "4a4b1344-97b3-49b3-8f4a-217d85104306",
+        "retryable": false
+      }
+    ],
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
+  }
+}

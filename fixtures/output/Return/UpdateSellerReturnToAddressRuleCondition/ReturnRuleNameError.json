@@ -1,9 +1,0 @@
-{
-  "updateSellerReturnToAddressRuleCondition": {
-    "__typename": "ReturnRuleNameError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "containsInvalidCharacters": false,
-    "duplicateRuleName": false
-  }
-}

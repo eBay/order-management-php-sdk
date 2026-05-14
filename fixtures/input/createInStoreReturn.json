@@ -1,0 +1,11 @@
+{
+  "input": {
+    "returnLineItemInput": [
+      {
+        "orderLineItemId": "mock-id",
+        "quantityReturned": 0,
+        "returnReason": "COUNTERFEIT"
+      }
+    ]
+  }
+}

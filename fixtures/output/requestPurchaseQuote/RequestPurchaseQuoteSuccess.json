@@ -1,0 +1,8 @@
+{
+  "requestPurchaseQuote": {
+    "__typename": "RequestPurchaseQuoteSuccess",
+    "purchaseQuote": {
+      "purchaseQuoteId": "389d3349-1dce-4ee0-9659-50c5108eb46d"
+    }
+  }
+}

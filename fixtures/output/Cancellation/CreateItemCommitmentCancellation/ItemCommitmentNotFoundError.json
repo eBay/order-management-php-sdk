@@ -1,8 +1,0 @@
-{
-  "createItemCommitmentCancellation": {
-    "__typename": "ItemCommitmentNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "itemCommitmentId": "cdbde0b1-6995-4f33-8c8a-582d43dffd38"
-  }
-}

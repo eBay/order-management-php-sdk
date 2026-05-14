@@ -1,0 +1,27 @@
+{
+  "bulkUpdateOrderTags": {
+    "__typename": "BulkUpdateOrderTagsSuccess",
+    "updatedOrders": [
+      {
+        "orderId": "6af9aa42-7e6d-42b1-9450-14cd0358c6ef",
+        "orderTags": {
+          "sellerAcknowledged": false,
+          "tags": [
+            "Hello World",
+            "Hello World"
+          ]
+        }
+      },
+      {
+        "orderId": "4042fc21-a7bb-4a93-9399-90366ca5fccc",
+        "orderTags": {
+          "sellerAcknowledged": true,
+          "tags": [
+            "Hello World",
+            "Hello World"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "provideRmaNumber": {
+    "__typename": "ReturnNotFoundError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedReturnId": "3ecb2b42-1a39-4f4b-9a77-2b2bc316d476"
+  }
+}

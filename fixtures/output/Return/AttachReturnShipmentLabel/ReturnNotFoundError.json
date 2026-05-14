@@ -1,8 +1,0 @@
-{
-  "attachReturnShipmentLabel": {
-    "__typename": "ReturnNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "requestedReturnId": "b3679ab8-9700-4999-a469-2cbcf93e1614"
-  }
-}

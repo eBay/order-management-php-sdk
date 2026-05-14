@@ -1,0 +1,13 @@
+{
+  "input": {
+    "returnId": "mock-id",
+    "returnShipmentLabels": [
+      {
+        "documentId": "mock",
+        "shippingCarrier": {
+          "carrierCode": "mock"
+        }
+      }
+    ]
+  }
+}

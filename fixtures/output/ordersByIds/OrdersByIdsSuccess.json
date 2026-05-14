@@ -1,0 +1,93 @@
+{
+  "ordersByIds": {
+    "__typename": "OrdersByIdsSuccess",
+    "orders": [
+      {
+        "orderId": "459f827b-aef6-4937-aef6-ea5016c8cc73",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "7df739df-88da-4a33-87f4-672708e0ba12",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "e512761f-d174-4f4a-b3fa-6d435a0a457d",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "68e358da-b66d-412e-a1e4-d6266ebdd159",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "e62146ad-85d2-4e52-ae43-ae12e1cc5061",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "841c664d-611e-461a-9bb1-3b62f074928f",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "72a1f059-ef6b-4905-9525-d5585e3bb2e4",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "orderId": "c6669b35-9f02-413f-852b-1ddfa9671291",
+        "placedAt": "2024-01-01T00:00:00.000Z",
+        "updatedAt": "2024-01-01T00:00:00.000Z",
+        "logistics": {
+          "fulfillmentPlan": [
+            {
+              "planType": "db0c6588-6741-46ca-b1b0-6f17299d942e",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "532ba81a-1569-4a35-9a1c-78d37363ab3f",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "883141a8-1e0f-4ecf-9298-fb3597a0f210",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            },
+            {
+              "planType": "6893ab5f-d9ac-4149-9166-a535f51342d0",
+              "logisticsPlanSteps": [
+                {
+                  "methodName": {
+                    "id": "8d3a119c-aa1d-4fb0-b56b-fa7f49589225",
+                    "displayName": "Hello World"
+                  }
+                },
+                {
+                  "methodName": {
+                    "id": "b5bfe124-da97-4179-b89e-a1fd92d55bab",
+                    "displayName": "Hello World"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

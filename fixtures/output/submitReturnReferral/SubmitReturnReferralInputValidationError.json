@@ -1,0 +1,49 @@
+{
+  "submitReturnReferral": {
+    "__typename": "SubmitReturnReferralInputValidationError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "violations": [
+      {
+        "__typename": "ReturnReferralReasonViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "invalidReferralReason": false,
+        "constraint": {
+          "validReferralReasons": [
+            {
+              "__typename": "UnableToReachAgreement",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "DamagedItemReturned",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "ReturnReferralReasonViolation",
+        "code": "Hello World",
+        "displayMessage": "Hello World",
+        "invalidReferralReason": true,
+        "constraint": {
+          "validReferralReasons": [
+            {
+              "__typename": "ReceivedEmptyBox",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            },
+            {
+              "__typename": "DamagedItemReturned",
+              "code": "Hello World",
+              "displayText": "Hello World"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

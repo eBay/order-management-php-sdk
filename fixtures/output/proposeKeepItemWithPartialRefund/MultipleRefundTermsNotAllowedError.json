@@ -1,0 +1,9 @@
+{
+  "proposeKeepItemWithPartialRefund": {
+    "__typename": "MultipleRefundTermsNotAllowedError",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "maxAllowed": 62,
+    "providedCount": -17
+  }
+}

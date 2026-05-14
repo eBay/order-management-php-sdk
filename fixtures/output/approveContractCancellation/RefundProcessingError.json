@@ -1,7 +1,7 @@
 {
   "approveContractCancellation": {
     "__typename": "RefundProcessingError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
+    "errorCode": "REFUND_PROCESSING_ERROR",
+    "errorMessage": "An error occurred while processing the refund."
   }
 }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\Tests\GraphQL;
 
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Input as ApproveContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Input as ContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Input as CreateItemCommitmentCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Input\ApproveContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Input\ContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Input\CreateItemCommitmentCancellationInput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation\Input as CreateOrderCancellationInput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreatePurchaseQuoteCancellation\Input as CreatePurchaseQuoteCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Input as DeclineContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input as SellerContractCancellationsInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Input\DeclineContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input\SellerContractCancellationsInput;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

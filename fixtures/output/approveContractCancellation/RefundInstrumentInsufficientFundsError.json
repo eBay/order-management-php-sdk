@@ -1,7 +1,7 @@
 {
   "approveContractCancellation": {
     "__typename": "RefundInstrumentInsufficientFundsError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
+    "errorCode": "REFUND_INSTRUMENT_INSUFFICIENT_FUNDS",
+    "errorMessage": "The refund instrument has insufficient funds."
   }
 }

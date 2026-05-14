@@ -6,7 +6,7 @@ namespace EBay\OrderManagement\Tests\GraphQL;
 
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateItemCommitmentTags\Input as BulkUpdateItemCommitmentTagsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateOrderTags\Input as BulkUpdateOrderTagsInput;
-use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Input as ItemCommitmentsInput;
+use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Input\ItemCommitmentsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitmentsByIds\Input as ItemCommitmentsByIdsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCommitmentsPaid\Input as MarkItemCommitmentsPaidInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkOrdersPaid\Input as MarkOrdersPaidInput;

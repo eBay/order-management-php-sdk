@@ -50,7 +50,9 @@ class ItemCommitmentFixtureTest extends TestCase
     {
         $data = json_decode(file_get_contents($file), true);
 
-        $class = self::$namespace . '\\' . $operation . '\\Output';
+        $newStyleClass = self::$namespace . '\\' . $operation . '\\Output\\' . $operation . 'Output';
+        $oldStyleClass = self::$namespace . '\\' . $operation . '\\Output';
+        $class = class_exists($newStyleClass) ? $newStyleClass : $oldStyleClass;
         $result = $class::fromArray($data[$key]);
 
         $this->assertNotNull($result);

@@ -2,98 +2,14 @@
   "contractCancellation": {
     "__typename": "ContractCancellationSuccess",
     "contractCancellation": {
-      "cancellationId": "e9658fa1-b2eb-40d4-98d4-06ee01b9280b",
-      "lineItems": [
-        {
-          "__typename": "PurchaseQuoteCancellationLineItem",
-          "cancellationLineItemId": "eda4af57-e717-47d9-8269-fd3ecad79d2d",
-          "requestedQuantity": -98,
-          "cancelledQuantity": -15,
-          "listingRestockTasks": [
-            {
-              "__typename": "PostPurchaseListingRelistTask",
-              "relistStatus": {
-                "code": "Hello World",
-                "displayText": "Hello World"
-              },
-              "relistedListing": {
-                "listingId": "b3c81c7b-3e7e-4b4a-a709-6aabb28cd0c4"
-              }
-            },
-            {
-              "__typename": "PostPurchaseListingRelistTask",
-              "relistStatus": {
-                "code": "Hello World",
-                "displayText": "Hello World"
-              },
-              "relistedListing": {
-                "listingId": "738addfc-5fc3-4723-8987-89390126fbeb"
-              }
-            }
-          ]
-        },
-        {
-          "__typename": "PurchaseQuoteCancellationLineItem",
-          "cancellationLineItemId": "cad65d46-3336-448d-995c-5fb18a17dc78",
-          "requestedQuantity": 80,
-          "cancelledQuantity": 10,
-          "listingRestockTasks": [
-            {
-              "__typename": "PostPurchaseListingRelistTask",
-              "relistStatus": {
-                "code": "Hello World",
-                "displayText": "Hello World"
-              },
-              "relistedListing": {
-                "listingId": "0b44c0e4-6dba-4a91-a90f-c80caf688ecf"
-              }
-            },
-            {
-              "__typename": "PostPurchaseListingRelistTask",
-              "relistStatus": {
-                "code": "Hello World",
-                "displayText": "Hello World"
-              },
-              "relistedListing": {
-                "listingId": "12029822-3b0c-49f2-9341-79ed20beca79"
-              }
-            }
-          ]
-        }
-      ],
-      "requestedAt": "2024-01-01T00:00:00.000Z",
-      "reason": {
-        "code": "Hello World",
-        "displayText": "Hello World"
-      },
-      "requesterNote": "Hello World",
-      "requester": "EBAY",
-      "status": {
-        "code": "Hello World",
-        "displayText": "Hello World"
-      },
+      "cancellationId": "29832504-bec0-4f5c-8cf9-00d59af483a1",
       "closedAt": "2024-01-01T00:00:00.000Z",
-      "refunds": [
-        {
-          "refundId": "627c8903-95b9-416b-ab26-cff0c4f20a3c"
-        },
-        {
-          "refundId": "63745952-9e12-4b9f-bdda-c692cb8d7f48"
-        }
-      ],
-      "sellerAvailableActions": {
-        "primaryActions": [
-          {
-            "code": "Hello World",
-            "displayText": "Hello World"
-          },
-          {
-            "code": "Hello World",
-            "displayText": "Hello World"
-          }
-        ],
-        "responseDueAt": "2024-01-01T00:00:00.000Z"
-      }
+      "reason": { "code": "OUT_OF_STOCK", "displayText": "Out of stock" },
+      "refunds": [{"refundId": "1f9cbb20-0fd3-4ffc-aaa0-2801bd069a6f"}],
+      "requestedAt": "2024-01-01T00:00:00.000Z",
+      "requester": "BUYER",
+      "requesterNote": "Please cancel",
+      "status": { "code": "AWAITING_SELLER", "displayText": "Awaiting action from seller" }
     }
   }
 }

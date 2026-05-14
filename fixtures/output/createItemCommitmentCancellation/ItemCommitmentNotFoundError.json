@@ -1,8 +1,8 @@
 {
   "createItemCommitmentCancellation": {
     "__typename": "ItemCommitmentNotFoundError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
-    "itemCommitmentId": "90f2ef4d-016a-4a11-8102-0973b7bae1a2"
+    "errorCode": "ITEM_COMMITMENT_NOT_FOUND",
+    "errorMessage": "The item commitment was not found.",
+    "itemCommitmentId": "ic-999"
   }
 }

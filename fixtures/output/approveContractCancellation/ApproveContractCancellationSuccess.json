@@ -2,13 +2,27 @@
   "approveContractCancellation": {
     "__typename": "ApproveContractCancellationSuccess",
     "contractCancellation": {
-      "cancellationId": "9a1b449e-d449-4bae-8e59-56be3d63ba91",
+      "cancellationId": "62823d52-4af4-4688-a80f-2d713d0441bb",
       "status": {
-        "code": "Hello World",
-        "displayText": "Hello World"
+        "code": "AWAITING_SELLER",
+        "displayText": "Awaiting action from seller"
       },
       "closedAt": "2024-01-01T00:00:00.000Z",
-      "requestedAt": "2024-01-01T00:00:00.000Z"
+      "requestedAt": "2024-01-01T00:00:00.000Z",
+      "reason": {
+        "code": "OUT_OF_STOCK",
+        "displayText": "Out of stock"
+      },
+      "refunds": [
+        {
+          "refundId": "326a9547-aeee-43bc-ac7e-720f15ce2ee3"
+        },
+        {
+          "refundId": "856284ee-9377-428b-bd49-8ec93cda6cae"
+        }
+      ],
+      "requester": "BUYER",
+      "requesterNote": "Please approve"
     }
   }
 }

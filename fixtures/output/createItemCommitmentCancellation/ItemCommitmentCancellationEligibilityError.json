@@ -1,20 +1,17 @@
 {
   "createItemCommitmentCancellation": {
     "__typename": "ItemCommitmentCancellationEligibilityError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
+    "errorCode": "ITEM_COMMITMENT_CANCELLATION_ELIGIBILITY_ERROR",
+    "errorMessage": "This item commitment is not eligible for cancellation.",
     "ineligibilityReasons": [
       {
-        "__typename": "ItemCommitmentCancellationConflictWithWindowElapsed",
-        "code": "Hello World",
-        "displayMessage": "Hello World",
-        "itemCommitmentId": "ea6fb0bd-a98b-48da-b53f-dd89a39be308"
-      },
-      {
-        "__typename": "CancellationItemCommitmentIneligible",
-        "code": "Hello World",
-        "displayMessage": "Hello World",
-        "itemCommitmentId": "fa52e9e9-8410-404b-8c74-a0be2f26f513"
+        "__typename": "ItemCommitmentCancellationReasonNotAllowed",
+        "code": "REASON_NOT_ALLOWED",
+        "displayMessage": "The provided cancellation reason is not allowed.",
+        "itemCommitmentId": "ic-001",
+        "availableReasons": [
+          { "code": "BUYER_REQUESTED", "displayText": "Buyer requested" }
+        ]
       }
     ]
   }

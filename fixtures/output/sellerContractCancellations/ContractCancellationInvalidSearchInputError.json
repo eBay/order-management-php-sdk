@@ -1,7 +1,7 @@
 {
   "sellerContractCancellations": {
     "__typename": "ContractCancellationInvalidSearchInputError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World"
+    "errorCode": "INVALID_SEARCH_INPUT",
+    "errorMessage": "The provided search input is invalid."
   }
 }

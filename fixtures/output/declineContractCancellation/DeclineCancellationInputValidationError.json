@@ -1,34 +1,22 @@
 {
   "declineContractCancellation": {
     "__typename": "DeclineCancellationInputValidationError",
-    "errorCode": "Hello World",
-    "errorMessage": "Hello World",
+    "errorCode": "INPUT_VALIDATION_ERROR",
+    "errorMessage": "Input validation failed.",
     "violations": [
       {
-        "__typename": "CancellationShippingCarrierCodeViolation",
-        "code": "Hello World",
-        "displayMessage": "Hello World",
-        "constraint": {
-          "characterLimit": {
-            "minLength": -95,
-            "maxLength": -11
-          }
-        },
+        "__typename": "CancellationTrackingNumberViolation",
+        "code": "TRACKING_NUMBER_EXCEEDED_LENGTH",
+        "displayMessage": "Tracking number is too long.",
+        "constraint": { "characterLimit": { "minLength": 1, "maxLength": 50 } },
         "exceededLength": true,
         "containsInvalidCharacters": false
       },
       {
-        "__typename": "CancellationShippingCarrierCodeViolation",
-        "code": "Hello World",
-        "displayMessage": "Hello World",
-        "constraint": {
-          "characterLimit": {
-            "minLength": -81,
-            "maxLength": -23
-          }
-        },
-        "exceededLength": true,
-        "containsInvalidCharacters": true
+        "__typename": "CancellationShippedDateViolation",
+        "code": "SHIPPED_DATE_OUT_OF_RANGE",
+        "displayMessage": "Shipped date is out of the allowed range.",
+        "constraint": { "fromDate": "2024-01-01T00:00:00.000Z", "toDate": "2024-12-31T23:59:59.000Z" }
       }
     ]
   }

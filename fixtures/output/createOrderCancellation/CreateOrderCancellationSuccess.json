@@ -2,7 +2,7 @@
   "createOrderCancellation": {
     "__typename": "CreateOrderCancellationSuccess",
     "orderCancellation": {
-      "cancellationId": "d8d45436-0859-48e4-a429-52315719f5b2",
+      "cancellationId": "43a36aca-27cb-4c6e-952a-a78f003f320b",
       "status": {
         "code": "Hello World",
         "displayText": "Hello World"

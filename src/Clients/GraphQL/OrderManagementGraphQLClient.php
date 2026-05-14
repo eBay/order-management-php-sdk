@@ -12,27 +12,27 @@ use EBay\OrderManagement\GraphQL\Operations\PurchaseQuoteOperations;
 use EBay\OrderManagement\GraphQL\Operations\ReturnOperations;
 
 // ── Cancellation input types ──────────────────────────────────────────────────
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Input as ApproveContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Input as ContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Input as CreateItemCommitmentCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Input\ApproveContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Input\ContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Input\CreateItemCommitmentCancellationInput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation\Input as CreateOrderCancellationInput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreatePurchaseQuoteCancellation\Input as CreatePurchaseQuoteCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Input as DeclineContractCancellationInput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input as SellerContractCancellationsInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Input\DeclineContractCancellationInput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input\SellerContractCancellationsInput;
 
 // ── Cancellation output types ─────────────────────────────────────────────────
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Output as ApproveContractCancellationOutput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Output as ContractCancellationOutput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output as CreateItemCommitmentCancellationOutput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Output\ApproveContractCancellationOutput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCancellation\Output\ContractCancellationOutput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output\CreateItemCommitmentCancellationOutput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation\Output as CreateOrderCancellationOutput;
 use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreatePurchaseQuoteCancellation\Output as CreatePurchaseQuoteCancellationOutput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output as DeclineContractCancellationOutput;
-use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output as SellerContractCancellationsOutput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output\DeclineContractCancellationOutput;
+use EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output\SellerContractCancellationsOutput;
 
 // ── Item commitment & order input types ───────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateItemCommitmentTags\Input as BulkUpdateItemCommitmentTagsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateOrderTags\Input as BulkUpdateOrderTagsInput;
-use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Input as ItemCommitmentsInput;
+use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Input\ItemCommitmentsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitmentsByIds\Input as ItemCommitmentsByIdsInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCommitmentsPaid\Input as MarkItemCommitmentsPaidInput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkOrdersPaid\Input as MarkOrdersPaidInput;
@@ -43,7 +43,7 @@ use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\OrdersByIds\Inpu
 // ── Item commitment & order output types ──────────────────────────────────────
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateItemCommitmentTags\Output as BulkUpdateItemCommitmentTagsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdateOrderTags\Output as BulkUpdateOrderTagsOutput;
-use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Output as ItemCommitmentsOutput;
+use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitments\Output\ItemCommitmentsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommitmentsByIds\Output as ItemCommitmentsByIdsOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCommitmentsPaid\Output as MarkItemCommitmentsPaidOutput;
 use EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkOrdersPaid\Output as MarkOrdersPaidOutput;

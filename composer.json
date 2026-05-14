@@ -27,7 +27,8 @@
         }
     },
     "scripts": {
-        "analyse": "phpstan analyse"
+        "analyse": "phpstan analyse",
+        "test": "phpunit"
     },
     "config": {
         "allow-plugins": {

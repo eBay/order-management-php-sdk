@@ -52,7 +52,7 @@ use Psr\Http\Message\RequestInterface;
  *   $result = $sdk->graphQL->createOrderCancellation(new CreateOrderCancellationInput(contractCancellationReason: 'OUT_OF_STOCK', orderId: '12-34567-89012'));
  *
  *   // GraphQL — escape hatch
- *   $raw = $sdk->graphQL->executeRaw('{ orders { sellerOrders(input: {}) { orders { orderId } } } }');
+ *   $raw = $sdk->graphQL->executeRawUnsafe('{ orders { sellerOrders(input: {}) { orders { orderId } } } }');
  *
  *   // Per-call custom headers
  *   use EBay\OrderManagement\Configuration\RequestOptions;

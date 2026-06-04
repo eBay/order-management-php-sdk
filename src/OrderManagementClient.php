@@ -99,7 +99,7 @@ final class OrderManagementClient
                     error_log(sprintf(
                         '[OrderManagement][REST] %s %s',
                         $request->getMethod(),
-                        (string) $request->getUri()
+                        str_replace(["\r", "\n"], ' ', (string) $request->getUri())
                     ));
                 },
             ), 'diagnostic_logging');

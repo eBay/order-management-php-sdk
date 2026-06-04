@@ -253,24 +253,16 @@ final class FulfillmentClient
     // ── Internal ──────────────────────────────────────────────────────────────
 
     /**
-     * Merges default and per-call headers; default headers do not overwrite
-     * values already present (matching C# tryAdd semantics).
+     * Merges default and per-call headers; per-request headers take precedence
+     * over defaults.
      *
      * @return array<string,string>
      */
     private function mergeHeaders(?RequestOptions $requestOptions): array
     {
-        $merged = [];
-        // Default headers go in first (lower priority — tryAdd semantics)
-        foreach ($this->config->defaultRequestOptions->headers as $key => $value) {
-            $merged[$key] = $value;
-        }
-        // Per-call headers overwrite defaults
-        if ($requestOptions !== null) {
-            foreach ($requestOptions->headers as $key => $value) {
-                $merged[$key] = $value;
-            }
-        }
-        return $merged;
+        return array_merge(
+            $this->config->defaultRequestOptions->headers,
+            $requestOptions?->headers ?? []
+        );
     }
 }

@@ -46,6 +46,12 @@ final class DynamicGraphQLClient
                 'No access token. Pass $accessToken or set OrderManagementConfiguration::$accessToken.'
             );
 
+        if (empty($token)) {
+            throw new \RuntimeException(
+                'No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.'
+            );
+        }
+
         $headers = [
             'Authorization' => 'Bearer ' . $token,
             'Content-Type'  => 'application/json',

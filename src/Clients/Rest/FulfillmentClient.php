@@ -71,14 +71,13 @@ final class FulfillmentClient
      */
     public function getOrder(string $orderId, ?string $fieldGroups = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Order
     {
-        TokenContext::set($accessToken);
         $rc = new OrderItemRequestBuilderGetRequestConfiguration(
             headers: $this->mergeHeaders($requestOptions),
             queryParameters: OrderItemRequestBuilderGetRequestConfiguration::createQueryParameters(
                 fieldGroups: $fieldGroups,
             ),
         );
-        return $this->kiota->order()->byOrderId($orderId)->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->get($rc)->wait());
     }
 
     /**
@@ -91,7 +90,6 @@ final class FulfillmentClient
      */
     public function getOrders(?string $fieldGroups = null, ?string $filter = null, ?string $limit = null, ?string $offset = null, ?string $orderIds = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?OrderSearchPagedCollection
     {
-        TokenContext::set($accessToken);
         $rc = new OrderRequestBuilderGetRequestConfiguration(
             headers: $this->mergeHeaders($requestOptions),
             queryParameters: OrderRequestBuilderGetRequestConfiguration::createQueryParameters(
@@ -102,7 +100,7 @@ final class FulfillmentClient
                 orderIds: $orderIds,
             ),
         );
-        return $this->kiota->order()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->get($rc)->wait());
     }
 
     /**
@@ -110,9 +108,8 @@ final class FulfillmentClient
      */
     public function issueRefund(string $orderId, IssueRefundRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Refund
     {
-        TokenContext::set($accessToken);
         $rc = new Issue_refundRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->order()->byOrderId($orderId)->issue_refund()->post($body, $rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->issue_refund()->post($body, $rc)->wait());
     }
 
     // ── Shipping Fulfillments ─────────────────────────────────────────────────
@@ -122,9 +119,8 @@ final class FulfillmentClient
      */
     public function getShippingFulfillments(string $orderId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillmentPagedCollection
     {
-        TokenContext::set($accessToken);
         $rc = new Shipping_fulfillmentRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->get($rc)->wait());
     }
 
     /**
@@ -132,9 +128,8 @@ final class FulfillmentClient
      */
     public function createShippingFulfillment(string $orderId, ShippingFulfillmentDetails $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipping_fulfillmentPostResponse
     {
-        TokenContext::set($accessToken);
         $rc = new Shipping_fulfillmentRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->post($body, $rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->post($body, $rc)->wait());
     }
 
     /**
@@ -142,9 +137,8 @@ final class FulfillmentClient
      */
     public function getShippingFulfillment(string $orderId, string $fulfillmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillment
     {
-        TokenContext::set($accessToken);
         $rc = new WithFulfillmentItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get($rc)->wait());
     }
 
     // ── Payment Disputes ──────────────────────────────────────────────────────
@@ -154,9 +148,8 @@ final class FulfillmentClient
      */
     public function getPaymentDispute(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDispute
     {
-        TokenContext::set($accessToken);
         $rc = new WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get($rc)->wait());
     }
 
     /**
@@ -171,7 +164,6 @@ final class FulfillmentClient
      */
     public function getPaymentDisputeSummaries(?string $buyerUsername = null, ?string $limit = null, ?string $offset = null, ?string $openDateFrom = null, ?string $openDateTo = null, ?string $orderId = null, ?string $paymentDisputeStatus = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?DisputeSummaryResponse
     {
-        TokenContext::set($accessToken);
         $rc = new Payment_dispute_summaryRequestBuilderGetRequestConfiguration(
             headers: $this->mergeHeaders($requestOptions),
             queryParameters: Payment_dispute_summaryRequestBuilderGetRequestConfiguration::createQueryParameters(
@@ -184,7 +176,7 @@ final class FulfillmentClient
                 payment_dispute_status: $paymentDisputeStatus,
             ),
         );
-        return $this->kiota->payment_dispute_summary()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute_summary()->get($rc)->wait());
     }
 
     /**
@@ -192,9 +184,8 @@ final class FulfillmentClient
      */
     public function getActivities(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDisputeActivityHistory
     {
-        TokenContext::set($accessToken);
         $rc = new ActivityRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get($rc)->wait());
     }
 
     /**
@@ -202,9 +193,8 @@ final class FulfillmentClient
      */
     public function acceptPaymentDispute(string $paymentDisputeId, AcceptPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
-        TokenContext::set($accessToken);
         $rc = new AcceptRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body, $rc)->wait();
+        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body, $rc)->wait());
     }
 
     /**
@@ -212,9 +202,8 @@ final class FulfillmentClient
      */
     public function contestPaymentDispute(string $paymentDisputeId, ContestPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
-        TokenContext::set($accessToken);
         $rc = new ContestRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body, $rc)->wait();
+        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body, $rc)->wait());
     }
 
     /**
@@ -222,9 +211,8 @@ final class FulfillmentClient
      */
     public function addEvidence(string $paymentDisputeId, AddEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?AddEvidencePaymentDisputeResponse
     {
-        TokenContext::set($accessToken);
         $rc = new Add_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body, $rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body, $rc)->wait());
     }
 
     /**
@@ -232,9 +220,8 @@ final class FulfillmentClient
      */
     public function updateEvidence(string $paymentDisputeId, UpdateEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
-        TokenContext::set($accessToken);
         $rc = new Update_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body, $rc)->wait();
+        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body, $rc)->wait());
     }
 
     /**
@@ -244,7 +231,6 @@ final class FulfillmentClient
      */
     public function fetchEvidenceContent(string $paymentDisputeId, ?string $evidenceId = null, ?string $fileId = null, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?StreamInterface
     {
-        TokenContext::set($accessToken);
         $rc = new Fetch_evidence_contentRequestBuilderGetRequestConfiguration(
             headers: $this->mergeHeaders($requestOptions),
             queryParameters: Fetch_evidence_contentRequestBuilderGetRequestConfiguration::createQueryParameters(
@@ -252,7 +238,7 @@ final class FulfillmentClient
                 file_id: $fileId,
             ),
         );
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait());
     }
 
     /**
@@ -260,9 +246,8 @@ final class FulfillmentClient
      */
     public function uploadEvidenceFile(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?FileEvidence
     {
-        TokenContext::set($accessToken);
         $rc = new Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post($rc)->wait());
     }
 
     // ── Internal ──────────────────────────────────────────────────────────────

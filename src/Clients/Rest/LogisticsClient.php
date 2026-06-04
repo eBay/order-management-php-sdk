@@ -48,9 +48,8 @@ final class LogisticsClient
      */
     public function createShippingQuote(ShippingQuoteRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingQuote
     {
-        TokenContext::set($accessToken);
         $rc = new Shipping_quoteRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipping_quote()->post($body, $rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipping_quote()->post($body, $rc)->wait());
     }
 
     /**
@@ -58,9 +57,8 @@ final class LogisticsClient
      */
     public function getShippingQuote(string $shippingQuoteId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingQuote
     {
-        TokenContext::set($accessToken);
         $rc = new WithShippingQuoteItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipping_quote()->byShippingQuoteId($shippingQuoteId)->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipping_quote()->byShippingQuoteId($shippingQuoteId)->get($rc)->wait());
     }
 
     // ── Shipments ─────────────────────────────────────────────────────────────
@@ -70,9 +68,8 @@ final class LogisticsClient
      */
     public function createFromShippingQuote(CreateShipmentFromQuoteRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipment
     {
-        TokenContext::set($accessToken);
         $rc = new Create_from_shipping_quoteRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipment()->create_from_shipping_quote()->post($body, $rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipment()->create_from_shipping_quote()->post($body, $rc)->wait());
     }
 
     /**
@@ -80,9 +77,8 @@ final class LogisticsClient
      */
     public function getShipment(string $shipmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipment
     {
-        TokenContext::set($accessToken);
         $rc = new WithShipmentItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipment()->byShipmentId($shipmentId)->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipment()->byShipmentId($shipmentId)->get($rc)->wait());
     }
 
     /**
@@ -90,9 +86,8 @@ final class LogisticsClient
      */
     public function cancelShipment(string $shipmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipment
     {
-        TokenContext::set($accessToken);
         $rc = new CancelRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipment()->byShipmentId($shipmentId)->cancel()->post($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipment()->byShipmentId($shipmentId)->cancel()->post($rc)->wait());
     }
 
     /**
@@ -100,9 +95,8 @@ final class LogisticsClient
      */
     public function downloadLabelFile(string $shipmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?StreamInterface
     {
-        TokenContext::set($accessToken);
         $rc = new Download_label_fileRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return $this->kiota->shipment()->byShipmentId($shipmentId)->download_label_file()->get($rc)->wait();
+        return TokenContext::runWith($accessToken, fn() => $this->kiota->shipment()->byShipmentId($shipmentId)->download_label_file()->get($rc)->wait());
     }
 
     // ── Internal ──────────────────────────────────────────────────────────────

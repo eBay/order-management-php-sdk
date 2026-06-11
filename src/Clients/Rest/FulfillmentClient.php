@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\Clients\Rest;
 
+use EBay\OrderManagement\Configuration\KiotaAuthProvider;
 use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
 use EBay\OrderManagement\Configuration\RequestOptions;
-use EBay\OrderManagement\Configuration\TokenContext;
 use EBay\OrderManagement\Generated\Fulfillment\FulfillmentApiClient;
 use EBay\OrderManagement\Generated\Fulfillment\Models\AcceptPaymentDisputeRequest;
 use EBay\OrderManagement\Generated\Fulfillment\Models\AddEvidencePaymentDisputeRequest;
@@ -54,12 +54,15 @@ use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_eviden
 use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Update_evidence\Update_evidenceRequestBuilderPostRequestConfiguration;
 use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration;
 use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration;
+use GuzzleHttp\Client as GuzzleClient;
+use Microsoft\Kiota\Abstractions\Authentication\BaseBearerTokenAuthenticationProvider;
+use Microsoft\Kiota\Http\GuzzleRequestAdapter;
 use Psr\Http\Message\StreamInterface;
 
 final class FulfillmentClient
 {
     public function __construct(
-        private readonly FulfillmentApiClient $kiota,
+        private readonly GuzzleClient $guzzle,
         private readonly OrderManagementConfiguration $config,
     ) {}
 
@@ -77,7 +80,7 @@ final class FulfillmentClient
                 fieldGroups: $fieldGroups,
             ),
         );
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->byOrderId($orderId)->get($rc)->wait());
     }
 
     /**
@@ -100,7 +103,7 @@ final class FulfillmentClient
                 orderIds: $orderIds,
             ),
         );
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->get($rc)->wait());
     }
 
     /**
@@ -109,7 +112,7 @@ final class FulfillmentClient
     public function issueRefund(string $orderId, IssueRefundRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Refund
     {
         $rc = new Issue_refundRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->issue_refund()->post($body, $rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->byOrderId($orderId)->issue_refund()->post($body, $rc)->wait());
     }
 
     // ── Shipping Fulfillments ─────────────────────────────────────────────────
@@ -120,7 +123,7 @@ final class FulfillmentClient
     public function getShippingFulfillments(string $orderId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillmentPagedCollection
     {
         $rc = new Shipping_fulfillmentRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->byOrderId($orderId)->shipping_fulfillment()->get($rc)->wait());
     }
 
     /**
@@ -129,7 +132,7 @@ final class FulfillmentClient
     public function createShippingFulfillment(string $orderId, ShippingFulfillmentDetails $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?Shipping_fulfillmentPostResponse
     {
         $rc = new Shipping_fulfillmentRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->post($body, $rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->byOrderId($orderId)->shipping_fulfillment()->post($body, $rc)->wait());
     }
 
     /**
@@ -138,7 +141,7 @@ final class FulfillmentClient
     public function getShippingFulfillment(string $orderId, string $fulfillmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?ShippingFulfillment
     {
         $rc = new WithFulfillmentItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get($rc)->wait());
     }
 
     // ── Payment Disputes ──────────────────────────────────────────────────────
@@ -149,7 +152,7 @@ final class FulfillmentClient
     public function getPaymentDispute(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDispute
     {
         $rc = new WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get($rc)->wait());
     }
 
     /**
@@ -176,7 +179,7 @@ final class FulfillmentClient
                 payment_dispute_status: $paymentDisputeStatus,
             ),
         );
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute_summary()->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute_summary()->get($rc)->wait());
     }
 
     /**
@@ -185,7 +188,7 @@ final class FulfillmentClient
     public function getActivities(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?PaymentDisputeActivityHistory
     {
         $rc = new ActivityRequestBuilderGetRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get($rc)->wait());
     }
 
     /**
@@ -194,7 +197,7 @@ final class FulfillmentClient
     public function acceptPaymentDispute(string $paymentDisputeId, AcceptPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         $rc = new AcceptRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body, $rc)->wait());
+        $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post($body, $rc)->wait());
     }
 
     /**
@@ -203,7 +206,7 @@ final class FulfillmentClient
     public function contestPaymentDispute(string $paymentDisputeId, ContestPaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         $rc = new ContestRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body, $rc)->wait());
+        $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post($body, $rc)->wait());
     }
 
     /**
@@ -212,7 +215,7 @@ final class FulfillmentClient
     public function addEvidence(string $paymentDisputeId, AddEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?AddEvidencePaymentDisputeResponse
     {
         $rc = new Add_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body, $rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post($body, $rc)->wait());
     }
 
     /**
@@ -221,7 +224,7 @@ final class FulfillmentClient
     public function updateEvidence(string $paymentDisputeId, UpdateEvidencePaymentDisputeRequest $body, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
     {
         $rc = new Update_evidenceRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body, $rc)->wait());
+        $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post($body, $rc)->wait());
     }
 
     /**
@@ -238,7 +241,7 @@ final class FulfillmentClient
                 file_id: $fileId,
             ),
         );
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get($rc)->wait());
     }
 
     /**
@@ -247,10 +250,27 @@ final class FulfillmentClient
     public function uploadEvidenceFile(string $paymentDisputeId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): ?FileEvidence
     {
         $rc = new Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $this->mergeHeaders($requestOptions));
-        return TokenContext::runWith($accessToken, fn() => $this->kiota->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post($rc)->wait());
+        return $this->call($accessToken, fn($api) => $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post($rc)->wait());
     }
 
     // ── Internal ──────────────────────────────────────────────────────────────
+
+    private function call(?string $accessToken, callable $op): mixed
+    {
+        $token = $accessToken ?? $this->config->accessToken
+            ?? throw new \RuntimeException('No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.');
+        return $op($this->buildApiClient($token));
+    }
+
+    private function buildApiClient(string $token): FulfillmentApiClient
+    {
+        $auth = new BaseBearerTokenAuthenticationProvider(
+            new KiotaAuthProvider($token, $this->config->getAllowedHosts())
+        );
+        $adapter = new GuzzleRequestAdapter($auth, guzzleClient: $this->guzzle);
+        $adapter->setBaseUrl($this->config->fulfillmentBaseUrl);
+        return new FulfillmentApiClient($adapter);
+    }
 
     /**
      * Merges default and per-call headers; per-request headers take precedence

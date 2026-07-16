@@ -4,14 +4,14 @@
     "contractCancellation": {
       "cancellationId": "62823d52-4af4-4688-a80f-2d713d0441bb",
       "status": {
-        "code": "AWAITING_SELLER",
-        "displayText": "Awaiting action from seller"
+        "code": "Hello World",
+        "displayText": "Hello World"
       },
       "closedAt": "2024-01-01T00:00:00.000Z",
       "requestedAt": "2024-01-01T00:00:00.000Z",
       "reason": {
-        "code": "OUT_OF_STOCK",
-        "displayText": "Out of stock"
+        "code": "Hello World",
+        "displayText": "Hello World"
       },
       "refunds": [
         {
@@ -21,8 +21,8 @@
           "refundId": "856284ee-9377-428b-bd49-8ec93cda6cae"
         }
       ],
-      "requester": "BUYER",
-      "requesterNote": "Please approve"
+      "requester": "EBAY",
+      "requesterNote": "Hello World"
     }
   }
 }

@@ -1,10 +1,17 @@
 {
   "declineContractCancellation": {
     "__typename": "ContractCancellationActionNotPermittedError",
-    "errorCode": "ACTION_NOT_PERMITTED",
-    "errorMessage": "This action is not permitted.",
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
     "availableActions": [
-      { "code": "APPROVE", "displayText": "Approve cancellation" }
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
     ]
   }
 }

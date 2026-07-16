@@ -2,14 +2,27 @@
   "declineContractCancellation": {
     "__typename": "DeclineContractCancellationSuccess",
     "contractCancellation": {
-      "cancellationId": "abc12345-0000-0000-0000-000000000001",
-      "status": { "code": "DECLINED", "displayText": "Declined" },
-      "closedAt": "2024-06-01T10:00:00.000Z",
-      "reason": { "code": "OUT_OF_STOCK", "displayText": "Out of stock" },
-      "refunds": [],
-      "requestedAt": "2024-05-31T08:00:00.000Z",
-      "requester": "BUYER",
-      "requesterNote": "Please cancel my order"
+      "cancellationId": "f50c4c8a-367f-4c41-a14c-232763ff392d",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "closedAt": "2024-01-01T00:00:00.000Z",
+      "reason": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "refunds": [
+        {
+          "refundId": "51cb1e0d-108a-4e15-bd38-b54ae246bc54"
+        },
+        {
+          "refundId": "d32fe0c8-0141-4506-b4b8-d42e6e5be437"
+        }
+      ],
+      "requestedAt": "2024-01-01T00:00:00.000Z",
+      "requester": "EBAY",
+      "requesterNote": "Hello World"
     }
   }
 }

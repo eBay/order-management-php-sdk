@@ -1,7 +1,7 @@
 {
   "sellerContractCancellations": {
     "__typename": "ContractCancellationInvalidDateRangeError",
-    "errorCode": "INVALID_DATE_RANGE",
-    "errorMessage": "The provided date range is invalid."
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

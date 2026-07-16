@@ -1,7 +1,7 @@
 {
   "approveContractCancellation": {
     "__typename": "RefundInstrumentInvalidError",
-    "errorCode": "REFUND_INSTRUMENT_INVALID",
-    "errorMessage": "The refund instrument is invalid."
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

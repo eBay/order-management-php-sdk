@@ -3,16 +3,55 @@
     "__typename": "SellerContractCancellationsSuccess",
     "contractCancellations": [
       {
-        "cancellationId": "cc-001",
-        "closedAt": null,
-        "reason": { "code": "OUT_OF_STOCK", "displayText": "Out of stock" },
-        "refunds": [],
-        "requestedAt": "2024-01-15T10:00:00.000Z",
+        "cancellationId": "ef5d082e-9f15-49a0-b021-e8814b9a365f",
+        "closedAt": "2024-01-01T00:00:00.000Z",
+        "reason": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "refunds": [
+          {
+            "refundId": "b6077385-e9ae-4c5c-83b9-36a4e0c66b55"
+          },
+          {
+            "refundId": "59d832bb-9cf0-4960-9de8-e30328d01173"
+          }
+        ],
+        "requestedAt": "2024-01-01T00:00:00.000Z",
+        "requester": "EBAY",
+        "requesterNote": "Hello World",
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        }
+      },
+      {
+        "cancellationId": "99b2c853-19db-4396-9814-0e1276fee7ff",
+        "closedAt": "2024-01-01T00:00:00.000Z",
+        "reason": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        },
+        "refunds": [
+          {
+            "refundId": "30f650f5-499a-4f7f-8c99-5f9ba4b64c51"
+          },
+          {
+            "refundId": "14bfa036-f149-4fbb-990e-5bff2c49f2e8"
+          }
+        ],
+        "requestedAt": "2024-01-01T00:00:00.000Z",
         "requester": "BUYER",
-        "requesterNote": "Please cancel",
-        "status": { "code": "AWAITING_SELLER", "displayText": "Awaiting action from seller" }
+        "requesterNote": "Hello World",
+        "status": {
+          "code": "Hello World",
+          "displayText": "Hello World"
+        }
       }
     ],
-    "pagination": { "nextCursor": null, "previousCursor": null }
+    "pagination": {
+      "nextCursor": "Hello World",
+      "previousCursor": "Hello World"
+    }
   }
 }

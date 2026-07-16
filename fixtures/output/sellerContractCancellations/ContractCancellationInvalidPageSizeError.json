@@ -1,8 +1,8 @@
 {
   "sellerContractCancellations": {
     "__typename": "ContractCancellationInvalidPageSizeError",
-    "errorCode": "INVALID_PAGE_SIZE",
-    "errorMessage": "The requested page size exceeds the maximum allowed.",
-    "maxAllowedPageSize": 200
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "maxAllowedPageSize": -75
   }
 }

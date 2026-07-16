@@ -4,12 +4,25 @@
     "contractCancellation": {
       "cancellationId": "29832504-bec0-4f5c-8cf9-00d59af483a1",
       "closedAt": "2024-01-01T00:00:00.000Z",
-      "reason": { "code": "OUT_OF_STOCK", "displayText": "Out of stock" },
-      "refunds": [{"refundId": "1f9cbb20-0fd3-4ffc-aaa0-2801bd069a6f"}],
+      "reason": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "refunds": [
+        {
+          "refundId": "1f9cbb20-0fd3-4ffc-aaa0-2801bd069a6f"
+        },
+        {
+          "refundId": "38426bb9-355c-4376-bc3a-1a368e2a914f"
+        }
+      ],
       "requestedAt": "2024-01-01T00:00:00.000Z",
       "requester": "BUYER",
-      "requesterNote": "Please cancel",
-      "status": { "code": "AWAITING_SELLER", "displayText": "Awaiting action from seller" }
+      "requesterNote": "Hello World",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      }
     }
   }
 }

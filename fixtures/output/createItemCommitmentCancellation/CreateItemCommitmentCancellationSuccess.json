@@ -2,9 +2,12 @@
   "createItemCommitmentCancellation": {
     "__typename": "CreateItemCommitmentCancellationSuccess",
     "itemCommitmentCancellation": {
-      "cancellationId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      "status": { "code": "AWAITING_SELLER", "displayText": "Awaiting action from seller" },
-      "closedAt": null
+      "cancellationId": "2ed457f9-75e7-438a-8dbc-56bad49f1d65",
+      "status": {
+        "code": "Hello World",
+        "displayText": "Hello World"
+      },
+      "closedAt": "2024-01-01T00:00:00.000Z"
     }
   }
 }

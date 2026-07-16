@@ -1,7 +1,7 @@
 {
   "approveContractCancellation": {
     "__typename": "RefundAuthorizationFailedError",
-    "errorCode": "REFUND_AUTHORIZATION_FAILED",
-    "errorMessage": "The refund authorization failed."
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

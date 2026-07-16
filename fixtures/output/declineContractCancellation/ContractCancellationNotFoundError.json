@@ -1,8 +1,8 @@
 {
   "declineContractCancellation": {
     "__typename": "ContractCancellationNotFoundError",
-    "errorCode": "CONTRACT_CANCELLATION_NOT_FOUND",
-    "errorMessage": "The requested contract cancellation was not found.",
-    "requestedContractCancellationId": "00000000-0000-0000-0000-000000000000"
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World",
+    "requestedContractCancellationId": "171d5ea3-9a51-4110-b284-f18f9e932859"
   }
 }

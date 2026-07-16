@@ -8,40 +8,118 @@
           "updatedAt": "2024-01-01T00:00:00.000Z",
           "committedMarketplace": "EBAY_US",
           "state": {
-            "__typename": "ItemCommitmentActive",
-            "label": "Active"
+            "__typename": "ItemCommitmentAbandoned",
+            "label": "Hello World"
           },
           "cancellation": {
             "cancellationId": "63d2078b-dd41-49e1-8fb3-1f0846b06b6d",
             "lineItems": [
               {
                 "cancellationLineItemId": "9428813e-d6b1-4de0-87dd-dde874a47238",
-                "cancelledQuantity": 1,
-                "requestedQuantity": 1
+                "cancelledQuantity": -63,
+                "requestedQuantity": 26
+              },
+              {
+                "cancellationLineItemId": "be2173ec-b60d-4938-90a1-da796b39297d",
+                "cancelledQuantity": 13,
+                "requestedQuantity": -87
               }
             ]
           },
-          "refunds": [{"refundId": "99d0082f-6710-47cb-a3d3-727b994c914b"}],
-          "buyer": {"userId": "buyer-123"},
-          "seller": {"userId": "seller-456"},
+          "refunds": [
+            {
+              "refundId": "99d0082f-6710-47cb-a3d3-727b994c914b"
+            },
+            {
+              "refundId": "1efa224a-9943-43ce-9fbe-f09aa16c2981"
+            }
+          ],
+          "buyer": {
+            "userId": "125369cc-9533-4a9e-b0a3-aaf3f58e3824"
+          },
+          "seller": {
+            "userId": "899e6fcd-d1dd-4178-8784-5117455915c0"
+          },
           "totals": {
             "committedTotal": {
-              "original": {"value": "29.99", "currency": "USD"}
+              "original": {
+                "value": "1.00",
+                "currency": "ZMW"
+              }
             }
           },
           "lineItem": {
-            "quantity": 1,
-            "item": {"itemId": "item-789"},
+            "quantity": 71,
+            "item": {
+              "itemId": "cbc89572-1fe1-48fd-86ff-c6d8f206919d"
+            },
             "purchaseFlow": {
-              "__typename": "PurchaseFlowBuyItNow",
-              "label": "Buy It Now"
+              "__typename": "PurchaseFlowCommitToBuy",
+              "label": "Hello World"
+            }
+          }
+        },
+        {
+          "itemCommitmentId": "aa0dff00-8bb2-4582-a775-04acd04cbb1d",
+          "createdAt": "2024-01-01T00:00:00.000Z",
+          "updatedAt": "2024-01-01T00:00:00.000Z",
+          "committedMarketplace": "EBAY_MY",
+          "state": {
+            "__typename": "ItemCommitmentCompleted",
+            "label": "Hello World"
+          },
+          "cancellation": {
+            "cancellationId": "4fc41c5e-4240-42a3-9023-566340dc7e1a",
+            "lineItems": [
+              {
+                "cancellationLineItemId": "b9ed80fa-8f8c-432c-98bf-4ba5dca99b08",
+                "cancelledQuantity": -71,
+                "requestedQuantity": 9
+              },
+              {
+                "cancellationLineItemId": "56dc92c4-fe07-4b44-89cc-345fe4b000be",
+                "cancelledQuantity": 34,
+                "requestedQuantity": -37
+              }
+            ]
+          },
+          "refunds": [
+            {
+              "refundId": "0a804333-4dec-4eab-afcd-706046159b69"
+            },
+            {
+              "refundId": "972bfab2-de2e-4335-ba47-f6c2d337cbfd"
+            }
+          ],
+          "buyer": {
+            "userId": "438d2968-a5e3-4566-a46d-dd890011fca5"
+          },
+          "seller": {
+            "userId": "5cb286e7-d249-41c4-84e8-12ac07642d68"
+          },
+          "totals": {
+            "committedTotal": {
+              "original": {
+                "value": "1.00",
+                "currency": "ETB"
+              }
+            }
+          },
+          "lineItem": {
+            "quantity": 15,
+            "item": {
+              "itemId": "b7956bcd-8261-40fd-b51c-389c28be0afd"
+            },
+            "purchaseFlow": {
+              "__typename": "PurchaseFlowRequestTotal",
+              "label": "Hello World"
             }
           }
         }
       ],
       "pagination": {
-        "nextCursor": "cursor-next-001",
-        "previousCursor": null
+        "nextCursor": "Hello World",
+        "previousCursor": "Hello World"
       }
     }
   }

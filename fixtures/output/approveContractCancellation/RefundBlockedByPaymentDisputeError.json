@@ -1,7 +1,7 @@
 {
   "approveContractCancellation": {
     "__typename": "RefundBlockedByPaymentDisputeError",
-    "errorCode": "REFUND_BLOCKED_BY_PAYMENT_DISPUTE",
-    "errorMessage": "The refund is blocked due to an open payment dispute."
+    "errorCode": "Hello World",
+    "errorMessage": "Hello World"
   }
 }

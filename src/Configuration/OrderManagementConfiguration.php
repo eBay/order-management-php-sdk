@@ -20,20 +20,15 @@ namespace EBay\OrderManagement\Configuration;
 
 final class OrderManagementConfiguration
 {
-    public string $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1';
-    public string $logisticsBaseUrl   = 'https://api.ebay.com/sell/logistics/v1';
-    public string $graphQLBaseUrl     = 'https://api.ebay.com/graphql';
+    public readonly RequestOptions $defaultRequestOptions;
 
-    /** Static fallback token; per-call token takes precedence when provided. */
-    public ?string $accessToken = null;
-
-    public bool $diagnosticLogging = false;
-
-    /** Default request options applied to every outbound request. */
-    public RequestOptions $defaultRequestOptions;
-
-    public function __construct()
-    {
+    public function __construct(
+        public readonly string  $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1',
+        public readonly string  $logisticsBaseUrl   = 'https://api.ebay.com/sell/logistics/v1',
+        public readonly string  $graphQLBaseUrl     = 'https://api.ebay.com/graphql',
+        public readonly ?string $accessToken        = null,
+        public readonly bool    $diagnosticLogging  = false,
+    ) {
         $this->defaultRequestOptions = new RequestOptions();
     }
 

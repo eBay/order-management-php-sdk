@@ -22,15 +22,10 @@ use EBay\OrderManagement\Clients\GraphQL\DynamicGraphQLClient;
 use EBay\OrderManagement\Clients\GraphQL\OrderManagementGraphQLClient;
 use EBay\OrderManagement\Clients\Rest\FulfillmentClient;
 use EBay\OrderManagement\Clients\Rest\LogisticsClient;
-use EBay\OrderManagement\Configuration\KiotaAuthProvider;
 use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\FulfillmentApiClient;
-use EBay\OrderManagement\Generated\Logistics\LogisticsApiClient;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use Microsoft\Kiota\Abstractions\Authentication\BaseBearerTokenAuthenticationProvider;
-use Microsoft\Kiota\Http\GuzzleRequestAdapter;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -74,17 +69,9 @@ final class OrderManagementClient
     ) {
         $guzzle ??= $this->buildGuzzleClient($config);
 
-        $auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider($config));
-
-        $fulfillmentAdapter = new GuzzleRequestAdapter($auth, guzzleClient: $guzzle);
-        $fulfillmentAdapter->setBaseUrl($config->fulfillmentBaseUrl);
-        $this->fulfillment = new FulfillmentClient(new FulfillmentApiClient($fulfillmentAdapter), $config);
-
-        $logisticsAdapter = new GuzzleRequestAdapter($auth, guzzleClient: $guzzle);
-        $logisticsAdapter->setBaseUrl($config->logisticsBaseUrl);
-        $this->logistics = new LogisticsClient(new LogisticsApiClient($logisticsAdapter), $config);
-
-        $this->graphQL = new OrderManagementGraphQLClient(
+        $this->fulfillment = new FulfillmentClient($guzzle, $config);
+        $this->logistics   = new LogisticsClient($guzzle, $config);
+        $this->graphQL     = new OrderManagementGraphQLClient(
             new DynamicGraphQLClient($guzzle, $config)
         );
     }

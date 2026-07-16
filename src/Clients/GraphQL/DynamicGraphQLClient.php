@@ -20,7 +20,6 @@ namespace EBay\OrderManagement\Clients\GraphQL;
 
 use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
 use EBay\OrderManagement\Configuration\RequestOptions;
-use EBay\OrderManagement\Configuration\TokenContext;
 use EBay\OrderManagement\Exceptions\GraphQLException;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
@@ -41,16 +40,10 @@ final class DynamicGraphQLClient
      */
     public function execute(string $query, array $variables = [], ?string $accessToken = null, ?RequestOptions $requestOptions = null): array
     {
-        $token = $accessToken ?? TokenContext::get() ?? $this->config->accessToken
+        $token = $accessToken ?? $this->config->accessToken
             ?? throw new \RuntimeException(
-                'No access token. Pass $accessToken or set OrderManagementConfiguration::$accessToken.'
-            );
-
-        if (empty($token)) {
-            throw new \RuntimeException(
                 'No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.'
             );
-        }
 
         $headers = [
             'Authorization' => 'Bearer ' . $token,

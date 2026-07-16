@@ -1,4 +1,7 @@
 parameters:
-    level: 5
+    level: 8
     paths:
-        - src/Clients
+        - src
+    excludePaths:
+        - src/Generated
+        - src/GraphQL/Types

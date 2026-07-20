@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\Tests\GraphQL;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PurchaseQuoteFixtureTest extends TestCase
@@ -57,7 +58,7 @@ class PurchaseQuoteFixtureTest extends TestCase
         }
     }
 
-    /** @dataProvider fixtures */
+    #[DataProvider('fixtures')]
     public function testFixtureParsing(string $operation, string $key, string $file): void
     {
         $data = json_decode(file_get_contents($file), true);

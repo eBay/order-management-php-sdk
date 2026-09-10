@@ -21,14 +21,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "Regenerating REST clients via Kiota..."
 
 kiota generate -l php \
-  -d specs/sell_fulfillment_v1_oas3.yaml \
+  -d specs/openapi/fulfillment.yaml \
   -c FulfillmentApiClient \
   -n 'EBay\OrderManagement\Generated\Fulfillment' \
   -o src/Generated/Fulfillment \
   --ebc --co
 
 kiota generate -l php \
-  -d specs/sell_logistics_v1_oas3.yaml \
+  -d specs/openapi/logistics.yaml \
   -c LogisticsApiClient \
   -n 'EBay\OrderManagement\Generated\Logistics' \
   -o src/Generated/Logistics \

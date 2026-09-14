@@ -33,32 +33,32 @@ class Order implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Buyer|null $buyer This type contains information about the order's buyer.
+     * @var Buyer|null $buyer This container consists of information about the order's buyer. At this time, only the buyer's eBay user ID is returned, but it's possible that more buyer information can be added to this container in the future.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
     */
     private ?Buyer $buyer = null;
     
     /**
-     * @var string|null $buyerCheckoutNotes This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * @var string|null $buyerCheckoutNotes This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
     */
     private ?string $buyerCheckoutNotes = null;
     
     /**
-     * @var CancelStatus|null $cancelStatus This type contains information about any requests that have been made to cancel an order.
+     * @var CancelStatus|null $cancelStatus This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the <strong>cancelState</strong> field is returned with a value of <code>NONE_REQUESTED</code>, and an empty <strong>cancelRequests</strong> array is also returned.
     */
     private ?CancelStatus $cancelStatus = null;
     
     /**
-     * @var string|null $creationDate The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $creationDate The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $creationDate = null;
     
     /**
-     * @var bool|null $ebayCollectAndRemitTax This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+     * @var bool|null $ebayCollectAndRemitTax This field is only returned if <code>true</code> and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
     */
     private ?bool $ebayCollectAndRemitTax = null;
     
     /**
-     * @var array<string>|null $fulfillmentHrefs This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * @var array<string>|null $fulfillmentHrefs This array contains a list of one or more <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment" target="_blank">getShippingFulfillment</a> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
     */
     private ?array $fulfillmentHrefs = null;
     
@@ -68,7 +68,7 @@ class Order implements AdditionalDataHolder, Parsable
     private ?array $fulfillmentStartInstructions = null;
     
     /**
-     * @var string|null $lastModifiedDate The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $lastModifiedDate The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $lastModifiedDate = null;
     
@@ -78,9 +78,9 @@ class Order implements AdditionalDataHolder, Parsable
     private ?array $lineItems = null;
     
     /**
-     * @var string|null $orderFulfillmentStatus The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
+     * @var OrderFulfillmentStatus|null $orderFulfillmentStatus The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state.
     */
-    private ?string $orderFulfillmentStatus = null;
+    private ?OrderFulfillmentStatus $orderFulfillmentStatus = null;
     
     /**
      * @var string|null $orderId The unique identifier of the order. This field is always returned.
@@ -88,22 +88,22 @@ class Order implements AdditionalDataHolder, Parsable
     private ?string $orderId = null;
     
     /**
-     * @var string|null $orderPaymentStatus The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
+     * @var OrderPaymentStatusEnum|null $orderPaymentStatus The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state.
     */
-    private ?string $orderPaymentStatus = null;
+    private ?OrderPaymentStatusEnum $orderPaymentStatus = null;
     
     /**
-     * @var PaymentSummary|null $paymentSummary This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * @var PaymentSummary|null $paymentSummary This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
     */
     private ?PaymentSummary $paymentSummary = null;
     
     /**
-     * @var PricingSummary|null $pricingSummary This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * @var PricingSummary|null $pricingSummary This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
     */
     private ?PricingSummary $pricingSummary = null;
     
     /**
-     * @var Program|null $program This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * @var Program|null $program This container is returned for orders that are eligible for eBay's Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the <code>fulfillmentStartInstructions.shippingStep.shipTo</code> container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
     */
     private ?Program $program = null;
     
@@ -113,17 +113,17 @@ class Order implements AdditionalDataHolder, Parsable
     private ?string $salesRecordReference = null;
     
     /**
-     * @var string|null $sellerId The unique eBay user ID of the seller who sold the order.
+     * @var string|null $sellerId The unique eBay user ID of the seller who sold the order.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
     */
     private ?string $sellerId = null;
     
     /**
-     * @var Amount|null $totalFeeBasisAmount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $totalFeeBasisAmount This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
     */
     private ?Amount $totalFeeBasisAmount = null;
     
     /**
-     * @var Amount|null $totalMarketplaceFee This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $totalMarketplaceFee This is the cumulative fees accrued for the order and deducted from the seller payout.
     */
     private ?Amount $totalMarketplaceFee = null;
     
@@ -152,7 +152,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the buyer property value. This type contains information about the order's buyer.
+     * Gets the buyer property value. This container consists of information about the order's buyer. At this time, only the buyer's eBay user ID is returned, but it's possible that more buyer information can be added to this container in the future.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @return Buyer|null
     */
     public function getBuyer(): ?Buyer {
@@ -160,7 +160,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * Gets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
      * @return string|null
     */
     public function getBuyerCheckoutNotes(): ?string {
@@ -168,7 +168,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * Gets the cancelStatus property value. This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the <strong>cancelState</strong> field is returned with a value of <code>NONE_REQUESTED</code>, and an empty <strong>cancelRequests</strong> array is also returned.
      * @return CancelStatus|null
     */
     public function getCancelStatus(): ?CancelStatus {
@@ -176,7 +176,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the creationDate property value. The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getCreationDate(): ?string {
@@ -184,7 +184,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+     * Gets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code> and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
      * @return bool|null
     */
     public function getEbayCollectAndRemitTax(): ?bool {
@@ -214,9 +214,9 @@ class Order implements AdditionalDataHolder, Parsable
             'fulfillmentStartInstructions' => fn(ParseNode $n) => $o->setFulfillmentStartInstructions($n->getCollectionOfObjectValues([FulfillmentStartInstruction::class, 'createFromDiscriminatorValue'])),
             'lastModifiedDate' => fn(ParseNode $n) => $o->setLastModifiedDate($n->getStringValue()),
             'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([LineItem::class, 'createFromDiscriminatorValue'])),
-            'orderFulfillmentStatus' => fn(ParseNode $n) => $o->setOrderFulfillmentStatus($n->getStringValue()),
+            'orderFulfillmentStatus' => fn(ParseNode $n) => $o->setOrderFulfillmentStatus($n->getEnumValue(OrderFulfillmentStatus::class)),
             'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
-            'orderPaymentStatus' => fn(ParseNode $n) => $o->setOrderPaymentStatus($n->getStringValue()),
+            'orderPaymentStatus' => fn(ParseNode $n) => $o->setOrderPaymentStatus($n->getEnumValue(OrderPaymentStatusEnum::class)),
             'paymentSummary' => fn(ParseNode $n) => $o->setPaymentSummary($n->getObjectValue([PaymentSummary::class, 'createFromDiscriminatorValue'])),
             'pricingSummary' => fn(ParseNode $n) => $o->setPricingSummary($n->getObjectValue([PricingSummary::class, 'createFromDiscriminatorValue'])),
             'program' => fn(ParseNode $n) => $o->setProgram($n->getObjectValue([Program::class, 'createFromDiscriminatorValue'])),
@@ -228,7 +228,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fulfillmentHrefs property value. This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * Gets the fulfillmentHrefs property value. This array contains a list of one or more <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment" target="_blank">getShippingFulfillment</a> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
      * @return array<string>|null
     */
     public function getFulfillmentHrefs(): ?array {
@@ -244,7 +244,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getLastModifiedDate(): ?string {
@@ -260,10 +260,10 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
-     * @return string|null
+     * Gets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state.
+     * @return OrderFulfillmentStatus|null
     */
-    public function getOrderFulfillmentStatus(): ?string {
+    public function getOrderFulfillmentStatus(): ?OrderFulfillmentStatus {
         return $this->orderFulfillmentStatus;
     }
 
@@ -276,15 +276,15 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state.
+     * @return OrderPaymentStatusEnum|null
     */
-    public function getOrderPaymentStatus(): ?string {
+    public function getOrderPaymentStatus(): ?OrderPaymentStatusEnum {
         return $this->orderPaymentStatus;
     }
 
     /**
-     * Gets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * Gets the paymentSummary property value. This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
      * @return PaymentSummary|null
     */
     public function getPaymentSummary(): ?PaymentSummary {
@@ -292,7 +292,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * Gets the pricingSummary property value. This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
      * @return PricingSummary|null
     */
     public function getPricingSummary(): ?PricingSummary {
@@ -300,7 +300,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * Gets the program property value. This container is returned for orders that are eligible for eBay's Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the <code>fulfillmentStartInstructions.shippingStep.shipTo</code> container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
      * @return Program|null
     */
     public function getProgram(): ?Program {
@@ -316,7 +316,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * Gets the sellerId property value. The unique eBay user ID of the seller who sold the order.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @return string|null
     */
     public function getSellerId(): ?string {
@@ -324,7 +324,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the totalFeeBasisAmount property value. This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
      * @return Amount|null
     */
     public function getTotalFeeBasisAmount(): ?Amount {
@@ -332,7 +332,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the totalMarketplaceFee property value. This is the cumulative fees accrued for the order and deducted from the seller payout.
      * @return Amount|null
     */
     public function getTotalMarketplaceFee(): ?Amount {
@@ -353,9 +353,9 @@ class Order implements AdditionalDataHolder, Parsable
         $writer->writeCollectionOfObjectValues('fulfillmentStartInstructions', $this->getFulfillmentStartInstructions());
         $writer->writeStringValue('lastModifiedDate', $this->getLastModifiedDate());
         $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
-        $writer->writeStringValue('orderFulfillmentStatus', $this->getOrderFulfillmentStatus());
+        $writer->writeEnumValue('orderFulfillmentStatus', $this->getOrderFulfillmentStatus());
         $writer->writeStringValue('orderId', $this->getOrderId());
-        $writer->writeStringValue('orderPaymentStatus', $this->getOrderPaymentStatus());
+        $writer->writeEnumValue('orderPaymentStatus', $this->getOrderPaymentStatus());
         $writer->writeObjectValue('paymentSummary', $this->getPaymentSummary());
         $writer->writeObjectValue('pricingSummary', $this->getPricingSummary());
         $writer->writeObjectValue('program', $this->getProgram());
@@ -375,7 +375,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the buyer property value. This type contains information about the order's buyer.
+     * Sets the buyer property value. This container consists of information about the order's buyer. At this time, only the buyer's eBay user ID is returned, but it's possible that more buyer information can be added to this container in the future.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @param Buyer|null $value Value to set for the buyer property.
     */
     public function setBuyer(?Buyer $value): void {
@@ -383,7 +383,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during checkout process. This field is only returned if a buyer left comments at checkout time. 
+     * Sets the buyerCheckoutNotes property value. This field contains any comments that the buyer left for the seller about the order during the checkout process. This field is only returned if a buyer left comments at checkout time. 
      * @param string|null $value Value to set for the buyerCheckoutNotes property.
     */
     public function setBuyerCheckoutNotes(?string $value): void {
@@ -391,7 +391,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelStatus property value. This type contains information about any requests that have been made to cancel an order.
+     * Sets the cancelStatus property value. This container consists of order cancellation information if a cancel request has been made. This container is always returned, and if no cancel request has been made, the <strong>cancelState</strong> field is returned with a value of <code>NONE_REQUESTED</code>, and an empty <strong>cancelRequests</strong> array is also returned.
      * @param CancelStatus|null $value Value to set for the cancelStatus property.
     */
     public function setCancelStatus(?CancelStatus $value): void {
@@ -399,7 +399,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the creationDate property value. The date and time that the order was created. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the creationDate property value. The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the creationDate property.
     */
     public function setCreationDate(?string $value): void {
@@ -407,7 +407,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code>, and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
+     * Sets the ebayCollectAndRemitTax property value. This field is only returned if <code>true</code> and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
      * @param bool|null $value Value to set for the ebayCollectAndRemitTax property.
     */
     public function setEbayCollectAndRemitTax(?bool $value): void {
@@ -415,7 +415,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fulfillmentHrefs property value. This array contains a list of one or more <strong>getShippingFulfillment</strong> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
+     * Sets the fulfillmentHrefs property value. This array contains a list of one or more <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment" target="_blank">getShippingFulfillment</a> call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.
      * @param array<string>|null $value Value to set for the fulfillmentHrefs property.
     */
     public function setFulfillmentHrefs(?array $value): void {
@@ -431,7 +431,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the lastModifiedDate property.
     */
     public function setLastModifiedDate(?string $value): void {
@@ -447,10 +447,10 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderFulfillmentStatus'>eBay API documentation</a>
-     * @param string|null $value Value to set for the orderFulfillmentStatus property.
+     * Sets the orderFulfillmentStatus property value. The degree to which fulfillment of the order is complete. See the <strong>OrderFulfillmentStatus</strong> type definition for more information about each possible fulfillment state.
+     * @param OrderFulfillmentStatus|null $value Value to set for the orderFulfillmentStatus property.
     */
-    public function setOrderFulfillmentStatus(?string $value): void {
+    public function setOrderFulfillmentStatus(?OrderFulfillmentStatus $value): void {
         $this->orderFulfillmentStatus = $value;
     }
 
@@ -463,15 +463,15 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:OrderPaymentStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the orderPaymentStatus property.
+     * Sets the orderPaymentStatus property value. The enumeration value returned in this field indicates the current payment status of an order, or in case of a refund request, the current status of the refund. See the <strong>OrderPaymentStatusEnum</strong> type definition for more information about each possible payment/refund state.
+     * @param OrderPaymentStatusEnum|null $value Value to set for the orderPaymentStatus property.
     */
-    public function setOrderPaymentStatus(?string $value): void {
+    public function setOrderPaymentStatus(?OrderPaymentStatusEnum $value): void {
         $this->orderPaymentStatus = $value;
     }
 
     /**
-     * Sets the paymentSummary property value. This type contains information about the various monetary exchanges that apply to the net balance due for the order.
+     * Sets the paymentSummary property value. This container consists of detailed payment information for the order, including buyer payment for the order, refund information (if applicable), and seller payment holds (if applicable).
      * @param PaymentSummary|null $value Value to set for the paymentSummary property.
     */
     public function setPaymentSummary(?PaymentSummary $value): void {
@@ -479,7 +479,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pricingSummary property value. This type contains a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
+     * Sets the pricingSummary property value. This container consists of a summary of cumulative costs and charges for all line items of an order, including item price, price adjustments, sales taxes, delivery costs, and order discounts.
      * @param PricingSummary|null $value Value to set for the pricingSummary property.
     */
     public function setPricingSummary(?PricingSummary $value): void {
@@ -487,7 +487,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the program property value. This type is returned for order line items eligible for the Authenticity Guarantee service and/or for order line items fulfilled by the eBay Fulfillment program or eBay shipping.
+     * Sets the program property value. This container is returned for orders that are eligible for eBay's Authenticity Guarantee service. The seller ships Authenticity Guarantee service items to the authentication partner instead of the buyer. The authenticator address is found in the <code>fulfillmentStartInstructions.shippingStep.shipTo</code> container. If the item is successfully authenticated, the authenticator will ship the item to the buyer.
      * @param Program|null $value Value to set for the program property.
     */
     public function setProgram(?Program $value): void {
@@ -503,7 +503,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the sellerId property value. The unique eBay user ID of the seller who sold the order.
+     * Sets the sellerId property value. The unique eBay user ID of the seller who sold the order.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @param string|null $value Value to set for the sellerId property.
     */
     public function setSellerId(?string $value): void {
@@ -511,7 +511,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the totalFeeBasisAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the totalFeeBasisAmount property value. This is the cumulative base amount used to calculate the final value fees for each order. The final value fees are deducted from the seller payout associated with the order. Final value fees are calculated as a percentage of order cost (item cost + shipping cost) and the percentage rate can vary by eBay category. 
      * @param Amount|null $value Value to set for the totalFeeBasisAmount property.
     */
     public function setTotalFeeBasisAmount(?Amount $value): void {
@@ -519,7 +519,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the totalMarketplaceFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the totalMarketplaceFee property value. This is the cumulative fees accrued for the order and deducted from the seller payout.
      * @param Amount|null $value Value to set for the totalMarketplaceFee property.
     */
     public function setTotalMarketplaceFee(?Amount $value): void {

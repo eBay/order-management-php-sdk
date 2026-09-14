@@ -32,24 +32,24 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $amount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $amount The monetary amount of the 'Collect and Remit' tax. This currently includes the following:<br><ul><li>US state-mandated sales tax</li><li>Federal and Provincial Sales Tax in Canada</li><li>'Goods and Services' tax in Canada, Australia, New Zealand, and Jersey</li><li>VAT collected for the UK, EU countries, Kazakhstan, and Belarus</li><li>Sales & Service Tax (SST) in Malaysia</li></ul><br><span class="tablenote"><strong>Note:</strong> If the corresponding <strong>taxType</strong> is <code>STATE_SALES_TAX</code>, <code>PROVINCE_SALES_TAX</code>, <code>GST</code>, <code>VAT</code>, or <code>SST</code> and the <strong>lineItems.taxes</strong> container also appears for this line item with the same tax amount, the order is subject to 'eBay Collect and Remit' tax. For orders that are subject to 'eBay Collect and Remit' tax, the tax amount in this field will be included in the <strong>lineItems.total</strong>, <strong>paymentSummary.payments.amount</strong>, <strong>paymentSummary.totalDueSeller</strong>, and <strong>pricingSummary.total</strong> fields.</span>
     */
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $collectionMethod This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CollectionMethodEnum'>eBay API documentation</a>
+     * @var CollectionMethodEnum|null $collectionMethod This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span>
     */
-    private ?string $collectionMethod = null;
+    private ?CollectionMethodEnum $collectionMethod = null;
     
     /**
-     * @var EbayTaxReference|null $ebayReference This type describes the VAT tax details. The eBay VAT tax type and the eBay VAT identifier number will be returned if a VAT tax is applicable for the order.<br>
+     * @var EbayTaxReference|null $ebayReference This container field describes the line-item level VAT tax details.<br>
     */
     private ?EbayTaxReference $ebayReference = null;
     
     /**
-     * @var string|null $taxType The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum'>eBay API documentation</a>
+     * @var TaxTypeEnum|null $taxType The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type.
     */
-    private ?string $taxType = null;
+    private ?TaxTypeEnum $taxType = null;
     
     /**
      * Instantiates a new EbayCollectAndRemitTax and sets the default values.
@@ -76,7 +76,7 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. The monetary amount of the 'Collect and Remit' tax. This currently includes the following:<br><ul><li>US state-mandated sales tax</li><li>Federal and Provincial Sales Tax in Canada</li><li>'Goods and Services' tax in Canada, Australia, New Zealand, and Jersey</li><li>VAT collected for the UK, EU countries, Kazakhstan, and Belarus</li><li>Sales & Service Tax (SST) in Malaysia</li></ul><br><span class="tablenote"><strong>Note:</strong> If the corresponding <strong>taxType</strong> is <code>STATE_SALES_TAX</code>, <code>PROVINCE_SALES_TAX</code>, <code>GST</code>, <code>VAT</code>, or <code>SST</code> and the <strong>lineItems.taxes</strong> container also appears for this line item with the same tax amount, the order is subject to 'eBay Collect and Remit' tax. For orders that are subject to 'eBay Collect and Remit' tax, the tax amount in this field will be included in the <strong>lineItems.total</strong>, <strong>paymentSummary.payments.amount</strong>, <strong>paymentSummary.totalDueSeller</strong>, and <strong>pricingSummary.total</strong> fields.</span>
      * @return Amount|null
     */
     public function getAmount(): ?Amount {
@@ -84,15 +84,15 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the collectionMethod property value. This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CollectionMethodEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the collectionMethod property value. This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span>
+     * @return CollectionMethodEnum|null
     */
-    public function getCollectionMethod(): ?string {
+    public function getCollectionMethod(): ?CollectionMethodEnum {
         return $this->collectionMethod;
     }
 
     /**
-     * Gets the ebayReference property value. This type describes the VAT tax details. The eBay VAT tax type and the eBay VAT identifier number will be returned if a VAT tax is applicable for the order.<br>
+     * Gets the ebayReference property value. This container field describes the line-item level VAT tax details.<br>
      * @return EbayTaxReference|null
     */
     public function getEbayReference(): ?EbayTaxReference {
@@ -107,17 +107,17 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
-            'collectionMethod' => fn(ParseNode $n) => $o->setCollectionMethod($n->getStringValue()),
+            'collectionMethod' => fn(ParseNode $n) => $o->setCollectionMethod($n->getEnumValue(CollectionMethodEnum::class)),
             'ebayReference' => fn(ParseNode $n) => $o->setEbayReference($n->getObjectValue([EbayTaxReference::class, 'createFromDiscriminatorValue'])),
-            'taxType' => fn(ParseNode $n) => $o->setTaxType($n->getStringValue()),
+            'taxType' => fn(ParseNode $n) => $o->setTaxType($n->getEnumValue(TaxTypeEnum::class)),
         ];
     }
 
     /**
-     * Gets the taxType property value. The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the taxType property value. The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type.
+     * @return TaxTypeEnum|null
     */
-    public function getTaxType(): ?string {
+    public function getTaxType(): ?TaxTypeEnum {
         return $this->taxType;
     }
 
@@ -127,9 +127,9 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
-        $writer->writeStringValue('collectionMethod', $this->getCollectionMethod());
+        $writer->writeEnumValue('collectionMethod', $this->getCollectionMethod());
         $writer->writeObjectValue('ebayReference', $this->getEbayReference());
-        $writer->writeStringValue('taxType', $this->getTaxType());
+        $writer->writeEnumValue('taxType', $this->getTaxType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -142,7 +142,7 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. The monetary amount of the 'Collect and Remit' tax. This currently includes the following:<br><ul><li>US state-mandated sales tax</li><li>Federal and Provincial Sales Tax in Canada</li><li>'Goods and Services' tax in Canada, Australia, New Zealand, and Jersey</li><li>VAT collected for the UK, EU countries, Kazakhstan, and Belarus</li><li>Sales & Service Tax (SST) in Malaysia</li></ul><br><span class="tablenote"><strong>Note:</strong> If the corresponding <strong>taxType</strong> is <code>STATE_SALES_TAX</code>, <code>PROVINCE_SALES_TAX</code>, <code>GST</code>, <code>VAT</code>, or <code>SST</code> and the <strong>lineItems.taxes</strong> container also appears for this line item with the same tax amount, the order is subject to 'eBay Collect and Remit' tax. For orders that are subject to 'eBay Collect and Remit' tax, the tax amount in this field will be included in the <strong>lineItems.total</strong>, <strong>paymentSummary.payments.amount</strong>, <strong>paymentSummary.totalDueSeller</strong>, and <strong>pricingSummary.total</strong> fields.</span>
      * @param Amount|null $value Value to set for the amount property.
     */
     public function setAmount(?Amount $value): void {
@@ -150,15 +150,15 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the collectionMethod property value. This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CollectionMethodEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the collectionMethod property.
+     * Sets the collectionMethod property value. This field indicates the collection method used to collect the 'Collect and Remit' tax for the order. This field is always returned for orders subject to 'Collect and Remit' tax, and its value is always <code>NET</code>.<br><br><span class="tablenote"><strong>Note:</strong> Although the <strong>collectionMethod</strong> field is returned for all orders subject to 'Collect and Remit' tax, the <strong>collectionMethod</strong> field and the <strong>CollectionMethodEnum</strong> type are not currently of any practical use, although this field may have use in the future. If and when the logic of this field is changed, this note will be updated and a note will also be added to the Release Notes.</span>
+     * @param CollectionMethodEnum|null $value Value to set for the collectionMethod property.
     */
-    public function setCollectionMethod(?string $value): void {
+    public function setCollectionMethod(?CollectionMethodEnum $value): void {
         $this->collectionMethod = $value;
     }
 
     /**
-     * Sets the ebayReference property value. This type describes the VAT tax details. The eBay VAT tax type and the eBay VAT identifier number will be returned if a VAT tax is applicable for the order.<br>
+     * Sets the ebayReference property value. This container field describes the line-item level VAT tax details.<br>
      * @param EbayTaxReference|null $value Value to set for the ebayReference property.
     */
     public function setEbayReference(?EbayTaxReference $value): void {
@@ -166,10 +166,10 @@ class EbayCollectAndRemitTax implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the taxType property value. The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the taxType property.
+     * Sets the taxType property value. The type of tax and fees that eBay will collect and remit to the taxing or fee authority. See the <strong>TaxTypeEnum</strong> type definition for more information about each tax or fee type.
+     * @param TaxTypeEnum|null $value Value to set for the taxType property.
     */
-    public function setTaxType(?string $value): void {
+    public function setTaxType(?TaxTypeEnum $value): void {
         $this->taxType = $value;
     }
 

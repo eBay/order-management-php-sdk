@@ -32,27 +32,27 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $convertedFromCurrency The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> convertedFromValue</b> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @var CurrencyCodeEnum|null $convertedFromCurrency The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <strong> convertedFromValue</strong> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay.
     */
-    private ?string $convertedFromCurrency = null;
+    private ?CurrencyCodeEnum $convertedFromCurrency = null;
     
     /**
-     * @var string|null $convertedFromValue The monetary amount before any conversion is performed, in the currency specified by the <b> convertedFromCurrency</b> field. This value is the pre-conversion amount. The <b> value</b> field contains the converted amount of this value, in the currency specified by the <b> currency</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * @var string|null $convertedFromValue The monetary amount before any conversion is performed, in the currency specified by the <strong> convertedFromCurrency</strong> field. This value is the pre-conversion amount. The <strong> value</strong> field contains the converted amount of this value, in the currency specified by the <strong> currency</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
     */
     private ?string $convertedFromValue = null;
     
     /**
-     * @var string|null $currency A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. This field is always returned with any container using <b>Amount</b> type. <br><br><b>Default</b>: The currency of the authenticated user's country. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @var CurrencyCodeEnum|null $currency A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. This field is always returned with any container using <strong>Amount</strong> type. <br><br><strong>Default</strong>: The currency of the authenticated user's country.
     */
-    private ?string $currency = null;
+    private ?CurrencyCodeEnum $currency = null;
     
     /**
-     * @var string|null $exchangeRate The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <b>value</b> field from the dollar value in the <b>convertedFromValue</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * @var string|null $exchangeRate The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <strong>value</strong> field from the dollar value in the <strong>convertedFromValue</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
     */
     private ?string $exchangeRate = null;
     
     /**
-     * @var string|null $value The monetary amount, in the currency specified by the <b>currency</b> field. This field is always returned with any container using <b>Amount</b> type.
+     * @var string|null $value The monetary amount, in the currency specified by the <strong>currency</strong> field. This field is always returned with any container using <strong>Amount</strong> type.
     */
     private ?string $value = null;
     
@@ -81,15 +81,15 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the convertedFromCurrency property value. The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> convertedFromValue</b> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the convertedFromCurrency property value. The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <strong> convertedFromValue</strong> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * @return CurrencyCodeEnum|null
     */
-    public function getConvertedFromCurrency(): ?string {
+    public function getConvertedFromCurrency(): ?CurrencyCodeEnum {
         return $this->convertedFromCurrency;
     }
 
     /**
-     * Gets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <b> convertedFromCurrency</b> field. This value is the pre-conversion amount. The <b> value</b> field contains the converted amount of this value, in the currency specified by the <b> currency</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * Gets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <strong> convertedFromCurrency</strong> field. This value is the pre-conversion amount. The <strong> value</strong> field contains the converted amount of this value, in the currency specified by the <strong> currency</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
      * @return string|null
     */
     public function getConvertedFromValue(): ?string {
@@ -97,15 +97,15 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. This field is always returned with any container using <b>Amount</b> type. <br><br><b>Default</b>: The currency of the authenticated user's country. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the currency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. This field is always returned with any container using <strong>Amount</strong> type. <br><br><strong>Default</strong>: The currency of the authenticated user's country.
+     * @return CurrencyCodeEnum|null
     */
-    public function getCurrency(): ?string {
+    public function getCurrency(): ?CurrencyCodeEnum {
         return $this->currency;
     }
 
     /**
-     * Gets the exchangeRate property value. The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <b>value</b> field from the dollar value in the <b>convertedFromValue</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * Gets the exchangeRate property value. The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <strong>value</strong> field from the dollar value in the <strong>convertedFromValue</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
      * @return string|null
     */
     public function getExchangeRate(): ?string {
@@ -119,16 +119,16 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'convertedFromCurrency' => fn(ParseNode $n) => $o->setConvertedFromCurrency($n->getStringValue()),
+            'convertedFromCurrency' => fn(ParseNode $n) => $o->setConvertedFromCurrency($n->getEnumValue(CurrencyCodeEnum::class)),
             'convertedFromValue' => fn(ParseNode $n) => $o->setConvertedFromValue($n->getStringValue()),
-            'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
+            'currency' => fn(ParseNode $n) => $o->setCurrency($n->getEnumValue(CurrencyCodeEnum::class)),
             'exchangeRate' => fn(ParseNode $n) => $o->setExchangeRate($n->getStringValue()),
             'value' => fn(ParseNode $n) => $o->setValue($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the value property value. The monetary amount, in the currency specified by the <b>currency</b> field. This field is always returned with any container using <b>Amount</b> type.
+     * Gets the value property value. The monetary amount, in the currency specified by the <strong>currency</strong> field. This field is always returned with any container using <strong>Amount</strong> type.
      * @return string|null
     */
     public function getValue(): ?string {
@@ -140,9 +140,9 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('convertedFromCurrency', $this->getConvertedFromCurrency());
+        $writer->writeEnumValue('convertedFromCurrency', $this->getConvertedFromCurrency());
         $writer->writeStringValue('convertedFromValue', $this->getConvertedFromValue());
-        $writer->writeStringValue('currency', $this->getCurrency());
+        $writer->writeEnumValue('currency', $this->getCurrency());
         $writer->writeStringValue('exchangeRate', $this->getExchangeRate());
         $writer->writeStringValue('value', $this->getValue());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -157,15 +157,15 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the convertedFromCurrency property value. The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html " target="_blank">ISO 4217</a> code representing the currency of the amount in the <b> convertedFromValue</b> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the convertedFromCurrency property.
+     * Sets the convertedFromCurrency property value. The three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" target="_blank">ISO 4217</a> code representing the currency of the amount in the <strong> convertedFromValue</strong> field. This value is the pre-conversion currency.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * @param CurrencyCodeEnum|null $value Value to set for the convertedFromCurrency property.
     */
-    public function setConvertedFromCurrency(?string $value): void {
+    public function setConvertedFromCurrency(?CurrencyCodeEnum $value): void {
         $this->convertedFromCurrency = $value;
     }
 
     /**
-     * Sets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <b> convertedFromCurrency</b> field. This value is the pre-conversion amount. The <b> value</b> field contains the converted amount of this value, in the currency specified by the <b> currency</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * Sets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <strong> convertedFromCurrency</strong> field. This value is the pre-conversion amount. The <strong> value</strong> field contains the converted amount of this value, in the currency specified by the <strong> currency</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
      * @param string|null $value Value to set for the convertedFromValue property.
     */
     public function setConvertedFromValue(?string $value): void {
@@ -173,15 +173,15 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. This field is always returned with any container using <b>Amount</b> type. <br><br><b>Default</b>: The currency of the authenticated user's country. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the currency property.
+     * Sets the currency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. This field is always returned with any container using <strong>Amount</strong> type. <br><br><strong>Default</strong>: The currency of the authenticated user's country.
+     * @param CurrencyCodeEnum|null $value Value to set for the currency property.
     */
-    public function setCurrency(?string $value): void {
+    public function setCurrency(?CurrencyCodeEnum $value): void {
         $this->currency = $value;
     }
 
     /**
-     * Sets the exchangeRate property value. The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <b>value</b> field from the dollar value in the <b>convertedFromValue</b> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
+     * Sets the exchangeRate property value. The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the <strong>value</strong> field from the dollar value in the <strong>convertedFromValue</strong> field.<br><br>This field is only returned if/when currency conversion was applied by eBay.
      * @param string|null $value Value to set for the exchangeRate property.
     */
     public function setExchangeRate(?string $value): void {
@@ -189,7 +189,7 @@ class DisputeAmount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the value property value. The monetary amount, in the currency specified by the <b>currency</b> field. This field is always returned with any container using <b>Amount</b> type.
+     * Sets the value property value. The monetary amount, in the currency specified by the <strong>currency</strong> field. This field is always returned with any container using <strong>Amount</strong> type.
      * @param string|null $value Value to set for the value property.
     */
     public function setValue(?string $value): void {

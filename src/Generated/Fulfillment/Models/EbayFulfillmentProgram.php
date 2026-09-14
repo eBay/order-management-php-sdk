@@ -32,7 +32,7 @@ class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $fulfilledBy The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br>Valid value: <code>EBAY</code>
+     * @var string|null $fulfilledBy The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br><strong>Valid value</strong>: <code>EBAY</code>
     */
     private ?string $fulfilledBy = null;
     
@@ -72,7 +72,7 @@ class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br>Valid value: <code>EBAY</code>
+     * Gets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br><strong>Valid value</strong>: <code>EBAY</code>
      * @return string|null
     */
     public function getFulfilledBy(): ?string {
@@ -97,7 +97,7 @@ class EbayFulfillmentProgram implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br>Valid value: <code>EBAY</code>
+     * Sets the fulfilledBy property value. The value returned in this field indicates the party that is handling fulfillment of the order line item. <br><br><strong>Valid value</strong>: <code>EBAY</code>
      * @param string|null $value Value to set for the fulfilledBy property.
     */
     public function setFulfilledBy(?string $value): void {

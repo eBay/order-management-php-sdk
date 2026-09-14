@@ -32,12 +32,12 @@ class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $note This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><b>Max Length:</b> 1000 characters.
+     * @var string|null $note This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><strong>Max Length:</strong> 1000 characters.
     */
     private ?string $note = null;
     
     /**
-     * @var ReturnAddress|null $returnAddress This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * @var ReturnAddress|null $returnAddress This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including <strong>fullName</strong> and <strong>primaryPhone</strong>.<br><br><span class="tablenote"><strong>Note:</strong> If the <a href ="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum" target="_blank">Dispute Reason</a> is <code>SIGNIFICANTLY_NOT_AS_DESCRIBED</code>, <strong>returnAddress</strong> is required.</span>
     */
     private ?ReturnAddress $returnAddress = null;
     
@@ -84,7 +84,7 @@ class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><b>Max Length:</b> 1000 characters.
+     * Gets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><strong>Max Length:</strong> 1000 characters.
      * @return string|null
     */
     public function getNote(): ?string {
@@ -92,7 +92,7 @@ class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including <strong>fullName</strong> and <strong>primaryPhone</strong>.<br><br><span class="tablenote"><strong>Note:</strong> If the <a href ="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum" target="_blank">Dispute Reason</a> is <code>SIGNIFICANTLY_NOT_AS_DESCRIBED</code>, <strong>returnAddress</strong> is required.</span>
      * @return ReturnAddress|null
     */
     public function getReturnAddress(): ?ReturnAddress {
@@ -127,7 +127,7 @@ class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><b>Max Length:</b> 1000 characters.
+     * Sets the note property value. This field shows information that the seller provides about the dispute, such as the basis for the dispute, any relevant evidence, tracking numbers, and so forth.<br><br><strong>Max Length:</strong> 1000 characters.
      * @param string|null $value Value to set for the note property.
     */
     public function setNote(?string $value): void {
@@ -135,7 +135,7 @@ class ContestPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container is needed if the seller is requesting that the buyer return the item. If this container is used, all relevant fields must be included, including <strong>fullName</strong> and <strong>primaryPhone</strong>.<br><br><span class="tablenote"><strong>Note:</strong> If the <a href ="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute.disputereasonenum" target="_blank">Dispute Reason</a> is <code>SIGNIFICANTLY_NOT_AS_DESCRIBED</code>, <strong>returnAddress</strong> is required.</span>
      * @param ReturnAddress|null $value Value to set for the returnAddress property.
     */
     public function setReturnAddress(?ReturnAddress $value): void {

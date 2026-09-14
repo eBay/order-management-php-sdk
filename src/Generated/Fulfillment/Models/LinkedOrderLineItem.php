@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains data on a line item that is related to, but not a part of the order.
+ * This type contains data on a line item that is related to, but not a part of, the order.
 */
 class LinkedOrderLineItem implements AdditionalDataHolder, Parsable 
 {
@@ -32,7 +32,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var array<NameValuePair>|null $lineItemAspects This array contains the complete set of items aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
+     * @var array<NameValuePair>|null $lineItemAspects This array contains the complete set of item aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
     */
     private ?array $lineItemAspects = null;
     
@@ -57,7 +57,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     private ?string $orderId = null;
     
     /**
-     * @var string|null $sellerId The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * @var string|null $sellerId The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
     */
     private ?string $sellerId = null;
     
@@ -67,7 +67,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     private ?array $shipments = null;
     
     /**
-     * @var string|null $title The listing title of the linked line item.<br><br><span class="tablenote"><b>Note:</b> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
+     * @var string|null $title The listing title of the linked line item.<br><br><span class="tablenote"><strong>Note:</strong> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
     */
     private ?string $title = null;
     
@@ -114,7 +114,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the lineItemAspects property value. This array contains the complete set of items aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
+     * Gets the lineItemAspects property value. This array contains the complete set of item aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
      * @return array<NameValuePair>|null
     */
     public function getLineItemAspects(): ?array {
@@ -154,7 +154,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * Gets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @return string|null
     */
     public function getSellerId(): ?string {
@@ -170,7 +170,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the title property value. The listing title of the linked line item.<br><br><span class="tablenote"><b>Note:</b> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
+     * Gets the title property value. The listing title of the linked line item.<br><br><span class="tablenote"><strong>Note:</strong> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
      * @return string|null
     */
     public function getTitle(): ?string {
@@ -202,7 +202,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the lineItemAspects property value. This array contains the complete set of items aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
+     * Sets the lineItemAspects property value. This array contains the complete set of item aspects for the linked line item. For example:<br><pre>"lineItemAspects": [<br>    {<br>        "name": "Tire Type",<br>        "value": "All Season"<br>    },<br><br>    ...<br> <br>    {<br>        "name": "Car Type",<br>        "value": "Performance"<br>    }<br>]</pre><span class="tablenote"><strong>Note:</strong> All item specifics for the listing are returned. The name/value pairs returned are in the language of the linked line item's listing site, which may vary from the seller's language.</span>
      * @param array<NameValuePair>|null $value Value to set for the lineItemAspects property.
     */
     public function setLineItemAspects(?array $value): void {
@@ -242,7 +242,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.
+     * Sets the sellerId property value. The eBay user ID of the seller who sold the linked line item. For example, the user ID of the tire seller.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @param string|null $value Value to set for the sellerId property.
     */
     public function setSellerId(?string $value): void {
@@ -258,7 +258,7 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the title property value. The listing title of the linked line item.<br><br><span class="tablenote"><b>Note:</b> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
+     * Sets the title property value. The listing title of the linked line item.<br><br><span class="tablenote"><strong>Note:</strong> The Item ID value for the listing will be returned in this field instead of the actual title if this particular listing is on-hold due to an eBay policy violation.</span>
      * @param string|null $value Value to set for the title property.
     */
     public function setTitle(?string $value): void {

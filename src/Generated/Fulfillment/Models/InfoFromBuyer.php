@@ -32,7 +32,7 @@ class InfoFromBuyer implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var bool|null $contentOnHold When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <b>buyerProvided.note</b> field,) is on hold. When this is the case, the <b>buyerProvided.note</b> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
+     * @var bool|null $contentOnHold When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <strong>buyerProvided.note</strong> field,) is on hold. When this is the case, the <strong>buyerProvided.note</strong> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
     */
     private ?bool $contentOnHold = null;
     
@@ -71,7 +71,7 @@ class InfoFromBuyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the contentOnHold property value. When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <b>buyerProvided.note</b> field,) is on hold. When this is the case, the <b>buyerProvided.note</b> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
+     * Gets the contentOnHold property value. When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <strong>buyerProvided.note</strong> field,) is on hold. When this is the case, the <strong>buyerProvided.note</strong> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
      * @return bool|null
     */
     public function getContentOnHold(): ?bool {
@@ -127,7 +127,7 @@ class InfoFromBuyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the contentOnHold property value. When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <b>buyerProvided.note</b> field,) is on hold. When this is the case, the <b>buyerProvided.note</b> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
+     * Sets the contentOnHold property value. When the value of this field is <code>true</code> it indicates that the buyer's note regarding the payment dispute (i.e., the <strong>buyerProvided.note</strong> field,) is on hold. When this is the case, the <strong>buyerProvided.note</strong> field will not be returned.<br><br>When the value of this field is <code>false</code>, it is not returned.
      * @param bool|null $value Value to set for the contentOnHold property.
     */
     public function setContentOnHold(?bool $value): void {

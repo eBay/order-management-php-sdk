@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Logistics\Shipment\Item;
 
+use EBay\OrderManagement\Generated\Logistics\Models\Error;
 use EBay\OrderManagement\Generated\Logistics\Models\Shipment;
 use EBay\OrderManagement\Generated\Logistics\Shipment\Item\Cancel\CancelRequestBuilder;
 use EBay\OrderManagement\Generated\Logistics\Shipment\Item\Download_label_file\Download_label_fileRequestBuilder;
@@ -60,18 +61,23 @@ class WithShipmentItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call <b>createFromShippingQuote</b> to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call <strong>createFromShippingQuote</strong> to generate a shipment ID.
      * @param WithShipmentItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Shipment|null>
      * @throws Exception
     */
     public function get(?WithShipmentItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Shipment::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [Error::class, 'createFromDiscriminatorValue'],
+                '404' => [Error::class, 'createFromDiscriminatorValue'],
+                '500' => [Error::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Shipment::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
-     * This method retrieves the shipment details for the specified shipment ID. Call <b>createFromShippingQuote</b> to generate a shipment ID.
+     * This method retrieves the shipment details for the specified shipment ID. Call <strong>createFromShippingQuote</strong> to generate a shipment ID.
      * @param WithShipmentItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

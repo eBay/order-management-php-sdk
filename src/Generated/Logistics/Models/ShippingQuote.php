@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This complex type describes a "shipping quote," which contains the parameters for a package shipment. The shipping quote contains a list of "live quotes" or <i>rates</i> for the shipment. Rates are offerd by a carrier for a particular service, of set of services, for shipping the package. Included in the shipping quote are the package specifications, the shipment's origin and destination addresses, and the shipping parameters specified by the seller.  <br><br>Use the <b>rateId</b> value to select the specific service you want when you create a shipment by calling <b>createFromShippingQuote</b>.
+ * This complex type describes a "shipping quote," which contains the parameters for a package shipment. The shipping quote contains a list of "live quotes" or <i>rates</i> for the shipment. Rates are offered by a carrier for a particular service, or set of services, for shipping the package. Included in the shipping quote are the package specifications, the shipment's origin and destination addresses, and the shipping parameters specified by the seller.  <br><br>Use the <strong>rateId</strong> value to select the specific service you want when you create a shipment by calling <strong>createFromShippingQuote</strong>.
 */
 class ShippingQuote implements AdditionalDataHolder, Parsable 
 {
@@ -47,17 +47,17 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     private ?array $orders = null;
     
     /**
-     * @var PackageSpecification|null $packageSpecification This complex type specifies the dimensions and weight of a package.
+     * @var PackageSpecification|null $packageSpecification The weight and dimensions of the package covered by this shipping quote.
     */
     private ?PackageSpecification $packageSpecification = null;
     
     /**
-     * @var array<Rate>|null $rates A list of <i>rates</i> where each rate, as identified by a <b>rateId</b>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><b>Note:</b> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <b>createFromShippingQuote</b>.
+     * @var array<Rate>|null $rates A list of <i>rates</i> where each rate, as identified by a <strong>rateId</strong>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><strong>Note:</strong> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <strong>createFromShippingQuote</strong>.
     */
     private ?array $rates = null;
     
     /**
-     * @var Contact|null $shipFrom This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipFrom The address and contact details for the origin of the shipment.
     */
     private ?Contact $shipFrom = null;
     
@@ -67,12 +67,12 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     private ?string $shippingQuoteId = null;
     
     /**
-     * @var Contact|null $shipTo This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipTo The address and contact details for the destination of the shipment.
     */
     private ?Contact $shipTo = null;
     
     /**
-     * @var array<Error>|null $warnings A list of any warnings triggered by the request.
+     * @var array<ErrorDetailV3>|null $warnings A list of any warnings triggered by the request.
     */
     private ?array $warnings = null;
     
@@ -131,7 +131,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
             'shipFrom' => fn(ParseNode $n) => $o->setShipFrom($n->getObjectValue([Contact::class, 'createFromDiscriminatorValue'])),
             'shippingQuoteId' => fn(ParseNode $n) => $o->setShippingQuoteId($n->getStringValue()),
             'shipTo' => fn(ParseNode $n) => $o->setShipTo($n->getObjectValue([Contact::class, 'createFromDiscriminatorValue'])),
-            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([Error::class, 'createFromDiscriminatorValue'])),
+            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetailV3::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -144,7 +144,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. The weight and dimensions of the package covered by this shipping quote.
      * @return PackageSpecification|null
     */
     public function getPackageSpecification(): ?PackageSpecification {
@@ -152,7 +152,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the rates property value. A list of <i>rates</i> where each rate, as identified by a <b>rateId</b>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><b>Note:</b> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <b>createFromShippingQuote</b>.
+     * Gets the rates property value. A list of <i>rates</i> where each rate, as identified by a <strong>rateId</strong>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><strong>Note:</strong> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <strong>createFromShippingQuote</strong>.
      * @return array<Rate>|null
     */
     public function getRates(): ?array {
@@ -160,7 +160,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details for the origin of the shipment.
      * @return Contact|null
     */
     public function getShipFrom(): ?Contact {
@@ -176,7 +176,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details for the destination of the shipment.
      * @return Contact|null
     */
     public function getShipTo(): ?Contact {
@@ -185,7 +185,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the warnings property value. A list of any warnings triggered by the request.
-     * @return array<Error>|null
+     * @return array<ErrorDetailV3>|null
     */
     public function getWarnings(): ?array {
         return $this->warnings;
@@ -241,7 +241,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. The weight and dimensions of the package covered by this shipping quote.
      * @param PackageSpecification|null $value Value to set for the packageSpecification property.
     */
     public function setPackageSpecification(?PackageSpecification $value): void {
@@ -249,7 +249,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the rates property value. A list of <i>rates</i> where each rate, as identified by a <b>rateId</b>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><b>Note:</b> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <b>createFromShippingQuote</b>.
+     * Sets the rates property value. A list of <i>rates</i> where each rate, as identified by a <strong>rateId</strong>, contains information about a specific shipping service offered by a carrier.  Rates include shipping carrier and service, the to and from locations, the pickup and delivery windows, the seller's shipping parameters, the service constraints, and the cost for the base service and a list of additional shipping options.<br><br><span class="tablenote"><strong>Note:</strong> The Logistics API only supports USPS shipping rates and labels.</span><br>Each rate offered is supported by a label service where you can purchase the rate, and associated shipping label, via a call to <strong>createFromShippingQuote</strong>.
      * @param array<Rate>|null $value Value to set for the rates property.
     */
     public function setRates(?array $value): void {
@@ -257,7 +257,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details for the origin of the shipment.
      * @param Contact|null $value Value to set for the shipFrom property.
     */
     public function setShipFrom(?Contact $value): void {
@@ -273,7 +273,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details for the destination of the shipment.
      * @param Contact|null $value Value to set for the shipTo property.
     */
     public function setShipTo(?Contact $value): void {
@@ -282,7 +282,7 @@ class ShippingQuote implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the warnings property value. A list of any warnings triggered by the request.
-     * @param array<Error>|null $value Value to set for the warnings property.
+     * @param array<ErrorDetailV3>|null $value Value to set for the warnings property.
     */
     public function setWarnings(?array $value): void {
         $this->warnings = $value;

@@ -32,32 +32,37 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var SimpleAmount|null $fees This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $donationCreditAmount This container shows the amount of money in donation credits.
+    */
+    private ?SimpleAmount $donationCreditAmount = null;
+    
+    /**
+     * @var SimpleAmount|null $fees This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
     */
     private ?SimpleAmount $fees = null;
     
     /**
-     * @var SimpleAmount|null $protectedAmount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $protectedAmount This container shows the amount of money that the seller is protected against in a payment dispute under eBay's seller protection policy.
     */
     private ?SimpleAmount $protectedAmount = null;
     
     /**
-     * @var string|null $protectionStatus This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum'>eBay API documentation</a>
+     * @var ProtectionStatusEnum|null $protectionStatus This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
     */
-    private ?string $protectionStatus = null;
+    private ?ProtectionStatusEnum $protectionStatus = null;
     
     /**
-     * @var string|null $reasonForClosure The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum'>eBay API documentation</a>
+     * @var OutcomeEnum|null $reasonForClosure The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
     */
-    private ?string $reasonForClosure = null;
+    private ?OutcomeEnum $reasonForClosure = null;
     
     /**
-     * @var SimpleAmount|null $recoupAmount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $recoupAmount This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay's seller protection policy.
     */
     private ?SimpleAmount $recoupAmount = null;
     
     /**
-     * @var SimpleAmount|null $totalFeeCredit This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $totalFeeCredit This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
     */
     private ?SimpleAmount $totalFeeCredit = null;
     
@@ -86,7 +91,15 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fees property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the donationCreditAmount property value. This container shows the amount of money in donation credits.
+     * @return SimpleAmount|null
+    */
+    public function getDonationCreditAmount(): ?SimpleAmount {
+        return $this->donationCreditAmount;
+    }
+
+    /**
+     * Gets the fees property value. This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
      * @return SimpleAmount|null
     */
     public function getFees(): ?SimpleAmount {
@@ -100,17 +113,18 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
+            'donationCreditAmount' => fn(ParseNode $n) => $o->setDonationCreditAmount($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
             'fees' => fn(ParseNode $n) => $o->setFees($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
             'protectedAmount' => fn(ParseNode $n) => $o->setProtectedAmount($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
-            'protectionStatus' => fn(ParseNode $n) => $o->setProtectionStatus($n->getStringValue()),
-            'reasonForClosure' => fn(ParseNode $n) => $o->setReasonForClosure($n->getStringValue()),
+            'protectionStatus' => fn(ParseNode $n) => $o->setProtectionStatus($n->getEnumValue(ProtectionStatusEnum::class)),
+            'reasonForClosure' => fn(ParseNode $n) => $o->setReasonForClosure($n->getEnumValue(OutcomeEnum::class)),
             'recoupAmount' => fn(ParseNode $n) => $o->setRecoupAmount($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
             'totalFeeCredit' => fn(ParseNode $n) => $o->setTotalFeeCredit($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the protectedAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the protectedAmount property value. This container shows the amount of money that the seller is protected against in a payment dispute under eBay's seller protection policy.
      * @return SimpleAmount|null
     */
     public function getProtectedAmount(): ?SimpleAmount {
@@ -118,23 +132,23 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
+     * @return ProtectionStatusEnum|null
     */
-    public function getProtectionStatus(): ?string {
+    public function getProtectionStatus(): ?ProtectionStatusEnum {
         return $this->protectionStatus;
     }
 
     /**
-     * Gets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
+     * @return OutcomeEnum|null
     */
-    public function getReasonForClosure(): ?string {
+    public function getReasonForClosure(): ?OutcomeEnum {
         return $this->reasonForClosure;
     }
 
     /**
-     * Gets the recoupAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the recoupAmount property value. This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay's seller protection policy.
      * @return SimpleAmount|null
     */
     public function getRecoupAmount(): ?SimpleAmount {
@@ -142,7 +156,7 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the totalFeeCredit property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the totalFeeCredit property value. This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
      * @return SimpleAmount|null
     */
     public function getTotalFeeCredit(): ?SimpleAmount {
@@ -154,10 +168,11 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
+        $writer->writeObjectValue('donationCreditAmount', $this->getDonationCreditAmount());
         $writer->writeObjectValue('fees', $this->getFees());
         $writer->writeObjectValue('protectedAmount', $this->getProtectedAmount());
-        $writer->writeStringValue('protectionStatus', $this->getProtectionStatus());
-        $writer->writeStringValue('reasonForClosure', $this->getReasonForClosure());
+        $writer->writeEnumValue('protectionStatus', $this->getProtectionStatus());
+        $writer->writeEnumValue('reasonForClosure', $this->getReasonForClosure());
         $writer->writeObjectValue('recoupAmount', $this->getRecoupAmount());
         $writer->writeObjectValue('totalFeeCredit', $this->getTotalFeeCredit());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -172,7 +187,15 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fees property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the donationCreditAmount property value. This container shows the amount of money in donation credits.
+     * @param SimpleAmount|null $value Value to set for the donationCreditAmount property.
+    */
+    public function setDonationCreditAmount(?SimpleAmount $value): void {
+        $this->donationCreditAmount = $value;
+    }
+
+    /**
+     * Sets the fees property value. This container will show the dollar value of any fees associated with the payment dispute. This container is only returned if there are fees associated with the payment dispute.
      * @param SimpleAmount|null $value Value to set for the fees property.
     */
     public function setFees(?SimpleAmount $value): void {
@@ -180,7 +203,7 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the protectedAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the protectedAmount property value. This container shows the amount of money that the seller is protected against in a payment dispute under eBay's seller protection policy.
      * @param SimpleAmount|null $value Value to set for the protectedAmount property.
     */
     public function setProtectedAmount(?SimpleAmount $value): void {
@@ -188,23 +211,23 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ProtectionStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the protectionStatus property.
+     * Sets the protectionStatus property value. This enumeration value indicates if the seller is fully protected, partially protected, or not protected by eBay for the payment dispute. This field is always returned once the payment dispute is resolved.
+     * @param ProtectionStatusEnum|null $value Value to set for the protectionStatus property.
     */
-    public function setProtectionStatus(?string $value): void {
+    public function setProtectionStatus(?ProtectionStatusEnum $value): void {
         $this->protectionStatus = $value;
     }
 
     /**
-     * Sets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:OutcomeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the reasonForClosure property.
+     * Sets the reasonForClosure property value. The enumeration value returned in this field indicates the outcome of the payment dispute for the seller. This field is always returned once the payment dispute is resolved.
+     * @param OutcomeEnum|null $value Value to set for the reasonForClosure property.
     */
-    public function setReasonForClosure(?string $value): void {
+    public function setReasonForClosure(?OutcomeEnum $value): void {
         $this->reasonForClosure = $value;
     }
 
     /**
-     * Sets the recoupAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the recoupAmount property value. This container shows the dollar amount being recouped from the seller. This container is empty if the seller wins the payment dispute or if the seller is fully protected by eBay's seller protection policy.
      * @param SimpleAmount|null $value Value to set for the recoupAmount property.
     */
     public function setRecoupAmount(?SimpleAmount $value): void {
@@ -212,7 +235,7 @@ class PaymentDisputeOutcomeDetail implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the totalFeeCredit property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the totalFeeCredit property value. This container shows the amount of money in selling fee credits due back to the seller after a payment dispute is settled.
      * @param SimpleAmount|null $value Value to set for the totalFeeCredit property.
     */
     public function setTotalFeeCredit(?SimpleAmount $value): void {

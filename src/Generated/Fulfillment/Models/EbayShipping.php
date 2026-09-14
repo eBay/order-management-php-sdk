@@ -32,7 +32,7 @@ class EbayShipping implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $shippingLabelProvidedBy This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * @var string|null $shippingLabelProvidedBy This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
     */
     private ?string $shippingLabelProvidedBy = null;
     
@@ -72,7 +72,7 @@ class EbayShipping implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * Gets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
      * @return string|null
     */
     public function getShippingLabelProvidedBy(): ?string {
@@ -97,7 +97,7 @@ class EbayShipping implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label by eBay is downloadable by the seller via the eBay website.
+     * Sets the shippingLabelProvidedBy property value. This field contains the shipping label provider. If <code>EBAY</code>, this order is managed by eBay shipping and a free shipping label created by eBay is downloadable by the seller via the eBay website.
      * @param string|null $value Value to set for the shippingLabelProvidedBy property.
     */
     public function setShippingLabelProvidedBy(?string $value): void {

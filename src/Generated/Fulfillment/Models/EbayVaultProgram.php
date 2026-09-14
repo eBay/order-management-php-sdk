@@ -21,6 +21,9 @@ use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
+/**
+ * This type contains details on the fulfillment type.
+*/
 class EbayVaultProgram implements AdditionalDataHolder, Parsable 
 {
     /**
@@ -29,9 +32,9 @@ class EbayVaultProgram implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $fulfillmentType This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><b>Seller to Vault</b>: the order will be shipped by the seller to an authenticator.</li><li><b>Vault to Vault</b>: the order will be shipped from an eBay vault to the buyer's vault.</li><li><b>Vault to Buyer</b>: the order will be shipped from an eBay vault to the buyer's shipping address.</li></ul> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum'>eBay API documentation</a>
+     * @var EbayVaultFulfillmentTypeEnum|null $fulfillmentType This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><strong>Seller to Vault</strong>: The order will be shipped by the seller to an authenticator.</li><li><strong>Vault to Vault</strong>: The order will be shipped from an eBay vault to the buyer's vault.</li><li><strong>Vault to Buyer</strong>: The order will be shipped from an eBay vault to the buyer's shipping address.</li></ul>
     */
-    private ?string $fulfillmentType = null;
+    private ?EbayVaultFulfillmentTypeEnum $fulfillmentType = null;
     
     /**
      * Instantiates a new EbayVaultProgram and sets the default values.
@@ -64,15 +67,15 @@ class EbayVaultProgram implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'fulfillmentType' => fn(ParseNode $n) => $o->setFulfillmentType($n->getStringValue()),
+            'fulfillmentType' => fn(ParseNode $n) => $o->setFulfillmentType($n->getEnumValue(EbayVaultFulfillmentTypeEnum::class)),
         ];
     }
 
     /**
-     * Gets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><b>Seller to Vault</b>: the order will be shipped by the seller to an authenticator.</li><li><b>Vault to Vault</b>: the order will be shipped from an eBay vault to the buyer's vault.</li><li><b>Vault to Buyer</b>: the order will be shipped from an eBay vault to the buyer's shipping address.</li></ul> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><strong>Seller to Vault</strong>: The order will be shipped by the seller to an authenticator.</li><li><strong>Vault to Vault</strong>: The order will be shipped from an eBay vault to the buyer's vault.</li><li><strong>Vault to Buyer</strong>: The order will be shipped from an eBay vault to the buyer's shipping address.</li></ul>
+     * @return EbayVaultFulfillmentTypeEnum|null
     */
-    public function getFulfillmentType(): ?string {
+    public function getFulfillmentType(): ?EbayVaultFulfillmentTypeEnum {
         return $this->fulfillmentType;
     }
 
@@ -81,7 +84,7 @@ class EbayVaultProgram implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('fulfillmentType', $this->getFulfillmentType());
+        $writer->writeEnumValue('fulfillmentType', $this->getFulfillmentType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -94,10 +97,10 @@ class EbayVaultProgram implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><b>Seller to Vault</b>: the order will be shipped by the seller to an authenticator.</li><li><b>Vault to Vault</b>: the order will be shipped from an eBay vault to the buyer's vault.</li><li><b>Vault to Buyer</b>: the order will be shipped from an eBay vault to the buyer's shipping address.</li></ul> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:EbayVaultFulfillmentTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the fulfillmentType property.
+     * Sets the fulfillmentType property value. This field specifies how an eBay vault order will be fulfilled. Supported options are:<ul><li><strong>Seller to Vault</strong>: The order will be shipped by the seller to an authenticator.</li><li><strong>Vault to Vault</strong>: The order will be shipped from an eBay vault to the buyer's vault.</li><li><strong>Vault to Buyer</strong>: The order will be shipped from an eBay vault to the buyer's shipping address.</li></ul>
+     * @param EbayVaultFulfillmentTypeEnum|null $value Value to set for the fulfillmentType property.
     */
-    public function setFulfillmentType(?string $value): void {
+    public function setFulfillmentType(?EbayVaultFulfillmentTypeEnum $value): void {
         $this->fulfillmentType = $value;
     }
 

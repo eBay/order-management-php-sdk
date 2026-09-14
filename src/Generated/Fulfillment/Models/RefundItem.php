@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type is used if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <b>orderLevelRefundAmount</b> container to specify the amount of the refund for the entire order.
+ * This type is used if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.
 */
 class RefundItem implements AdditionalDataHolder, Parsable 
 {
@@ -32,17 +32,17 @@ class RefundItem implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var LegacyReference|null $legacyReference Type defining the <b>legacyReference</b> container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * @var LegacyReference|null $legacyReference This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.<br><br>Either this container or the <strong>lineItemId</strong> field is needed to identify an individual order line item that will receive a refund. <br><br><span class="tablenote"><strong>Note:</strong> This container should <strong>only</strong> be used if a seller is using the<a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrders</a> method of the <strong>Trading API</strong>.</span>
     */
     private ?LegacyReference $legacyReference = null;
     
     /**
-     * @var string|null $lineItemId The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br>Either this field or the <b>legacyReference</b> container is needed to identify an individual order line item that will receive a refund.<br><br> This value is returned using the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank ">getOrders</a> method.
+     * @var string|null $lineItemId The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
     */
     private ?string $lineItemId = null;
     
     /**
-     * @var SimpleAmount|null $refundAmount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $refundAmount This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the <strong>orderLevelRefundAmount</strong> container instead.
     */
     private ?SimpleAmount $refundAmount = null;
     
@@ -84,7 +84,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the legacyReference property value. Type defining the <b>legacyReference</b> container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * Gets the legacyReference property value. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.<br><br>Either this container or the <strong>lineItemId</strong> field is needed to identify an individual order line item that will receive a refund. <br><br><span class="tablenote"><strong>Note:</strong> This container should <strong>only</strong> be used if a seller is using the<a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrders</a> method of the <strong>Trading API</strong>.</span>
      * @return LegacyReference|null
     */
     public function getLegacyReference(): ?LegacyReference {
@@ -92,7 +92,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br>Either this field or the <b>legacyReference</b> container is needed to identify an individual order line item that will receive a refund.<br><br> This value is returned using the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank ">getOrders</a> method.
+     * Gets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
      * @return string|null
     */
     public function getLineItemId(): ?string {
@@ -100,7 +100,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the refundAmount property value. This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the <strong>orderLevelRefundAmount</strong> container instead.
      * @return SimpleAmount|null
     */
     public function getRefundAmount(): ?SimpleAmount {
@@ -127,7 +127,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the legacyReference property value. Type defining the <b>legacyReference</b> container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+     * Sets the legacyReference property value. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID/transaction ID pair to identify the order line item.<br><br>Either this container or the <strong>lineItemId</strong> field is needed to identify an individual order line item that will receive a refund. <br><br><span class="tablenote"><strong>Note:</strong> This container should <strong>only</strong> be used if a seller is using the<a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrders</a> method of the <strong>Trading API</strong>.</span>
      * @param LegacyReference|null $value Value to set for the legacyReference property.
     */
     public function setLegacyReference(?LegacyReference $value): void {
@@ -135,7 +135,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br>Either this field or the <b>legacyReference</b> container is needed to identify an individual order line item that will receive a refund.<br><br> This value is returned using the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank ">getOrders</a> method.
+     * Sets the lineItemId property value. The unique identifier of an order line item. This identifier is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. Either this field or the legacyReference container is needed to identify an individual order line item that will receive a refund. This value is returned using the getOrders method.
      * @param string|null $value Value to set for the lineItemId property.
     */
     public function setLineItemId(?string $value): void {
@@ -143,7 +143,7 @@ class RefundItem implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the refundAmount property value. This container is used to specify the amount of the refund for the corresponding order line item. If a seller wants to issue a refund for an entire order, the seller would use the <strong>orderLevelRefundAmount</strong> container instead.
      * @param SimpleAmount|null $value Value to set for the refundAmount property.
     */
     public function setRefundAmount(?SimpleAmount $value): void {

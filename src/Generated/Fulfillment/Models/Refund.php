@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This is the base type of the <b>issueRefund</b> response payload. As long as the <b>issueRefund</b> method does not trigger an error, a response payload will be returned.
+ * This is the base type of the issueRefund response payload. As long as the issueRefund method does not trigger an error, a response payload will be returned.
 */
 class Refund implements AdditionalDataHolder, Parsable 
 {
@@ -32,14 +32,14 @@ class Refund implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $refundId The unique identifier of the order refund. This value is returned unless the refund operation fails (<b>refundStatus</b> value shows <code>FAILED</code>). This identifier can be used to track the status of the refund through a <b>getOrder</b> or <b>getOrders</b> call. For order-level refunds, check the <b>paymentSummary.refunds.refundId</b> field in the <b>getOrder</b>/<b>getOrders</b> response, and for line item level refunds, check the <b>lineItems.refunds.refundId</b> field(s) in the <b>getOrder</b>/<b>getOrders</b> response.
+     * @var string|null $refundId The unique identifier of the order refund. This value is returned unless the refund operation fails (refundStatus value shows FAILED). This identifier can be used to track the status of the refund through a getOrder or getOrders call. For order-level refunds, check the paymentSummary.refunds.refundId field in the getOrder/getOrders response, and for line item level refunds, check the lineItems.refunds.refundId field(s) in the getOrder/getOrders response.
     */
     private ?string $refundId = null;
     
     /**
-     * @var string|null $refundStatus The value returned in this field indicates the success or failure of the refund operation. A successful <b>issueRefund</b> operation should result in a value of <code>PENDING</code>. A failed <b>issueRefund</b> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or and API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> call to check the status of the refund.  The status of an order refund can be found in the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder#response.paymentSummary.refunds.refundStatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
+     * @var RefundStatusEnum|null $refundStatus The value returned in this field indicates the success or failure of the refund operation. A successful <strong>issueRefund</strong> operation should result in a value of <code>PENDING</code>. A failed <strong>issueRefund</strong> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <strong>getOrder</strong> call to check the status of the refund.  The status of an order refund can be found in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder.orderrefund.refundstatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> response.
     */
-    private ?string $refundStatus = null;
+    private ?RefundStatusEnum $refundStatus = null;
     
     /**
      * Instantiates a new Refund and sets the default values.
@@ -73,12 +73,12 @@ class Refund implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'refundId' => fn(ParseNode $n) => $o->setRefundId($n->getStringValue()),
-            'refundStatus' => fn(ParseNode $n) => $o->setRefundStatus($n->getStringValue()),
+            'refundStatus' => fn(ParseNode $n) => $o->setRefundStatus($n->getEnumValue(RefundStatusEnum::class)),
         ];
     }
 
     /**
-     * Gets the refundId property value. The unique identifier of the order refund. This value is returned unless the refund operation fails (<b>refundStatus</b> value shows <code>FAILED</code>). This identifier can be used to track the status of the refund through a <b>getOrder</b> or <b>getOrders</b> call. For order-level refunds, check the <b>paymentSummary.refunds.refundId</b> field in the <b>getOrder</b>/<b>getOrders</b> response, and for line item level refunds, check the <b>lineItems.refunds.refundId</b> field(s) in the <b>getOrder</b>/<b>getOrders</b> response.
+     * Gets the refundId property value. The unique identifier of the order refund. This value is returned unless the refund operation fails (refundStatus value shows FAILED). This identifier can be used to track the status of the refund through a getOrder or getOrders call. For order-level refunds, check the paymentSummary.refunds.refundId field in the getOrder/getOrders response, and for line item level refunds, check the lineItems.refunds.refundId field(s) in the getOrder/getOrders response.
      * @return string|null
     */
     public function getRefundId(): ?string {
@@ -86,10 +86,10 @@ class Refund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundStatus property value. The value returned in this field indicates the success or failure of the refund operation. A successful <b>issueRefund</b> operation should result in a value of <code>PENDING</code>. A failed <b>issueRefund</b> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or and API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> call to check the status of the refund.  The status of an order refund can be found in the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder#response.paymentSummary.refunds.refundStatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the refundStatus property value. The value returned in this field indicates the success or failure of the refund operation. A successful <strong>issueRefund</strong> operation should result in a value of <code>PENDING</code>. A failed <strong>issueRefund</strong> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <strong>getOrder</strong> call to check the status of the refund.  The status of an order refund can be found in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder.orderrefund.refundstatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> response.
+     * @return RefundStatusEnum|null
     */
-    public function getRefundStatus(): ?string {
+    public function getRefundStatus(): ?RefundStatusEnum {
         return $this->refundStatus;
     }
 
@@ -99,7 +99,7 @@ class Refund implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('refundId', $this->getRefundId());
-        $writer->writeStringValue('refundStatus', $this->getRefundStatus());
+        $writer->writeEnumValue('refundStatus', $this->getRefundStatus());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -112,7 +112,7 @@ class Refund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundId property value. The unique identifier of the order refund. This value is returned unless the refund operation fails (<b>refundStatus</b> value shows <code>FAILED</code>). This identifier can be used to track the status of the refund through a <b>getOrder</b> or <b>getOrders</b> call. For order-level refunds, check the <b>paymentSummary.refunds.refundId</b> field in the <b>getOrder</b>/<b>getOrders</b> response, and for line item level refunds, check the <b>lineItems.refunds.refundId</b> field(s) in the <b>getOrder</b>/<b>getOrders</b> response.
+     * Sets the refundId property value. The unique identifier of the order refund. This value is returned unless the refund operation fails (refundStatus value shows FAILED). This identifier can be used to track the status of the refund through a getOrder or getOrders call. For order-level refunds, check the paymentSummary.refunds.refundId field in the getOrder/getOrders response, and for line item level refunds, check the lineItems.refunds.refundId field(s) in the getOrder/getOrders response.
      * @param string|null $value Value to set for the refundId property.
     */
     public function setRefundId(?string $value): void {
@@ -120,10 +120,10 @@ class Refund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundStatus property value. The value returned in this field indicates the success or failure of the refund operation. A successful <b>issueRefund</b> operation should result in a value of <code>PENDING</code>. A failed <b>issueRefund</b> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or and API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> call to check the status of the refund.  The status of an order refund can be found in the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder#response.paymentSummary.refunds.refundStatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="https://developer.ebay.com/api-docs/sell/fulfillment/resources/order/methods/getOrder" target="_blank">getOrder</a> response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the refundStatus property.
+     * Sets the refundStatus property value. The value returned in this field indicates the success or failure of the refund operation. A successful <strong>issueRefund</strong> operation should result in a value of <code>PENDING</code>. A failed <strong>issueRefund</strong> operation should result in a value of <code>FAILED</code>, and an HTTP status code and/or API error code may also get returned to possibly indicate the issue.<br><br>The refunds issued through this method are processed asynchronously, so the refund will not show as 'Refunded' right away. A seller will have to make a subsequent <strong>getOrder</strong> call to check the status of the refund.  The status of an order refund can be found in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder.orderrefund.refundstatus" target="_blank">paymentSummary.refunds.refundStatus</a> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> response.
+     * @param RefundStatusEnum|null $value Value to set for the refundStatus property.
     */
-    public function setRefundStatus(?string $value): void {
+    public function setRefundStatus(?RefundStatusEnum $value): void {
         $this->refundStatus = $value;
     }
 

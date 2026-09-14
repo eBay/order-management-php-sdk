@@ -32,12 +32,12 @@ class Address implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $addressLine1 The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine1</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $addressLine1 The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine1</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $addressLine1 = null;
     
     /**
-     * @var string|null $addressLine2 The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine2</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $addressLine2 The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine2</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $addressLine2 = null;
     
@@ -47,9 +47,9 @@ class Address implements AdditionalDataHolder, Parsable
     private ?string $city = null;
     
     /**
-     * @var string|null $countryCode The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $countryCode The country of the shipping destination, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany.
     */
-    private ?string $countryCode = null;
+    private ?CountryCodeEnum $countryCode = null;
     
     /**
      * @var string|null $county The county of the shipping destination. Counties typically, but not always, contain multiple cities or towns. This field is returned if known/available.
@@ -57,7 +57,7 @@ class Address implements AdditionalDataHolder, Parsable
     private ?string $county = null;
     
     /**
-     * @var string|null $postalCode The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * @var string|null $postalCode The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
     */
     private ?string $postalCode = null;
     
@@ -91,7 +91,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the addressLine1 property value. The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine1</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the addressLine1 property value. The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine1</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getAddressLine1(): ?string {
@@ -99,7 +99,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine2</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine2</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getAddressLine2(): ?string {
@@ -115,10 +115,10 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany.
+     * @return CountryCodeEnum|null
     */
-    public function getCountryCode(): ?string {
+    public function getCountryCode(): ?CountryCodeEnum {
         return $this->countryCode;
     }
 
@@ -140,7 +140,7 @@ class Address implements AdditionalDataHolder, Parsable
             'addressLine1' => fn(ParseNode $n) => $o->setAddressLine1($n->getStringValue()),
             'addressLine2' => fn(ParseNode $n) => $o->setAddressLine2($n->getStringValue()),
             'city' => fn(ParseNode $n) => $o->setCity($n->getStringValue()),
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getEnumValue(CountryCodeEnum::class)),
             'county' => fn(ParseNode $n) => $o->setCounty($n->getStringValue()),
             'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
             'stateOrProvince' => fn(ParseNode $n) => $o->setStateOrProvince($n->getStringValue()),
@@ -148,7 +148,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the postalCode property value. The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * Gets the postalCode property value. The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
      * @return string|null
     */
     public function getPostalCode(): ?string {
@@ -171,7 +171,7 @@ class Address implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('addressLine1', $this->getAddressLine1());
         $writer->writeStringValue('addressLine2', $this->getAddressLine2());
         $writer->writeStringValue('city', $this->getCity());
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeEnumValue('countryCode', $this->getCountryCode());
         $writer->writeStringValue('county', $this->getCounty());
         $writer->writeStringValue('postalCode', $this->getPostalCode());
         $writer->writeStringValue('stateOrProvince', $this->getStateOrProvince());
@@ -187,7 +187,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the addressLine1 property value. The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine1</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the addressLine1 property value. The first line of the street address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine1</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the addressLine1 property.
     */
     public function setAddressLine1(?string $value): void {
@@ -195,7 +195,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <b>addressLine2</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the addressLine2 property value. The second line of the street address. This field can be used for additional address information, such as a suite or apartment number. This field will be returned if defined for the shipping address.<br><br><span class="tablenote"><strong>Note:</strong> <strong>addressLine2</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the addressLine2 property.
     */
     public function setAddressLine2(?string $value): void {
@@ -211,10 +211,10 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the countryCode property value. The country of the shipping destination, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <code>US</code> represents the United States, and <code>DE</code> represents Germany.
+     * @param CountryCodeEnum|null $value Value to set for the countryCode property.
     */
-    public function setCountryCode(?string $value): void {
+    public function setCountryCode(?CountryCodeEnum $value): void {
         $this->countryCode = $value;
     }
 
@@ -227,7 +227,7 @@ class Address implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the postalCode property value. The postal code of the shipping destination. Usually referred to as Zip codes in the US. Most countries have postal codes, but not all. The postal code will be returned if applicable.
+     * Sets the postalCode property value. The postal code of the shipping destination. This is usually referred to as ZIP codes in the US. Most countries have postal codes, but not all. The postal code will be returned, if applicable.
      * @param string|null $value Value to set for the postalCode property.
     */
     public function setPostalCode(?string $value): void {

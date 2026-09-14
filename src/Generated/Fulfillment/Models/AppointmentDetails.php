@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains information used by the installation provider concerning appointment details selected by the buyer
+ * This type contains information used by the installation provider concerning appointment details selected by the buyer.
 */
 class AppointmentDetails implements AdditionalDataHolder, Parsable 
 {
@@ -32,32 +32,32 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $appointmentEndTime The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:00:00.000Z</code>
+     * @var string|null $appointmentEndTime The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
     */
     private ?string $appointmentEndTime = null;
     
     /**
-     * @var string|null $appointmentStartTime The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:10:00.000Z</code>
+     * @var string|null $appointmentStartTime The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
     */
     private ?string $appointmentStartTime = null;
     
     /**
-     * @var string|null $appointmentStatus The status of the appointment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum'>eBay API documentation</a>
+     * @var AppointmentStatusEnum|null $appointmentStatus The status of the appointment.
     */
-    private ?string $appointmentStatus = null;
+    private ?AppointmentStatusEnum $appointmentStatus = null;
     
     /**
-     * @var string|null $appointmentType The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum'>eBay API documentation</a>
+     * @var AppointmentTypeEnum|null $appointmentType The type of appointment. <code>MACRO</code> appointments only have a start time (not bounded with end time). <code>TIME_SLOT</code> appointments have a period (both start time and end time). Required for tire installation.
     */
-    private ?string $appointmentType = null;
+    private ?AppointmentTypeEnum $appointmentType = null;
     
     /**
-     * @var string|null $appointmentWindow Appointment window for MACRO appointments. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum'>eBay API documentation</a>
+     * @var AppointmentWindowEnum|null $appointmentWindow Appointment window for <code>MACRO</code> appointments.
     */
-    private ?string $appointmentWindow = null;
+    private ?AppointmentWindowEnum $appointmentWindow = null;
     
     /**
-     * @var string|null $serviceProviderAppointmentDate Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * @var string|null $serviceProviderAppointmentDate Service provider date of the appointment (no time stamp). Returned only for <code>MACRO</code> appointment types.
     */
     private ?string $serviceProviderAppointmentDate = null;
     
@@ -86,7 +86,7 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:00:00.000Z</code>
+     * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
      * @return string|null
     */
     public function getAppointmentEndTime(): ?string {
@@ -94,7 +94,7 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:10:00.000Z</code>
+     * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
      * @return string|null
     */
     public function getAppointmentStartTime(): ?string {
@@ -102,26 +102,26 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the appointmentStatus property value. The status of the appointment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the appointmentStatus property value. The status of the appointment.
+     * @return AppointmentStatusEnum|null
     */
-    public function getAppointmentStatus(): ?string {
+    public function getAppointmentStatus(): ?AppointmentStatusEnum {
         return $this->appointmentStatus;
     }
 
     /**
-     * Gets the appointmentType property value. The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the appointmentType property value. The type of appointment. <code>MACRO</code> appointments only have a start time (not bounded with end time). <code>TIME_SLOT</code> appointments have a period (both start time and end time). Required for tire installation.
+     * @return AppointmentTypeEnum|null
     */
-    public function getAppointmentType(): ?string {
+    public function getAppointmentType(): ?AppointmentTypeEnum {
         return $this->appointmentType;
     }
 
     /**
-     * Gets the appointmentWindow property value. Appointment window for MACRO appointments. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the appointmentWindow property value. Appointment window for <code>MACRO</code> appointments.
+     * @return AppointmentWindowEnum|null
     */
-    public function getAppointmentWindow(): ?string {
+    public function getAppointmentWindow(): ?AppointmentWindowEnum {
         return $this->appointmentWindow;
     }
 
@@ -134,15 +134,15 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
         return  [
             'appointmentEndTime' => fn(ParseNode $n) => $o->setAppointmentEndTime($n->getStringValue()),
             'appointmentStartTime' => fn(ParseNode $n) => $o->setAppointmentStartTime($n->getStringValue()),
-            'appointmentStatus' => fn(ParseNode $n) => $o->setAppointmentStatus($n->getStringValue()),
-            'appointmentType' => fn(ParseNode $n) => $o->setAppointmentType($n->getStringValue()),
-            'appointmentWindow' => fn(ParseNode $n) => $o->setAppointmentWindow($n->getStringValue()),
+            'appointmentStatus' => fn(ParseNode $n) => $o->setAppointmentStatus($n->getEnumValue(AppointmentStatusEnum::class)),
+            'appointmentType' => fn(ParseNode $n) => $o->setAppointmentType($n->getEnumValue(AppointmentTypeEnum::class)),
+            'appointmentWindow' => fn(ParseNode $n) => $o->setAppointmentWindow($n->getEnumValue(AppointmentWindowEnum::class)),
             'serviceProviderAppointmentDate' => fn(ParseNode $n) => $o->setServiceProviderAppointmentDate($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * Gets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for <code>MACRO</code> appointment types.
      * @return string|null
     */
     public function getServiceProviderAppointmentDate(): ?string {
@@ -156,9 +156,9 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('appointmentEndTime', $this->getAppointmentEndTime());
         $writer->writeStringValue('appointmentStartTime', $this->getAppointmentStartTime());
-        $writer->writeStringValue('appointmentStatus', $this->getAppointmentStatus());
-        $writer->writeStringValue('appointmentType', $this->getAppointmentType());
-        $writer->writeStringValue('appointmentWindow', $this->getAppointmentWindow());
+        $writer->writeEnumValue('appointmentStatus', $this->getAppointmentStatus());
+        $writer->writeEnumValue('appointmentType', $this->getAppointmentType());
+        $writer->writeEnumValue('appointmentWindow', $this->getAppointmentWindow());
         $writer->writeStringValue('serviceProviderAppointmentDate', $this->getServiceProviderAppointmentDate());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -172,7 +172,7 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:00:00.000Z</code>
+     * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
      * @param string|null $value Value to set for the appointmentEndTime property.
     */
     public function setAppointmentEndTime(?string $value): void {
@@ -180,7 +180,7 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2022-10-28T00:10:00.000Z</code>
+     * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
      * @param string|null $value Value to set for the appointmentStartTime property.
     */
     public function setAppointmentStartTime(?string $value): void {
@@ -188,31 +188,31 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the appointmentStatus property value. The status of the appointment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the appointmentStatus property.
+     * Sets the appointmentStatus property value. The status of the appointment.
+     * @param AppointmentStatusEnum|null $value Value to set for the appointmentStatus property.
     */
-    public function setAppointmentStatus(?string $value): void {
+    public function setAppointmentStatus(?AppointmentStatusEnum $value): void {
         $this->appointmentStatus = $value;
     }
 
     /**
-     * Sets the appointmentType property value. The type of appointment. MACRO appointments only have a start time (not bounded with end time). TIME_SLOT appointments have a period (both start time and end time). Required for tire installation. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the appointmentType property.
+     * Sets the appointmentType property value. The type of appointment. <code>MACRO</code> appointments only have a start time (not bounded with end time). <code>TIME_SLOT</code> appointments have a period (both start time and end time). Required for tire installation.
+     * @param AppointmentTypeEnum|null $value Value to set for the appointmentType property.
     */
-    public function setAppointmentType(?string $value): void {
+    public function setAppointmentType(?AppointmentTypeEnum $value): void {
         $this->appointmentType = $value;
     }
 
     /**
-     * Sets the appointmentWindow property value. Appointment window for MACRO appointments. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AppointmentWindowEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the appointmentWindow property.
+     * Sets the appointmentWindow property value. Appointment window for <code>MACRO</code> appointments.
+     * @param AppointmentWindowEnum|null $value Value to set for the appointmentWindow property.
     */
-    public function setAppointmentWindow(?string $value): void {
+    public function setAppointmentWindow(?AppointmentWindowEnum $value): void {
         $this->appointmentWindow = $value;
     }
 
     /**
-     * Sets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for MACRO appointment types.
+     * Sets the serviceProviderAppointmentDate property value. Service provider date of the appointment (no time stamp). Returned only for <code>MACRO</code> appointment types.
      * @param string|null $value Value to set for the serviceProviderAppointmentDate property.
     */
     public function setServiceProviderAppointmentDate(?string $value): void {

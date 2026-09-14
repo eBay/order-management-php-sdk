@@ -32,34 +32,34 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $cancelCompletedDate The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $cancelCompletedDate This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $cancelCompletedDate = null;
     
     /**
-     * @var string|null $cancelInitiator This string value indicates the party who made the initial cancellation request. Typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
+     * @var string|null $cancelInitiator This string value indicates the party who made the initial cancellation request. This is typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
     */
     private ?string $cancelInitiator = null;
     
     /**
-     * @var string|null $cancelReason The reason why the <b>cancelInitiator</b> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
+     * @var string|null $cancelReason This string indicates the reason why the <strong>cancelInitiator</strong> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
     */
     private ?string $cancelReason = null;
     
     /**
-     * @var string|null $cancelRequestedDate The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $cancelRequestedDate This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $cancelRequestedDate = null;
     
     /**
-     * @var string|null $cancelRequestId The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * @var string|null $cancelRequestId This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
     */
     private ?string $cancelRequestId = null;
     
     /**
-     * @var string|null $cancelRequestState The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum'>eBay API documentation</a>
+     * @var CancelRequestStateEnum|null $cancelRequestState The current stage or condition of the cancellation request. This field is returned for each cancellation request.
     */
-    private ?string $cancelRequestState = null;
+    private ?CancelRequestStateEnum $cancelRequestState = null;
     
     /**
      * Instantiates a new CancelRequest and sets the default values.
@@ -86,7 +86,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelCompletedDate property value. The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getCancelCompletedDate(): ?string {
@@ -94,7 +94,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. Typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
+     * Gets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. This is typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
      * @return string|null
     */
     public function getCancelInitiator(): ?string {
@@ -102,7 +102,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelReason property value. The reason why the <b>cancelInitiator</b> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
+     * Gets the cancelReason property value. This string indicates the reason why the <strong>cancelInitiator</strong> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
      * @return string|null
     */
     public function getCancelReason(): ?string {
@@ -110,7 +110,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelRequestedDate property value. The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getCancelRequestedDate(): ?string {
@@ -118,7 +118,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelRequestId property value. The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * Gets the cancelRequestId property value. This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      * @return string|null
     */
     public function getCancelRequestId(): ?string {
@@ -126,10 +126,10 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request.
+     * @return CancelRequestStateEnum|null
     */
-    public function getCancelRequestState(): ?string {
+    public function getCancelRequestState(): ?CancelRequestStateEnum {
         return $this->cancelRequestState;
     }
 
@@ -145,7 +145,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
             'cancelReason' => fn(ParseNode $n) => $o->setCancelReason($n->getStringValue()),
             'cancelRequestedDate' => fn(ParseNode $n) => $o->setCancelRequestedDate($n->getStringValue()),
             'cancelRequestId' => fn(ParseNode $n) => $o->setCancelRequestId($n->getStringValue()),
-            'cancelRequestState' => fn(ParseNode $n) => $o->setCancelRequestState($n->getStringValue()),
+            'cancelRequestState' => fn(ParseNode $n) => $o->setCancelRequestState($n->getEnumValue(CancelRequestStateEnum::class)),
         ];
     }
 
@@ -159,7 +159,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('cancelReason', $this->getCancelReason());
         $writer->writeStringValue('cancelRequestedDate', $this->getCancelRequestedDate());
         $writer->writeStringValue('cancelRequestId', $this->getCancelRequestId());
-        $writer->writeStringValue('cancelRequestState', $this->getCancelRequestState());
+        $writer->writeEnumValue('cancelRequestState', $this->getCancelRequestState());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -172,7 +172,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelCompletedDate property value. The date and time that the order cancellation was completed, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the cancelCompletedDate property.
     */
     public function setCancelCompletedDate(?string $value): void {
@@ -180,7 +180,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. Typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
+     * Sets the cancelInitiator property value. This string value indicates the party who made the initial cancellation request. This is typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
      * @param string|null $value Value to set for the cancelInitiator property.
     */
     public function setCancelInitiator(?string $value): void {
@@ -188,7 +188,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelReason property value. The reason why the <b>cancelInitiator</b> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
+     * Sets the cancelReason property value. This string indicates the reason why the <strong>cancelInitiator</strong> initiated the cancellation request. Cancellation reasons for a buyer might include 'order placed by mistake' or 'order won't arrive in time'. For a seller, a typical cancellation reason is 'out of stock'. If a cancellation request has been made, this field should be returned.
      * @param string|null $value Value to set for the cancelReason property.
     */
     public function setCancelReason(?string $value): void {
@@ -196,7 +196,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelRequestedDate property value. The date and time that the order cancellation was requested. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the cancelRequestedDate property.
     */
     public function setCancelRequestedDate(?string $value): void {
@@ -204,7 +204,7 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelRequestId property value. The unique identifier of the order cancellation request. This field is returned for each cancellation request.
+     * Sets the cancelRequestId property value. This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
      * @param string|null $value Value to set for the cancelRequestId property.
     */
     public function setCancelRequestId(?string $value): void {
@@ -212,10 +212,10 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelRequestStateEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the cancelRequestState property.
+     * Sets the cancelRequestState property value. The current stage or condition of the cancellation request. This field is returned for each cancellation request.
+     * @param CancelRequestStateEnum|null $value Value to set for the cancelRequestState property.
     */
-    public function setCancelRequestState(?string $value): void {
+    public function setCancelRequestState(?CancelRequestStateEnum $value): void {
         $this->cancelRequestState = $value;
     }
 

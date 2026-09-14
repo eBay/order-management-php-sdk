@@ -32,9 +32,14 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var AppointmentDetails|null $appointment This type contains information used by the installation provider concerning appointment details selected by the buyer
+     * @var AppointmentDetails|null $appointment This container provides information used by the installation provider concerning appointment details selected by the buyer.
     */
     private ?AppointmentDetails $appointment = null;
+    
+    /**
+     * @var string|null $destinationTimeZone This field is reserved for internal or future use. <!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. -->
+    */
+    private ?string $destinationTimeZone = null;
     
     /**
      * @var bool|null $ebaySupportedFulfillment This field is only returned if its value is <code>true</code> and indicates that the fulfillment will be shipped via eBay's Global Shipping Program, eBay International Shipping, or the Authenticity Guarantee service program. <br><br>For more information, see the <a href="https://www.ebay.com/help/selling/shipping-items/setting-shipping-options/global-shipping-program?id=4646 " target="_blank">Global Shipping Program</a> help topic.
@@ -42,32 +47,32 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     private ?bool $ebaySupportedFulfillment = null;
     
     /**
-     * @var Address|null $finalDestinationAddress This type contains the details of a geographical address.
+     * @var Address|null $finalDestinationAddress This container is only returned if the value of <strong>ebaySupportedFulfillment</strong> field is <code>true</code>. <br><br>This is the final destination address for a Global Shipping Program shipment or an eBay International Shipping shipment, which is usually the recipient's home. Sellers should not ship directly to this address; instead they should ship this package to their international shipping provider's domestic warehouse. The international shipping provider is responsible for delivery to the final destination address.<br><br>For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/global-shipping-addressing.html" target="_blank">Addressing Shipments</a>.<p> <span class="tablenote"><strong>Note:</strong> For Authenticity Guarantee program shipment, this is the address of the authenticator's warehouse. The authenticator is responsible for delivery to the buyer shipping address.</span></p>
     */
     private ?Address $finalDestinationAddress = null;
     
     /**
-     * @var string|null $fulfillmentInstructionsType The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <b>ebaySupportedFulfillment</b> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:FulfillmentInstructionsType'>eBay API documentation</a>
+     * @var FulfillmentInstructionsType|null $fulfillmentInstructionsType The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <strong>ebaySupportedFulfillment</strong> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types.
     */
-    private ?string $fulfillmentInstructionsType = null;
+    private ?FulfillmentInstructionsType $fulfillmentInstructionsType = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate This is the estimated latest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $maxEstimatedDeliveryDate This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $maxEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $minEstimatedDeliveryDate This is the estimated earliest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $minEstimatedDeliveryDate This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $minEstimatedDeliveryDate = null;
     
     /**
-     * @var PickupStep|null $pickupStep This type is used to indicate the merchant's store where the buyer will pickup their In-Store Pickup order. The <b>pickupStep</b> container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
+     * @var PickupStep|null $pickupStep This container is only returned for In-Store Pickup orders, and it indicates the specific merchant's store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
     */
     private ?PickupStep $pickupStep = null;
     
     /**
-     * @var ShippingStep|null $shippingStep This type contains shipping information for a fulfillment, including the shipping carrier, the shipping service option, the shipment destination, and the Global Shipping Program reference ID.
+     * @var ShippingStep|null $shippingStep This container consists of shipping information for this fulfillment, including the shipping carrier, the shipping service option, and the shipment destination. This container is not returned if the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code>, or for In-Store Pickup orders. <br><br> For Click and Collect orders, the shipping destination will be a brick-and-mortar store where the buyer will pick up the order.
     */
     private ?ShippingStep $shippingStep = null;
     
@@ -96,11 +101,19 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the appointment property value. This type contains information used by the installation provider concerning appointment details selected by the buyer
+     * Gets the appointment property value. This container provides information used by the installation provider concerning appointment details selected by the buyer.
      * @return AppointmentDetails|null
     */
     public function getAppointment(): ?AppointmentDetails {
         return $this->appointment;
+    }
+
+    /**
+     * Gets the destinationTimeZone property value. This field is reserved for internal or future use. <!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. -->
+     * @return string|null
+    */
+    public function getDestinationTimeZone(): ?string {
+        return $this->destinationTimeZone;
     }
 
     /**
@@ -119,9 +132,10 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'appointment' => fn(ParseNode $n) => $o->setAppointment($n->getObjectValue([AppointmentDetails::class, 'createFromDiscriminatorValue'])),
+            'destinationTimeZone' => fn(ParseNode $n) => $o->setDestinationTimeZone($n->getStringValue()),
             'ebaySupportedFulfillment' => fn(ParseNode $n) => $o->setEbaySupportedFulfillment($n->getBooleanValue()),
             'finalDestinationAddress' => fn(ParseNode $n) => $o->setFinalDestinationAddress($n->getObjectValue([Address::class, 'createFromDiscriminatorValue'])),
-            'fulfillmentInstructionsType' => fn(ParseNode $n) => $o->setFulfillmentInstructionsType($n->getStringValue()),
+            'fulfillmentInstructionsType' => fn(ParseNode $n) => $o->setFulfillmentInstructionsType($n->getEnumValue(FulfillmentInstructionsType::class)),
             'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getStringValue()),
             'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getStringValue()),
             'pickupStep' => fn(ParseNode $n) => $o->setPickupStep($n->getObjectValue([PickupStep::class, 'createFromDiscriminatorValue'])),
@@ -130,7 +144,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the finalDestinationAddress property value. This type contains the details of a geographical address.
+     * Gets the finalDestinationAddress property value. This container is only returned if the value of <strong>ebaySupportedFulfillment</strong> field is <code>true</code>. <br><br>This is the final destination address for a Global Shipping Program shipment or an eBay International Shipping shipment, which is usually the recipient's home. Sellers should not ship directly to this address; instead they should ship this package to their international shipping provider's domestic warehouse. The international shipping provider is responsible for delivery to the final destination address.<br><br>For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/global-shipping-addressing.html" target="_blank">Addressing Shipments</a>.<p> <span class="tablenote"><strong>Note:</strong> For Authenticity Guarantee program shipment, this is the address of the authenticator's warehouse. The authenticator is responsible for delivery to the buyer shipping address.</span></p>
      * @return Address|null
     */
     public function getFinalDestinationAddress(): ?Address {
@@ -138,15 +152,15 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fulfillmentInstructionsType property value. The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <b>ebaySupportedFulfillment</b> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:FulfillmentInstructionsType'>eBay API documentation</a>
-     * @return string|null
+     * Gets the fulfillmentInstructionsType property value. The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <strong>ebaySupportedFulfillment</strong> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types.
+     * @return FulfillmentInstructionsType|null
     */
-    public function getFulfillmentInstructionsType(): ?string {
+    public function getFulfillmentInstructionsType(): ?FulfillmentInstructionsType {
         return $this->fulfillmentInstructionsType;
     }
 
     /**
-     * Gets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getMaxEstimatedDeliveryDate(): ?string {
@@ -154,7 +168,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getMinEstimatedDeliveryDate(): ?string {
@@ -162,7 +176,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupStep property value. This type is used to indicate the merchant's store where the buyer will pickup their In-Store Pickup order. The <b>pickupStep</b> container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
+     * Gets the pickupStep property value. This container is only returned for In-Store Pickup orders, and it indicates the specific merchant's store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
      * @return PickupStep|null
     */
     public function getPickupStep(): ?PickupStep {
@@ -170,7 +184,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingStep property value. This type contains shipping information for a fulfillment, including the shipping carrier, the shipping service option, the shipment destination, and the Global Shipping Program reference ID.
+     * Gets the shippingStep property value. This container consists of shipping information for this fulfillment, including the shipping carrier, the shipping service option, and the shipment destination. This container is not returned if the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code>, or for In-Store Pickup orders. <br><br> For Click and Collect orders, the shipping destination will be a brick-and-mortar store where the buyer will pick up the order.
      * @return ShippingStep|null
     */
     public function getShippingStep(): ?ShippingStep {
@@ -183,9 +197,10 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('appointment', $this->getAppointment());
+        $writer->writeStringValue('destinationTimeZone', $this->getDestinationTimeZone());
         $writer->writeBooleanValue('ebaySupportedFulfillment', $this->getEbaySupportedFulfillment());
         $writer->writeObjectValue('finalDestinationAddress', $this->getFinalDestinationAddress());
-        $writer->writeStringValue('fulfillmentInstructionsType', $this->getFulfillmentInstructionsType());
+        $writer->writeEnumValue('fulfillmentInstructionsType', $this->getFulfillmentInstructionsType());
         $writer->writeStringValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
         $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
         $writer->writeObjectValue('pickupStep', $this->getPickupStep());
@@ -202,11 +217,19 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the appointment property value. This type contains information used by the installation provider concerning appointment details selected by the buyer
+     * Sets the appointment property value. This container provides information used by the installation provider concerning appointment details selected by the buyer.
      * @param AppointmentDetails|null $value Value to set for the appointment property.
     */
     public function setAppointment(?AppointmentDetails $value): void {
         $this->appointment = $value;
+    }
+
+    /**
+     * Sets the destinationTimeZone property value. This field is reserved for internal or future use. <!-- Destination time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Delivery dates are calculated relative to this time zone. -->
+     * @param string|null $value Value to set for the destinationTimeZone property.
+    */
+    public function setDestinationTimeZone(?string $value): void {
+        $this->destinationTimeZone = $value;
     }
 
     /**
@@ -218,7 +241,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the finalDestinationAddress property value. This type contains the details of a geographical address.
+     * Sets the finalDestinationAddress property value. This container is only returned if the value of <strong>ebaySupportedFulfillment</strong> field is <code>true</code>. <br><br>This is the final destination address for a Global Shipping Program shipment or an eBay International Shipping shipment, which is usually the recipient's home. Sellers should not ship directly to this address; instead they should ship this package to their international shipping provider's domestic warehouse. The international shipping provider is responsible for delivery to the final destination address.<br><br>For more information, see <a href="/api-docs/user-guides/static/trading-user-guide/global-shipping-addressing.html" target="_blank">Addressing Shipments</a>.<p> <span class="tablenote"><strong>Note:</strong> For Authenticity Guarantee program shipment, this is the address of the authenticator's warehouse. The authenticator is responsible for delivery to the buyer shipping address.</span></p>
      * @param Address|null $value Value to set for the finalDestinationAddress property.
     */
     public function setFinalDestinationAddress(?Address $value): void {
@@ -226,15 +249,15 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fulfillmentInstructionsType property value. The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <b>ebaySupportedFulfillment</b> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:FulfillmentInstructionsType'>eBay API documentation</a>
-     * @param string|null $value Value to set for the fulfillmentInstructionsType property.
+     * Sets the fulfillmentInstructionsType property value. The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of <code>SHIP_TO</code> if the <strong>ebaySupportedFulfillment</strong> field is returned with a value of <code>true</code>. See the <strong>FulfillmentInstructionsType</strong> definition for more information about different fulfillment types.
+     * @param FulfillmentInstructionsType|null $value Value to set for the fulfillmentInstructionsType property.
     */
-    public function setFulfillmentInstructionsType(?string $value): void {
+    public function setFulfillmentInstructionsType(?FulfillmentInstructionsType $value): void {
         $this->fulfillmentInstructionsType = $value;
     }
 
     /**
-     * Sets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
     public function setMaxEstimatedDeliveryDate(?string $value): void {
@@ -242,7 +265,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <b>fulfillmentInstructionsType</b> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the minEstimatedDeliveryDate property.
     */
     public function setMinEstimatedDeliveryDate(?string $value): void {
@@ -250,7 +273,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupStep property value. This type is used to indicate the merchant's store where the buyer will pickup their In-Store Pickup order. The <b>pickupStep</b> container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
+     * Sets the pickupStep property value. This container is only returned for In-Store Pickup orders, and it indicates the specific merchant's store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
      * @param PickupStep|null $value Value to set for the pickupStep property.
     */
     public function setPickupStep(?PickupStep $value): void {
@@ -258,7 +281,7 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingStep property value. This type contains shipping information for a fulfillment, including the shipping carrier, the shipping service option, the shipment destination, and the Global Shipping Program reference ID.
+     * Sets the shippingStep property value. This container consists of shipping information for this fulfillment, including the shipping carrier, the shipping service option, and the shipment destination. This container is not returned if the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code>, or for In-Store Pickup orders. <br><br> For Click and Collect orders, the shipping destination will be a brick-and-mortar store where the buyer will pick up the order.
      * @param ShippingStep|null $value Value to set for the shippingStep property.
     */
     public function setShippingStep(?ShippingStep $value): void {

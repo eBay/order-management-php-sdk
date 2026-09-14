@@ -20,7 +20,6 @@ use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
-use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 /**
  * This type is used by the base response of the <strong>getPaymentDispute</strong> method. The <strong>getPaymentDispute</strong> method retrieves detailed information on a specific payment dispute.
@@ -33,12 +32,12 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var SimpleAmount|null $amount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $amount This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace.
     */
     private ?SimpleAmount $amount = null;
     
     /**
-     * @var array<string>|null $availableChoices The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the <strong>sellerResponse</strong> field will show the decision that the seller made.
+     * @var array<SellerDecisionEnum>|null $availableChoices The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the <strong>sellerResponse</strong> field will show the decision that the seller made.
     */
     private ?array $availableChoices = null;
     
@@ -48,12 +47,12 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?InfoFromBuyer $buyerProvided = null;
     
     /**
-     * @var string|null $buyerUsername This is the eBay user ID of the buyer that initiated the payment dispute.
+     * @var string|null $buyerUsername This is the eBay user ID of the buyer that initiated the payment dispute.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
     */
     private ?string $buyerUsername = null;
     
     /**
-     * @var string|null $closedDate The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $closedDate The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $closedDate = null;
     
@@ -68,7 +67,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?array $evidenceRequests = null;
     
     /**
-     * @var array<OrderLineItems>|null $lineItems This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <b>itemId</b>/<b>lineItemId</b> pair returned in this array.
+     * @var array<OrderLineItems>|null $lineItems This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <strong>itemId</strong>/<strong>lineItemId</strong> pair returned in this array.
     */
     private ?array $lineItems = null;
     
@@ -83,7 +82,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?string $note = null;
     
     /**
-     * @var string|null $openDate The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $openDate The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $openDate = null;
     
@@ -98,27 +97,27 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?string $paymentDisputeId = null;
     
     /**
-     * @var string|null $paymentDisputeStatus The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
+     * @var DisputeStateEnum|null $paymentDisputeStatus The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
     */
-    private ?string $paymentDisputeStatus = null;
+    private ?DisputeStateEnum $paymentDisputeStatus = null;
     
     /**
-     * @var string|null $reason The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
+     * @var DisputeReasonEnum|null $reason The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
     */
-    private ?string $reason = null;
+    private ?DisputeReasonEnum $reason = null;
     
     /**
-     * @var PaymentDisputeOutcomeDetail|null $resolution This type is used by the <strong>resolution</strong> container that is returned for payment disputes that have been resolved.
+     * @var PaymentDisputeOutcomeDetail|null $resolution This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
     */
     private ?PaymentDisputeOutcomeDetail $resolution = null;
     
     /**
-     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $respondByDate = null;
     
     /**
-     * @var ReturnAddress|null $returnAddress This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * @var ReturnAddress|null $returnAddress This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
     */
     private ?ReturnAddress $returnAddress = null;
     
@@ -128,9 +127,9 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     private ?int $revision = null;
     
     /**
-     * @var string|null $sellerResponse The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum'>eBay API documentation</a>
+     * @var SellerResponseEnum|null $sellerResponse The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
     */
-    private ?string $sellerResponse = null;
+    private ?SellerResponseEnum $sellerResponse = null;
     
     /**
      * Instantiates a new PaymentDispute and sets the default values.
@@ -157,7 +156,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace.
      * @return SimpleAmount|null
     */
     public function getAmount(): ?SimpleAmount {
@@ -166,7 +165,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the availableChoices property value. The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the <strong>sellerResponse</strong> field will show the decision that the seller made.
-     * @return array<string>|null
+     * @return array<SellerDecisionEnum>|null
     */
     public function getAvailableChoices(): ?array {
         return $this->availableChoices;
@@ -181,7 +180,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.
+     * Gets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @return string|null
     */
     public function getBuyerUsername(): ?string {
@@ -189,7 +188,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getClosedDate(): ?string {
@@ -220,14 +219,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
-            'availableChoices' => function (ParseNode $n) {
-                $val = $n->getCollectionOfPrimitiveValues();
-                if (is_array($val)) {
-                    TypeUtils::validateCollectionValues($val, 'string');
-                }
-                /** @var array<string>|null $val */
-                $this->setAvailableChoices($val);
-            },
+            'availableChoices' => fn(ParseNode $n) => $o->setAvailableChoices($n->getCollectionOfEnumValues(SellerDecisionEnum::class)),
             'buyerProvided' => fn(ParseNode $n) => $o->setBuyerProvided($n->getObjectValue([InfoFromBuyer::class, 'createFromDiscriminatorValue'])),
             'buyerUsername' => fn(ParseNode $n) => $o->setBuyerUsername($n->getStringValue()),
             'closedDate' => fn(ParseNode $n) => $o->setClosedDate($n->getStringValue()),
@@ -239,18 +231,18 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
             'openDate' => fn(ParseNode $n) => $o->setOpenDate($n->getStringValue()),
             'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
             'paymentDisputeId' => fn(ParseNode $n) => $o->setPaymentDisputeId($n->getStringValue()),
-            'paymentDisputeStatus' => fn(ParseNode $n) => $o->setPaymentDisputeStatus($n->getStringValue()),
-            'reason' => fn(ParseNode $n) => $o->setReason($n->getStringValue()),
+            'paymentDisputeStatus' => fn(ParseNode $n) => $o->setPaymentDisputeStatus($n->getEnumValue(DisputeStateEnum::class)),
+            'reason' => fn(ParseNode $n) => $o->setReason($n->getEnumValue(DisputeReasonEnum::class)),
             'resolution' => fn(ParseNode $n) => $o->setResolution($n->getObjectValue([PaymentDisputeOutcomeDetail::class, 'createFromDiscriminatorValue'])),
             'respondByDate' => fn(ParseNode $n) => $o->setRespondByDate($n->getStringValue()),
             'returnAddress' => fn(ParseNode $n) => $o->setReturnAddress($n->getObjectValue([ReturnAddress::class, 'createFromDiscriminatorValue'])),
             'revision' => fn(ParseNode $n) => $o->setRevision($n->getIntegerValue()),
-            'sellerResponse' => fn(ParseNode $n) => $o->setSellerResponse($n->getStringValue()),
+            'sellerResponse' => fn(ParseNode $n) => $o->setSellerResponse($n->getEnumValue(SellerResponseEnum::class)),
         ];
     }
 
     /**
-     * Gets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <b>itemId</b>/<b>lineItemId</b> pair returned in this array.
+     * Gets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <strong>itemId</strong>/<strong>lineItemId</strong> pair returned in this array.
      * @return array<OrderLineItems>|null
     */
     public function getLineItems(): ?array {
@@ -274,7 +266,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getOpenDate(): ?string {
@@ -298,23 +290,23 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
+     * @return DisputeStateEnum|null
     */
-    public function getPaymentDisputeStatus(): ?string {
+    public function getPaymentDisputeStatus(): ?DisputeStateEnum {
         return $this->paymentDisputeStatus;
     }
 
     /**
-     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
+     * @return DisputeReasonEnum|null
     */
-    public function getReason(): ?string {
+    public function getReason(): ?DisputeReasonEnum {
         return $this->reason;
     }
 
     /**
-     * Gets the resolution property value. This type is used by the <strong>resolution</strong> container that is returned for payment disputes that have been resolved.
+     * Gets the resolution property value. This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
      * @return PaymentDisputeOutcomeDetail|null
     */
     public function getResolution(): ?PaymentDisputeOutcomeDetail {
@@ -322,7 +314,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getRespondByDate(): ?string {
@@ -330,7 +322,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
      * @return ReturnAddress|null
     */
     public function getReturnAddress(): ?ReturnAddress {
@@ -346,10 +338,10 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
+     * @return SellerResponseEnum|null
     */
-    public function getSellerResponse(): ?string {
+    public function getSellerResponse(): ?SellerResponseEnum {
         return $this->sellerResponse;
     }
 
@@ -359,7 +351,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
-        $writer->writeCollectionOfPrimitiveValues('availableChoices', $this->getAvailableChoices());
+        $writer->writeCollectionOfEnumValues('availableChoices', $this->getAvailableChoices());
         $writer->writeObjectValue('buyerProvided', $this->getBuyerProvided());
         $writer->writeStringValue('buyerUsername', $this->getBuyerUsername());
         $writer->writeStringValue('closedDate', $this->getClosedDate());
@@ -371,13 +363,13 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('openDate', $this->getOpenDate());
         $writer->writeStringValue('orderId', $this->getOrderId());
         $writer->writeStringValue('paymentDisputeId', $this->getPaymentDisputeId());
-        $writer->writeStringValue('paymentDisputeStatus', $this->getPaymentDisputeStatus());
-        $writer->writeStringValue('reason', $this->getReason());
+        $writer->writeEnumValue('paymentDisputeStatus', $this->getPaymentDisputeStatus());
+        $writer->writeEnumValue('reason', $this->getReason());
         $writer->writeObjectValue('resolution', $this->getResolution());
         $writer->writeStringValue('respondByDate', $this->getRespondByDate());
         $writer->writeObjectValue('returnAddress', $this->getReturnAddress());
         $writer->writeIntegerValue('revision', $this->getRevision());
-        $writer->writeStringValue('sellerResponse', $this->getSellerResponse());
+        $writer->writeEnumValue('sellerResponse', $this->getSellerResponse());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -390,7 +382,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace.
      * @param SimpleAmount|null $value Value to set for the amount property.
     */
     public function setAmount(?SimpleAmount $value): void {
@@ -399,7 +391,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the availableChoices property value. The value(s) returned in this array indicate the choices that the seller has when responding to the payment dispute. Once the seller has responded to the payment dispute, this field will no longer be shown, and instead, the <strong>sellerResponse</strong> field will show the decision that the seller made.
-     * @param array<string>|null $value Value to set for the availableChoices property.
+     * @param array<SellerDecisionEnum>|null $value Value to set for the availableChoices property.
     */
     public function setAvailableChoices(?array $value): void {
         $this->availableChoices = $value;
@@ -414,7 +406,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.
+     * Sets the buyerUsername property value. This is the eBay user ID of the buyer that initiated the payment dispute.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @param string|null $value Value to set for the buyerUsername property.
     */
     public function setBuyerUsername(?string $value): void {
@@ -422,7 +414,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the closedDate property.
     */
     public function setClosedDate(?string $value): void {
@@ -446,7 +438,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <b>itemId</b>/<b>lineItemId</b> pair returned in this array.
+     * Sets the lineItems property value. This array is used to identify one or more order line items associated with the payment dispute. There will always be at least one <strong>itemId</strong>/<strong>lineItemId</strong> pair returned in this array.
      * @param array<OrderLineItems>|null $value Value to set for the lineItems property.
     */
     public function setLineItems(?array $value): void {
@@ -470,7 +462,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the openDate property.
     */
     public function setOpenDate(?string $value): void {
@@ -494,23 +486,23 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the paymentDisputeStatus property.
+     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. The status of a payment dispute partially determines other fields that are returned in the response.
+     * @param DisputeStateEnum|null $value Value to set for the paymentDisputeStatus property.
     */
-    public function setPaymentDisputeStatus(?string $value): void {
+    public function setPaymentDisputeStatus(?DisputeStateEnum $value): void {
         $this->paymentDisputeStatus = $value;
     }
 
     /**
-     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the reason property.
+     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
+     * @param DisputeReasonEnum|null $value Value to set for the reason property.
     */
-    public function setReason(?string $value): void {
+    public function setReason(?DisputeReasonEnum $value): void {
         $this->reason = $value;
     }
 
     /**
-     * Sets the resolution property value. This type is used by the <strong>resolution</strong> container that is returned for payment disputes that have been resolved.
+     * Sets the resolution property value. This container gives details about a payment dispute that has been resolved. This container is only returned for resolved/closed payment disputes.
      * @param PaymentDisputeOutcomeDetail|null $value Value to set for the resolution property.
     */
     public function setResolution(?PaymentDisputeOutcomeDetail $value): void {
@@ -518,7 +510,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that currently require action by the seller, that same seller should look at the <strong>availableChoices</strong> array to see the available actions.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the respondByDate property.
     */
     public function setRespondByDate(?string $value): void {
@@ -526,7 +518,7 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container gives the address where the order will be returned to. This container is returned if the seller is accepting the payment dispute and will issue a refund to the buyer once the item is returned to this address.
      * @param ReturnAddress|null $value Value to set for the returnAddress property.
     */
     public function setReturnAddress(?ReturnAddress $value): void {
@@ -542,10 +534,10 @@ class PaymentDispute implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:SellerResponseEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the sellerResponse property.
+     * Sets the sellerResponse property value. The enumeration value returned in this field indicates how the seller has responded to the payment dispute. The seller has the option of accepting the payment dispute and agreeing to issue a refund, accepting the payment dispute and agreeing to issue a refund as long as the buyer returns the item, or contesting the payment dispute. This field is returned as soon as the seller makes an initial decision on the payment dispute.
+     * @param SellerResponseEnum|null $value Value to set for the sellerResponse property.
     */
-    public function setSellerResponse(?string $value): void {
+    public function setSellerResponse(?SellerResponseEnum $value): void {
         $this->sellerResponse = $value;
     }
 

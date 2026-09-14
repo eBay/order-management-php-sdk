@@ -32,22 +32,22 @@ class Buyer implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var ExtendedContact|null $buyerRegistrationAddress This type contains shipping and contact information for a buyer or an eBay shipping partner.
+     * @var ExtendedContact|null $buyerRegistrationAddress This container is the buyer's contact information that includes the buyer's name, email, phone number, and address.
     */
     private ?ExtendedContact $buyerRegistrationAddress = null;
     
     /**
-     * @var TaxAddress|null $taxAddress This container consists of address information that can be used by sellers for tax purpose.
+     * @var TaxAddress|null $taxAddress This container consists of address information that can be used by sellers for tax purpose.<br><br><span class="tablenote"><strong>Note:</strong> When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.</span>
     */
     private ?TaxAddress $taxAddress = null;
     
     /**
-     * @var TaxIdentifier|null $taxIdentifier This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <strong>getOrders</strong>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <strong>getOrder</strong> call against that order ID. </span>
+     * @var TaxIdentifier|null $taxIdentifier This container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and not in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a>. So, if a seller wants to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order and then run a <strong>getOrder</strong> call against that order ID. </span>
     */
     private ?TaxIdentifier $taxIdentifier = null;
     
     /**
-     * @var string|null $username The buyer's eBay user ID.
+     * @var string|null $username The buyer's eBay user ID.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>
     */
     private ?string $username = null;
     
@@ -76,7 +76,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the buyerRegistrationAddress property value. This type contains shipping and contact information for a buyer or an eBay shipping partner.
+     * Gets the buyerRegistrationAddress property value. This container is the buyer's contact information that includes the buyer's name, email, phone number, and address.
      * @return ExtendedContact|null
     */
     public function getBuyerRegistrationAddress(): ?ExtendedContact {
@@ -98,7 +98,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the taxAddress property value. This container consists of address information that can be used by sellers for tax purpose.
+     * Gets the taxAddress property value. This container consists of address information that can be used by sellers for tax purpose.<br><br><span class="tablenote"><strong>Note:</strong> When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.</span>
      * @return TaxAddress|null
     */
     public function getTaxAddress(): ?TaxAddress {
@@ -106,7 +106,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the taxIdentifier property value. This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <strong>getOrders</strong>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <strong>getOrder</strong> call against that order ID. </span>
+     * Gets the taxIdentifier property value. This container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and not in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a>. So, if a seller wants to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order and then run a <strong>getOrder</strong> call against that order ID. </span>
      * @return TaxIdentifier|null
     */
     public function getTaxIdentifier(): ?TaxIdentifier {
@@ -114,7 +114,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the username property value. The buyer's eBay user ID.
+     * Gets the username property value. The buyer's eBay user ID.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>
      * @return string|null
     */
     public function getUsername(): ?string {
@@ -142,7 +142,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the buyerRegistrationAddress property value. This type contains shipping and contact information for a buyer or an eBay shipping partner.
+     * Sets the buyerRegistrationAddress property value. This container is the buyer's contact information that includes the buyer's name, email, phone number, and address.
      * @param ExtendedContact|null $value Value to set for the buyerRegistrationAddress property.
     */
     public function setBuyerRegistrationAddress(?ExtendedContact $value): void {
@@ -150,7 +150,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the taxAddress property value. This container consists of address information that can be used by sellers for tax purpose.
+     * Sets the taxAddress property value. This container consists of address information that can be used by sellers for tax purpose.<br><br><span class="tablenote"><strong>Note:</strong> When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.</span>
      * @param TaxAddress|null $value Value to set for the taxAddress property.
     */
     public function setTaxAddress(?TaxAddress $value): void {
@@ -158,7 +158,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the taxIdentifier property value. This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <strong>getOrders</strong>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <strong>getOrder</strong> call against that order ID. </span>
+     * Sets the taxIdentifier property value. This container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and not in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a>. So, if a seller wants to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order and then run a <strong>getOrder</strong> call against that order ID. </span>
      * @param TaxIdentifier|null $value Value to set for the taxIdentifier property.
     */
     public function setTaxIdentifier(?TaxIdentifier $value): void {
@@ -166,7 +166,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the username property value. The buyer's eBay user ID.
+     * Sets the username property value. The buyer's eBay user ID.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>.</span>
      * @param string|null $value Value to set for the username property.
     */
     public function setUsername(?string $value): void {

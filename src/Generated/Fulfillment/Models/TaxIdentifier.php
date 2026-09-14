@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <strong>getOrders</strong>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <strong>getOrder</strong> call against that order ID. </span>
+ * This type is used by the <strong>taxIdentifier</strong> container that is returned in <strong>getOrder</strong>. The <strong>taxIdentifier</strong> container consists of taxpayer identification information for buyers from Italy, Spain, or Guatemala. It is currently only returned for orders occurring on the eBay Italy or eBay Spain marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> Currently, the <strong>taxIdentifier</strong> container is only returned in <strong>getOrder</strong> and not in <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a>. So, if a seller wanted to view a buyer's tax information for a particular order returned in <strong>getOrders</strong>, that seller would need to use the <strong>orderId</strong> value for that particular order, and then run a <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call against that order ID. </span>
 */
 class TaxIdentifier implements AdditionalDataHolder, Parsable 
 {
@@ -32,14 +32,14 @@ class TaxIdentifier implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $issuingCountry This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type, or in the  <a href="https://www.iso.org/iso-3166-country-codes.html ">ISO 3166</a> standard. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $issuingCountry This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type or in the  <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> standard.
     */
-    private ?string $issuingCountry = null;
+    private ?CountryCodeEnum $issuingCountry = null;
     
     /**
-     * @var string|null $taxIdentifierType This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum'>eBay API documentation</a>
+     * @var TaxIdentifierTypeEnum|null $taxIdentifierType This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type.
     */
-    private ?string $taxIdentifierType = null;
+    private ?TaxIdentifierTypeEnum $taxIdentifierType = null;
     
     /**
      * @var string|null $taxpayerId This value is the unique tax ID associated with the buyer. The type of tax identification is shown in the <strong>taxIdentifierType</strong> field.
@@ -77,25 +77,25 @@ class TaxIdentifier implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'issuingCountry' => fn(ParseNode $n) => $o->setIssuingCountry($n->getStringValue()),
-            'taxIdentifierType' => fn(ParseNode $n) => $o->setTaxIdentifierType($n->getStringValue()),
+            'issuingCountry' => fn(ParseNode $n) => $o->setIssuingCountry($n->getEnumValue(CountryCodeEnum::class)),
+            'taxIdentifierType' => fn(ParseNode $n) => $o->setTaxIdentifierType($n->getEnumValue(TaxIdentifierTypeEnum::class)),
             'taxpayerId' => fn(ParseNode $n) => $o->setTaxpayerId($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the issuingCountry property value. This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type, or in the  <a href="https://www.iso.org/iso-3166-country-codes.html ">ISO 3166</a> standard. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the issuingCountry property value. This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type or in the  <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> standard.
+     * @return CountryCodeEnum|null
     */
-    public function getIssuingCountry(): ?string {
+    public function getIssuingCountry(): ?CountryCodeEnum {
         return $this->issuingCountry;
     }
 
     /**
-     * Gets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type.
+     * @return TaxIdentifierTypeEnum|null
     */
-    public function getTaxIdentifierType(): ?string {
+    public function getTaxIdentifierType(): ?TaxIdentifierTypeEnum {
         return $this->taxIdentifierType;
     }
 
@@ -112,8 +112,8 @@ class TaxIdentifier implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('issuingCountry', $this->getIssuingCountry());
-        $writer->writeStringValue('taxIdentifierType', $this->getTaxIdentifierType());
+        $writer->writeEnumValue('issuingCountry', $this->getIssuingCountry());
+        $writer->writeEnumValue('taxIdentifierType', $this->getTaxIdentifierType());
         $writer->writeStringValue('taxpayerId', $this->getTaxpayerId());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -127,18 +127,18 @@ class TaxIdentifier implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the issuingCountry property value. This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type, or in the  <a href="https://www.iso.org/iso-3166-country-codes.html ">ISO 3166</a> standard. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the issuingCountry property.
+     * Sets the issuingCountry property value. This two-letter code indicates the country that issued the buyer's tax ID. The country that the two-letter code represents can be found in the <strong>CountryCodeEnum</strong> type or in the  <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> standard.
+     * @param CountryCodeEnum|null $value Value to set for the issuingCountry property.
     */
-    public function setIssuingCountry(?string $value): void {
+    public function setIssuingCountry(?CountryCodeEnum $value): void {
         $this->issuingCountry = $value;
     }
 
     /**
-     * Sets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:TaxIdentifierTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the taxIdentifierType property.
+     * Sets the taxIdentifierType property value. This enumeration value indicates the type of tax identification being used for the buyer. The different tax types are defined in the <strong>TaxIdentifierTypeEnum</strong> type.
+     * @param TaxIdentifierTypeEnum|null $value Value to set for the taxIdentifierType property.
     */
-    public function setTaxIdentifierType(?string $value): void {
+    public function setTaxIdentifierType(?TaxIdentifierTypeEnum $value): void {
         $this->taxIdentifierType = $value;
     }
 

@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Logistics\Shipping_quote\Item;
 
+use EBay\OrderManagement\Generated\Logistics\Models\Error;
 use EBay\OrderManagement\Generated\Logistics\Models\ShippingQuote;
 use Exception;
 use Http\Promise\Promise;
@@ -44,18 +45,23 @@ class WithShippingQuoteItemRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * This method retrieves the complete details of the shipping quote associated with the specified <b>shippingQuoteId</b> value.  <br><br>A "shipping quote" pertains to a single specific package and contains a set of shipping "rates" that quote the cost to ship the package by different shipping carriers and services. The quotes are based on the package's origin, destination, and size.  <br><br>Call <b>createShippingQuote</b> to create a <b>shippingQuoteId</b>.
+     * This method retrieves the complete details of the shipping quote associated with the specified <strong>shippingQuoteId</strong> value.  <br><br>A "shipping quote" pertains to a single specific package and contains a set of shipping "rates" that quote the cost to ship the package by different shipping carriers and services. The quotes are based on the package's origin, destination, and size.  <br><br>Call <strong>createShippingQuote</strong> to create a <strong>shippingQuoteId</strong>.
      * @param WithShippingQuoteItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<ShippingQuote|null>
      * @throws Exception
     */
     public function get(?WithShippingQuoteItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ShippingQuote::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [Error::class, 'createFromDiscriminatorValue'],
+                '404' => [Error::class, 'createFromDiscriminatorValue'],
+                '500' => [Error::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ShippingQuote::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
-     * This method retrieves the complete details of the shipping quote associated with the specified <b>shippingQuoteId</b> value.  <br><br>A "shipping quote" pertains to a single specific package and contains a set of shipping "rates" that quote the cost to ship the package by different shipping carriers and services. The quotes are based on the package's origin, destination, and size.  <br><br>Call <b>createShippingQuote</b> to create a <b>shippingQuoteId</b>.
+     * This method retrieves the complete details of the shipping quote associated with the specified <strong>shippingQuoteId</strong> value.  <br><br>A "shipping quote" pertains to a single specific package and contains a set of shipping "rates" that quote the cost to ship the package by different shipping carriers and services. The quotes are based on the package's origin, destination, and size.  <br><br>Call <strong>createShippingQuote</strong> to create a <strong>shippingQuoteId</strong>.
      * @param WithShippingQuoteItemRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

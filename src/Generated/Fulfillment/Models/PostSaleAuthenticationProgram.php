@@ -32,14 +32,14 @@ class PostSaleAuthenticationProgram implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $outcomeReason This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationReasonEnum'>eBay API documentation</a>
+     * @var AuthenticityVerificationReasonEnum|null $outcomeReason This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>.
     */
-    private ?string $outcomeReason = null;
+    private ?AuthenticityVerificationReasonEnum $outcomeReason = null;
     
     /**
-     * @var string|null $status The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationStatusEnum'>eBay API documentation</a>
+     * @var AuthenticityVerificationStatusEnum|null $status The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>.
     */
-    private ?string $status = null;
+    private ?AuthenticityVerificationStatusEnum $status = null;
     
     /**
      * Instantiates a new PostSaleAuthenticationProgram and sets the default values.
@@ -72,24 +72,24 @@ class PostSaleAuthenticationProgram implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'outcomeReason' => fn(ParseNode $n) => $o->setOutcomeReason($n->getStringValue()),
-            'status' => fn(ParseNode $n) => $o->setStatus($n->getStringValue()),
+            'outcomeReason' => fn(ParseNode $n) => $o->setOutcomeReason($n->getEnumValue(AuthenticityVerificationReasonEnum::class)),
+            'status' => fn(ParseNode $n) => $o->setStatus($n->getEnumValue(AuthenticityVerificationStatusEnum::class)),
         ];
     }
 
     /**
-     * Gets the outcomeReason property value. This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationReasonEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the outcomeReason property value. This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>.
+     * @return AuthenticityVerificationReasonEnum|null
     */
-    public function getOutcomeReason(): ?string {
+    public function getOutcomeReason(): ?AuthenticityVerificationReasonEnum {
         return $this->outcomeReason;
     }
 
     /**
-     * Gets the status property value. The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the status property value. The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>.
+     * @return AuthenticityVerificationStatusEnum|null
     */
-    public function getStatus(): ?string {
+    public function getStatus(): ?AuthenticityVerificationStatusEnum {
         return $this->status;
     }
 
@@ -98,8 +98,8 @@ class PostSaleAuthenticationProgram implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('outcomeReason', $this->getOutcomeReason());
-        $writer->writeStringValue('status', $this->getStatus());
+        $writer->writeEnumValue('outcomeReason', $this->getOutcomeReason());
+        $writer->writeEnumValue('status', $this->getStatus());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -112,18 +112,18 @@ class PostSaleAuthenticationProgram implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the outcomeReason property value. This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationReasonEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the outcomeReason property.
+     * Sets the outcomeReason property value. This field indicates the result of the authenticity verification inspection on an order line item. This field is not returned when the status value of the order line item is <code>PENDING</code> or <code>PASSED</code>. The possible values returned here are <code>NOT_AUTHENTIC</code>, <code>NOT_AS_DESCRIBED</code>, <code>CUSTOMIZED</code>, <code>MISCATEGORIZED</code>, or <code>NOT_AUTHENTIC_NO_RETURN</code>.
+     * @param AuthenticityVerificationReasonEnum|null $value Value to set for the outcomeReason property.
     */
-    public function setOutcomeReason(?string $value): void {
+    public function setOutcomeReason(?AuthenticityVerificationReasonEnum $value): void {
         $this->outcomeReason = $value;
     }
 
     /**
-     * Sets the status property value. The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:AuthenticityVerificationStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the status property.
+     * Sets the status property value. The value in this field indicates whether the order line item has passed or failed the authenticity verification inspection, or if the inspection and/or results are still pending. The possible values returned here are <code>PENDING</code>, <code>PASSED</code>, <code>FAILED</code>, or <code>PASSED_WITH_EXCEPTION</code>.
+     * @param AuthenticityVerificationStatusEnum|null $value Value to set for the status property.
     */
-    public function setStatus(?string $value): void {
+    public function setStatus(?AuthenticityVerificationStatusEnum $value): void {
         $this->status = $value;
     }
 

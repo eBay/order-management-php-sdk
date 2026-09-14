@@ -32,7 +32,7 @@ class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var ReturnAddress|null $returnAddress This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * @var ReturnAddress|null $returnAddress This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
     */
     private ?ReturnAddress $returnAddress = null;
     
@@ -78,7 +78,7 @@ class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Gets the returnAddress property value. This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
      * @return ReturnAddress|null
     */
     public function getReturnAddress(): ?ReturnAddress {
@@ -112,7 +112,7 @@ class AcceptPaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the returnAddress property value. This type is used by the payment dispute methods, and is relevant if the buyer will be returning the item to the seller.
+     * Sets the returnAddress property value. This container is used if the seller wishes to provide a return address to the buyer. This container should be used if the seller is requesting that the buyer return the item.
      * @param ReturnAddress|null $value Value to set for the returnAddress property.
     */
     public function setReturnAddress(?ReturnAddress $value): void {

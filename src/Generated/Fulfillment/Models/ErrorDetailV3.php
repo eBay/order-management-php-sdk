@@ -23,9 +23,9 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 /**
- * This type contains a error or warning related to a call request. 
+ * This type contains an error or warning related to a call request.
 */
-class Error implements AdditionalDataHolder, Parsable 
+class ErrorDetailV3 implements AdditionalDataHolder, Parsable 
 {
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -53,12 +53,12 @@ class Error implements AdditionalDataHolder, Parsable
     private ?array $inputRefIds = null;
     
     /**
-     * @var string|null $longMessage An expanded version of the <b>message</b> field. <br><br><b>Maximum length:</b> 200 characters
+     * @var string|null $longMessage An expanded version of the <strong>message</strong> field. <br><br><strong>Maximum length:</strong> 200 characters
     */
     private ?string $longMessage = null;
     
     /**
-     * @var string|null $message A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><b>Maximum length:</b> 50 characters
+     * @var string|null $message A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><strong>Maximum length:</strong> 50 characters
     */
     private ?string $message = null;
     
@@ -68,7 +68,7 @@ class Error implements AdditionalDataHolder, Parsable
     private ?array $outputRefIds = null;
     
     /**
-     * @var array<ErrorParameter>|null $parameters Contains a list of name-value pairs that provide additional information concerning this error or warning. Each item in the list is an input parameter that contributed to the error or warning condition.
+     * @var array<ErrorParameterV3>|null $parameters Contains a list of name-value pairs that provide additional information concerning this error or warning. Each item in the list is an input parameter that contributed to the error or warning condition.
     */
     private ?array $parameters = null;
     
@@ -78,7 +78,7 @@ class Error implements AdditionalDataHolder, Parsable
     private ?string $subdomain = null;
     
     /**
-     * Instantiates a new Error and sets the default values.
+     * Instantiates a new ErrorDetailV3 and sets the default values.
     */
     public function __construct() {
         $this->setAdditionalData([]);
@@ -87,10 +87,10 @@ class Error implements AdditionalDataHolder, Parsable
     /**
      * Creates a new instance of the appropriate class based on discriminator value
      * @param ParseNode $parseNode The parse node to use to read the discriminator value and create the object
-     * @return Error
+     * @return ErrorDetailV3
     */
-    public static function createFromDiscriminatorValue(ParseNode $parseNode): Error {
-        return new Error();
+    public static function createFromDiscriminatorValue(ParseNode $parseNode): ErrorDetailV3 {
+        return new ErrorDetailV3();
     }
 
     /**
@@ -153,7 +153,7 @@ class Error implements AdditionalDataHolder, Parsable
                 /** @var array<string>|null $val */
                 $this->setOutputRefIds($val);
             },
-            'parameters' => fn(ParseNode $n) => $o->setParameters($n->getCollectionOfObjectValues([ErrorParameter::class, 'createFromDiscriminatorValue'])),
+            'parameters' => fn(ParseNode $n) => $o->setParameters($n->getCollectionOfObjectValues([ErrorParameterV3::class, 'createFromDiscriminatorValue'])),
             'subdomain' => fn(ParseNode $n) => $o->setSubdomain($n->getStringValue()),
         ];
     }
@@ -167,7 +167,7 @@ class Error implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the longMessage property value. An expanded version of the <b>message</b> field. <br><br><b>Maximum length:</b> 200 characters
+     * Gets the longMessage property value. An expanded version of the <strong>message</strong> field. <br><br><strong>Maximum length:</strong> 200 characters
      * @return string|null
     */
     public function getLongMessage(): ?string {
@@ -175,7 +175,7 @@ class Error implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the message property value. A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><b>Maximum length:</b> 50 characters
+     * Gets the message property value. A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><strong>Maximum length:</strong> 50 characters
      * @return string|null
     */
     public function getMessage(): ?string {
@@ -192,7 +192,7 @@ class Error implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the parameters property value. Contains a list of name-value pairs that provide additional information concerning this error or warning. Each item in the list is an input parameter that contributed to the error or warning condition.
-     * @return array<ErrorParameter>|null
+     * @return array<ErrorParameterV3>|null
     */
     public function getParameters(): ?array {
         return $this->parameters;
@@ -264,7 +264,7 @@ class Error implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the longMessage property value. An expanded version of the <b>message</b> field. <br><br><b>Maximum length:</b> 200 characters
+     * Sets the longMessage property value. An expanded version of the <strong>message</strong> field. <br><br><strong>Maximum length:</strong> 200 characters
      * @param string|null $value Value to set for the longMessage property.
     */
     public function setLongMessage(?string $value): void {
@@ -272,7 +272,7 @@ class Error implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the message property value. A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><b>Maximum length:</b> 50 characters
+     * Sets the message property value. A message about the error or warning which is device agnostic and readable by end users and application developers. It explains what the error or warning is, and how to fix it (in a general sense). If applicable, the value is localized to the end user's requested locale. <br><br><strong>Maximum length:</strong> 50 characters
      * @param string|null $value Value to set for the message property.
     */
     public function setMessage(?string $value): void {
@@ -289,7 +289,7 @@ class Error implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the parameters property value. Contains a list of name-value pairs that provide additional information concerning this error or warning. Each item in the list is an input parameter that contributed to the error or warning condition.
-     * @param array<ErrorParameter>|null $value Value to set for the parameters property.
+     * @param array<ErrorParameterV3>|null $value Value to set for the parameters property.
     */
     public function setParameters(?array $value): void {
         $this->parameters = $value;

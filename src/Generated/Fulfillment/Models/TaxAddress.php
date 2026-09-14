@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This container consists of address information that can be used by sellers for tax purpose.
+ * This container consists of address information that can be used by sellers for tax purposes.
 */
 class TaxAddress implements AdditionalDataHolder, Parsable 
 {
@@ -32,22 +32,22 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $city The city name that can be used by sellers for tax purpose.
+     * @var string|null $city The city name that can be used by sellers for tax purposes.
     */
     private ?string $city = null;
     
     /**
-     * @var string|null $countryCode The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $countryCode The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany.
     */
-    private ?string $countryCode = null;
+    private ?CountryCodeEnum $countryCode = null;
     
     /**
-     * @var string|null $postalCode The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * @var string|null $postalCode The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
     */
     private ?string $postalCode = null;
     
     /**
-     * @var string|null $stateOrProvince The state name that can be used by sellers for tax purpose.
+     * @var string|null $stateOrProvince The state name that can be used by sellers for tax purposes.
     */
     private ?string $stateOrProvince = null;
     
@@ -76,7 +76,7 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the city property value. The city name that can be used by sellers for tax purpose.
+     * Gets the city property value. The city name that can be used by sellers for tax purposes.
      * @return string|null
     */
     public function getCity(): ?string {
@@ -84,10 +84,10 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the countryCode property value. The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the countryCode property value. The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany.
+     * @return CountryCodeEnum|null
     */
-    public function getCountryCode(): ?string {
+    public function getCountryCode(): ?CountryCodeEnum {
         return $this->countryCode;
     }
 
@@ -99,14 +99,14 @@ class TaxAddress implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'city' => fn(ParseNode $n) => $o->setCity($n->getStringValue()),
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getEnumValue(CountryCodeEnum::class)),
             'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
             'stateOrProvince' => fn(ParseNode $n) => $o->setStateOrProvince($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the postalCode property value. The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * Gets the postalCode property value. The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
      * @return string|null
     */
     public function getPostalCode(): ?string {
@@ -114,7 +114,7 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the stateOrProvince property value. The state name that can be used by sellers for tax purpose.
+     * Gets the stateOrProvince property value. The state name that can be used by sellers for tax purposes.
      * @return string|null
     */
     public function getStateOrProvince(): ?string {
@@ -127,7 +127,7 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('city', $this->getCity());
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeEnumValue('countryCode', $this->getCountryCode());
         $writer->writeStringValue('postalCode', $this->getPostalCode());
         $writer->writeStringValue('stateOrProvince', $this->getStateOrProvince());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -142,7 +142,7 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the city property value. The city name that can be used by sellers for tax purpose.
+     * Sets the city property value. The city name that can be used by sellers for tax purposes.
      * @param string|null $value Value to set for the city property.
     */
     public function setCity(?string $value): void {
@@ -150,15 +150,15 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the countryCode property value. The country code that can be used by sellers for tax purpose, represented as a two-letter ISO 3166-1 alpha-2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the countryCode property value. The country code that can be used by sellers for tax purposes, represented as a two-letter ISO 3166&#8209;1 alpha&#8209;2 country code. For example, <strong>US</strong> represents the United States, and <strong>DE</strong> represents Germany.
+     * @param CountryCodeEnum|null $value Value to set for the countryCode property.
     */
-    public function setCountryCode(?string $value): void {
+    public function setCountryCode(?CountryCodeEnum $value): void {
         $this->countryCode = $value;
     }
 
     /**
-     * Sets the postalCode property value. The postal code that can be used by sellers for tax purpose. Usually referred to as Zip codes in the US.
+     * Sets the postalCode property value. The postal code that can be used by sellers for tax purposes. Usually referred to as ZIP codes in the US.
      * @param string|null $value Value to set for the postalCode property.
     */
     public function setPostalCode(?string $value): void {
@@ -166,7 +166,7 @@ class TaxAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the stateOrProvince property value. The state name that can be used by sellers for tax purpose.
+     * Sets the stateOrProvince property value. The state name that can be used by sellers for tax purposes.
      * @param string|null $value Value to set for the stateOrProvince property.
     */
     public function setStateOrProvince(?string $value): void {

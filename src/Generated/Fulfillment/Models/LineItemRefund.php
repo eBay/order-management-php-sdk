@@ -32,17 +32,17 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $amount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $amount This field shows the refund amount for a line item. This field is only returned if the buyer is due a refund for the line item.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. EBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
     */
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $refundDate The date and time that the refund was issued for the line item. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $refundDate The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $refundDate = null;
     
     /**
-     * @var string|null $refundId Unique identifier of a refund that was initiated for an order's line item through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<b>paymentSummary.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrder</b> and <b>getOrders</b> responses for pending and completed refunds.
+     * @var string|null $refundId Unique identifier of a refund that was initiated for an order's line item through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<strong>paymentSummary.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds.
     */
     private ?string $refundId = null;
     
@@ -76,7 +76,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. This field shows the refund amount for a line item. This field is only returned if the buyer is due a refund for the line item.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. EBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
      * @return Amount|null
     */
     public function getAmount(): ?Amount {
@@ -98,7 +98,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getRefundDate(): ?string {
@@ -106,7 +106,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order's line item through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<b>paymentSummary.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrder</b> and <b>getOrders</b> responses for pending and completed refunds.
+     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order's line item through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<strong>paymentSummary.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds.
      * @return string|null
     */
     public function getRefundId(): ?string {
@@ -142,7 +142,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. This field shows the refund amount for a line item. This field is only returned if the buyer is due a refund for the line item.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. EBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
      * @param Amount|null $value Value to set for the amount property.
     */
     public function setAmount(?Amount $value): void {
@@ -150,7 +150,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the refundDate property.
     */
     public function setRefundDate(?string $value): void {
@@ -158,7 +158,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order's line item through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<b>paymentSummary.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrder</b> and <b>getOrders</b> responses for pending and completed refunds.
+     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order's line item through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<strong>paymentSummary.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds.
      * @param string|null $value Value to set for the refundId property.
     */
     public function setRefundId(?string $value): void {

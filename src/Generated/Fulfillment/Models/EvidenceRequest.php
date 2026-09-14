@@ -37,9 +37,9 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     private ?string $evidenceId = null;
     
     /**
-     * @var string|null $evidenceType This enumeration value shows the type of evidential document provided. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
+     * @var EvidenceTypeEnum|null $evidenceType This enumeration value shows the type of evidential document provided.
     */
-    private ?string $evidenceType = null;
+    private ?EvidenceTypeEnum $evidenceType = null;
     
     /**
      * @var array<OrderLineItems>|null $lineItems This array shows one or more order line items associated with the evidential document that has been provided.
@@ -47,12 +47,12 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     private ?array $lineItems = null;
     
     /**
-     * @var string|null $requestDate The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $requestDate The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $requestDate = null;
     
     /**
-     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $respondByDate = null;
     
@@ -89,10 +89,10 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the evidenceType property value. This enumeration value shows the type of evidential document provided. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the evidenceType property value. This enumeration value shows the type of evidential document provided.
+     * @return EvidenceTypeEnum|null
     */
-    public function getEvidenceType(): ?string {
+    public function getEvidenceType(): ?EvidenceTypeEnum {
         return $this->evidenceType;
     }
 
@@ -104,7 +104,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'evidenceId' => fn(ParseNode $n) => $o->setEvidenceId($n->getStringValue()),
-            'evidenceType' => fn(ParseNode $n) => $o->setEvidenceType($n->getStringValue()),
+            'evidenceType' => fn(ParseNode $n) => $o->setEvidenceType($n->getEnumValue(EvidenceTypeEnum::class)),
             'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([OrderLineItems::class, 'createFromDiscriminatorValue'])),
             'requestDate' => fn(ParseNode $n) => $o->setRequestDate($n->getStringValue()),
             'respondByDate' => fn(ParseNode $n) => $o->setRespondByDate($n->getStringValue()),
@@ -120,7 +120,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getRequestDate(): ?string {
@@ -128,7 +128,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getRespondByDate(): ?string {
@@ -141,7 +141,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('evidenceId', $this->getEvidenceId());
-        $writer->writeStringValue('evidenceType', $this->getEvidenceType());
+        $writer->writeEnumValue('evidenceType', $this->getEvidenceType());
         $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
         $writer->writeStringValue('requestDate', $this->getRequestDate());
         $writer->writeStringValue('respondByDate', $this->getRespondByDate());
@@ -165,10 +165,10 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the evidenceType property value. This enumeration value shows the type of evidential document provided. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the evidenceType property.
+     * Sets the evidenceType property value. This enumeration value shows the type of evidential document provided.
+     * @param EvidenceTypeEnum|null $value Value to set for the evidenceType property.
     */
-    public function setEvidenceType(?string $value): void {
+    public function setEvidenceType(?EvidenceTypeEnum $value): void {
         $this->evidenceType = $value;
     }
 
@@ -181,7 +181,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the requestDate property value. The timestamp in this field shows the date/time when eBay requested the evidential document from the seller in response to a payment dispute. <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the requestDate property.
     */
     public function setRequestDate(?string $value): void {
@@ -189,7 +189,7 @@ class EvidenceRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller is expected to provide a requested evidential document to eBay.  <br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the respondByDate property.
     */
     public function setRespondByDate(?string $value): void {

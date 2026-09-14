@@ -38,7 +38,7 @@ class Rate implements AdditionalDataHolder, Parsable
     private ?array $additionalOptions = null;
     
     /**
-     * @var Amount|null $baseShippingCost A complex type that describes the value of a monetary amount as represented by a global currency.
+     * @var Amount|null $baseShippingCost A live quote for the cost that the carrier (identified by <strong>shippingCarrierCode</strong>) is charging for the shipping service being offered (identified by <strong>shippingServiceCode</strong>), excluding any additional shipping options.
     */
     private ?Amount $baseShippingCost = null;
     
@@ -48,7 +48,7 @@ class Rate implements AdditionalDataHolder, Parsable
     private ?string $destinationTimeZone = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * @var string|null $maxEstimatedDeliveryDate The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
     */
     private ?string $maxEstimatedDeliveryDate = null;
     
@@ -68,9 +68,9 @@ class Rate implements AdditionalDataHolder, Parsable
     private ?array $pickupSlots = null;
     
     /**
-     * @var string|null $pickupType The type of pickup or drop-off service associated with the <b>pickupSlots</b> time frames. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
+     * @var PickupTypeEnum|null $pickupType The type of pickup or drop-off service associated with the <strong>pickupSlots</strong> time frames.
     */
-    private ?string $pickupType = null;
+    private ?PickupTypeEnum $pickupType = null;
     
     /**
      * @var string|null $rateId The unique eBay-assigned ID for this shipping rate.
@@ -78,12 +78,12 @@ class Rate implements AdditionalDataHolder, Parsable
     private ?string $rateId = null;
     
     /**
-     * @var array<string>|null $rateRecommendation A list of reasons this rate is recommended. Available values are: <ul> <li><code>BUYER_CHOSEN</code> &mdash; The rate meets or exceeds the requirements of the buyer's preferred shipping option.</li> <li><code>CHEAPEST_ON_TIME</code> &mdash; The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment.</li>  <li><code>EBAY_PLUS_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Plus program.</li> <li><code>FASTEST_ON_TIME</code> &mdash; The rate has the fastest shipping time, and will provide delivery within the seller's time frame commitment.</li> <li><code>GUARANTEED_DELIVERY_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.</li></ul>
+     * @var array<RateRecommendationEnum>|null $rateRecommendation A list of reasons this rate is recommended. Available values are: <ul> <li><code>BUYER_CHOSEN</code> &mdash; The rate meets or exceeds the requirements of the buyer's preferred shipping option.</li> <li><code>CHEAPEST_ON_TIME</code> &mdash; The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment.</li>  <li><code>EBAY_PLUS_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Plus program.</li> <li><code>FASTEST_ON_TIME</code> &mdash; The rate has the fastest shipping time, and will provide delivery within the seller's time frame commitment.</li> <li><code>GUARANTEED_DELIVERY_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.</li></ul>
     */
     private ?array $rateRecommendation = null;
     
     /**
-     * @var string|null $shippingCarrierCode The code name of the shipping carrier who will provide the service identified by <b>shippingServiceCode</b>.
+     * @var string|null $shippingCarrierCode The code name of the shipping carrier who will provide the service identified by <strong>shippingServiceCode</strong>.
     */
     private ?string $shippingCarrierCode = null;
     
@@ -93,7 +93,7 @@ class Rate implements AdditionalDataHolder, Parsable
     private ?string $shippingCarrierName = null;
     
     /**
-     * @var string|null $shippingServiceCode The code name of the shipping service to be provided by the carrier identified by <b>shippingCarrierCode</b>.
+     * @var string|null $shippingServiceCode The code name of the shipping service to be provided by the carrier identified by <strong>shippingCarrierCode</strong>.
     */
     private ?string $shippingServiceCode = null;
     
@@ -135,7 +135,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the baseShippingCost property value. A live quote for the cost that the carrier (identified by <strong>shippingCarrierCode</strong>) is charging for the shipping service being offered (identified by <strong>shippingServiceCode</strong>), excluding any additional shipping options.
      * @return Amount|null
     */
     public function getBaseShippingCost(): ?Amount {
@@ -171,16 +171,9 @@ class Rate implements AdditionalDataHolder, Parsable
                 $this->setPickupNetworks($val);
             },
             'pickupSlots' => fn(ParseNode $n) => $o->setPickupSlots($n->getCollectionOfObjectValues([PickupSlot::class, 'createFromDiscriminatorValue'])),
-            'pickupType' => fn(ParseNode $n) => $o->setPickupType($n->getStringValue()),
+            'pickupType' => fn(ParseNode $n) => $o->setPickupType($n->getEnumValue(PickupTypeEnum::class)),
             'rateId' => fn(ParseNode $n) => $o->setRateId($n->getStringValue()),
-            'rateRecommendation' => function (ParseNode $n) {
-                $val = $n->getCollectionOfPrimitiveValues();
-                if (is_array($val)) {
-                    TypeUtils::validateCollectionValues($val, 'string');
-                }
-                /** @var array<string>|null $val */
-                $this->setRateRecommendation($val);
-            },
+            'rateRecommendation' => fn(ParseNode $n) => $o->setRateRecommendation($n->getCollectionOfEnumValues(RateRecommendationEnum::class)),
             'shippingCarrierCode' => fn(ParseNode $n) => $o->setShippingCarrierCode($n->getStringValue()),
             'shippingCarrierName' => fn(ParseNode $n) => $o->setShippingCarrierName($n->getStringValue()),
             'shippingServiceCode' => fn(ParseNode $n) => $o->setShippingServiceCode($n->getStringValue()),
@@ -189,7 +182,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Gets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @return string|null
     */
     public function getMaxEstimatedDeliveryDate(): ?string {
@@ -221,10 +214,10 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupType property value. The type of pickup or drop-off service associated with the <b>pickupSlots</b> time frames. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the pickupType property value. The type of pickup or drop-off service associated with the <strong>pickupSlots</strong> time frames.
+     * @return PickupTypeEnum|null
     */
-    public function getPickupType(): ?string {
+    public function getPickupType(): ?PickupTypeEnum {
         return $this->pickupType;
     }
 
@@ -238,14 +231,14 @@ class Rate implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the rateRecommendation property value. A list of reasons this rate is recommended. Available values are: <ul> <li><code>BUYER_CHOSEN</code> &mdash; The rate meets or exceeds the requirements of the buyer's preferred shipping option.</li> <li><code>CHEAPEST_ON_TIME</code> &mdash; The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment.</li>  <li><code>EBAY_PLUS_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Plus program.</li> <li><code>FASTEST_ON_TIME</code> &mdash; The rate has the fastest shipping time, and will provide delivery within the seller's time frame commitment.</li> <li><code>GUARANTEED_DELIVERY_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.</li></ul>
-     * @return array<string>|null
+     * @return array<RateRecommendationEnum>|null
     */
     public function getRateRecommendation(): ?array {
         return $this->rateRecommendation;
     }
 
     /**
-     * Gets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by <b>shippingServiceCode</b>.
+     * Gets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by <strong>shippingServiceCode</strong>.
      * @return string|null
     */
     public function getShippingCarrierCode(): ?string {
@@ -261,7 +254,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by <b>shippingCarrierCode</b>.
+     * Gets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by <strong>shippingCarrierCode</strong>.
      * @return string|null
     */
     public function getShippingServiceCode(): ?string {
@@ -288,9 +281,9 @@ class Rate implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
         $writer->writeCollectionOfPrimitiveValues('pickupNetworks', $this->getPickupNetworks());
         $writer->writeCollectionOfObjectValues('pickupSlots', $this->getPickupSlots());
-        $writer->writeStringValue('pickupType', $this->getPickupType());
+        $writer->writeEnumValue('pickupType', $this->getPickupType());
         $writer->writeStringValue('rateId', $this->getRateId());
-        $writer->writeCollectionOfPrimitiveValues('rateRecommendation', $this->getRateRecommendation());
+        $writer->writeCollectionOfEnumValues('rateRecommendation', $this->getRateRecommendation());
         $writer->writeStringValue('shippingCarrierCode', $this->getShippingCarrierCode());
         $writer->writeStringValue('shippingCarrierName', $this->getShippingCarrierName());
         $writer->writeStringValue('shippingServiceCode', $this->getShippingServiceCode());
@@ -315,7 +308,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the baseShippingCost property value. A live quote for the cost that the carrier (identified by <strong>shippingCarrierCode</strong>) is charging for the shipping service being offered (identified by <strong>shippingServiceCode</strong>), excluding any additional shipping options.
      * @param Amount|null $value Value to set for the baseShippingCost property.
     */
     public function setBaseShippingCost(?Amount $value): void {
@@ -331,7 +324,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Sets the maxEstimatedDeliveryDate property value. The latest stated date and time the shipment will be delivered at this rate.  <br><br>The time stamp is formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
     public function setMaxEstimatedDeliveryDate(?string $value): void {
@@ -363,10 +356,10 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupType property value. The type of pickup or drop-off service associated with the <b>pickupSlots</b> time frames. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the pickupType property.
+     * Sets the pickupType property value. The type of pickup or drop-off service associated with the <strong>pickupSlots</strong> time frames.
+     * @param PickupTypeEnum|null $value Value to set for the pickupType property.
     */
-    public function setPickupType(?string $value): void {
+    public function setPickupType(?PickupTypeEnum $value): void {
         $this->pickupType = $value;
     }
 
@@ -380,14 +373,14 @@ class Rate implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the rateRecommendation property value. A list of reasons this rate is recommended. Available values are: <ul> <li><code>BUYER_CHOSEN</code> &mdash; The rate meets or exceeds the requirements of the buyer's preferred shipping option.</li> <li><code>CHEAPEST_ON_TIME</code> &mdash; The rate is the cheapest rate available that will provide delivery within the seller's time frame commitment.</li>  <li><code>EBAY_PLUS_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Plus program.</li> <li><code>FASTEST_ON_TIME</code> &mdash; The rate has the fastest shipping time, and will provide delivery within the seller's time frame commitment.</li> <li><code>GUARANTEED_DELIVERY_OK</code> &mdash; The rate complies with the shipping requirements of the eBay Guaranteed Delivery program.</li></ul>
-     * @param array<string>|null $value Value to set for the rateRecommendation property.
+     * @param array<RateRecommendationEnum>|null $value Value to set for the rateRecommendation property.
     */
     public function setRateRecommendation(?array $value): void {
         $this->rateRecommendation = $value;
     }
 
     /**
-     * Sets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by <b>shippingServiceCode</b>.
+     * Sets the shippingCarrierCode property value. The code name of the shipping carrier who will provide the service identified by <strong>shippingServiceCode</strong>.
      * @param string|null $value Value to set for the shippingCarrierCode property.
     */
     public function setShippingCarrierCode(?string $value): void {
@@ -403,7 +396,7 @@ class Rate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by <b>shippingCarrierCode</b>.
+     * Sets the shippingServiceCode property value. The code name of the shipping service to be provided by the carrier identified by <strong>shippingCarrierCode</strong>.
      * @param string|null $value Value to set for the shippingServiceCode property.
     */
     public function setShippingServiceCode(?string $value): void {

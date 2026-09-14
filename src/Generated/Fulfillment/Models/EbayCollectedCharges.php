@@ -32,12 +32,12 @@ class EbayCollectedCharges implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var array<Charge>|null $charges This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION.</span>
+     * @var array<Charge>|null $charges This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>.</span>
     */
     private ?array $charges = null;
     
     /**
-     * @var Amount|null $ebayShipping This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $ebayShipping This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
     */
     private ?Amount $ebayShipping = null;
     
@@ -66,7 +66,7 @@ class EbayCollectedCharges implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the charges property value. This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION.</span>
+     * Gets the charges property value. This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>.</span>
      * @return array<Charge>|null
     */
     public function getCharges(): ?array {
@@ -74,7 +74,7 @@ class EbayCollectedCharges implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the ebayShipping property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the ebayShipping property value. This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
      * @return Amount|null
     */
     public function getEbayShipping(): ?Amount {
@@ -112,7 +112,7 @@ class EbayCollectedCharges implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the charges property value. This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION.</span>
+     * Sets the charges property value. This array shows any charges that eBay collects from the buyer.<br><br><span class="tablenote"><strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>.</span>
      * @param array<Charge>|null $value Value to set for the charges property.
     */
     public function setCharges(?array $value): void {
@@ -120,7 +120,7 @@ class EbayCollectedCharges implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the ebayShipping property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the ebayShipping property value. This container consists of costs related to eBay Shipping collected by eBay from the buyer of this order.
      * @param Amount|null $value Value to set for the ebayShipping property.
     */
     public function setEbayShipping(?Amount $value): void {

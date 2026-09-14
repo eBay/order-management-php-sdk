@@ -32,12 +32,12 @@ class ItemLocation implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $countryCode The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> code representing the country of the address. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $countryCode The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> code representing the country of the address.
     */
-    private ?string $countryCode = null;
+    private ?CountryCodeEnum $countryCode = null;
     
     /**
-     * @var string|null $location Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <b>postalCode</b> fields).<br><br><span class="tablenote"><b>Note:</b> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span><br>This field provides city, province, state, or similar information.
+     * @var string|null $location Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <strong>postalCode</strong> fields).<br><br>This field provides city, province, state, or similar information.<br><br><span class="tablenote"><strong>Note:</strong> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span>
     */
     private ?string $location = null;
     
@@ -71,10 +71,10 @@ class ItemLocation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the countryCode property value. The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> code representing the country of the address. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the countryCode property value. The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> code representing the country of the address.
+     * @return CountryCodeEnum|null
     */
-    public function getCountryCode(): ?string {
+    public function getCountryCode(): ?CountryCodeEnum {
         return $this->countryCode;
     }
 
@@ -85,14 +85,14 @@ class ItemLocation implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getEnumValue(CountryCodeEnum::class)),
             'location' => fn(ParseNode $n) => $o->setLocation($n->getStringValue()),
             'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the location property value. Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <b>postalCode</b> fields).<br><br><span class="tablenote"><b>Note:</b> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span><br>This field provides city, province, state, or similar information.
+     * Gets the location property value. Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <strong>postalCode</strong> fields).<br><br>This field provides city, province, state, or similar information.<br><br><span class="tablenote"><strong>Note:</strong> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span>
      * @return string|null
     */
     public function getLocation(): ?string {
@@ -112,7 +112,7 @@ class ItemLocation implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeEnumValue('countryCode', $this->getCountryCode());
         $writer->writeStringValue('location', $this->getLocation());
         $writer->writeStringValue('postalCode', $this->getPostalCode());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -127,15 +127,15 @@ class ItemLocation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the countryCode property value. The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> code representing the country of the address. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the countryCode property value. The two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> code representing the country of the address.
+     * @param CountryCodeEnum|null $value Value to set for the countryCode property.
     */
-    public function setCountryCode(?string $value): void {
+    public function setCountryCode(?CountryCodeEnum $value): void {
         $this->countryCode = $value;
     }
 
     /**
-     * Sets the location property value. Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <b>postalCode</b> fields).<br><br><span class="tablenote"><b>Note:</b> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span><br>This field provides city, province, state, or similar information.
+     * Sets the location property value. Indicates the geographical location of the item (along with the values in the <strong>countryCode</strong> and <strong>postalCode</strong> fields).<br><br>This field provides city, province, state, or similar information.<br><br><span class="tablenote"><strong>Note:</strong> If the item is shipped from a fulfillment center location through the Multi-Warehouse Program, this field will return the geographical location of the fulfillment center closest to the buyer.</span>
      * @param string|null $value Value to set for the location property.
     */
     public function setLocation(?string $value): void {

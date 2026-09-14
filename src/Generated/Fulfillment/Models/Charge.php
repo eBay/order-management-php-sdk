@@ -32,14 +32,14 @@ class Charge implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $amount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $amount This container shows the amount and currency of the charge.
     */
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $chargeType This field shows the type of buyer charge <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum'>eBay API documentation</a>
+     * @var ChargeTypeEnum|null $chargeType This field shows the type of buyer charge. <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>. </span>
     */
-    private ?string $chargeType = null;
+    private ?ChargeTypeEnum $chargeType = null;
     
     /**
      * Instantiates a new Charge and sets the default values.
@@ -66,7 +66,7 @@ class Charge implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. This container shows the amount and currency of the charge.
      * @return Amount|null
     */
     public function getAmount(): ?Amount {
@@ -74,10 +74,10 @@ class Charge implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the chargeType property value. This field shows the type of buyer charge <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the chargeType property value. This field shows the type of buyer charge. <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>. </span>
+     * @return ChargeTypeEnum|null
     */
-    public function getChargeType(): ?string {
+    public function getChargeType(): ?ChargeTypeEnum {
         return $this->chargeType;
     }
 
@@ -89,7 +89,7 @@ class Charge implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
-            'chargeType' => fn(ParseNode $n) => $o->setChargeType($n->getStringValue()),
+            'chargeType' => fn(ParseNode $n) => $o->setChargeType($n->getEnumValue(ChargeTypeEnum::class)),
         ];
     }
 
@@ -99,7 +99,7 @@ class Charge implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
-        $writer->writeStringValue('chargeType', $this->getChargeType());
+        $writer->writeEnumValue('chargeType', $this->getChargeType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -112,7 +112,7 @@ class Charge implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. This container shows the amount and currency of the charge.
      * @param Amount|null $value Value to set for the amount property.
     */
     public function setAmount(?Amount $value): void {
@@ -120,10 +120,10 @@ class Charge implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the chargeType property value. This field shows the type of buyer charge <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is BUYER_PROTECTION. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sol:ChargeTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the chargeType property.
+     * Sets the chargeType property value. This field shows the type of buyer charge. <br> <br> <span class="tablenote"> <strong> Note: </strong> Currently, the only supported charge type is <code>BUYER_PROTECTION</code>. </span>
+     * @param ChargeTypeEnum|null $value Value to set for the chargeType property.
     */
-    public function setChargeType(?string $value): void {
+    public function setChargeType(?ChargeTypeEnum $value): void {
         $this->chargeType = $value;
     }
 

@@ -26,12 +26,6 @@ use EBay\OrderManagement\Generated\Logistics\Models\CreateShipmentFromQuoteReque
 use EBay\OrderManagement\Generated\Logistics\Models\Shipment;
 use EBay\OrderManagement\Generated\Logistics\Models\ShippingQuote;
 use EBay\OrderManagement\Generated\Logistics\Models\ShippingQuoteRequest;
-use EBay\OrderManagement\Generated\Logistics\Shipment\Create_from_shipping_quote\Create_from_shipping_quoteRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Logistics\Shipment\Item\Cancel\CancelRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Logistics\Shipment\Item\Download_label_file\Download_label_fileRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Logistics\Shipment\Item\WithShipmentItemRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Logistics\Shipping_quote\Item\WithShippingQuoteItemRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Logistics\Shipping_quote\Shipping_quoteRequestBuilderPostRequestConfiguration;
 use GuzzleHttp\Client as GuzzleClient;
 use Microsoft\Kiota\Abstractions\Authentication\BaseBearerTokenAuthenticationProvider;
 use Microsoft\Kiota\Http\GuzzleRequestAdapter;
@@ -57,7 +51,7 @@ final class LogisticsClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->shipment()->byShipmentId($shipmentId)->cancel()->post(
-                new CancelRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipment\Item\Cancel\CancelRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -76,7 +70,7 @@ final class LogisticsClient
         return $this->call($accessToken, fn($api) =>
             $api->shipment()->create_from_shipping_quote()->post(
                 $body,
-                new Create_from_shipping_quoteRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipment\Create_from_shipping_quote\Create_from_shipping_quoteRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -86,7 +80,7 @@ final class LogisticsClient
         $headers = $this->mergedHeaders($requestOptions);
         $this->call($accessToken, fn($api) =>
             $api->shipment()->byShipmentId($shipmentId)->download_label_file()->get(
-                new Download_label_fileRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipment\Item\Download_label_file\Download_label_fileRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -96,7 +90,7 @@ final class LogisticsClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->shipment()->byShipmentId($shipmentId)->get(
-                new WithShipmentItemRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipment\Item\WithShipmentItemRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -115,7 +109,7 @@ final class LogisticsClient
         return $this->call($accessToken, fn($api) =>
             $api->shipping_quote()->post(
                 $body,
-                new Shipping_quoteRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipping_quote\Shipping_quoteRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -125,7 +119,7 @@ final class LogisticsClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->shipping_quote()->byShippingQuoteId($shippingQuoteId)->get(
-                new WithShippingQuoteItemRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Logistics\Shipping_quote\Item\WithShippingQuoteItemRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }

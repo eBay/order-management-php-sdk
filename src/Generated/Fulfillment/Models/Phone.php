@@ -32,7 +32,7 @@ class Phone implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $countryCode  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/api-docs/sell/fulfillment/types/ba:CountryCodeEnum " target="_blank">CountryCodeEnum</a> for a list of supported values.
+     * @var string|null $countryCode  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum">CountryCodeEnum</a> for a list of supported values.
     */
     private ?string $countryCode = null;
     
@@ -66,7 +66,7 @@ class Phone implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the countryCode property value.  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/api-docs/sell/fulfillment/types/ba:CountryCodeEnum " target="_blank">CountryCodeEnum</a> for a list of supported values.
+     * Gets the countryCode property value.  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum">CountryCodeEnum</a> for a list of supported values.
      * @return string|null
     */
     public function getCountryCode(): ?string {
@@ -112,7 +112,7 @@ class Phone implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the countryCode property value.  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html " target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/api-docs/sell/fulfillment/types/ba:CountryCodeEnum " target="_blank">CountryCodeEnum</a> for a list of supported values.
+     * Sets the countryCode property value.  The two-letter, <a href="https://www.iso.org/iso-3166-country-codes.html" target="_blank">ISO 3166</a> code associated with the seller's phone number. This field is needed if the buyer is located in a different country than the seller. It is also OK to provide if the buyer and seller are both located in the same country<br><br>See <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-acceptpaymentdispute.countrycodeenum">CountryCodeEnum</a> for a list of supported values.
      * @param string|null $value Value to set for the countryCode property.
     */
     public function setCountryCode(?string $value): void {

@@ -47,9 +47,9 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     private ?string $city = null;
     
     /**
-     * @var string|null $country The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $country The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value.
     */
-    private ?string $country = null;
+    private ?CountryCodeEnum $country = null;
     
     /**
      * @var string|null $county The county of the return address. Counties are not applicable to all countries.
@@ -67,7 +67,7 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     private ?string $postalCode = null;
     
     /**
-     * @var Phone|null $primaryPhone This type is used by the <strong>returnAddress</strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * @var Phone|null $primaryPhone This container shows the seller's primary phone number associated with the return address.
     */
     private ?Phone $primaryPhone = null;
     
@@ -125,10 +125,10 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the country property value. The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the country property value. The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value.
+     * @return CountryCodeEnum|null
     */
-    public function getCountry(): ?string {
+    public function getCountry(): ?CountryCodeEnum {
         return $this->country;
     }
 
@@ -150,7 +150,7 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
             'addressLine1' => fn(ParseNode $n) => $o->setAddressLine1($n->getStringValue()),
             'addressLine2' => fn(ParseNode $n) => $o->setAddressLine2($n->getStringValue()),
             'city' => fn(ParseNode $n) => $o->setCity($n->getStringValue()),
-            'country' => fn(ParseNode $n) => $o->setCountry($n->getStringValue()),
+            'country' => fn(ParseNode $n) => $o->setCountry($n->getEnumValue(CountryCodeEnum::class)),
             'county' => fn(ParseNode $n) => $o->setCounty($n->getStringValue()),
             'fullName' => fn(ParseNode $n) => $o->setFullName($n->getStringValue()),
             'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
@@ -176,7 +176,7 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the primaryPhone property value. This type is used by the <strong>returnAddress</strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * Gets the primaryPhone property value. This container shows the seller's primary phone number associated with the return address.
      * @return Phone|null
     */
     public function getPrimaryPhone(): ?Phone {
@@ -199,7 +199,7 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('addressLine1', $this->getAddressLine1());
         $writer->writeStringValue('addressLine2', $this->getAddressLine2());
         $writer->writeStringValue('city', $this->getCity());
-        $writer->writeStringValue('country', $this->getCountry());
+        $writer->writeEnumValue('country', $this->getCountry());
         $writer->writeStringValue('county', $this->getCounty());
         $writer->writeStringValue('fullName', $this->getFullName());
         $writer->writeStringValue('postalCode', $this->getPostalCode());
@@ -241,10 +241,10 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the country property value. The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the country property.
+     * Sets the country property value. The country's two-letter, ISO 3166-1 country code. See the enumeration type for a country's value.
+     * @param CountryCodeEnum|null $value Value to set for the country property.
     */
-    public function setCountry(?string $value): void {
+    public function setCountry(?CountryCodeEnum $value): void {
         $this->country = $value;
     }
 
@@ -273,7 +273,7 @@ class ReturnAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the primaryPhone property value. This type is used by the <strong>returnAddress</strong field that is used by the payment dispute methods. If a buyer is returning the item (under payment dispute) to the seller, a primary phone number for the seller must be provided.
+     * Sets the primaryPhone property value. This container shows the seller's primary phone number associated with the return address.
      * @param Phone|null $value Value to set for the primaryPhone property.
     */
     public function setPrimaryPhone(?Phone $value): void {

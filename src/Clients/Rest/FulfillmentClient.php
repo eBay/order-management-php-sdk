@@ -27,7 +27,6 @@ use EBay\OrderManagement\Generated\Fulfillment\Models\AddEvidencePaymentDisputeR
 use EBay\OrderManagement\Generated\Fulfillment\Models\AddEvidencePaymentDisputeResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ContestPaymentDisputeRequest;
 use EBay\OrderManagement\Generated\Fulfillment\Models\DisputeSummaryResponse;
-use EBay\OrderManagement\Generated\Fulfillment\Models\FileEvidence;
 use EBay\OrderManagement\Generated\Fulfillment\Models\IssueRefundRequest;
 use EBay\OrderManagement\Generated\Fulfillment\Models\Order;
 use EBay\OrderManagement\Generated\Fulfillment\Models\OrderSearchPagedCollection;
@@ -38,21 +37,7 @@ use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillment;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentDetails;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentPagedCollection;
 use EBay\OrderManagement\Generated\Fulfillment\Models\UpdateEvidencePaymentDisputeRequest;
-use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Issue_refund\Issue_refundRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Order\Item\OrderItemRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Item\WithFulfillmentItemRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Order\OrderRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary\Payment_dispute_summaryRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Accept\AcceptRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Activity\ActivityRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Add_evidence\Add_evidenceRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Contest\ContestRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_evidence_content\Fetch_evidence_contentRequestBuilderGetRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Update_evidence\Update_evidenceRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration;
-use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration;
+use EBay\OrderManagement\Generated\Fulfillment\Models\UploadEvidenceFilePaymentDisputeResponse;
 use GuzzleHttp\Client as GuzzleClient;
 use Microsoft\Kiota\Abstractions\Authentication\BaseBearerTokenAuthenticationProvider;
 use Microsoft\Kiota\Http\GuzzleRequestAdapter;
@@ -83,9 +68,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->order()->byOrderId($orderId)->get(
-                new OrderItemRequestBuilderGetRequestConfiguration(
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\OrderItemRequestBuilderGetRequestConfiguration(
                     headers: $headers,
-                    queryParameters: OrderItemRequestBuilderGetRequestConfiguration::createQueryParameters(
+                    queryParameters: \EBay\OrderManagement\Generated\Fulfillment\Order\Item\OrderItemRequestBuilderGetRequestConfiguration::createQueryParameters(
                         fieldGroups: $fieldGroups,
                     ),
                 )
@@ -106,9 +91,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->order()->get(
-                new OrderRequestBuilderGetRequestConfiguration(
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\OrderRequestBuilderGetRequestConfiguration(
                     headers: $headers,
-                    queryParameters: OrderRequestBuilderGetRequestConfiguration::createQueryParameters(
+                    queryParameters: \EBay\OrderManagement\Generated\Fulfillment\Order\OrderRequestBuilderGetRequestConfiguration::createQueryParameters(
                         fieldGroups: $fieldGroups,
                         filter: $filter,
                         limit: $limit,
@@ -131,7 +116,7 @@ final class FulfillmentClient
         return $this->call($accessToken, fn($api) =>
             $api->order()->byOrderId($orderId)->issue_refund()->post(
                 $body,
-                new Issue_refundRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\Issue_refund\Issue_refundRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -141,7 +126,7 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->order()->byOrderId($orderId)->shipping_fulfillment()->get(
-                new Shipping_fulfillmentRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -157,7 +142,7 @@ final class FulfillmentClient
         return $this->call($accessToken, fn($api) =>
             $api->order()->byOrderId($orderId)->shipping_fulfillment()->post(
                 $body,
-                new Shipping_fulfillmentRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -172,7 +157,7 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->order()->byOrderId($orderId)->shipping_fulfillment()->byFulfillmentId($fulfillmentId)->get(
-                new WithFulfillmentItemRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Item\WithFulfillmentItemRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -182,7 +167,7 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->get(
-                new WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -198,9 +183,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get(
-                new Fetch_evidence_contentRequestBuilderGetRequestConfiguration(
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_evidence_content\Fetch_evidence_contentRequestBuilderGetRequestConfiguration(
                     headers: $headers,
-                    queryParameters: Fetch_evidence_contentRequestBuilderGetRequestConfiguration::createQueryParameters(
+                    queryParameters: \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_evidence_content\Fetch_evidence_contentRequestBuilderGetRequestConfiguration::createQueryParameters(
                         evidence_id: $evidenceId,
                         file_id: $fileId,
                     ),
@@ -214,7 +199,7 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->activity()->get(
-                new ActivityRequestBuilderGetRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Activity\ActivityRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -234,9 +219,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute_summary()->get(
-                new Payment_dispute_summaryRequestBuilderGetRequestConfiguration(
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary\Payment_dispute_summaryRequestBuilderGetRequestConfiguration(
                     headers: $headers,
-                    queryParameters: Payment_dispute_summaryRequestBuilderGetRequestConfiguration::createQueryParameters(
+                    queryParameters: \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary\Payment_dispute_summaryRequestBuilderGetRequestConfiguration::createQueryParameters(
                         order_id: $orderId,
                         buyer_username: $buyerUsername,
                         open_date_from: $openDateFrom,
@@ -261,7 +246,7 @@ final class FulfillmentClient
         $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->contest()->post(
                 $body,
-                new ContestRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Contest\ContestRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -277,7 +262,7 @@ final class FulfillmentClient
         $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->accept()->post(
                 $body,
-                new AcceptRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Accept\AcceptRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -287,13 +272,13 @@ final class FulfillmentClient
         mixed $body,
         ?string $accessToken = null,
         ?RequestOptions $requestOptions = null,
-    ): ?FileEvidence
+    ): ?UploadEvidenceFilePaymentDisputeResponse
     {
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(
                 $body,
-                new Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -309,7 +294,7 @@ final class FulfillmentClient
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->add_evidence()->post(
                 $body,
-                new Add_evidenceRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Add_evidence\Add_evidenceRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }
@@ -325,7 +310,7 @@ final class FulfillmentClient
         $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post(
                 $body,
-                new Update_evidenceRequestBuilderPostRequestConfiguration(headers: $headers)
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Update_evidence\Update_evidenceRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }

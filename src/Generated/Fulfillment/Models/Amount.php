@@ -32,22 +32,22 @@ class Amount implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $convertedFromCurrency A three-letter ISO 4217 code that indicates the currency of the amount in the <b>convertedFromValue</b> field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @var CurrencyCodeEnum|null $convertedFromCurrency A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>convertedFromValue</strong> field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
     */
-    private ?string $convertedFromCurrency = null;
+    private ?CurrencyCodeEnum $convertedFromCurrency = null;
     
     /**
-     * @var string|null $convertedFromValue The monetary amount before any conversion is performed, in the currency specified by the <b>convertedFromCurrency</b> field. This value is required or returned only if currency conversion/localization is required. The <b>value</b> field contains the converted amount of this value, in the currency specified by the <b>currency</b> field.
+     * @var string|null $convertedFromValue The monetary amount, before any conversion is performed, in the currency specified by the <strong>convertedFromCurrency</strong> field. This value is required or returned only if currency conversion/localization is required. The <strong>value</strong> field contains the converted amount of this value in the currency specified by the <strong>currency</strong> field.
     */
     private ?string $convertedFromValue = null;
     
     /**
-     * @var string|null $currency A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <b>value</b> field.<br><br><b>Default:</b> The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @var CurrencyCodeEnum|null $currency A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <strong>value</strong> field.<br><br><strong>Default:</strong> The default currency with be that of the eBay marketplace that hosts the listing.
     */
-    private ?string $currency = null;
+    private ?CurrencyCodeEnum $currency = null;
     
     /**
-     * @var string|null $value The monetary amount, in the currency specified by the <b>currency</b> field. If currency conversion/localization is required, this value is the converted amount, and the <b>convertedFromValue</b> field contains the amount in the original currency.  <br><br><i>Required in</i> the <b>amount</b> type.
+     * @var string|null $value The monetary amount in the currency specified by the <strong>currency</strong> field. If currency conversion/localization is required, this value is the converted amount, and the <strong>convertedFromValue</strong> field contains the amount in the original currency.  <br><br><em>Required</em> in the <strong>amount</strong> type.
     */
     private ?string $value = null;
     
@@ -76,15 +76,15 @@ class Amount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the convertedFromCurrency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>convertedFromValue</b> field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the convertedFromCurrency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>convertedFromValue</strong> field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
+     * @return CurrencyCodeEnum|null
     */
-    public function getConvertedFromCurrency(): ?string {
+    public function getConvertedFromCurrency(): ?CurrencyCodeEnum {
         return $this->convertedFromCurrency;
     }
 
     /**
-     * Gets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <b>convertedFromCurrency</b> field. This value is required or returned only if currency conversion/localization is required. The <b>value</b> field contains the converted amount of this value, in the currency specified by the <b>currency</b> field.
+     * Gets the convertedFromValue property value. The monetary amount, before any conversion is performed, in the currency specified by the <strong>convertedFromCurrency</strong> field. This value is required or returned only if currency conversion/localization is required. The <strong>value</strong> field contains the converted amount of this value in the currency specified by the <strong>currency</strong> field.
      * @return string|null
     */
     public function getConvertedFromValue(): ?string {
@@ -92,10 +92,10 @@ class Amount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <b>value</b> field.<br><br><b>Default:</b> The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the currency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <strong>value</strong> field.<br><br><strong>Default:</strong> The default currency with be that of the eBay marketplace that hosts the listing.
+     * @return CurrencyCodeEnum|null
     */
-    public function getCurrency(): ?string {
+    public function getCurrency(): ?CurrencyCodeEnum {
         return $this->currency;
     }
 
@@ -106,15 +106,15 @@ class Amount implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'convertedFromCurrency' => fn(ParseNode $n) => $o->setConvertedFromCurrency($n->getStringValue()),
+            'convertedFromCurrency' => fn(ParseNode $n) => $o->setConvertedFromCurrency($n->getEnumValue(CurrencyCodeEnum::class)),
             'convertedFromValue' => fn(ParseNode $n) => $o->setConvertedFromValue($n->getStringValue()),
-            'currency' => fn(ParseNode $n) => $o->setCurrency($n->getStringValue()),
+            'currency' => fn(ParseNode $n) => $o->setCurrency($n->getEnumValue(CurrencyCodeEnum::class)),
             'value' => fn(ParseNode $n) => $o->setValue($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the value property value. The monetary amount, in the currency specified by the <b>currency</b> field. If currency conversion/localization is required, this value is the converted amount, and the <b>convertedFromValue</b> field contains the amount in the original currency.  <br><br><i>Required in</i> the <b>amount</b> type.
+     * Gets the value property value. The monetary amount in the currency specified by the <strong>currency</strong> field. If currency conversion/localization is required, this value is the converted amount, and the <strong>convertedFromValue</strong> field contains the amount in the original currency.  <br><br><em>Required</em> in the <strong>amount</strong> type.
      * @return string|null
     */
     public function getValue(): ?string {
@@ -126,9 +126,9 @@ class Amount implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('convertedFromCurrency', $this->getConvertedFromCurrency());
+        $writer->writeEnumValue('convertedFromCurrency', $this->getConvertedFromCurrency());
         $writer->writeStringValue('convertedFromValue', $this->getConvertedFromValue());
-        $writer->writeStringValue('currency', $this->getCurrency());
+        $writer->writeEnumValue('currency', $this->getCurrency());
         $writer->writeStringValue('value', $this->getValue());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -142,15 +142,15 @@ class Amount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the convertedFromCurrency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>convertedFromValue</b> field. This value is required or returned only if currency conversion/localization is required, and represents the pre-conversion currency. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the convertedFromCurrency property.
+     * Sets the convertedFromCurrency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>convertedFromValue</strong> field. This value is required or returned only if currency conversion/localization is required and represents the pre-conversion currency.
+     * @param CurrencyCodeEnum|null $value Value to set for the convertedFromCurrency property.
     */
-    public function setConvertedFromCurrency(?string $value): void {
+    public function setConvertedFromCurrency(?CurrencyCodeEnum $value): void {
         $this->convertedFromCurrency = $value;
     }
 
     /**
-     * Sets the convertedFromValue property value. The monetary amount before any conversion is performed, in the currency specified by the <b>convertedFromCurrency</b> field. This value is required or returned only if currency conversion/localization is required. The <b>value</b> field contains the converted amount of this value, in the currency specified by the <b>currency</b> field.
+     * Sets the convertedFromValue property value. The monetary amount, before any conversion is performed, in the currency specified by the <strong>convertedFromCurrency</strong> field. This value is required or returned only if currency conversion/localization is required. The <strong>value</strong> field contains the converted amount of this value in the currency specified by the <strong>currency</strong> field.
      * @param string|null $value Value to set for the convertedFromValue property.
     */
     public function setConvertedFromValue(?string $value): void {
@@ -158,15 +158,15 @@ class Amount implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the currency property value. A three-letter ISO 4217 code that indicates the currency of the amount in the <b>value</b> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <b>value</b> field.<br><br><b>Default:</b> The default currency of the eBay marketplace that hosts the listing. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the currency property.
+     * Sets the currency property value. A three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html" title="https://www.iso.org " target="_blank">ISO 4217</a> code that indicates the currency of the amount in the <strong>value</strong> field. If currency conversion/localization is required, this is the post-conversion currency of the amount in the <strong>value</strong> field.<br><br><strong>Default:</strong> The default currency with be that of the eBay marketplace that hosts the listing.
+     * @param CurrencyCodeEnum|null $value Value to set for the currency property.
     */
-    public function setCurrency(?string $value): void {
+    public function setCurrency(?CurrencyCodeEnum $value): void {
         $this->currency = $value;
     }
 
     /**
-     * Sets the value property value. The monetary amount, in the currency specified by the <b>currency</b> field. If currency conversion/localization is required, this value is the converted amount, and the <b>convertedFromValue</b> field contains the amount in the original currency.  <br><br><i>Required in</i> the <b>amount</b> type.
+     * Sets the value property value. The monetary amount in the currency specified by the <strong>currency</strong> field. If currency conversion/localization is required, this value is the converted amount, and the <strong>convertedFromValue</strong> field contains the amount in the original currency.  <br><br><em>Required</em> in the <strong>amount</strong> type.
      * @param string|null $value Value to set for the value property.
     */
     public function setValue(?string $value): void {

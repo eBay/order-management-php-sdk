@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This complex type defines the request body for <b>createShippingQuote</b>. Sellers <i>request a quote</i> for a shipment by defining the "To" and "From" addresses for the package, plus the package's size.  <br><br>Carriers respond by offering up a "rate" for the service of theirs that best fits seller's needs.
+ * This complex type defines the request body for <strong>createShippingQuote</strong>. Sellers <i>request a quote</i> for a shipment by defining the "To" and "From" addresses for the package, plus the package's size.  <br><br>Carriers respond by offering up a "rate" for the service that best fits the seller's needs.
 */
 class ShippingQuoteRequest implements AdditionalDataHolder, Parsable 
 {
@@ -32,22 +32,22 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var array<Order>|null $orders In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><b>Maximum list size:</b> 10
+     * @var array<Order>|null $orders In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><strong>Maximum list size:</strong> 10
     */
     private ?array $orders = null;
     
     /**
-     * @var PackageSpecification|null $packageSpecification This complex type specifies the dimensions and weight of a package.
+     * @var PackageSpecification|null $packageSpecification Declares the weight and dimensions of the package.
     */
     private ?PackageSpecification $packageSpecification = null;
     
     /**
-     * @var Contact|null $shipFrom This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipFrom The address and contact details pertaining to the origin of the shipment.
     */
     private ?Contact $shipFrom = null;
     
     /**
-     * @var Contact|null $shipTo This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipTo The address and contact details pertaining to the shipment's destination.
     */
     private ?Contact $shipTo = null;
     
@@ -90,7 +90,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><b>Maximum list size:</b> 10
+     * Gets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><strong>Maximum list size:</strong> 10
      * @return array<Order>|null
     */
     public function getOrders(): ?array {
@@ -98,7 +98,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. Declares the weight and dimensions of the package.
      * @return PackageSpecification|null
     */
     public function getPackageSpecification(): ?PackageSpecification {
@@ -106,7 +106,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details pertaining to the origin of the shipment.
      * @return Contact|null
     */
     public function getShipFrom(): ?Contact {
@@ -114,7 +114,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details pertaining to the shipment's destination.
      * @return Contact|null
     */
     public function getShipTo(): ?Contact {
@@ -142,7 +142,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><b>Maximum list size:</b> 10
+     * Sets the orders property value. In this array, the seller specifies one or more orders that will be shipped in the shipping package. <br><br>A shipping package can contain any number of line items from one or more orders, providing they all ship in the same package.  <br><br><strong>Maximum list size:</strong> 10
      * @param array<Order>|null $value Value to set for the orders property.
     */
     public function setOrders(?array $value): void {
@@ -150,7 +150,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. Declares the weight and dimensions of the package.
      * @param PackageSpecification|null $value Value to set for the packageSpecification property.
     */
     public function setPackageSpecification(?PackageSpecification $value): void {
@@ -158,7 +158,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details pertaining to the origin of the shipment.
      * @param Contact|null $value Value to set for the shipFrom property.
     */
     public function setShipFrom(?Contact $value): void {
@@ -166,7 +166,7 @@ class ShippingQuoteRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details pertaining to the shipment's destination.
      * @param Contact|null $value Value to set for the shipTo property.
     */
     public function setShipTo(?Contact $value): void {

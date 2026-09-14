@@ -24,15 +24,22 @@ readonly class Input
         public string $returnRuleListingGroupId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             returnRuleListingGroupId: $data['returnRuleListingGroupId'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['returnRuleListingGroupId' => $this->returnRuleListingGroupId];
+        return [
+                'returnRuleListingGroupId' => $this->returnRuleListingGroupId,
+        ];
     }
 }

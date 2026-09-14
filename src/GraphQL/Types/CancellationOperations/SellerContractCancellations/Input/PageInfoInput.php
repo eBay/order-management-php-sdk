@@ -18,14 +18,14 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input;
 
-final class PageInfoInput
+readonly class PageInfoInput
 {
     public function __construct(
-        public readonly int $maxPageSize,
-        public readonly ?string $pageCursor = null,
-    ) {
-    }
+        public int $maxPageSize,
+        public ?string $pageCursor = null,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -34,11 +34,15 @@ final class PageInfoInput
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'maxPageSize' => $this->maxPageSize,
-            'pageCursor' => $this->pageCursor,
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'maxPageSize' => $this->maxPageSize,
+                'pageCursor' => $this->pageCursor,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

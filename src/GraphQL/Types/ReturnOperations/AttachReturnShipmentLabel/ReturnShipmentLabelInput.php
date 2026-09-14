@@ -26,24 +26,26 @@ readonly class ReturnShipmentLabelInput
         public ?string $trackingNumber = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             documentId: $data['documentId'],
             shippingCarrier: ReturnShippingCarrierInput::fromArray($data['shippingCarrier']),
             trackingNumber: $data['trackingNumber'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'documentId'      => $this->documentId,
-            'shippingCarrier' => $this->shippingCarrier->toArray(),
-        ];
-        if ($this->trackingNumber !== null) {
-            $data['trackingNumber'] = $this->trackingNumber;
-        }
-        return $data;
+        return array_filter(
+            [
+                'documentId' => $this->documentId,
+                'shippingCarrier' => (object)$this->shippingCarrier->toArray(),
+                'trackingNumber' => $this->trackingNumber,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

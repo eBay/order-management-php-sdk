@@ -20,16 +20,17 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\SellerOrderInquir
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderInquiryInvalidDateRangeError|OrderInquiryInvalidPageSizeError|OrderInquiryInvalidSearchInputError|SellerOrderInquiries
     {
         return match ($data['__typename'] ?? null) {
-            'SellerOrderInquiries' => SellerOrderInquiriesResult::fromArray($data),
-            'OrderInquiryInvalidDateRangeError' => InvalidDateRangeError::fromArray($data),
-            'OrderInquiryInvalidPageSizeError' => InvalidPageSizeError::fromArray($data),
-            'OrderInquiryInvalidSearchInputError' => InvalidSearchInputError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'OrderInquiryInvalidDateRangeError' => OrderInquiryInvalidDateRangeError::fromArray($data),
+            'OrderInquiryInvalidPageSizeError' => OrderInquiryInvalidPageSizeError::fromArray($data),
+            'OrderInquiryInvalidSearchInputError' => OrderInquiryInvalidSearchInputError::fromArray($data),
+            'SellerOrderInquiries' => SellerOrderInquiries::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

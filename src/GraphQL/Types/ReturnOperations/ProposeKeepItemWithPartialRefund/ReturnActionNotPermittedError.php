@@ -18,29 +18,22 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProposeKeepItemWithPartialRefund;
 
-readonly class ReturnActionNotPermittedError extends Output
+readonly class ReturnActionNotPermittedError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
-        /** @var AvailableAction[] */
+        /** @var ReturnAction[] */
         public array $availableActions = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnActionNotPermittedError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:       $data['errorCode'] ?? null,
-            errorMessage:    $data['errorMessage'] ?? null,
-            availableActions: array_map(
-                fn(array $a) => AvailableAction::fromArray($a),
-                $data['availableActions'] ?? []
-            ),
+            errorCode: $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
+            availableActions: array_map(fn($item) => ReturnAction::fromArray($item), $data['availableActions'] ?? []),
         );
     }
 }

@@ -18,26 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuotes;
 
-/**
- * Represents any PurchaseQuote state variant.
- * Fields not applicable to a specific variant will be null.
- */
-readonly class PurchaseQuoteState
+abstract readonly class PurchaseQuoteState
 {
-    public function __construct(
-        public string $typename,
-        public ?string $label = null,
-        public ?string $cancelledAt = null,
-        public ?StateReason $reason = null,
-    ) {}
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): PurchaseQuoteActive|PurchaseQuoteCancelled|PurchaseQuoteCompleted|PurchaseQuoteInvalid|PurchaseQuoteLocked|PurchaseQuoteRequested
     {
-        return new self(
-            typename:    $data['__typename'] ?? 'Unknown',
-            label:       $data['label'] ?? null,
-            cancelledAt: $data['cancelledAt'] ?? null,
-            reason:      isset($data['reason']) ? StateReason::fromArray($data['reason']) : null,
-        );
+        return match ($data['__typename'] ?? null) {
+            'PurchaseQuoteActive' => PurchaseQuoteActive::fromArray($data),
+            'PurchaseQuoteCancelled' => PurchaseQuoteCancelled::fromArray($data),
+            'PurchaseQuoteCompleted' => PurchaseQuoteCompleted::fromArray($data),
+            'PurchaseQuoteInvalid' => PurchaseQuoteInvalid::fromArray($data),
+            'PurchaseQuoteLocked' => PurchaseQuoteLocked::fromArray($data),
+            'PurchaseQuoteRequested' => PurchaseQuoteRequested::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for PurchaseQuoteState: ' . ($data['__typename'] ?? 'null')
+            ),
+        };
     }
 }

@@ -20,36 +20,31 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CreatePurch
 
 readonly class PurchaseQuoteLogisticsOptionInput
 {
-    /**
-     * @param PickupLogisticsOptionInput[]|null   $pickup
-     * @param ShippingLogisticsOptionInput[]|null $shipping
-     */
     public function __construct(
+        /** @var PickupLogisticsOptionInput[] */
         public ?array $pickup = null,
+        /** @var ShippingLogisticsOptionInput[] */
         public ?array $shipping = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            pickup: isset($data['pickup'])
-                ? array_map(fn(array $p) => PickupLogisticsOptionInput::fromArray($p), $data['pickup'])
-                : null,
-            shipping: isset($data['shipping'])
-                ? array_map(fn(array $s) => ShippingLogisticsOptionInput::fromArray($s), $data['shipping'])
-                : null,
+        return new self(
+            pickup: array_map(fn($item) => PickupLogisticsOptionInput::fromArray($item), $data['pickup'] ?? []),
+            shipping: array_map(fn($item) => ShippingLogisticsOptionInput::fromArray($item), $data['shipping'] ?? []),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $result = [];
-        if ($this->pickup !== null) {
-            $result['pickup'] = array_map(fn(PickupLogisticsOptionInput $p) => $p->toArray(), $this->pickup);
-        }
-        if ($this->shipping !== null) {
-            $result['shipping'] = array_map(fn(ShippingLogisticsOptionInput $s) => $s->toArray(), $this->shipping);
-        }
-        return $result;
+        return array_filter(
+            [
+                'pickup' => $this->pickup !== null ? array_map(fn(PickupLogisticsOptionInput $item) => $item->toArray(), $this->pickup) : null,
+                'shipping' => $this->shipping !== null ? array_map(fn(ShippingLogisticsOptionInput $item) => $item->toArray(), $this->shipping) : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

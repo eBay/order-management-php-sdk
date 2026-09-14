@@ -25,19 +25,21 @@ readonly class ShippingLogisticsOptionInput
         public string $shippingServiceCode,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             cost: AmountInput::fromArray($data['cost']),
             shippingServiceCode: $data['shippingServiceCode'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'cost'                => $this->cost->toArray(),
-            'shippingServiceCode' => $this->shippingServiceCode,
+                'cost' => (object)$this->cost->toArray(),
+                'shippingServiceCode' => $this->shippingServiceCode,
         ];
     }
 }

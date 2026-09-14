@@ -18,27 +18,34 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input;
 
-final class SellerContractCancellationsInput
+readonly class SellerContractCancellationsInput
 {
     public function __construct(
-        public readonly ?InitialPageInput $initialPage = null,
-        public readonly ?PageInfoInput $pageInfo = null,
-    ) {
-    }
+        public ?ContractCancellationInitialPageInput $initialPage = null,
+        public ?PageInfoInput $pageInfo = null,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
         return new self(
-            initialPage: isset($data['initialPage']) ? InitialPageInput::fromArray($data['initialPage']) : null,
+            initialPage: isset($data['initialPage']) ? ContractCancellationInitialPageInput::fromArray($data['initialPage']) : null,
             pageInfo: isset($data['pageInfo']) ? PageInfoInput::fromArray($data['pageInfo']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'initialPage' => $this->initialPage?->toArray(),
-            'pageInfo' => $this->pageInfo?->toArray(),
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'initialPage' => $this->initialPage !== null ? (object)$this->initialPage->toArray() : null,
+                'pageInfo' => $this->pageInfo !== null ? (object)$this->pageInfo->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

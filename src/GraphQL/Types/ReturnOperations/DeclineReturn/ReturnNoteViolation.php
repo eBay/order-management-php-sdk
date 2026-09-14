@@ -18,29 +18,23 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeclineReturn;
 
-readonly class ReturnNoteViolation extends Violation
+readonly class ReturnNoteViolation
 {
     public function __construct(
         public ?string $code = null,
         public ?string $displayMessage = null,
         public ?bool $exceededLength = null,
-        public ?NoteConstraint $constraint = null,
+        public ?ReturnNoteConstraint $constraint = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnNoteViolation';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:           $data['code'] ?? null,
+            code: $data['code'] ?? null,
             displayMessage: $data['displayMessage'] ?? null,
             exceededLength: $data['exceededLength'] ?? null,
-            constraint:     isset($data['constraint'])
-                ? NoteConstraint::fromArray($data['constraint'])
-                : null,
+            constraint: isset($data['constraint']) ? ReturnNoteConstraint::fromArray($data['constraint']) : null,
         );
     }
 }

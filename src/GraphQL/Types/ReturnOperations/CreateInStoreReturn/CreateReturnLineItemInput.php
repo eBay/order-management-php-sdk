@@ -22,31 +22,33 @@ readonly class CreateReturnLineItemInput
 {
     public function __construct(
         public string $orderLineItemId,
+        public int $quantityReturned,
         public string $returnReason,
-        public int $quantityReturned = 1,
         public ?string $returnNote = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             orderLineItemId: $data['orderLineItemId'],
-            returnReason: $data['returnReason'],
-            quantityReturned: (int) ($data['quantityReturned'] ?? 1),
+            quantityReturned: $data['quantityReturned'],
             returnNote: $data['returnNote'] ?? null,
+            returnReason: $data['returnReason'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'orderLineItemId' => $this->orderLineItemId,
-            'returnReason'    => $this->returnReason,
-            'quantityReturned' => $this->quantityReturned,
-        ];
-        if ($this->returnNote !== null) {
-            $data['returnNote'] = $this->returnNote;
-        }
-        return $data;
+        return array_filter(
+            [
+                'orderLineItemId' => $this->orderLineItemId,
+                'quantityReturned' => $this->quantityReturned,
+                'returnNote' => $this->returnNote,
+                'returnReason' => $this->returnReason,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

@@ -20,14 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\OrderInquiry;
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderInquiryNotFoundError|OrderInquirySuccess
     {
         return match ($data['__typename'] ?? null) {
-            'OrderInquirySuccess' => Success::fromArray($data),
-            'OrderInquiryNotFoundError' => NotFoundError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'OrderInquiryNotFoundError' => OrderInquiryNotFoundError::fromArray($data),
+            'OrderInquirySuccess' => OrderInquirySuccess::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

@@ -25,19 +25,21 @@ readonly class AmountInput
         public string $value,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             currency: $data['currency'],
             value: $data['value'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'currency' => $this->currency,
-            'value'    => $this->value,
+                'currency' => $this->currency,
+                'value' => $this->value,
         ];
     }
 }

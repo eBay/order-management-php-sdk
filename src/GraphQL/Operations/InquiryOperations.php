@@ -22,31 +22,37 @@ final class InquiryOperations
 {
     public static function ORDER_INQUIRY(): string
     {
-        return (string) file_get_contents(__DIR__ . '/orderInquiry.graphql');
+        return file_get_contents(__DIR__ . '/orderInquiry.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: orderInquiry.graphql');
     }
 
     public static function PROCESS_ORDER_INQUIRY_REFUND(): string
     {
-        return (string) file_get_contents(__DIR__ . '/processOrderInquiryRefund.graphql');
+        return file_get_contents(__DIR__ . '/processOrderInquiryRefund.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: processOrderInquiryRefund.graphql');
     }
 
     public static function PROVIDE_SHIPMENT_INFO_FOR_ITEM_NOT_RECEIVED_INQUIRY(): string
     {
-        return (string) file_get_contents(__DIR__ . '/provideShipmentInfoForItemNotReceivedInquiry.graphql');
+        return file_get_contents(__DIR__ . '/provideShipmentInfoForItemNotReceivedInquiry.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: provideShipmentInfoForItemNotReceivedInquiry.graphql');
     }
 
     public static function SELLER_ORDER_INQUIRIES(): string
     {
-        return (string) file_get_contents(__DIR__ . '/sellerOrderInquiries.graphql');
+        return file_get_contents(__DIR__ . '/sellerOrderInquiries.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: sellerOrderInquiries.graphql');
     }
 
     public static function SEND_ORDER_INQUIRY_MESSAGE(): string
     {
-        return (string) file_get_contents(__DIR__ . '/sendOrderInquiryMessage.graphql');
+        return file_get_contents(__DIR__ . '/sendOrderInquiryMessage.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: sendOrderInquiryMessage.graphql');
     }
 
     public static function SUBMIT_ORDER_INQUIRY_REFERRAL(): string
     {
-        return (string) file_get_contents(__DIR__ . '/submitOrderInquiryReferral.graphql');
+        return file_get_contents(__DIR__ . '/submitOrderInquiryReferral.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: submitOrderInquiryReferral.graphql');
     }
 }

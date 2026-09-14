@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation;
 
-readonly class OrderNotFoundError extends Output
+readonly class OrderNotFoundError
 {
     public function __construct(
         public ?string $errorCode = null,
@@ -26,11 +26,7 @@ readonly class OrderNotFoundError extends Output
         public ?string $orderId = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'OrderNotFoundError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(

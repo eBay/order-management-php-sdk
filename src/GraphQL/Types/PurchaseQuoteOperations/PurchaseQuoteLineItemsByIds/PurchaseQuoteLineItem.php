@@ -22,16 +22,17 @@ readonly class PurchaseQuoteLineItem
 {
     public function __construct(
         public ?string $purchaseQuoteLineItemId = null,
-        public ?LineItemSource $lineItemSource = null,
-        public ?LineItemTotals $totals = null,
+        public ItemCommitment|null $lineItemSource = null,
+        public ?PurchaseQuoteTotals $totals = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
             purchaseQuoteLineItemId: $data['purchaseQuoteLineItemId'] ?? null,
-            lineItemSource:         isset($data['lineItemSource']) ? LineItemSource::fromArray($data['lineItemSource']) : null,
-            totals:                 isset($data['totals']) ? LineItemTotals::fromArray($data['totals']) : null,
+            lineItemSource: isset($data['lineItemSource']) ? PurchaseQuoteLineItemSource::fromArray($data['lineItemSource']) : null,
+            totals: isset($data['totals']) ? PurchaseQuoteTotals::fromArray($data['totals']) : null,
         );
     }
 }

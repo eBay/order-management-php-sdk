@@ -18,33 +18,24 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn;
 
-readonly class ReturnIneligibleReasonNotAllowed extends IneligibilityReason
+readonly class ReturnIneligibleReasonNotAllowed
 {
     public function __construct(
         public ?string $code = null,
         public ?string $displayMessage = null,
-        public ?OrderLineItemRef $orderLineItem = null,
-        /** @var AllowedReason[] */
+        public ?OrderLineItem $orderLineItem = null,
+        /** @var ReturnReason[] */
         public array $allowedReasons = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnIneligibleReasonNotAllowed';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:          $data['code'] ?? null,
+            code: $data['code'] ?? null,
             displayMessage: $data['displayMessage'] ?? null,
-            orderLineItem: isset($data['orderLineItem'])
-                ? OrderLineItemRef::fromArray($data['orderLineItem'])
-                : null,
-            allowedReasons: array_map(
-                fn(array $r) => AllowedReason::fromArray($r),
-                $data['allowedReasons'] ?? []
-            ),
+            orderLineItem: isset($data['orderLineItem']) ? OrderLineItem::fromArray($data['orderLineItem']) : null,
+            allowedReasons: array_map(fn($item) => ReturnReason::fromArray($item), $data['allowedReasons'] ?? []),
         );
     }
 }

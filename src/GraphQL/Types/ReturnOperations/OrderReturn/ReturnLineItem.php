@@ -25,27 +25,21 @@ readonly class ReturnLineItem
         public ?int $requestedQuantity = null,
         public ?ReturnReason $returnReason = null,
         public ?string $returnNote = null,
-        public ?OrderLineItemRef $orderLineItem = null,
-        /** @var ListingRestockTask[] */
+        public ?OrderLineItem $orderLineItem = null,
+        /** @var (PostPurchaseListingRelistTask)[] */
         public array $listingRestockTasks = [],
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            returnLineItemId:   $data['returnLineItemId'] ?? null,
-            requestedQuantity:  isset($data['requestedQuantity']) ? (int) $data['requestedQuantity'] : null,
-            returnReason:       isset($data['returnReason'])
-                ? ReturnReason::fromArray($data['returnReason'])
-                : null,
-            returnNote:         $data['returnNote'] ?? null,
-            orderLineItem:      isset($data['orderLineItem'])
-                ? OrderLineItemRef::fromArray($data['orderLineItem'])
-                : null,
-            listingRestockTasks: array_map(
-                fn(array $t) => ListingRestockTask::fromArray($t),
-                $data['listingRestockTasks'] ?? []
-            ),
+            returnLineItemId: $data['returnLineItemId'] ?? null,
+            requestedQuantity: $data['requestedQuantity'] ?? null,
+            returnReason: isset($data['returnReason']) ? ReturnReason::fromArray($data['returnReason']) : null,
+            returnNote: $data['returnNote'] ?? null,
+            orderLineItem: isset($data['orderLineItem']) ? OrderLineItem::fromArray($data['orderLineItem']) : null,
+            listingRestockTasks: array_map(fn($item) => PostPurchaseListingRestockTask::fromArray($item), $data['listingRestockTasks'] ?? []),
         );
     }
 }

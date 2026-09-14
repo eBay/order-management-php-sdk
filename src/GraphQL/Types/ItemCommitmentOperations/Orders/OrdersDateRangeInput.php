@@ -25,19 +25,21 @@ readonly class OrdersDateRangeInput
         public string $dateType,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             dateTimeRange: DateTimeRangeInput::fromArray($data['dateTimeRange']),
             dateType: $data['dateType'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'dateTimeRange' => $this->dateTimeRange->toArray(),
-            'dateType'      => $this->dateType,
+                'dateTimeRange' => (object)$this->dateTimeRange->toArray(),
+                'dateType' => $this->dateType,
         ];
     }
 }

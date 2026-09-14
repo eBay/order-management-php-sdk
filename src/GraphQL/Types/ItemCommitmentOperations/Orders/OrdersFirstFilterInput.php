@@ -22,27 +22,27 @@ readonly class OrdersFirstFilterInput
 {
     public function __construct(
         public OrdersDateRangeInput $dateRange,
+        public OrdersFilterInput $filter,
         public OrdersSortInput $sort,
-        public OrdersFilterInput $filter = new OrdersFilterInput(),
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             dateRange: OrdersDateRangeInput::fromArray($data['dateRange']),
+            filter: OrdersFilterInput::fromArray($data['filter']),
             sort: OrdersSortInput::fromArray($data['sort']),
-            filter: isset($data['filter'])
-                ? OrdersFilterInput::fromArray($data['filter'])
-                : new OrdersFilterInput(),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'dateRange' => $this->dateRange->toArray(),
-            'filter'    => $this->filter->toArray(),
-            'sort'      => $this->sort->toArray(),
+                'dateRange' => (object)$this->dateRange->toArray(),
+                'filter' => (object)$this->filter->toArray(),
+                'sort' => (object)$this->sort->toArray(),
         ];
     }
 }

@@ -18,20 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output;
 
-class ItemCommitmentCancellation
+readonly class ItemCommitmentCancellation
 {
-    public ?string $cancellationId = null;
-    public ?CancellationStatus $status = null;
-    public ?string $closedAt = null;
+    public function __construct(
+        public ?string $cancellationId = null,
+        public ?ContractCancellationStatus $status = null,
+        public ?string $closedAt = null,
+    ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        $instance = new static();
-        $instance->cancellationId = $data['cancellationId'] ?? null;
-        $instance->status = isset($data['status'])
-            ? CancellationStatus::fromArray($data['status'])
-            : null;
-        $instance->closedAt = $data['closedAt'] ?? null;
-        return $instance;
+        return new self(
+            cancellationId: $data['cancellationId'] ?? null,
+            status: isset($data['status']) ? ContractCancellationStatus::fromArray($data['status']) : null,
+            closedAt: $data['closedAt'] ?? null,
+        );
     }
 }

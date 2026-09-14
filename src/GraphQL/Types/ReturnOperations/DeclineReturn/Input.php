@@ -22,23 +22,30 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
-        public ?string $note = null,
+        public ?string $declinationNote = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            declinationNote: $data['declinationNote'] ?? null,
             returnId: $data['returnId'],
-            note: $data['note'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $arr = ['returnId' => $this->returnId];
-        if ($this->note !== null) {
-            $arr['note'] = $this->note;
-        }
-        return $arr;
+        return array_filter(
+            [
+                'declinationNote' => $this->declinationNote,
+                'returnId' => $this->returnId,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

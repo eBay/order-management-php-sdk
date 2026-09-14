@@ -20,24 +20,27 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCo
 
 readonly class Input
 {
-    /**
-     * @param string[] $itemCommitmentIds
-     */
     public function __construct(
+        /** @var array<int, mixed> */
         public array $itemCommitmentIds,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             itemCommitmentIds: $data['itemCommitmentIds'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'itemCommitmentIds' => $this->itemCommitmentIds,
+                'itemCommitmentIds' => $this->itemCommitmentIds,
         ];
     }
 }

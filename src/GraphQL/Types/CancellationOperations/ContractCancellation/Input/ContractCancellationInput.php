@@ -20,15 +20,26 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCanc
 
 readonly class ContractCancellationInput
 {
-    public function __construct(public string $cancellationId) {}
+    public function __construct(
+        public string $cancellationId,
+    ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(cancellationId: $data['cancellationId']);
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            cancellationId: $data['cancellationId'],
+        );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['cancellationId' => $this->cancellationId];
+        return [
+                'cancellationId' => $this->cancellationId,
+        ];
     }
 }

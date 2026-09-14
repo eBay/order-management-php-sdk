@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturn
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): DeleteSellerReturnRuleSuccess|ReturnRuleFeatureNotEnabledError|ReturnRuleNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'DeleteSellerReturnRuleSuccess' => Success::fromArray($data),
-            'ReturnRuleNotFoundError'          => NotFoundError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError' => FeatureNotEnabledError::fromArray($data),
+            'DeleteSellerReturnRuleSuccess' => DeleteSellerReturnRuleSuccess::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleNotFoundError' => ReturnRuleNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

@@ -21,19 +21,29 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerReturn
 readonly class Input
 {
     public function __construct(
-        /** @var string[] */
-        public array $ruleIds = [],
+        public string $listingMarketplace,
+        /** @var array<int, mixed> */
+        public array $prioritizedRuleIds,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            ruleIds: $data['ruleIds'] ?? [],
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            listingMarketplace: $data['listingMarketplace'],
+            prioritizedRuleIds: $data['prioritizedRuleIds'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['ruleIds' => $this->ruleIds];
+        return [
+                'listingMarketplace' => $this->listingMarketplace,
+                'prioritizedRuleIds' => $this->prioritizedRuleIds,
+        ];
     }
 }

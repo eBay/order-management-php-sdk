@@ -21,23 +21,25 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\Orders;
 readonly class DateTimeRangeInput
 {
     public function __construct(
-        public string $startDateTime,
         public string $endDateTime,
+        public string $startDateTime,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            startDateTime: $data['startDateTime'],
+        return new self(
             endDateTime: $data['endDateTime'],
+            startDateTime: $data['startDateTime'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'startDateTime' => $this->startDateTime,
-            'endDateTime'   => $this->endDateTime,
+                'endDateTime' => $this->endDateTime,
+                'startDateTime' => $this->startDateTime,
         ];
     }
 }

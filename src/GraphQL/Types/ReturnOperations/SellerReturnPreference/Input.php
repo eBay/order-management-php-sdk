@@ -24,15 +24,22 @@ readonly class Input
         public string $listingMarketplace,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             listingMarketplace: $data['listingMarketplace'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['listingMarketplace' => $this->listingMarketplace];
+        return [
+                'listingMarketplace' => $this->listingMarketplace,
+        ];
     }
 }

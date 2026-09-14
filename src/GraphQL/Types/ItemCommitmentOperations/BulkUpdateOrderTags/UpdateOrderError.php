@@ -27,13 +27,14 @@ readonly class UpdateOrderError
         public ?bool $retryable = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
             displayMessage: $data['displayMessage'] ?? null,
             errorCode: $data['errorCode'] ?? null,
             inputOrderId: $data['inputOrderId'] ?? null,
-            retryable: isset($data['retryable']) ? (bool)$data['retryable'] : null,
+            retryable: $data['retryable'] ?? null,
         );
     }
 }

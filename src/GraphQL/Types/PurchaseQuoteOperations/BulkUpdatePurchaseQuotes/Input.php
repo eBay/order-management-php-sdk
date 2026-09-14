@@ -20,24 +20,27 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\BulkUpdateP
 
 readonly class Input
 {
-    /**
-     * @param UpdatePurchaseQuoteInput[] $updates
-     */
     public function __construct(
+        /** @var UpdatePurchaseQuoteInput[] */
         public array $updates,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            updates: array_map(fn(array $u) => UpdatePurchaseQuoteInput::fromArray($u), $data['updates']),
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            updates: array_map(fn($item) => UpdatePurchaseQuoteInput::fromArray($item), $data['updates']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'updates' => array_map(fn(UpdatePurchaseQuoteInput $u) => $u->toArray(), $this->updates),
+                'updates' => array_map(fn(UpdatePurchaseQuoteInput $item) => $item->toArray(), $this->updates),
         ];
     }
 }

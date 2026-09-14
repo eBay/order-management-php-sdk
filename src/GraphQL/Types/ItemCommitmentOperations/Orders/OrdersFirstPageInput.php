@@ -25,19 +25,21 @@ readonly class OrdersFirstPageInput
         public int $maxPageSize,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             filter: OrdersFirstFilterInput::fromArray($data['filter']),
             maxPageSize: $data['maxPageSize'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'filter'      => $this->filter->toArray(),
-            'maxPageSize' => $this->maxPageSize,
+                'filter' => (object)$this->filter->toArray(),
+                'maxPageSize' => $this->maxPageSize,
         ];
     }
 }

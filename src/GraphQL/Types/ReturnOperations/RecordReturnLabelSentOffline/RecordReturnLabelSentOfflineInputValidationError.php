@@ -18,29 +18,22 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnLabelSentOffline;
 
-readonly class RecordReturnLabelSentOfflineInputValidationError extends Output
+readonly class RecordReturnLabelSentOfflineInputValidationError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
-        /** @var Violation[] */
+        /** @var RecordReturnLabelSentOfflineInputViolation[] */
         public array $violations = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'RecordReturnLabelSentOfflineInputValidationError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:    $data['errorCode'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
             errorMessage: $data['errorMessage'] ?? null,
-            violations:   array_map(
-                fn(array $v) => Violation::fromArray($v),
-                $data['violations'] ?? []
-            ),
+            violations: array_map(fn($item) => RecordReturnLabelSentOfflineInputViolation::fromArray($item), $data['violations'] ?? []),
         );
     }
 }

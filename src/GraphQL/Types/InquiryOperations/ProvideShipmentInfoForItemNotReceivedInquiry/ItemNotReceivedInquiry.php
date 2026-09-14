@@ -21,19 +21,17 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\ProvideShipmentIn
 readonly class ItemNotReceivedInquiry
 {
     public function __construct(
-        public ?string $__typename = null,
         public ?string $inquiryId = null,
-        public ?ProvidedInformation $providedInformation = null,
+        /** @var OrderInquiryInformation[] */
+        public array $providedInformation = [],
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            __typename: $data['__typename'] ?? null,
             inquiryId: $data['inquiryId'] ?? null,
-            providedInformation: isset($data['providedInformation'])
-                ? ProvidedInformation::fromArray($data['providedInformation'])
-                : null,
+            providedInformation: array_map(fn($item) => OrderInquiryInformation::fromArray($item), $data['providedInformation'] ?? []),
         );
     }
 }

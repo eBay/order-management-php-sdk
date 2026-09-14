@@ -18,25 +18,19 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkOrdersPaid;
 
-readonly class OrderState
+abstract readonly class OrderState
 {
-    public function __construct(
-        private string $typename,
-        public ?string $label = null,
-        public ?FundingState $fundingState = null,
-    ) {}
-
-    public function getTypename(): string
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderAbandoned|OrderCancelled|OrderConfirmed|OrderPlaced
     {
-        return $this->typename;
-    }
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            typename: $data['__typename'] ?? 'Unknown',
-            label: $data['label'] ?? null,
-            fundingState: isset($data['fundingState']) ? FundingState::fromArray($data['fundingState']) : null,
-        );
+        return match ($data['__typename'] ?? null) {
+            'OrderAbandoned' => OrderAbandoned::fromArray($data),
+            'OrderCancelled' => OrderCancelled::fromArray($data),
+            'OrderConfirmed' => OrderConfirmed::fromArray($data),
+            'OrderPlaced' => OrderPlaced::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for OrderState: ' . ($data['__typename'] ?? 'null')
+            ),
+        };
     }
 }

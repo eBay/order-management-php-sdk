@@ -20,27 +20,30 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\ProvideShipmentIn
 
 readonly class Input
 {
-    /**
-     * @param TrackingInput[] $trackings
-     */
     public function __construct(
         public string $inquiryId,
+        /** @var InquiryShipmentTrackingInput[] */
         public array $trackings,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             inquiryId: $data['inquiryId'],
-            trackings: array_map(fn(array $t) => TrackingInput::fromArray($t), $data['trackings']),
+            trackings: array_map(fn($item) => InquiryShipmentTrackingInput::fromArray($item), $data['trackings']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'inquiryId' => $this->inquiryId,
-            'trackings' => array_map(fn(TrackingInput $t) => $t->toArray(), $this->trackings),
+                'inquiryId' => $this->inquiryId,
+                'trackings' => array_map(fn(InquiryShipmentTrackingInput $item) => $item->toArray(), $this->trackings),
         ];
     }
 }

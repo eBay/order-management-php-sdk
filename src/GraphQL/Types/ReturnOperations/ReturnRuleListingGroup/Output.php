@@ -20,15 +20,14 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingG
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnRuleListingGroup|ReturnRuleListingGroupNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'ReturnRuleListingGroup'             => ListingGroupSuccess::fromArray($data),
-            'ReturnRuleListingGroupNotFoundError' => ListingGroupNotFoundError::fromArray($data),
+            'ReturnRuleListingGroup' => ReturnRuleListingGroup::fromArray($data),
+            'ReturnRuleListingGroupNotFoundError' => ReturnRuleListingGroupNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\BulkUpdateP
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): BulkUpdatePurchaseQuotesCompleteFailure|BulkUpdatePurchaseQuotesPartialFailure|BulkUpdatePurchaseQuotesSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'BulkUpdatePurchaseQuotesSuccess'        => Success::fromArray($data),
-            'BulkUpdatePurchaseQuotesPartialFailure' => PartialFailure::fromArray($data),
-            'BulkUpdatePurchaseQuotesCompleteFailure' => CompleteFailure::fromArray($data),
+            'BulkUpdatePurchaseQuotesCompleteFailure' => BulkUpdatePurchaseQuotesCompleteFailure::fromArray($data),
+            'BulkUpdatePurchaseQuotesPartialFailure' => BulkUpdatePurchaseQuotesPartialFailure::fromArray($data),
+            'BulkUpdatePurchaseQuotesSuccess' => BulkUpdatePurchaseQuotesSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

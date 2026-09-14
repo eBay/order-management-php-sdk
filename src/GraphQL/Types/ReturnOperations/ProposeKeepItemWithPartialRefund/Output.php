@@ -20,20 +20,19 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProposeKeepItemWit
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): MultipleRefundTermsNotAllowedError|OrderReturn|ProposeKeepItemWithPartialRefundInputValidationError|ReturnActionNotPermittedError|ReturnLineItemNotFoundError|ReturnNotFoundError|ReturnRefundTermsRequiredError
     {
         return match ($data['__typename'] ?? null) {
-            'OrderReturn'                                         => OrderReturnData::fromArray($data),
-            'ReturnNotFoundError'                                 => ReturnNotFoundError::fromArray($data),
-            'ReturnActionNotPermittedError'                       => ReturnActionNotPermittedError::fromArray($data),
-            'ReturnLineItemNotFoundError'                         => ReturnLineItemNotFoundError::fromArray($data),
-            'ReturnRefundTermsRequiredError',
-            'MultipleRefundTermsNotAllowedError',
-            'ProposeKeepItemWithPartialRefundInputValidationError' => GenericError::fromArray($data),
+            'MultipleRefundTermsNotAllowedError' => MultipleRefundTermsNotAllowedError::fromArray($data),
+            'OrderReturn' => OrderReturn::fromArray($data),
+            'ProposeKeepItemWithPartialRefundInputValidationError' => ProposeKeepItemWithPartialRefundInputValidationError::fromArray($data),
+            'ReturnActionNotPermittedError' => ReturnActionNotPermittedError::fromArray($data),
+            'ReturnLineItemNotFoundError' => ReturnLineItemNotFoundError::fromArray($data),
+            'ReturnNotFoundError' => ReturnNotFoundError::fromArray($data),
+            'ReturnRefundTermsRequiredError' => ReturnRefundTermsRequiredError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

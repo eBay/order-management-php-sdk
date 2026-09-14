@@ -22,22 +22,27 @@ readonly class Input
 {
     public function __construct(
         public string $listingMarketplace,
-        public RmaPreference $rmaPreference,
+        public RmaPreferenceInput $rmaPreference,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             listingMarketplace: $data['listingMarketplace'],
-            rmaPreference:      RmaPreference::fromArray($data['rmaPreference']),
+            rmaPreference: RmaPreferenceInput::fromArray($data['rmaPreference']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'listingMarketplace' => $this->listingMarketplace,
-            'rmaPreference'      => ['preferenceStatus' => $this->rmaPreference->preferenceStatus],
+                'listingMarketplace' => $this->listingMarketplace,
+                'rmaPreference' => (object)$this->rmaPreference->toArray(),
         ];
     }
 }

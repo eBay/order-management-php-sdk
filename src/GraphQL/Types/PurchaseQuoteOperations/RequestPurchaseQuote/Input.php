@@ -20,35 +20,36 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurc
 
 readonly class Input
 {
-    /**
-     * @param PurchaseQuoteItemInput[] $lineItems
-     */
     public function __construct(
+        /** @var PurchaseQuoteItemInput[] */
         public array $lineItems,
         public ?string $messageToSeller = null,
         public ?AddressInput $shippingAddress = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            lineItems: array_map(
-                static fn(array $i) => PurchaseQuoteItemInput::fromArray($i),
-                $data['lineItems'] ?? [],
-            ),
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            lineItems: array_map(fn($item) => PurchaseQuoteItemInput::fromArray($item), $data['lineItems']),
             messageToSeller: $data['messageToSeller'] ?? null,
-            shippingAddress: isset($data['shippingAddress'])
-                ? AddressInput::fromArray($data['shippingAddress'])
-                : null,
+            shippingAddress: isset($data['shippingAddress']) ? AddressInput::fromArray($data['shippingAddress']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'lineItems'       => array_map(fn($i) => $i->toArray(), $this->lineItems),
-            'messageToSeller' => $this->messageToSeller,
-            'shippingAddress' => $this->shippingAddress?->toArray(),
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'lineItems' => array_map(fn(PurchaseQuoteItemInput $item) => $item->toArray(), $this->lineItems),
+                'messageToSeller' => $this->messageToSeller,
+                'shippingAddress' => $this->shippingAddress !== null ? (object)$this->shippingAddress->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

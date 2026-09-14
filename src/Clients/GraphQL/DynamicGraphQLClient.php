@@ -22,7 +22,7 @@ use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
 use EBay\OrderManagement\Configuration\RequestOptions;
 use EBay\OrderManagement\Exceptions\GraphQLException;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
 
 final class DynamicGraphQLClient
 {
@@ -32,85 +32,69 @@ final class DynamicGraphQLClient
     ) {}
 
     /**
-     * Execute a GraphQL query or mutation.
+     * Execute any GraphQL query or mutation.
      *
      * @param array<string, mixed> $variables
      * @return array<string, mixed> The `data` field of the GraphQL response.
-     * @throws GraphQLException On HTTP errors or GraphQL `errors` in the response.
+     * @throws GraphQLException When the response contains GraphQL errors or an HTTP error occurs.
      */
     public function execute(string $query, array $variables = [], ?string $accessToken = null, ?RequestOptions $requestOptions = null): array
     {
-        $token = $accessToken ?? $this->config->accessToken
-            ?? throw new \RuntimeException(
+        $token = ($accessToken ?? $this->config->accessToken)
+            ?: throw new \RuntimeException(
                 'No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.'
             );
+
+        $payload = ['query' => $query];
+        if (!empty($variables)) {
+            $payload['variables'] = $variables;
+        }
 
         $headers = [
             'Authorization' => 'Bearer ' . $token,
             'Content-Type'  => 'application/json',
         ];
-
-        // Apply default headers first (tryAdd semantics: do not overwrite existing)
         foreach ($this->config->defaultRequestOptions->headers as $key => $value) {
-            if (!isset($headers[$key])) {
+            if (!array_key_exists($key, $headers)) {
                 $headers[$key] = $value;
             }
         }
-
-        // Apply per-call headers (overwrite defaults but not built-ins like Auth/Content-Type)
-        if ($requestOptions !== null) {
-            foreach ($requestOptions->headers as $key => $value) {
-                if (!isset($headers[$key])) {
-                    $headers[$key] = $value;
-                }
+        foreach ($requestOptions !== null ? $requestOptions->headers : [] as $key => $value) {
+            if (!array_key_exists($key, $headers)) {
+                $headers[$key] = $value;
             }
-        }
-
-        if ($this->config->diagnosticLogging) {
-            error_log(sprintf(
-                '[OrderManagement][GraphQL] POST %s | query_length=%d | variables=%s',
-                $this->config->graphQLBaseUrl,
-                strlen($query),
-                json_encode(array_keys($variables))
-            ));
         }
 
         try {
             $response = $this->guzzle->request('POST', $this->config->graphQLBaseUrl, [
                 'headers' => $headers,
-                'json'    => array_filter(['query' => $query, 'variables' => $variables ?: null]),
+                'json'    => $payload,
             ]);
-        } catch (BadResponseException $e) {
-            $status = $e->getResponse()->getStatusCode();
-            $body   = (string) $e->getResponse()->getBody();
-            throw new GraphQLException(
-                ["HTTP {$status}: {$body}"],
-                $status
-            );
+        } catch (RequestException $e) {
+            $status = $e->getResponse()?->getStatusCode() ?? 0;
+            $body   = $e->getResponse()?->getBody()->getContents() ?? $e->getMessage();
+            throw new GraphQLException(["HTTP $status: $body"]);
         }
 
         $statusCode = $response->getStatusCode();
-        $bodyContents = $response->getBody()->getContents();
-
-        if ($this->config->diagnosticLogging) {
-            error_log(sprintf(
-                '[OrderManagement][GraphQL] Response status=%d | body_length=%d',
-                $statusCode,
-                strlen($bodyContents)
-            ));
+        if ($statusCode < 200 || $statusCode >= 300) {
+            $body = $response->getBody()->getContents();
+            throw new GraphQLException(["HTTP $statusCode: $body"]);
         }
 
-        if ($statusCode >= 400) {
-            throw new GraphQLException(
-                ["HTTP {$statusCode}: {$bodyContents}"],
-                $statusCode
-            );
-        }
-
-        $body = json_decode($bodyContents, true, 512, JSON_THROW_ON_ERROR);
+        $body = json_decode(
+            $response->getBody()->getContents(),
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
 
         if (!empty($body['errors'])) {
-            throw new GraphQLException(array_column($body['errors'], 'message'));
+            $messages = array_map(
+                static fn(array $e): string => $e['message'] ?? 'Unknown GraphQL error',
+                $body['errors']
+            );
+            throw new GraphQLException($messages);
         }
 
         return $body['data'] ?? [];

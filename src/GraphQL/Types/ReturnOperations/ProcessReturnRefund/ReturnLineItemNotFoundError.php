@@ -18,25 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProcessReturnRefund;
 
-readonly class ReturnLineItemNotFoundError extends Output
+readonly class ReturnLineItemNotFoundError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
-        /** @var string[] */
+        /** @var array<int, mixed> */
         public array $requestedLineItemIds = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnLineItemNotFoundError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:            $data['errorCode'] ?? null,
-            errorMessage:         $data['errorMessage'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
             requestedLineItemIds: $data['requestedLineItemIds'] ?? [],
         );
     }

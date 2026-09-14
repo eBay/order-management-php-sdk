@@ -18,27 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns;
 
-readonly class KeepItemPartialRefundTerm extends ProposedTerm
+readonly class KeepItemPartialRefundTerm
 {
     public function __construct(
-        public ?RefundAmount $refundAmount = null,
+        public ?AmountSet $refundAmount = null,
         public ?int $itemPriceRefundPercentage = null,
         public ?bool $itemShippingPriceWaived = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'KeepItemPartialRefundTerm';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            refundAmount:              isset($data['refundAmount'])
-                ? RefundAmount::fromArray($data['refundAmount'])
-                : null,
+            refundAmount: isset($data['refundAmount']) ? AmountSet::fromArray($data['refundAmount']) : null,
             itemPriceRefundPercentage: $data['itemPriceRefundPercentage'] ?? null,
-            itemShippingPriceWaived:  $data['itemShippingPriceWaived'] ?? null,
+            itemShippingPriceWaived: $data['itemShippingPriceWaived'] ?? null,
         );
     }
 }

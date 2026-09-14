@@ -20,14 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCanc
 
 abstract readonly class ContractCancellationOutput
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ContractCancellationNotFoundError|ContractCancellationSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'ContractCancellationNotFoundError' => NotFoundError::fromArray($data),
-            'ContractCancellationSuccess' => Success::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'ContractCancellationNotFoundError' => ContractCancellationNotFoundError::fromArray($data),
+            'ContractCancellationSuccess' => ContractCancellationSuccess::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for ContractCancellationOutput: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

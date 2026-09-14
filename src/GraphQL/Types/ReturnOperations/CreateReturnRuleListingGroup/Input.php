@@ -22,23 +22,31 @@ readonly class Input
 {
     public function __construct(
         public string $groupName,
-        /** @var string[] */
-        public array $listingIds = [],
+        /** @var array<int, mixed> */
+        public array $listingIds,
+        public string $listingMarketplace,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             groupName: $data['groupName'],
-            listingIds: $data['listingIds'] ?? [],
+            listingIds: $data['listingIds'],
+            listingMarketplace: $data['listingMarketplace'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'groupName'  => $this->groupName,
-            'listingIds' => $this->listingIds,
+                'groupName' => $this->groupName,
+                'listingIds' => $this->listingIds,
+                'listingMarketplace' => $this->listingMarketplace,
         ];
     }
 }

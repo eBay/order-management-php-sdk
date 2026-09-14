@@ -20,24 +20,27 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuo
 
 readonly class Input
 {
-    /**
-     * @param string[] $purchaseQuoteLineItemId
-     */
     public function __construct(
+        /** @var array<int, mixed> */
         public array $purchaseQuoteLineItemId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             purchaseQuoteLineItemId: $data['purchaseQuoteLineItemId'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'purchaseQuoteLineItemId' => $this->purchaseQuoteLineItemId,
+                'purchaseQuoteLineItemId' => $this->purchaseQuoteLineItemId,
         ];
     }
 }

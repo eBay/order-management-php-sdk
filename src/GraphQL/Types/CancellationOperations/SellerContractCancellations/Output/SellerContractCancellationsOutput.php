@@ -18,19 +18,18 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output;
 
-abstract class SellerContractCancellationsOutput
+abstract readonly class SellerContractCancellationsOutput
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ContractCancellationInvalidDateRangeError|ContractCancellationInvalidPageSizeError|ContractCancellationInvalidSearchInputError|SellerContractCancellationsSuccess
     {
-        return match ($data['__typename']) {
-            'ContractCancellationInvalidDateRangeError' => InvalidDateRangeError::fromArray($data),
-            'ContractCancellationInvalidPageSizeError' => InvalidPageSizeError::fromArray($data),
-            'ContractCancellationInvalidSearchInputError' => InvalidSearchInputError::fromArray($data),
-            'SellerContractCancellationsSuccess' => Success::fromArray($data),
+        return match ($data['__typename'] ?? null) {
+            'ContractCancellationInvalidDateRangeError' => ContractCancellationInvalidDateRangeError::fromArray($data),
+            'ContractCancellationInvalidPageSizeError' => ContractCancellationInvalidPageSizeError::fromArray($data),
+            'ContractCancellationInvalidSearchInputError' => ContractCancellationInvalidSearchInputError::fromArray($data),
+            'SellerContractCancellationsSuccess' => SellerContractCancellationsSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . $data['__typename']
+                'Unknown __typename for SellerContractCancellationsOutput: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

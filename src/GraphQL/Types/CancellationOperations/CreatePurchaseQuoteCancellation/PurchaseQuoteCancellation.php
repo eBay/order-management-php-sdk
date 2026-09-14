@@ -21,17 +21,16 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreatePurcha
 readonly class PurchaseQuoteCancellation
 {
     public function __construct(
-        public ?string $__typename = null,
         public ?string $cancellationId = null,
-        public ?CancellationStatus $status = null,
+        public ?ContractCancellationStatus $status = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            __typename: $data['__typename'] ?? null,
             cancellationId: $data['cancellationId'] ?? null,
-            status: isset($data['status']) ? CancellationStatus::fromArray($data['status']) : null,
+            status: isset($data['status']) ? ContractCancellationStatus::fromArray($data['status']) : null,
         );
     }
 }

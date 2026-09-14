@@ -24,26 +24,21 @@ readonly class ReturnToAddressRule
         public ?string $ruleId = null,
         public ?string $name = null,
         public ?int $priority = null,
-        public ?CodeDisplayText $status = null,
-        public ?AddressRoutingStrategy $addressRoutingStrategy = null,
-        public ?ConditionSet $conditionSet = null,
+        public ?SellerReturnRuleStatus $status = null,
+        public ?ReturnToAddressRoutingStrategy $addressRoutingStrategy = null,
+        public ?ReturnRuleConditionSet $conditionSet = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            ruleId:                 $data['ruleId'] ?? null,
-            name:                   $data['name'] ?? null,
-            priority:               $data['priority'] ?? null,
-            status:                 isset($data['status'])
-                ? CodeDisplayText::fromArray($data['status'])
-                : null,
-            addressRoutingStrategy: isset($data['addressRoutingStrategy'])
-                ? AddressRoutingStrategy::fromArray($data['addressRoutingStrategy'])
-                : null,
-            conditionSet:           isset($data['conditionSet'])
-                ? ConditionSet::fromArray($data['conditionSet'])
-                : null,
+            ruleId: $data['ruleId'] ?? null,
+            name: $data['name'] ?? null,
+            priority: $data['priority'] ?? null,
+            status: isset($data['status']) ? SellerReturnRuleStatus::fromArray($data['status']) : null,
+            addressRoutingStrategy: isset($data['addressRoutingStrategy']) ? ReturnToAddressRoutingStrategy::fromArray($data['addressRoutingStrategy']) : null,
+            conditionSet: isset($data['conditionSet']) ? ReturnRuleConditionSet::fromArray($data['conditionSet']) : null,
         );
     }
 }

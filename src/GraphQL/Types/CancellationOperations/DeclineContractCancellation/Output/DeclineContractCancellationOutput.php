@@ -20,17 +20,16 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContr
 
 abstract readonly class DeclineContractCancellationOutput
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ContractCancellationActionNotPermittedError|ContractCancellationNotFoundError|DeclineCancellationInputValidationError|DeclineContractCancellationSuccess
     {
-        return match ($data['__typename'] ?? '') {
-            'DeclineContractCancellationSuccess' => Success::fromArray($data),
-            'ContractCancellationActionNotPermittedError' => ActionNotPermittedError::fromArray($data),
-            'ContractCancellationNotFoundError' => NotFoundError::fromArray($data),
-            'DeclineCancellationInputValidationError' => ValidationError::fromArray($data),
+        return match ($data['__typename'] ?? null) {
+            'ContractCancellationActionNotPermittedError' => ContractCancellationActionNotPermittedError::fromArray($data),
+            'ContractCancellationNotFoundError' => ContractCancellationNotFoundError::fromArray($data),
+            'DeclineCancellationInputValidationError' => DeclineCancellationInputValidationError::fromArray($data),
+            'DeclineContractCancellationSuccess' => DeclineContractCancellationSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? '(none)')
+                'Unknown __typename for DeclineContractCancellationOutput: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

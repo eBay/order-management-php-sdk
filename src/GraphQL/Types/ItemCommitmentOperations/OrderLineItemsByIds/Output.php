@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\OrderLineI
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderLineItemsByIdsCompleteFailure|OrderLineItemsByIdsPartialFailure|OrderLineItemsByIdsSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'OrderLineItemsByIdsSuccess'        => Success::fromArray($data),
-            'OrderLineItemsByIdsPartialFailure' => PartialFailure::fromArray($data),
-            'OrderLineItemsByIdsCompleteFailure' => CompleteFailure::fromArray($data),
+            'OrderLineItemsByIdsCompleteFailure' => OrderLineItemsByIdsCompleteFailure::fromArray($data),
+            'OrderLineItemsByIdsPartialFailure' => OrderLineItemsByIdsPartialFailure::fromArray($data),
+            'OrderLineItemsByIdsSuccess' => OrderLineItemsByIdsSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

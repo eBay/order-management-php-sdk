@@ -20,30 +20,30 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdate
 
 readonly class UpdateOrderTagInput
 {
-    /**
-     * @param string[] $tags
-     */
     public function __construct(
         public string $action,
         public string $orderId,
+        /** @var array<int, mixed> */
         public array $tags,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             action: $data['action'],
             orderId: $data['orderId'],
-            tags: $data['tags'] ?? [],
+            tags: $data['tags'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'action'  => $this->action,
-            'orderId' => $this->orderId,
-            'tags'    => $this->tags,
+                'action' => $this->action,
+                'orderId' => $this->orderId,
+                'tags' => $this->tags,
         ];
     }
 }

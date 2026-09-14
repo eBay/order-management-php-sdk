@@ -20,19 +20,18 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerReturn
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnResponseRule|ReturnRuleFeatureNotEnabledError|ReturnRuleInvalidConditionsError|ReturnRuleMissingConditionError|ReturnRuleNameError|ReturnRuleNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'ReturnResponseRule'              => ReturnResponseRule::fromArray($data),
-            'ReturnRuleNameError'             => NameError::fromArray($data),
-            'ReturnRuleInvalidConditionsError' => InvalidConditionsError::fromArray($data),
-            'ReturnRuleNotFoundError'          => NotFoundError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError' => FeatureNotEnabledError::fromArray($data),
-            'ReturnRuleMissingConditionError'  => MissingConditionError::fromArray($data),
+            'ReturnResponseRule' => ReturnResponseRule::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleInvalidConditionsError' => ReturnRuleInvalidConditionsError::fromArray($data),
+            'ReturnRuleMissingConditionError' => ReturnRuleMissingConditionError::fromArray($data),
+            'ReturnRuleNameError' => ReturnRuleNameError::fromArray($data),
+            'ReturnRuleNotFoundError' => ReturnRuleNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

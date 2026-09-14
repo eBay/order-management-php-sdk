@@ -20,19 +20,18 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdate
 
 readonly class PurchaseTags
 {
-    /**
-     * @param string[] $tags
-     */
     public function __construct(
-        public ?bool $sellerAcknowledged = null,
+        /** @var array<int, mixed> */
         public array $tags = [],
+        public ?bool $sellerAcknowledged = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            sellerAcknowledged: isset($data['sellerAcknowledged']) ? (bool)$data['sellerAcknowledged'] : null,
             tags: $data['tags'] ?? [],
+            sellerAcknowledged: $data['sellerAcknowledged'] ?? null,
         );
     }
 }

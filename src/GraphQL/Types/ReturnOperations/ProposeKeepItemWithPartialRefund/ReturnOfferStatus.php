@@ -21,16 +21,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProposeKeepItemWit
 readonly class ReturnOfferStatus
 {
     public function __construct(
-        public ?string $__typename = null,
         public ?string $code = null,
         public ?string $displayText = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            __typename:  $data['__typename'] ?? null,
-            code:        $data['code'] ?? null,
+            code: $data['code'] ?? null,
             displayText: $data['displayText'] ?? null,
         );
     }

@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommit
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ItemCommitmentsByIdsCompleteFailure|ItemCommitmentsByIdsPartialFailure|ItemCommitmentsByIdsSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'ItemCommitmentsByIdsSuccess'        => Success::fromArray($data),
-            'ItemCommitmentsByIdsPartialFailure' => PartialFailure::fromArray($data),
-            'ItemCommitmentsByIdsCompleteFailure' => CompleteFailure::fromArray($data),
+            'ItemCommitmentsByIdsCompleteFailure' => ItemCommitmentsByIdsCompleteFailure::fromArray($data),
+            'ItemCommitmentsByIdsPartialFailure' => ItemCommitmentsByIdsPartialFailure::fromArray($data),
+            'ItemCommitmentsByIdsSuccess' => ItemCommitmentsByIdsSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

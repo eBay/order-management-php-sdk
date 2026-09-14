@@ -20,17 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleLi
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): DeleteReturnRuleListingGroupSuccess|ReturnRuleFeatureNotEnabledError|ReturnRuleListingGroupNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'DeleteReturnRuleListingGroupSuccess' => Success::fromArray($data),
-            'DeleteReturnRuleListingGroupError'   => DeleteError::fromArray($data),
-            'ReturnRuleListingGroupNotFoundError' => ListingGroupNotFoundError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError'    => FeatureNotEnabledError::fromArray($data),
+            'DeleteReturnRuleListingGroupSuccess' => DeleteReturnRuleListingGroupSuccess::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleListingGroupNotFoundError' => ReturnRuleListingGroupNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

@@ -21,29 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingG
 readonly class Input
 {
     public function __construct(
+        public PageInfoInput $pageInfo,
         public string $returnRuleListingGroupId,
-        public ?string $cursor = null,
-        public ?int $limit = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            pageInfo: PageInfoInput::fromArray($data['pageInfo']),
             returnRuleListingGroupId: $data['returnRuleListingGroupId'],
-            cursor: $data['cursor'] ?? null,
-            limit: isset($data['limit']) ? (int) $data['limit'] : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = ['returnRuleListingGroupId' => $this->returnRuleListingGroupId];
-        if ($this->cursor !== null) {
-            $data['cursor'] = $this->cursor;
-        }
-        if ($this->limit !== null) {
-            $data['limit'] = $this->limit;
-        }
-        return $data;
+        return [
+                'pageInfo' => (object)$this->pageInfo->toArray(),
+                'returnRuleListingGroupId' => $this->returnRuleListingGroupId,
+        ];
     }
 }

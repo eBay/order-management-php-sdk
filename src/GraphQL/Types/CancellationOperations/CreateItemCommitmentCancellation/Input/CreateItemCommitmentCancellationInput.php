@@ -18,29 +18,34 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Input;
 
-class CreateItemCommitmentCancellationInput
+readonly class CreateItemCommitmentCancellationInput
 {
     public function __construct(
         public string $contractCancellationReason,
         public string $itemCommitmentId,
-        public bool $relistItem = false,
+        public bool $relistItem,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             contractCancellationReason: $data['contractCancellationReason'],
             itemCommitmentId: $data['itemCommitmentId'],
-            relistItem: (bool)($data['relistItem'] ?? false),
+            relistItem: $data['relistItem'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'contractCancellationReason' => $this->contractCancellationReason,
-            'itemCommitmentId' => $this->itemCommitmentId,
-            'relistItem' => $this->relistItem,
+                'contractCancellationReason' => $this->contractCancellationReason,
+                'itemCommitmentId' => $this->itemCommitmentId,
+                'relistItem' => $this->relistItem,
         ];
     }
 }

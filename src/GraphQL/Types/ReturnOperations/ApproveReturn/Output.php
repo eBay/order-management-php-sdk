@@ -20,17 +20,16 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ApproveReturn;
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ApproveReturnInputValidationError|OrderReturn|ReturnActionNotPermittedError|ReturnNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'OrderReturn'                       => OrderReturnData::fromArray($data),
-            'ReturnNotFoundError'               => ReturnNotFoundError::fromArray($data),
-            'ReturnActionNotPermittedError'     => ReturnActionNotPermittedError::fromArray($data),
             'ApproveReturnInputValidationError' => ApproveReturnInputValidationError::fromArray($data),
+            'OrderReturn' => OrderReturn::fromArray($data),
+            'ReturnActionNotPermittedError' => ReturnActionNotPermittedError::fromArray($data),
+            'ReturnNotFoundError' => ReturnNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

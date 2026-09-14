@@ -21,20 +21,14 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCanc
 readonly class Refund
 {
     public function __construct(
-        public ?string $refundId,
+        public ?string $refundId = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             refundId: $data['refundId'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'refundId' => $this->refundId,
-        ], fn($v) => $v !== null);
     }
 }

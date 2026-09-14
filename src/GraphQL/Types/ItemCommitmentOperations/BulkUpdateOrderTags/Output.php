@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdate
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): BulkUpdateOrderTagsCompleteFailure|BulkUpdateOrderTagsPartialFailure|BulkUpdateOrderTagsSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'BulkUpdateOrderTagsCompleteFailure' => CompleteFailure::fromArray($data),
-            'BulkUpdateOrderTagsPartialFailure'  => PartialFailure::fromArray($data),
-            'BulkUpdateOrderTagsSuccess'         => Success::fromArray($data),
+            'BulkUpdateOrderTagsCompleteFailure' => BulkUpdateOrderTagsCompleteFailure::fromArray($data),
+            'BulkUpdateOrderTagsPartialFailure' => BulkUpdateOrderTagsPartialFailure::fromArray($data),
+            'BulkUpdateOrderTagsSuccess' => BulkUpdateOrderTagsSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

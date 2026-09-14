@@ -21,23 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SendReturnMessage;
 readonly class Input
 {
     public function __construct(
-        public string $returnId,
         public string $message,
+        public string $returnId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            returnId: $data['returnId'],
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             message: $data['message'],
+            returnId: $data['returnId'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'returnId' => $this->returnId,
-            'message'  => $this->message,
+                'message' => $this->message,
+                'returnId' => $this->returnId,
         ];
     }
 }

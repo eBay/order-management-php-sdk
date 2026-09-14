@@ -25,19 +25,21 @@ readonly class OrdersSortInput
         public string $sortOrder,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             sortField: $data['sortField'],
             sortOrder: $data['sortOrder'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'sortField' => $this->sortField,
-            'sortOrder' => $this->sortOrder,
+                'sortField' => $this->sortField,
+                'sortOrder' => $this->sortOrder,
         ];
     }
 }

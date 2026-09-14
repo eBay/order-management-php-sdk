@@ -18,28 +18,34 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Input;
 
-final readonly class DeclineContractCancellationInput
+readonly class DeclineContractCancellationInput
 {
     public function __construct(
         public string $cancellationId,
-        public ?FulfillmentDetails $fulfillmentDetails = null,
+        public ?DeclineCancellationFulfillmentDetailsInput $fulfillmentDetails = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
         return new self(
             cancellationId: $data['cancellationId'],
-            fulfillmentDetails: isset($data['fulfillmentDetails'])
-                ? FulfillmentDetails::fromArray($data['fulfillmentDetails'])
-                : null,
+            fulfillmentDetails: isset($data['fulfillmentDetails']) ? DeclineCancellationFulfillmentDetailsInput::fromArray($data['fulfillmentDetails']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'cancellationId' => $this->cancellationId,
-            'fulfillmentDetails' => $this->fulfillmentDetails?->toArray(),
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'cancellationId' => $this->cancellationId,
+                'fulfillmentDetails' => $this->fulfillmentDetails !== null ? (object)$this->fulfillmentDetails->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

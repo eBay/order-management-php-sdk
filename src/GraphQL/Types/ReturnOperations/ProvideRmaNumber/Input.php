@@ -22,28 +22,33 @@ readonly class Input
 {
     public function __construct(
         public string $returnId,
+        public bool $rmaRequirementWaived,
         public ?string $rmaNumber = null,
-        public bool $rmaRequirementWaived = false,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             returnId: $data['returnId'],
             rmaNumber: $data['rmaNumber'] ?? null,
-            rmaRequirementWaived: (bool) ($data['rmaRequirementWaived'] ?? false),
+            rmaRequirementWaived: $data['rmaRequirementWaived'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'returnId'             => $this->returnId,
-            'rmaRequirementWaived' => $this->rmaRequirementWaived,
-        ];
-        if ($this->rmaNumber !== null) {
-            $data['rmaNumber'] = $this->rmaNumber;
-        }
-        return $data;
+        return array_filter(
+            [
+                'returnId' => $this->returnId,
+                'rmaNumber' => $this->rmaNumber,
+                'rmaRequirementWaived' => $this->rmaRequirementWaived,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

@@ -20,41 +20,42 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CreatePurch
 
 readonly class Input
 {
-    /**
-     * @param PurchaseQuoteItemInput[] $lineItems
-     */
     public function __construct(
+        /** @var PurchaseQuoteItemInput[] */
         public array $lineItems,
         public PurchaseQuoteLogisticsOptionInput $logisticsOptions,
-        public bool $emailCopyToSeller = false,
+        public ?bool $emailCopyToSeller = null,
         public ?string $messageToBuyer = null,
         public ?PurchaseQuoteTotalsInput $total = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            lineItems: array_map(fn(array $li) => PurchaseQuoteItemInput::fromArray($li), $data['lineItems']),
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            emailCopyToSeller: $data['emailCopyToSeller'] ?? null,
+            lineItems: array_map(fn($item) => PurchaseQuoteItemInput::fromArray($item), $data['lineItems']),
             logisticsOptions: PurchaseQuoteLogisticsOptionInput::fromArray($data['logisticsOptions']),
-            emailCopyToSeller: (bool)($data['emailCopyToSeller'] ?? false),
             messageToBuyer: $data['messageToBuyer'] ?? null,
             total: isset($data['total']) ? PurchaseQuoteTotalsInput::fromArray($data['total']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $result = [
-            'lineItems'         => array_map(fn(PurchaseQuoteItemInput $li) => $li->toArray(), $this->lineItems),
-            'logisticsOptions'  => (object)$this->logisticsOptions->toArray(),
-            'emailCopyToSeller' => $this->emailCopyToSeller,
-        ];
-        if ($this->messageToBuyer !== null) {
-            $result['messageToBuyer'] = $this->messageToBuyer;
-        }
-        if ($this->total !== null) {
-            $result['total'] = $this->total->toArray();
-        }
-        return $result;
+        return array_filter(
+            [
+                'emailCopyToSeller' => $this->emailCopyToSeller,
+                'lineItems' => array_map(fn(PurchaseQuoteItemInput $item) => $item->toArray(), $this->lineItems),
+                'logisticsOptions' => (object)$this->logisticsOptions->toArray(),
+                'messageToBuyer' => $this->messageToBuyer,
+                'total' => $this->total !== null ? (object)$this->total->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

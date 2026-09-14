@@ -25,23 +25,24 @@ readonly class PurchaseQuoteTotalsInput
         public ?AmountInput $shippingDiscount = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             additionalCharge: isset($data['additionalCharge']) ? AmountInput::fromArray($data['additionalCharge']) : null,
             shippingDiscount: isset($data['shippingDiscount']) ? AmountInput::fromArray($data['shippingDiscount']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $result = [];
-        if ($this->additionalCharge !== null) {
-            $result['additionalCharge'] = $this->additionalCharge->toArray();
-        }
-        if ($this->shippingDiscount !== null) {
-            $result['shippingDiscount'] = $this->shippingDiscount->toArray();
-        }
-        return $result;
+        return array_filter(
+            [
+                'additionalCharge' => $this->additionalCharge !== null ? (object)$this->additionalCharge->toArray() : null,
+                'shippingDiscount' => $this->shippingDiscount !== null ? (object)$this->shippingDiscount->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

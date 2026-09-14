@@ -18,24 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AttachReturnShipmentLabel;
 
-readonly class ReturnShipmentLabelNotFoundError extends Output
+readonly class ReturnShipmentLabelNotFoundError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
+        /** @var array<int, mixed> */
         public array $requestedDocumentId = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnShipmentLabelNotFoundError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:           $data['errorCode'] ?? null,
-            errorMessage:        $data['errorMessage'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
             requestedDocumentId: $data['requestedDocumentId'] ?? [],
         );
     }

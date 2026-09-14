@@ -18,29 +18,22 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProvideRmaNumber;
 
-readonly class ProvideRmaNumberInputValidationError extends Output
+readonly class ProvideRmaNumberInputValidationError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
-        /** @var Violation[] */
+        /** @var ProvideRmaNumberInputViolation[] */
         public array $violations = [],
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ProvideRmaNumberInputValidationError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:    $data['errorCode'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
             errorMessage: $data['errorMessage'] ?? null,
-            violations:   array_map(
-                fn(array $v) => Violation::fromArray($v),
-                $data['violations'] ?? []
-            ),
+            violations: array_map(fn($item) => ProvideRmaNumberInputViolation::fromArray($item), $data['violations'] ?? []),
         );
     }
 }

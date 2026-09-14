@@ -25,10 +25,11 @@ readonly class ReturnReason
         public ?string $displayText = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:        $data['code'] ?? null,
+            code: $data['code'] ?? null,
             displayText: $data['displayText'] ?? null,
         );
     }

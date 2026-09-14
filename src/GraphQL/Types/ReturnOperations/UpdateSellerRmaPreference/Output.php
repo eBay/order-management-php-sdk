@@ -20,15 +20,14 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerRmaPre
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnPreferenceNotFoundError|SellerReturnPreferences
     {
         return match ($data['__typename'] ?? null) {
-            'SellerReturnPreferences'      => SellerReturnPreferencesData::fromArray($data),
             'ReturnPreferenceNotFoundError' => ReturnPreferenceNotFoundError::fromArray($data),
+            'SellerReturnPreferences' => SellerReturnPreferences::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

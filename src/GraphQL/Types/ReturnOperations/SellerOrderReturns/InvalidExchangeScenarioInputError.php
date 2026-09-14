@@ -18,22 +18,18 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns;
 
-readonly class InvalidExchangeScenarioInputError extends ExchangeScenario
+readonly class InvalidExchangeScenarioInputError
 {
     public function __construct(
         public ?string $errorCode = null,
         public ?string $errorMessage = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'InvalidExchangeScenarioInputError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:    $data['errorCode'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
             errorMessage: $data['errorMessage'] ?? null,
         );
     }

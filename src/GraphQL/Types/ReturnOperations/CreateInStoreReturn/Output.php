@@ -20,19 +20,18 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreRetur
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): CreateInStoreReturnInputValidationError|MultipleLineItemReturnNotSupportedError|OrderLineItemNotFoundError|OrderReturn|ReturnCreationNotAllowedError|ReturnRequestLineItemRequiredError
     {
         return match ($data['__typename'] ?? null) {
-            'OrderReturn'                     => OrderReturnData::fromArray($data),
-            'ReturnCreationNotAllowedError'   => ReturnCreationNotAllowedError::fromArray($data),
-            'OrderLineItemNotFoundError'                => GenericError::fromArray($data),
-            'CreateInStoreReturnInputValidationError'   => InputValidationError::fromArray($data),
-            'ReturnRequestLineItemRequiredError'          => RequestLineItemRequiredError::fromArray($data),
-            'MultipleLineItemReturnNotSupportedError'     => MultipleLineItemReturnNotSupportedError::fromArray($data),
+            'CreateInStoreReturnInputValidationError' => CreateInStoreReturnInputValidationError::fromArray($data),
+            'MultipleLineItemReturnNotSupportedError' => MultipleLineItemReturnNotSupportedError::fromArray($data),
+            'OrderLineItemNotFoundError' => OrderLineItemNotFoundError::fromArray($data),
+            'OrderReturn' => OrderReturn::fromArray($data),
+            'ReturnCreationNotAllowedError' => ReturnCreationNotAllowedError::fromArray($data),
+            'ReturnRequestLineItemRequiredError' => ReturnRequestLineItemRequiredError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

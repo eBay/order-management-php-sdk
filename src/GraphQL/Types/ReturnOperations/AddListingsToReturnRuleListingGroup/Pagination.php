@@ -21,15 +21,16 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToRetur
 readonly class Pagination
 {
     public function __construct(
-        public ?string $nextCursor = null,
         public ?string $previousCursor = null,
+        public ?string $nextCursor = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            nextCursor:     $data['nextCursor'] ?? null,
             previousCursor: $data['previousCursor'] ?? null,
+            nextCursor: $data['nextCursor'] ?? null,
         );
     }
 }

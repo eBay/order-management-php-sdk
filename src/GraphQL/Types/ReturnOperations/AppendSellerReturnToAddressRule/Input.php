@@ -21,31 +21,34 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturn
 readonly class Input
 {
     public function __construct(
+        public ReturnToAddressRouteInput $addressRoute,
+        public ReturnRuleConditionSetInput $conditionSet,
+        public string $listingMarketplace,
         public string $name,
-        public AddressRouteInput $addressRoute,
-        public ?ConditionSetInput $conditionSet = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            name:         $data['name'],
-            addressRoute: AddressRouteInput::fromArray($data['addressRoute']),
-            conditionSet: isset($data['conditionSet'])
-                ? ConditionSetInput::fromArray($data['conditionSet'])
-                : null,
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            addressRoute: ReturnToAddressRouteInput::fromArray($data['addressRoute']),
+            conditionSet: ReturnRuleConditionSetInput::fromArray($data['conditionSet']),
+            listingMarketplace: $data['listingMarketplace'],
+            name: $data['name'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'name'         => $this->name,
-            'addressRoute' => $this->addressRoute->toArray(),
+        return [
+                'addressRoute' => (object)$this->addressRoute->toArray(),
+                'conditionSet' => (object)$this->conditionSet->toArray(),
+                'listingMarketplace' => $this->listingMarketplace,
+                'name' => $this->name,
         ];
-        if ($this->conditionSet !== null) {
-            $data['conditionSet'] = $this->conditionSet->toArray();
-        }
-        return $data;
     }
 }

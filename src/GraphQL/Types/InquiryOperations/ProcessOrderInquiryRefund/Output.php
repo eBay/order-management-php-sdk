@@ -20,21 +20,22 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\ProcessOrderInqui
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderInquiryActionNotPermittedError|OrderInquiryNotFoundError|ProcessOrderInquiryRefundSuccess|RefundAuthorizationFailedError|RefundBlockedByPaymentDisputeError|RefundInstrumentDeclinedError|RefundInstrumentInsufficientFundsError|RefundInstrumentInvalidError|RefundProcessingError
     {
         return match ($data['__typename'] ?? null) {
-            'ProcessOrderInquiryRefundSuccess' => Success::fromArray($data),
-            'OrderInquiryActionNotPermittedError' => ActionNotPermittedError::fromArray($data),
-            'OrderInquiryNotFoundError' => NotFoundError::fromArray($data),
-            'RefundAuthorizationFailedError',
-            'RefundBlockedByPaymentDisputeError',
-            'RefundInstrumentDeclinedError',
-            'RefundInstrumentInsufficientFundsError',
-            'RefundInstrumentInvalidError',
-            'RefundProcessingError' => GenericError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'OrderInquiryActionNotPermittedError' => OrderInquiryActionNotPermittedError::fromArray($data),
+            'OrderInquiryNotFoundError' => OrderInquiryNotFoundError::fromArray($data),
+            'ProcessOrderInquiryRefundSuccess' => ProcessOrderInquiryRefundSuccess::fromArray($data),
+            'RefundAuthorizationFailedError' => RefundAuthorizationFailedError::fromArray($data),
+            'RefundBlockedByPaymentDisputeError' => RefundBlockedByPaymentDisputeError::fromArray($data),
+            'RefundInstrumentDeclinedError' => RefundInstrumentDeclinedError::fromArray($data),
+            'RefundInstrumentInsufficientFundsError' => RefundInstrumentInsufficientFundsError::fromArray($data),
+            'RefundInstrumentInvalidError' => RefundInstrumentInvalidError::fromArray($data),
+            'RefundProcessingError' => RefundProcessingError::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

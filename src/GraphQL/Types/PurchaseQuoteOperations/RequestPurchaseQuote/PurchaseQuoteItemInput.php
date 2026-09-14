@@ -24,17 +24,19 @@ readonly class PurchaseQuoteItemInput
         public string $itemCommitmentId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             itemCommitmentId: $data['itemCommitmentId'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'itemCommitmentId' => $this->itemCommitmentId,
+                'itemCommitmentId' => $this->itemCommitmentId,
         ];
     }
 }

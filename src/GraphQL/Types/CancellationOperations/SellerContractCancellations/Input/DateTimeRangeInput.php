@@ -18,14 +18,14 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Input;
 
-final class DateTimeRangeInput
+readonly class DateTimeRangeInput
 {
     public function __construct(
-        public readonly string $endDateTime,
-        public readonly string $startDateTime,
-    ) {
-    }
+        public string $endDateTime,
+        public string $startDateTime,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -34,11 +34,12 @@ final class DateTimeRangeInput
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'endDateTime' => $this->endDateTime,
-            'startDateTime' => $this->startDateTime,
+                'endDateTime' => $this->endDateTime,
+                'startDateTime' => $this->startDateTime,
         ];
     }
 }

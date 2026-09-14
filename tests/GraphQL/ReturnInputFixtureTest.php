@@ -101,8 +101,11 @@ class ReturnInputFixtureTest extends TestCase
                 );
             }
         } else {
-            // Simple {"input": {...}} format: verify parsing succeeds without errors.
-            $instance = $class::fromArray(json_decode(json_encode($fixture->input), true));
+            // GraphQL variable documents may nest fields under "input" and keep
+            // sibling variables such as "scenario" on the document root.
+            $document = json_decode(json_encode($fixture), true);
+            $input = is_array($document['input'] ?? null) ? $document['input'] : [];
+            $instance = $class::fromArray(array_merge($input, $document));
             $this->assertNotNull($instance);
         }
     }

@@ -25,37 +25,11 @@ use EBay\OrderManagement\Clients\Rest\LogisticsClient;
 use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
- * Entry point for the eBay Order Management PHP SDK.
- *
- * Usage:
- *   $config = new OrderManagementConfiguration();
- *   $config->accessToken = 'v^1.1#...';
- *   $sdk = new OrderManagementClient($config);
- *
- *   // REST (Fulfillment API)
- *   $order = $sdk->fulfillment->getOrder('12-34567-89012');
- *
- *   // REST (Logistics API)
- *   $quote = $sdk->logistics->createShippingQuote($shippingQuoteRequest);
- *
- *   // GraphQL — typed wrappers
- *   use EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateOrderCancellation\Input as CreateOrderCancellationInput;
- *   $result = $sdk->graphQL->createOrderCancellation(new CreateOrderCancellationInput(contractCancellationReason: 'OUT_OF_STOCK', orderId: '12-34567-89012'));
- *
- *   // GraphQL — escape hatch
- *   $raw = $sdk->graphQL->executeRawUnsafe('{ orders { sellerOrders(input: {}) { orders { orderId } } } }');
- *
- *   // Per-call custom headers
- *   use EBay\OrderManagement\Configuration\RequestOptions;
- *   $opts = new RequestOptions(['X-Correlation-ID' => 'abc-123']);
- *   $order = $sdk->fulfillment->getOrder('12-34567-89012', requestOptions: $opts);
- *
- *   // Diagnostic logging (logs to error_log)
- *   $config->diagnosticLogging = true;
+ * Main entry point for the eBay Order Management PHP SDK.
  */
 final class OrderManagementClient
 {
@@ -67,29 +41,49 @@ final class OrderManagementClient
         OrderManagementConfiguration $config,
         ?GuzzleClient $guzzle = null,
     ) {
-        $guzzle ??= $this->buildGuzzleClient($config);
+        $guzzle ??= $this->buildGuzzle($config);
 
         $this->fulfillment = new FulfillmentClient($guzzle, $config);
-        $this->logistics   = new LogisticsClient($guzzle, $config);
-        $this->graphQL     = new OrderManagementGraphQLClient(
+        $this->logistics = new LogisticsClient($guzzle, $config);
+
+        $this->graphQL = new OrderManagementGraphQLClient(
             new DynamicGraphQLClient($guzzle, $config)
         );
     }
 
-    private function buildGuzzleClient(OrderManagementConfiguration $config): GuzzleClient
+    /**
+     * Build a Guzzle client with optional diagnostic logging middleware.
+     * When $config->diagnosticLogging is true, all non-2xx responses are
+     * logged to STDERR with method, URI, status code, and response body.
+     */
+    private function buildGuzzle(OrderManagementConfiguration $config): GuzzleClient
     {
         $stack = HandlerStack::create();
 
         if ($config->diagnosticLogging) {
-            $stack->push(Middleware::tap(
-                before: static function (RequestInterface $request): void {
-                    error_log(sprintf(
-                        '[OrderManagement][REST] %s %s',
-                        $request->getMethod(),
-                        str_replace(["\r", "\n"], ' ', (string) $request->getUri())
-                    ));
-                },
-            ), 'diagnostic_logging');
+            $stack->push(static function (callable $handler): callable {
+                return static function (RequestInterface $request, array $options) use ($handler): mixed {
+                    return $handler($request, $options)->then(
+                        static function (ResponseInterface $response) use ($request): ResponseInterface {
+                            $status = $response->getStatusCode();
+                            if ($status < 200 || $status >= 300) {
+                                $body = (string) $response->getBody();
+                                fwrite(
+                                    STDERR,
+                                    sprintf(
+                                        "[OrderManagementSDK] %s %s -> HTTP %d\n%s\n",
+                                        $request->getMethod(),
+                                        str_replace(["\r", "\n"], ' ', (string) $request->getUri()),
+                                        $status,
+                                        $body
+                                    )
+                                );
+                            }
+                            return $response;
+                        }
+                    );
+                };
+            });
         }
 
         return new GuzzleClient([

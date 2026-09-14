@@ -24,17 +24,18 @@ readonly class Order
         public ?string $orderId = null,
         public ?string $placedAt = null,
         public ?string $updatedAt = null,
-        public ?Logistics $logistics = null,
-        public ?OrderState $orderState = null,
+        public ?PurchaseLogistics $logistics = null,
+        public OrderAbandoned|OrderCancelled|OrderConfirmed|OrderPlaced|null $orderState = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
             orderId: $data['orderId'] ?? null,
             placedAt: $data['placedAt'] ?? null,
             updatedAt: $data['updatedAt'] ?? null,
-            logistics: isset($data['logistics']) ? Logistics::fromArray($data['logistics']) : null,
+            logistics: isset($data['logistics']) ? PurchaseLogistics::fromArray($data['logistics']) : null,
             orderState: isset($data['orderState']) ? OrderState::fromArray($data['orderState']) : null,
         );
     }

@@ -20,18 +20,17 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnActionNotPermittedError|ReturnInvalidDateRangeError|ReturnInvalidPageSizeError|ReturnInvalidSearchInputError|SellerOrderReturns
     {
         return match ($data['__typename'] ?? null) {
-            'SellerOrderReturns'          => SellerOrderReturnsData::fromArray($data),
-            'ReturnActionNotPermittedError',
-            'ReturnInvalidDateRangeError',
-            'ReturnInvalidPageSizeError',
-            'ReturnInvalidSearchInputError' => GenericError::fromArray($data),
+            'ReturnActionNotPermittedError' => ReturnActionNotPermittedError::fromArray($data),
+            'ReturnInvalidDateRangeError' => ReturnInvalidDateRangeError::fromArray($data),
+            'ReturnInvalidPageSizeError' => ReturnInvalidPageSizeError::fromArray($data),
+            'ReturnInvalidSearchInputError' => ReturnInvalidSearchInputError::fromArray($data),
+            'SellerOrderReturns' => SellerOrderReturns::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

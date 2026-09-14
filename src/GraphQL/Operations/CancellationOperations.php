@@ -22,36 +22,43 @@ final class CancellationOperations
 {
     public static function APPROVE_CONTRACT_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/approveContractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/approveContractCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: approveContractCancellation.graphql');
     }
 
     public static function CONTRACT_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/contractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/contractCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: contractCancellation.graphql');
     }
 
     public static function CREATE_ITEM_COMMITMENT_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/createItemCommitmentCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createItemCommitmentCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: createItemCommitmentCancellation.graphql');
     }
 
     public static function CREATE_ORDER_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/createOrderCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createOrderCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: createOrderCancellation.graphql');
     }
 
     public static function CREATE_PURCHASE_QUOTE_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/createPurchaseQuoteCancellation.graphql');
+        return file_get_contents(__DIR__ . '/createPurchaseQuoteCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: createPurchaseQuoteCancellation.graphql');
     }
 
     public static function DECLINE_CONTRACT_CANCELLATION(): string
     {
-        return (string) file_get_contents(__DIR__ . '/declineContractCancellation.graphql');
+        return file_get_contents(__DIR__ . '/declineContractCancellation.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: declineContractCancellation.graphql');
     }
 
     public static function SELLER_CONTRACT_CANCELLATIONS(): string
     {
-        return (string) file_get_contents(__DIR__ . '/sellerContractCancellations.graphql');
+        return file_get_contents(__DIR__ . '/sellerContractCancellations.graphql')
+            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: sellerContractCancellations.graphql');
     }
 }

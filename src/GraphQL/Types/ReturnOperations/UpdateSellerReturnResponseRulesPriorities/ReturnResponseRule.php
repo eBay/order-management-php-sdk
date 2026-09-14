@@ -24,26 +24,21 @@ readonly class ReturnResponseRule
         public ?string $ruleId = null,
         public ?string $name = null,
         public ?int $priority = null,
-        public ?CodeDisplayText $status = null,
-        public ?CodeDisplayText $responseStrategy = null,
-        public ?ConditionSet $conditionSet = null,
+        public ?SellerReturnRuleStatus $status = null,
+        public ?ReturnResponseStrategy $responseStrategy = null,
+        public ?ReturnRuleConditionSet $conditionSet = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            ruleId:           $data['ruleId'] ?? null,
-            name:             $data['name'] ?? null,
-            priority:         $data['priority'] ?? null,
-            status:           isset($data['status'])
-                ? CodeDisplayText::fromArray($data['status'])
-                : null,
-            responseStrategy: isset($data['responseStrategy'])
-                ? CodeDisplayText::fromArray($data['responseStrategy'])
-                : null,
-            conditionSet:     isset($data['conditionSet'])
-                ? ConditionSet::fromArray($data['conditionSet'])
-                : null,
+            ruleId: $data['ruleId'] ?? null,
+            name: $data['name'] ?? null,
+            priority: $data['priority'] ?? null,
+            status: isset($data['status']) ? SellerReturnRuleStatus::fromArray($data['status']) : null,
+            responseStrategy: isset($data['responseStrategy']) ? ReturnResponseStrategy::fromArray($data['responseStrategy']) : null,
+            conditionSet: isset($data['conditionSet']) ? ReturnRuleConditionSet::fromArray($data['conditionSet']) : null,
         );
     }
 }

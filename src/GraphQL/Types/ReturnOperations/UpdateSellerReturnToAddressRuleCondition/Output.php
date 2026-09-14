@@ -20,20 +20,19 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerReturn
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnRuleFeatureNotEnabledError|ReturnRuleInvalidConditionsError|ReturnRuleMissingConditionError|ReturnRuleNameError|ReturnRuleNotFoundError|ReturnToAddressRequiredError|ReturnToAddressRule
     {
         return match ($data['__typename'] ?? null) {
-            'ReturnToAddressRule'              => ReturnToAddressRule::fromArray($data),
-            'ReturnRuleNotFoundError'          => NotFoundError::fromArray($data),
-            'ReturnRuleInvalidConditionsError' => GenericError::fromArray($data),
-            'ReturnRuleNameError'              => NameError::fromArray($data),
-            'ReturnToAddressRequiredError'     => GenericError::fromArray($data),
-            'ReturnRuleMissingConditionError'  => GenericError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError' => GenericError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleInvalidConditionsError' => ReturnRuleInvalidConditionsError::fromArray($data),
+            'ReturnRuleMissingConditionError' => ReturnRuleMissingConditionError::fromArray($data),
+            'ReturnRuleNameError' => ReturnRuleNameError::fromArray($data),
+            'ReturnRuleNotFoundError' => ReturnRuleNotFoundError::fromArray($data),
+            'ReturnToAddressRequiredError' => ReturnToAddressRequiredError::fromArray($data),
+            'ReturnToAddressRule' => ReturnToAddressRule::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

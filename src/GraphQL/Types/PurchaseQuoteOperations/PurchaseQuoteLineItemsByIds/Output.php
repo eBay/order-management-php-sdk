@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuo
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): PurchaseQuoteLineItemsByIdsCompleteFailure|PurchaseQuoteLineItemsByIdsPartialFailure|PurchaseQuoteLineItemsByIdsSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'PurchaseQuoteLineItemsByIdsSuccess'        => Success::fromArray($data),
-            'PurchaseQuoteLineItemsByIdsPartialFailure' => PartialFailure::fromArray($data),
-            'PurchaseQuoteLineItemsByIdsCompleteFailure' => CompleteFailure::fromArray($data),
+            'PurchaseQuoteLineItemsByIdsCompleteFailure' => PurchaseQuoteLineItemsByIdsCompleteFailure::fromArray($data),
+            'PurchaseQuoteLineItemsByIdsPartialFailure' => PurchaseQuoteLineItemsByIdsPartialFailure::fromArray($data),
+            'PurchaseQuoteLineItemsByIdsSuccess' => PurchaseQuoteLineItemsByIdsSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

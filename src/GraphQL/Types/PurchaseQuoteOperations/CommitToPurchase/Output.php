@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\CommitToPur
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): CommitToPurchaseBusinessRulesViolated|CommitToPurchaseSuccess|ReferenceArgumentsNotFound
     {
         return match ($data['__typename'] ?? null) {
-            'CommitToPurchaseBusinessRulesViolated' => BusinessRulesViolated::fromArray($data),
-            'CommitToPurchaseSuccess'               => Success::fromArray($data),
-            'ReferenceArgumentsNotFound'            => ReferenceArgumentsNotFound::fromArray($data),
+            'CommitToPurchaseBusinessRulesViolated' => CommitToPurchaseBusinessRulesViolated::fromArray($data),
+            'CommitToPurchaseSuccess' => CommitToPurchaseSuccess::fromArray($data),
+            'ReferenceArgumentsNotFound' => ReferenceArgumentsNotFound::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

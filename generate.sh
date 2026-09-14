@@ -22,17 +22,24 @@ echo "Regenerating REST clients via Kiota..."
 rm -rf src/Generated
 
 kiota generate -l php \
-  -d specs/openapi/fulfillment.yaml \
+  -d specs/openapi/fulfillment.json \
   -c FulfillmentApiClient \
   -n 'EBay\OrderManagement\Generated\Fulfillment' \
   -o src/Generated/Fulfillment \
   --ebc --co
 
 kiota generate -l php \
-  -d specs/openapi/logistics.yaml \
+  -d specs/openapi/logistics.json \
   -c LogisticsApiClient \
   -n 'EBay\OrderManagement\Generated\Logistics' \
   -o src/Generated/Logistics \
+  --ebc --co
+
+kiota generate -l php \
+  -d specs/openapi/post-order-api.json \
+  -c PostOrderApiApiClient \
+  -n 'EBay\OrderManagement\Generated\PostOrderApi' \
+  -o src/Generated/PostOrderApi \
   --ebc --co
 
 echo "Adding license headers to generated files..."

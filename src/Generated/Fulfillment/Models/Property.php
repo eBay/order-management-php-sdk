@@ -42,7 +42,7 @@ class Property implements AdditionalDataHolder, Parsable
     private ?string $propertyName = null;
     
     /**
-     * @var string|null $propertyValue The value of the property specified in the <b>propertyName</b> field.<br><br>For example, if the <b>propertyName</b> is <code>Make</code>, then the <b>propertyValue</b> will be the specific make of the vehicle, such as <code>Toyota</code>.
+     * @var string|null $propertyValue The value of the property specified in the <strong>propertyName</strong> field.<br><br>For example, if the <strong>propertyName</strong> is <code>Make</code>, then the <strong>propertyValue</strong> will be the specific make of the vehicle, such as <code>Toyota</code>.
     */
     private ?string $propertyValue = null;
     
@@ -100,7 +100,7 @@ class Property implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the propertyValue property value. The value of the property specified in the <b>propertyName</b> field.<br><br>For example, if the <b>propertyName</b> is <code>Make</code>, then the <b>propertyValue</b> will be the specific make of the vehicle, such as <code>Toyota</code>.
+     * Gets the propertyValue property value. The value of the property specified in the <strong>propertyName</strong> field.<br><br>For example, if the <strong>propertyName</strong> is <code>Make</code>, then the <strong>propertyValue</strong> will be the specific make of the vehicle, such as <code>Toyota</code>.
      * @return string|null
     */
     public function getPropertyValue(): ?string {
@@ -143,7 +143,7 @@ class Property implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the propertyValue property value. The value of the property specified in the <b>propertyName</b> field.<br><br>For example, if the <b>propertyName</b> is <code>Make</code>, then the <b>propertyValue</b> will be the specific make of the vehicle, such as <code>Toyota</code>.
+     * Sets the propertyValue property value. The value of the property specified in the <strong>propertyName</strong> field.<br><br>For example, if the <strong>propertyName</strong> is <code>Make</code>, then the <strong>propertyValue</strong> will be the specific make of the vehicle, such as <code>Toyota</code>.
      * @param string|null $value Value to set for the propertyValue property.
     */
     public function setPropertyValue(?string $value): void {

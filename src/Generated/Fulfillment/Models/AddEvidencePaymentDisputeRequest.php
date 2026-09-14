@@ -16,7 +16,6 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
-use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
@@ -24,33 +23,13 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 /**
  * This type is used by the request payload of the <strong>addEvidence</strong> method. The <strong>addEvidence</strong> method is used to create a new evidence set against a payment dispute with one or more evidence files.
 */
-class AddEvidencePaymentDisputeRequest implements AdditionalDataHolder, Parsable 
+class AddEvidencePaymentDisputeRequest extends ProcessEvidencePaymentDisputeRequest implements Parsable 
 {
-    /**
-     * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    */
-    private ?array $additionalData = null;
-    
-    /**
-     * @var string|null $evidenceType This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field.<br><br>See the <a href="/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum" target="_blank ">EvidenceTypeEnum</a> type for the supported evidence types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
-    */
-    private ?string $evidenceType = null;
-    
-    /**
-     * @var array<FileEvidence>|null $files This array is used to specify one or more evidence files that will become part of a new evidence set associated with a payment dispute. At least one evidence file must be specified in the <strong>files</strong> array.
-    */
-    private ?array $files = null;
-    
-    /**
-     * @var array<OrderLineItems>|null $lineItems This array identifies the order line item(s) for which the evidence file(s) will be applicable.<br><Br>These values are returned under the <strong>evidenceRequests.lineItems</strong> array in the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDispute" target="_blank ">getPaymentDispute</a> response.
-    */
-    private ?array $lineItems = null;
-    
     /**
      * Instantiates a new AddEvidencePaymentDisputeRequest and sets the default values.
     */
     public function __construct() {
-        $this->setAdditionalData([]);
+        parent::__construct();
     }
 
     /**
@@ -63,48 +42,13 @@ class AddEvidencePaymentDisputeRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     * @return array<string, mixed>|null
-    */
-    public function getAdditionalData(): ?array {
-        return $this->additionalData;
-    }
-
-    /**
-     * Gets the evidenceType property value. This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field.<br><br>See the <a href="/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum" target="_blank ">EvidenceTypeEnum</a> type for the supported evidence types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
-     * @return string|null
-    */
-    public function getEvidenceType(): ?string {
-        return $this->evidenceType;
-    }
-
-    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
     public function getFieldDeserializers(): array {
         $o = $this;
-        return  [
-            'evidenceType' => fn(ParseNode $n) => $o->setEvidenceType($n->getStringValue()),
-            'files' => fn(ParseNode $n) => $o->setFiles($n->getCollectionOfObjectValues([FileEvidence::class, 'createFromDiscriminatorValue'])),
-            'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([OrderLineItems::class, 'createFromDiscriminatorValue'])),
-        ];
-    }
-
-    /**
-     * Gets the files property value. This array is used to specify one or more evidence files that will become part of a new evidence set associated with a payment dispute. At least one evidence file must be specified in the <strong>files</strong> array.
-     * @return array<FileEvidence>|null
-    */
-    public function getFiles(): ?array {
-        return $this->files;
-    }
-
-    /**
-     * Gets the lineItems property value. This array identifies the order line item(s) for which the evidence file(s) will be applicable.<br><Br>These values are returned under the <strong>evidenceRequests.lineItems</strong> array in the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDispute" target="_blank ">getPaymentDispute</a> response.
-     * @return array<OrderLineItems>|null
-    */
-    public function getLineItems(): ?array {
-        return $this->lineItems;
+        return array_merge(parent::getFieldDeserializers(), [
+        ]);
     }
 
     /**
@@ -112,42 +56,7 @@ class AddEvidencePaymentDisputeRequest implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('evidenceType', $this->getEvidenceType());
-        $writer->writeCollectionOfObjectValues('files', $this->getFiles());
-        $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
-        $writer->writeAdditionalData($this->getAdditionalData());
-    }
-
-    /**
-     * Sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     * @param array<string,mixed> $value Value to set for the AdditionalData property.
-    */
-    public function setAdditionalData(?array $value): void {
-        $this->additionalData = $value;
-    }
-
-    /**
-     * Sets the evidenceType property value. This field is used to indicate the type of evidence being provided through one or more evidence files. All evidence files (if more than one) should be associated with the evidence type passed in this field.<br><br>See the <a href="/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum" target="_blank ">EvidenceTypeEnum</a> type for the supported evidence types. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:EvidenceTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the evidenceType property.
-    */
-    public function setEvidenceType(?string $value): void {
-        $this->evidenceType = $value;
-    }
-
-    /**
-     * Sets the files property value. This array is used to specify one or more evidence files that will become part of a new evidence set associated with a payment dispute. At least one evidence file must be specified in the <strong>files</strong> array.
-     * @param array<FileEvidence>|null $value Value to set for the files property.
-    */
-    public function setFiles(?array $value): void {
-        $this->files = $value;
-    }
-
-    /**
-     * Sets the lineItems property value. This array identifies the order line item(s) for which the evidence file(s) will be applicable.<br><Br>These values are returned under the <strong>evidenceRequests.lineItems</strong> array in the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDispute" target="_blank ">getPaymentDispute</a> response.
-     * @param array<OrderLineItems>|null $value Value to set for the lineItems property.
-    */
-    public function setLineItems(?array $value): void {
-        $this->lineItems = $value;
+        parent::serialize($writer);
     }
 
 }

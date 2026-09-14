@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains information about a digital gift card line item that was purchased as a gift and sent to the recipient by email.<br><br><span class="tablenote"><strong>Note:</strong> <b>GiftDetails</b> will not be returned for any order that is more than 90 days old.</span>
+ * This type contains information about a digital gift card line item that was purchased as a gift and sent to the recipient by email.<br><br><span class="tablenote"><strong>Note:</strong> <strong>GiftDetails</strong> will not be returned for any order that is more than 90 days old.</span>
 */
 class GiftDetails implements AdditionalDataHolder, Parsable 
 {
@@ -32,17 +32,17 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $message This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <b>message</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $message This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>message</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $message = null;
     
     /**
-     * @var string|null $recipientEmail The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <b>recipientEmail</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $recipientEmail The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>recipientEmail</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $recipientEmail = null;
     
     /**
-     * @var string|null $senderName The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <b>senderName</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $senderName The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>senderName</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $senderName = null;
     
@@ -84,7 +84,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <b>message</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>message</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getMessage(): ?string {
@@ -92,7 +92,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <b>recipientEmail</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>recipientEmail</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getRecipientEmail(): ?string {
@@ -100,7 +100,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <b>senderName</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>senderName</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getSenderName(): ?string {
@@ -127,7 +127,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <b>message</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the message property value. This field contains the gift message from the buyer to the gift recipient. This field is only returned if the buyer of the gift included a message for the gift.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>message</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the message property.
     */
     public function setMessage(?string $value): void {
@@ -135,7 +135,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <b>recipientEmail</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the recipientEmail property value. The email address of the gift recipient. The seller will send the digital gift card to this email address.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>recipientEmail</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the recipientEmail property.
     */
     public function setRecipientEmail(?string $value): void {
@@ -143,7 +143,7 @@ class GiftDetails implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <b>senderName</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the senderName property value. The name of the buyer, which will appear on the email that is sent to the gift recipient.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>senderName</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the senderName property.
     */
     public function setSenderName(?string $value): void {

@@ -32,27 +32,27 @@ class Program implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var PostSaleAuthenticationProgram|null $authenticityVerification This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * @var PostSaleAuthenticationProgram|null $authenticityVerification This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
     */
     private ?PostSaleAuthenticationProgram $authenticityVerification = null;
     
     /**
-     * @var EbayInternationalShipping|null $ebayInternationalShipping This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * @var EbayInternationalShipping|null $ebayInternationalShipping This container is returned if the order is being fulfilled through eBay International Shipping.
     */
     private ?EbayInternationalShipping $ebayInternationalShipping = null;
     
     /**
-     * @var EbayShipping|null $ebayShipping This type contains information about the management of the shipping for the order.
+     * @var EbayShipping|null $ebayShipping This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
     */
     private ?EbayShipping $ebayShipping = null;
     
     /**
-     * @var EbayVaultProgram|null $ebayVault The ebayVault property
+     * @var EbayVaultProgram|null $ebayVault This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
     */
     private ?EbayVaultProgram $ebayVault = null;
     
     /**
-     * @var EbayFulfillmentProgram|null $fulfillmentProgram This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * @var EbayFulfillmentProgram|null $fulfillmentProgram This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
     */
     private ?EbayFulfillmentProgram $fulfillmentProgram = null;
     
@@ -81,7 +81,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the authenticityVerification property value. This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * Gets the authenticityVerification property value. This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
      * @return PostSaleAuthenticationProgram|null
     */
     public function getAuthenticityVerification(): ?PostSaleAuthenticationProgram {
@@ -89,7 +89,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the ebayInternationalShipping property value. This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * Gets the ebayInternationalShipping property value. This container is returned if the order is being fulfilled through eBay International Shipping.
      * @return EbayInternationalShipping|null
     */
     public function getEbayInternationalShipping(): ?EbayInternationalShipping {
@@ -97,7 +97,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the ebayShipping property value. This type contains information about the management of the shipping for the order.
+     * Gets the ebayShipping property value. This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
      * @return EbayShipping|null
     */
     public function getEbayShipping(): ?EbayShipping {
@@ -105,7 +105,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the ebayVault property value. The ebayVault property
+     * Gets the ebayVault property value. This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
      * @return EbayVaultProgram|null
     */
     public function getEbayVault(): ?EbayVaultProgram {
@@ -128,7 +128,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fulfillmentProgram property value. This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * Gets the fulfillmentProgram property value. This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
      * @return EbayFulfillmentProgram|null
     */
     public function getFulfillmentProgram(): ?EbayFulfillmentProgram {
@@ -157,7 +157,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the authenticityVerification property value. This type is used to provide the status and outcome of an order line item going through the Authenticity Guarantee verification process.
+     * Sets the authenticityVerification property value. This field is returned when the third-party authenticator performs the authentication verification inspection on the order line item. Different values will be returned based on whether the item passed or failed the authentication verification inspection.
      * @param PostSaleAuthenticationProgram|null $value Value to set for the authenticityVerification property.
     */
     public function setAuthenticityVerification(?PostSaleAuthenticationProgram $value): void {
@@ -165,7 +165,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the ebayInternationalShipping property value. This type is used to provide details about an order line item being managed through eBay International Shipping.
+     * Sets the ebayInternationalShipping property value. This container is returned if the order is being fulfilled through eBay International Shipping.
      * @param EbayInternationalShipping|null $value Value to set for the ebayInternationalShipping property.
     */
     public function setEbayInternationalShipping(?EbayInternationalShipping $value): void {
@@ -173,7 +173,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the ebayShipping property value. This type contains information about the management of the shipping for the order.
+     * Sets the ebayShipping property value. This container is returned only if the order is an eBay shipping order. It consists of a field that indicates the provider of a shipping label for this order.
      * @param EbayShipping|null $value Value to set for the ebayShipping property.
     */
     public function setEbayShipping(?EbayShipping $value): void {
@@ -181,7 +181,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the ebayVault property value. The ebayVault property
+     * Sets the ebayVault property value. This field provides information about the eBay vault program that has been selected for an order. This is returned only for those items that are eligible for the eBay Vault Program.
      * @param EbayVaultProgram|null $value Value to set for the ebayVault property.
     */
     public function setEbayVault(?EbayVaultProgram $value): void {
@@ -189,7 +189,7 @@ class Program implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fulfillmentProgram property value. This type is used to provide details about an order line item being fulfilled by eBay or an eBay fulfillment partner.
+     * Sets the fulfillmentProgram property value. This field provides details about an order line item being handled by eBay fulfillment. It is only returned for paid orders being fulfilled by eBay or an eBay fulfillment partner.
      * @param EbayFulfillmentProgram|null $value Value to set for the fulfillmentProgram property.
     */
     public function setFulfillmentProgram(?EbayFulfillmentProgram $value): void {

@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type is used by each payment dispute that is returned with the <strong>getPaymentDisputeSummaries</strong> method.
+ * This type is used by each payment dispute that is returned with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> method.
 */
 class PaymentDisputeSummary implements AdditionalDataHolder, Parsable 
 {
@@ -32,22 +32,22 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var SimpleAmount|null $amount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $amount This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace. This container is returned for all payment disputes returned in the response.
     */
     private ?SimpleAmount $amount = null;
     
     /**
-     * @var string|null $buyerUsername This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.
+     * @var string|null $buyerUsername This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
     */
     private ?string $buyerUsername = null;
     
     /**
-     * @var string|null $closedDate The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $closedDate The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $closedDate = null;
     
     /**
-     * @var string|null $openDate The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $openDate The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $openDate = null;
     
@@ -62,17 +62,17 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     private ?string $paymentDisputeId = null;
     
     /**
-     * @var string|null $paymentDisputeStatus The enumeration value in this field gives the current status of the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
+     * @var DisputeStateEnum|null $paymentDisputeStatus The enumeration value in this field gives the current status of the payment dispute.
     */
-    private ?string $paymentDisputeStatus = null;
+    private ?DisputeStateEnum $paymentDisputeStatus = null;
     
     /**
-     * @var string|null $reason The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
+     * @var DisputeReasonEnum|null $reason The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
     */
-    private ?string $reason = null;
+    private ?DisputeReasonEnum $reason = null;
     
     /**
-     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $respondByDate The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $respondByDate = null;
     
@@ -101,7 +101,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace. This container is returned for all payment disputes returned in the response.
      * @return SimpleAmount|null
     */
     public function getAmount(): ?SimpleAmount {
@@ -109,7 +109,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the buyerUsername property value. This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.
+     * Gets the buyerUsername property value. This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @return string|null
     */
     public function getBuyerUsername(): ?string {
@@ -117,7 +117,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getClosedDate(): ?string {
@@ -137,14 +137,14 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
             'openDate' => fn(ParseNode $n) => $o->setOpenDate($n->getStringValue()),
             'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
             'paymentDisputeId' => fn(ParseNode $n) => $o->setPaymentDisputeId($n->getStringValue()),
-            'paymentDisputeStatus' => fn(ParseNode $n) => $o->setPaymentDisputeStatus($n->getStringValue()),
-            'reason' => fn(ParseNode $n) => $o->setReason($n->getStringValue()),
+            'paymentDisputeStatus' => fn(ParseNode $n) => $o->setPaymentDisputeStatus($n->getEnumValue(DisputeStateEnum::class)),
+            'reason' => fn(ParseNode $n) => $o->setReason($n->getEnumValue(DisputeReasonEnum::class)),
             'respondByDate' => fn(ParseNode $n) => $o->setRespondByDate($n->getStringValue()),
         ];
     }
 
     /**
-     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getOpenDate(): ?string {
@@ -168,23 +168,23 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute.
+     * @return DisputeStateEnum|null
     */
-    public function getPaymentDisputeStatus(): ?string {
+    public function getPaymentDisputeStatus(): ?DisputeStateEnum {
         return $this->paymentDisputeStatus;
     }
 
     /**
-     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
+     * @return DisputeReasonEnum|null
     */
-    public function getReason(): ?string {
+    public function getReason(): ?DisputeReasonEnum {
         return $this->reason;
     }
 
     /**
-     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getRespondByDate(): ?string {
@@ -202,8 +202,8 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('openDate', $this->getOpenDate());
         $writer->writeStringValue('orderId', $this->getOrderId());
         $writer->writeStringValue('paymentDisputeId', $this->getPaymentDisputeId());
-        $writer->writeStringValue('paymentDisputeStatus', $this->getPaymentDisputeStatus());
-        $writer->writeStringValue('reason', $this->getReason());
+        $writer->writeEnumValue('paymentDisputeStatus', $this->getPaymentDisputeStatus());
+        $writer->writeEnumValue('reason', $this->getReason());
         $writer->writeStringValue('respondByDate', $this->getRespondByDate());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -217,7 +217,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the amount property value. This container shows the dollar value associated with the payment dispute in the currency used by the seller's marketplace. This container is returned for all payment disputes returned in the response.
      * @param SimpleAmount|null $value Value to set for the amount property.
     */
     public function setAmount(?SimpleAmount $value): void {
@@ -225,7 +225,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the buyerUsername property value. This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.
+     * Sets the buyerUsername property value. This is the buyer's eBay user ID. This field is returned for all payment disputes returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to <a href="/api-docs/static/data-handling-update.html" target="_blank">Data Handling Compliance</a>. </span>
      * @param string|null $value Value to set for the buyerUsername property.
     */
     public function setBuyerUsername(?string $value): void {
@@ -233,7 +233,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the closedDate property value. The timestamp in this field shows the date/time when the payment dispute was closed, so this field is only returned for payment disputes in the <code>CLOSED</code> state.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the closedDate property.
     */
     public function setClosedDate(?string $value): void {
@@ -241,7 +241,7 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the openDate property value. The timestamp in this field shows the date/time when the payment dispute was opened. This field is returned for payment disputes in all states.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the openDate property.
     */
     public function setOpenDate(?string $value): void {
@@ -265,23 +265,23 @@ class PaymentDisputeSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeStateEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the paymentDisputeStatus property.
+     * Sets the paymentDisputeStatus property value. The enumeration value in this field gives the current status of the payment dispute.
+     * @param DisputeStateEnum|null $value Value to set for the paymentDisputeStatus property.
     */
-    public function setPaymentDisputeStatus(?string $value): void {
+    public function setPaymentDisputeStatus(?DisputeStateEnum $value): void {
         $this->paymentDisputeStatus = $value;
     }
 
     /**
-     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:DisputeReasonEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the reason property.
+     * Sets the reason property value. The enumeration value in this field gives the reason why the buyer initiated the payment dispute. See <strong>DisputeReasonEnum</strong> type for a description of the supported reasons that buyers can give for initiating a payment dispute.
+     * @param DisputeReasonEnum|null $value Value to set for the reason property.
     */
-    public function setReason(?string $value): void {
+    public function setReason(?DisputeReasonEnum $value): void {
         $this->reason = $value;
     }
 
     /**
-     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the respondByDate property value. The timestamp in this field shows the date/time when the seller must response to a payment dispute, so this field is only returned for payment disputes in the <code>ACTION_NEEDED</code> state. For payment disputes that require action by the seller, that same seller must call <strong>getPaymentDispute</strong> to see the next action(s) that they can take against the payment dispute.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the respondByDate property.
     */
     public function setRespondByDate(?string $value): void {

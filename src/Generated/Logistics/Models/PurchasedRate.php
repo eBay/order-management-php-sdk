@@ -23,7 +23,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 use Microsoft\Kiota\Abstractions\Types\TypeUtils;
 
 /**
- * The "rate" that has been selected and purchased for the shipment, as referenced by the <b>rateId</b> value.
+ * The "rate" that has been selected and purchased for the shipment, as referenced by the <strong>rateId</strong> value.
 */
 class PurchasedRate implements AdditionalDataHolder, Parsable 
 {
@@ -33,12 +33,12 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var array<AdditionalOption>|null $additionalOptions An list of additional, optional features that have been purchased for the shipment.
+     * @var array<AdditionalOption>|null $additionalOptions A list of additional, optional features that have been purchased for the shipment.
     */
     private ?array $additionalOptions = null;
     
     /**
-     * @var Amount|null $baseShippingCost A complex type that describes the value of a monetary amount as represented by a global currency.
+     * @var Amount|null $baseShippingCost The amount of the "base cost" for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
     */
     private ?Amount $baseShippingCost = null;
     
@@ -48,12 +48,12 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     private ?string $destinationTimeZone = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * @var string|null $maxEstimatedDeliveryDate A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
     */
     private ?string $maxEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $minEstimatedDeliveryDate A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a>ISO 8601</a> UTC string.
+     * @var string|null $minEstimatedDeliveryDate A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
     */
     private ?string $minEstimatedDeliveryDate = null;
     
@@ -68,9 +68,9 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     private ?string $pickupSlotId = null;
     
     /**
-     * @var string|null $pickupType The type of pickup or drop off configured for the shipment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
+     * @var PickupTypeEnum|null $pickupType The type of pickup or drop-off configured for the shipment.
     */
-    private ?string $pickupType = null;
+    private ?PickupTypeEnum $pickupType = null;
     
     /**
      * @var string|null $rateId The eBay-generated ID of the shipping rate that the seller has chosen to purchase for the shipment.
@@ -88,7 +88,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     private ?string $shippingCarrierName = null;
     
     /**
-     * @var string|null $shippingQuoteId The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<b>rateId</b>).
+     * @var string|null $shippingQuoteId The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<strong>rateId</strong>).
     */
     private ?string $shippingQuoteId = null;
     
@@ -103,7 +103,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     private ?string $shippingServiceName = null;
     
     /**
-     * @var Amount|null $totalShippingCost A complex type that describes the value of a monetary amount as represented by a global currency.
+     * @var Amount|null $totalShippingCost The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
     */
     private ?Amount $totalShippingCost = null;
     
@@ -132,7 +132,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the additionalOptions property value. An list of additional, optional features that have been purchased for the shipment.
+     * Gets the additionalOptions property value. A list of additional, optional features that have been purchased for the shipment.
      * @return array<AdditionalOption>|null
     */
     public function getAdditionalOptions(): ?array {
@@ -140,7 +140,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the baseShippingCost property value. The amount of the "base cost" for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
      * @return Amount|null
     */
     public function getBaseShippingCost(): ?Amount {
@@ -176,7 +176,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
                 $this->setPickupNetworks($val);
             },
             'pickupSlotId' => fn(ParseNode $n) => $o->setPickupSlotId($n->getStringValue()),
-            'pickupType' => fn(ParseNode $n) => $o->setPickupType($n->getStringValue()),
+            'pickupType' => fn(ParseNode $n) => $o->setPickupType($n->getEnumValue(PickupTypeEnum::class)),
             'rateId' => fn(ParseNode $n) => $o->setRateId($n->getStringValue()),
             'shippingCarrierCode' => fn(ParseNode $n) => $o->setShippingCarrierCode($n->getStringValue()),
             'shippingCarrierName' => fn(ParseNode $n) => $o->setShippingCarrierName($n->getStringValue()),
@@ -188,7 +188,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Gets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @return string|null
     */
     public function getMaxEstimatedDeliveryDate(): ?string {
@@ -196,7 +196,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a>ISO 8601</a> UTC string.
+     * Gets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @return string|null
     */
     public function getMinEstimatedDeliveryDate(): ?string {
@@ -220,10 +220,10 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupType property value. The type of pickup or drop off configured for the shipment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the pickupType property value. The type of pickup or drop-off configured for the shipment.
+     * @return PickupTypeEnum|null
     */
-    public function getPickupType(): ?string {
+    public function getPickupType(): ?PickupTypeEnum {
         return $this->pickupType;
     }
 
@@ -252,7 +252,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingQuoteId property value. The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<b>rateId</b>).
+     * Gets the shippingQuoteId property value. The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<strong>rateId</strong>).
      * @return string|null
     */
     public function getShippingQuoteId(): ?string {
@@ -276,7 +276,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the totalShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the totalShippingCost property value. The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
      * @return Amount|null
     */
     public function getTotalShippingCost(): ?Amount {
@@ -295,7 +295,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
         $writer->writeCollectionOfPrimitiveValues('pickupNetworks', $this->getPickupNetworks());
         $writer->writeStringValue('pickupSlotId', $this->getPickupSlotId());
-        $writer->writeStringValue('pickupType', $this->getPickupType());
+        $writer->writeEnumValue('pickupType', $this->getPickupType());
         $writer->writeStringValue('rateId', $this->getRateId());
         $writer->writeStringValue('shippingCarrierCode', $this->getShippingCarrierCode());
         $writer->writeStringValue('shippingCarrierName', $this->getShippingCarrierName());
@@ -315,7 +315,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the additionalOptions property value. An list of additional, optional features that have been purchased for the shipment.
+     * Sets the additionalOptions property value. A list of additional, optional features that have been purchased for the shipment.
      * @param array<AdditionalOption>|null $value Value to set for the additionalOptions property.
     */
     public function setAdditionalOptions(?array $value): void {
@@ -323,7 +323,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the baseShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the baseShippingCost property value. The amount of the "base cost" for the shipment as set by the given carrier for the specified service. This cost excludes any additional costs accrued from the addition of any optional shipping options.
      * @param Amount|null $value Value to set for the baseShippingCost property.
     */
     public function setBaseShippingCost(?Amount $value): void {
@@ -339,7 +339,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Sets the maxEstimatedDeliveryDate property value. A string value representing maximum (latest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
     public function setMaxEstimatedDeliveryDate(?string $value): void {
@@ -347,7 +347,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a>ISO 8601</a> UTC string.
+     * Sets the minEstimatedDeliveryDate property value. A string value representing minimum (earliest) estimated delivery time, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @param string|null $value Value to set for the minEstimatedDeliveryDate property.
     */
     public function setMinEstimatedDeliveryDate(?string $value): void {
@@ -371,10 +371,10 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupType property value. The type of pickup or drop off configured for the shipment. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:PickupTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the pickupType property.
+     * Sets the pickupType property value. The type of pickup or drop-off configured for the shipment.
+     * @param PickupTypeEnum|null $value Value to set for the pickupType property.
     */
-    public function setPickupType(?string $value): void {
+    public function setPickupType(?PickupTypeEnum $value): void {
         $this->pickupType = $value;
     }
 
@@ -403,7 +403,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingQuoteId property value. The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<b>rateId</b>).
+     * Sets the shippingQuoteId property value. The unique eBay-generated ID of the <i>shipping quote</i> from which the seller selected a shipping rate (<strong>rateId</strong>).
      * @param string|null $value Value to set for the shippingQuoteId property.
     */
     public function setShippingQuoteId(?string $value): void {
@@ -427,7 +427,7 @@ class PurchasedRate implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the totalShippingCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the totalShippingCost property value. The total shipping cost, which is the sum cost of the base shipping cost and the cost of all the selected shipping options.
      * @param Amount|null $value Value to set for the totalShippingCost property.
     */
     public function setTotalShippingCost(?Amount $value): void {

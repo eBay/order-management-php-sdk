@@ -32,7 +32,7 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var DisputeAmount|null $amount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var DisputeAmount|null $amount The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and <strong>exchangeRate</strong> fields will be displayed as well.
     */
     private ?DisputeAmount $amount = null;
     
@@ -42,14 +42,14 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     private ?string $date = null;
     
     /**
-     * @var string|null $reason This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum'>eBay API documentation</a>
+     * @var MonetaryTransactionReasonEnum|null $reason This enumeration value indicates the reason for the monetary transaction.
     */
-    private ?string $reason = null;
+    private ?MonetaryTransactionReasonEnum $reason = null;
     
     /**
-     * @var string|null $type This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum'>eBay API documentation</a>
+     * @var MonetaryTransactionTypeEnum|null $type This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
     */
-    private ?string $type = null;
+    private ?MonetaryTransactionTypeEnum $type = null;
     
     /**
      * Instantiates a new MonetaryTransaction and sets the default values.
@@ -76,7 +76,7 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and <strong>exchangeRate</strong> fields will be displayed as well.
      * @return DisputeAmount|null
     */
     public function getAmount(): ?DisputeAmount {
@@ -100,24 +100,24 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([DisputeAmount::class, 'createFromDiscriminatorValue'])),
             'date' => fn(ParseNode $n) => $o->setDate($n->getStringValue()),
-            'reason' => fn(ParseNode $n) => $o->setReason($n->getStringValue()),
-            'type' => fn(ParseNode $n) => $o->setType($n->getStringValue()),
+            'reason' => fn(ParseNode $n) => $o->setReason($n->getEnumValue(MonetaryTransactionReasonEnum::class)),
+            'type' => fn(ParseNode $n) => $o->setType($n->getEnumValue(MonetaryTransactionTypeEnum::class)),
         ];
     }
 
     /**
-     * Gets the reason property value. This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the reason property value. This enumeration value indicates the reason for the monetary transaction.
+     * @return MonetaryTransactionReasonEnum|null
     */
-    public function getReason(): ?string {
+    public function getReason(): ?MonetaryTransactionReasonEnum {
         return $this->reason;
     }
 
     /**
-     * Gets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
+     * @return MonetaryTransactionTypeEnum|null
     */
-    public function getType(): ?string {
+    public function getType(): ?MonetaryTransactionTypeEnum {
         return $this->type;
     }
 
@@ -128,8 +128,8 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
         $writer->writeStringValue('date', $this->getDate());
-        $writer->writeStringValue('reason', $this->getReason());
-        $writer->writeStringValue('type', $this->getType());
+        $writer->writeEnumValue('reason', $this->getReason());
+        $writer->writeEnumValue('type', $this->getType());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -142,7 +142,7 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. The amount involved in the monetary transaction. For active cross-border trade orders, the currency conversion and <strong>exchangeRate</strong> fields will be displayed as well.
      * @param DisputeAmount|null $value Value to set for the amount property.
     */
     public function setAmount(?DisputeAmount $value): void {
@@ -158,18 +158,18 @@ class MonetaryTransaction implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the reason property value. This enumeration value indicates the reason for the monetary transaction. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionReasonEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the reason property.
+     * Sets the reason property value. This enumeration value indicates the reason for the monetary transaction.
+     * @param MonetaryTransactionReasonEnum|null $value Value to set for the reason property.
     */
-    public function setReason(?string $value): void {
+    public function setReason(?MonetaryTransactionReasonEnum $value): void {
         $this->reason = $value;
     }
 
     /**
-     * Sets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:MonetaryTransactionTypeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the type property.
+     * Sets the type property value. This enumeration value indicates whether the monetary transaction is a charge or a credit to the seller.
+     * @param MonetaryTransactionTypeEnum|null $value Value to set for the type property.
     */
-    public function setType(?string $value): void {
+    public function setType(?MonetaryTransactionTypeEnum $value): void {
         $this->type = $value;
     }
 

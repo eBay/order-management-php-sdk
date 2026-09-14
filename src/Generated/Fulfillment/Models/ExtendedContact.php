@@ -37,22 +37,22 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     private ?string $companyName = null;
     
     /**
-     * @var Address|null $contactAddress This type contains the details of a geographical address.
+     * @var Address|null $contactAddress This container shows the shipping address of the buyer or eBay shipping partner.
     */
     private ?Address $contactAddress = null;
     
     /**
-     * @var string|null $email This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <b>email</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $email This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <strong>email</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $email = null;
     
     /**
-     * @var string|null $fullName The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <b>fullName</b> will not be returned for any order that is more than 90 days old.</span>
+     * @var string|null $fullName The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>fullName</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?string $fullName = null;
     
     /**
-     * @var PhoneNumber|null $primaryPhone This type contains a string field representing a telephone number.
+     * @var PhoneNumber|null $primaryPhone The primary telephone number of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>primaryPhone</strong> will not be returned for any order that is more than 90 days old.</span>
     */
     private ?PhoneNumber $primaryPhone = null;
     
@@ -89,7 +89,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the contactAddress property value. This type contains the details of a geographical address.
+     * Gets the contactAddress property value. This container shows the shipping address of the buyer or eBay shipping partner.
      * @return Address|null
     */
     public function getContactAddress(): ?Address {
@@ -97,7 +97,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <b>email</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <strong>email</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getEmail(): ?string {
@@ -120,7 +120,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fullName property value. The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <b>fullName</b> will not be returned for any order that is more than 90 days old.</span>
+     * Gets the fullName property value. The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>fullName</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return string|null
     */
     public function getFullName(): ?string {
@@ -128,7 +128,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the primaryPhone property value. This type contains a string field representing a telephone number.
+     * Gets the primaryPhone property value. The primary telephone number of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>primaryPhone</strong> will not be returned for any order that is more than 90 days old.</span>
      * @return PhoneNumber|null
     */
     public function getPrimaryPhone(): ?PhoneNumber {
@@ -165,7 +165,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the contactAddress property value. This type contains the details of a geographical address.
+     * Sets the contactAddress property value. This container shows the shipping address of the buyer or eBay shipping partner.
      * @param Address|null $value Value to set for the contactAddress property.
     */
     public function setContactAddress(?Address $value): void {
@@ -173,7 +173,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <b>email</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the email property value. This field contains the email address of the buyer. This address will be returned for up to 14 days from order creation. If an order is more than 14 days old, no address is returned.<br><br><span class="tablenote"> <strong>Note:</strong> If returned, this field contains the email address of the buyer, even for Global Shipping Program shipments.<br><br>The <strong>email</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the email property.
     */
     public function setEmail(?string $value): void {
@@ -181,7 +181,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fullName property value. The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <b>fullName</b> will not be returned for any order that is more than 90 days old.</span>
+     * Sets the fullName property value. The full name of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>fullName</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param string|null $value Value to set for the fullName property.
     */
     public function setFullName(?string $value): void {
@@ -189,7 +189,7 @@ class ExtendedContact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the primaryPhone property value. This type contains a string field representing a telephone number.
+     * Sets the primaryPhone property value. The primary telephone number of the buyer or eBay shipping partner.<br><br><span class="tablenote"><strong>Note:</strong> The <strong>primaryPhone</strong> will not be returned for any order that is more than 90 days old.</span>
      * @param PhoneNumber|null $value Value to set for the primaryPhone property.
     */
     public function setPrimaryPhone(?PhoneNumber $value): void {

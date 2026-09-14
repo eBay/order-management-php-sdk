@@ -37,12 +37,12 @@ class PaymentSummary implements AdditionalDataHolder, Parsable
     private ?array $payments = null;
     
     /**
-     * @var array<OrderRefund>|null $refunds This array is always returned, but is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
+     * @var array<OrderRefund>|null $refunds This array is always returned, but it is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
     */
     private ?array $refunds = null;
     
     /**
-     * @var Amount|null $totalDueSeller This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $totalDueSeller This is the total price that the seller receives for the entire order after all costs (item cost, delivery cost, taxes) are added for all line items, minus any discounts and/or promotions for any of the line items. Note that this value is subject to change before payment is actually made by the buyer (if the <strong>paymentStatus</strong> value was <code>PENDING</code> or <code>FAILED</code>), or if a partial or full refund occurs with the order.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>totalDueSeller</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>totalDueSeller</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
     */
     private ?Amount $totalDueSeller = null;
     
@@ -92,7 +92,7 @@ class PaymentSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refunds property value. This array is always returned, but is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
+     * Gets the refunds property value. This array is always returned, but it is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
      * @return array<OrderRefund>|null
     */
     public function getRefunds(): ?array {
@@ -100,7 +100,7 @@ class PaymentSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the totalDueSeller property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the totalDueSeller property value. This is the total price that the seller receives for the entire order after all costs (item cost, delivery cost, taxes) are added for all line items, minus any discounts and/or promotions for any of the line items. Note that this value is subject to change before payment is actually made by the buyer (if the <strong>paymentStatus</strong> value was <code>PENDING</code> or <code>FAILED</code>), or if a partial or full refund occurs with the order.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>totalDueSeller</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>totalDueSeller</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
      * @return Amount|null
     */
     public function getTotalDueSeller(): ?Amount {
@@ -135,7 +135,7 @@ class PaymentSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refunds property value. This array is always returned, but is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
+     * Sets the refunds property value. This array is always returned, but it is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.
      * @param array<OrderRefund>|null $value Value to set for the refunds property.
     */
     public function setRefunds(?array $value): void {
@@ -143,7 +143,7 @@ class PaymentSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the totalDueSeller property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the totalDueSeller property value. This is the total price that the seller receives for the entire order after all costs (item cost, delivery cost, taxes) are added for all line items, minus any discounts and/or promotions for any of the line items. Note that this value is subject to change before payment is actually made by the buyer (if the <strong>paymentStatus</strong> value was <code>PENDING</code> or <code>FAILED</code>), or if a partial or full refund occurs with the order.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>totalDueSeller</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>totalDueSeller</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
      * @param Amount|null $value Value to set for the totalDueSeller property.
     */
     public function setTotalDueSeller(?Amount $value): void {

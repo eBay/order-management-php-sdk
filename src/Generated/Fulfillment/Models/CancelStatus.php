@@ -32,19 +32,19 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $cancelledDate The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $cancelledDate The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $cancelledDate = null;
     
     /**
-     * @var array<CancelRequest>|null $cancelRequests This array contains details of one or more buyer requests to cancel the order. <br><br><b>For the getOrders call:</b>  This array is returned but is always empty.<br><b>For the getOrder call:</b> This array is returned fully populated with information about any cancellation requests.
+     * @var array<CancelRequest>|null $cancelRequests This array contains details of one or more buyer requests to cancel the order. <br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call:</strong>  This array is returned but is always empty.<br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call:</strong> This array is returned fully populated with information about any cancellation requests.
     */
     private ?array $cancelRequests = null;
     
     /**
-     * @var string|null $cancelState The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned.  For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum'>eBay API documentation</a>
+     * @var CancelStateEnum|null $cancelState The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned. 
     */
-    private ?string $cancelState = null;
+    private ?CancelStateEnum $cancelState = null;
     
     /**
      * Instantiates a new CancelStatus and sets the default values.
@@ -71,7 +71,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getCancelledDate(): ?string {
@@ -79,7 +79,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. <br><br><b>For the getOrders call:</b>  This array is returned but is always empty.<br><b>For the getOrder call:</b> This array is returned fully populated with information about any cancellation requests.
+     * Gets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. <br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call:</strong>  This array is returned but is always empty.<br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call:</strong> This array is returned fully populated with information about any cancellation requests.
      * @return array<CancelRequest>|null
     */
     public function getCancelRequests(): ?array {
@@ -87,10 +87,10 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned.  For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned. 
+     * @return CancelStateEnum|null
     */
-    public function getCancelState(): ?string {
+    public function getCancelState(): ?CancelStateEnum {
         return $this->cancelState;
     }
 
@@ -103,7 +103,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
         return  [
             'cancelledDate' => fn(ParseNode $n) => $o->setCancelledDate($n->getStringValue()),
             'cancelRequests' => fn(ParseNode $n) => $o->setCancelRequests($n->getCollectionOfObjectValues([CancelRequest::class, 'createFromDiscriminatorValue'])),
-            'cancelState' => fn(ParseNode $n) => $o->setCancelState($n->getStringValue()),
+            'cancelState' => fn(ParseNode $n) => $o->setCancelState($n->getEnumValue(CancelStateEnum::class)),
         ];
     }
 
@@ -114,7 +114,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('cancelledDate', $this->getCancelledDate());
         $writer->writeCollectionOfObjectValues('cancelRequests', $this->getCancelRequests());
-        $writer->writeStringValue('cancelState', $this->getCancelState());
+        $writer->writeEnumValue('cancelState', $this->getCancelState());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -127,7 +127,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the cancelledDate property.
     */
     public function setCancelledDate(?string $value): void {
@@ -135,7 +135,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. <br><br><b>For the getOrders call:</b>  This array is returned but is always empty.<br><b>For the getOrder call:</b> This array is returned fully populated with information about any cancellation requests.
+     * Sets the cancelRequests property value. This array contains details of one or more buyer requests to cancel the order. <br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call:</strong>  This array is returned but is always empty.<br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call:</strong> This array is returned fully populated with information about any cancellation requests.
      * @param array<CancelRequest>|null $value Value to set for the cancelRequests property.
     */
     public function setCancelRequests(?array $value): void {
@@ -143,10 +143,10 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned.  For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:CancelStateEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the cancelState property.
+     * Sets the cancelState property value. The state of the order with regard to cancellation. This field is always returned, and if there are no cancellation requests, a value of <code>NONE_REQUESTED</code> is returned. 
+     * @param CancelStateEnum|null $value Value to set for the cancelState property.
     */
-    public function setCancelState(?string $value): void {
+    public function setCancelState(?CancelStateEnum $value): void {
         $this->cancelState = $value;
     }
 

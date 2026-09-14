@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains the name and value of an input parameter that contributed to a specific error or warning condition.
+ * Used to specify information relevant to the end user/client.
 */
 class ErrorParameter implements AdditionalDataHolder, Parsable 
 {
@@ -32,12 +32,12 @@ class ErrorParameter implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $name This is the name of input field that caused an issue with the call request.
+     * @var string|null $name The object of the error.
     */
     private ?string $name = null;
     
     /**
-     * @var string|null $value This is the actual value that was passed in for the element specified in the <strong>name</strong> field.
+     * @var string|null $value The value of the object.
     */
     private ?string $value = null;
     
@@ -78,7 +78,7 @@ class ErrorParameter implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the name property value. This is the name of input field that caused an issue with the call request.
+     * Gets the name property value. The object of the error.
      * @return string|null
     */
     public function getName(): ?string {
@@ -86,7 +86,7 @@ class ErrorParameter implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the value property value. This is the actual value that was passed in for the element specified in the <strong>name</strong> field.
+     * Gets the value property value. The value of the object.
      * @return string|null
     */
     public function getValue(): ?string {
@@ -112,7 +112,7 @@ class ErrorParameter implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the name property value. This is the name of input field that caused an issue with the call request.
+     * Sets the name property value. The object of the error.
      * @param string|null $value Value to set for the name property.
     */
     public function setName(?string $value): void {
@@ -120,7 +120,7 @@ class ErrorParameter implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the value property value. This is the actual value that was passed in for the element specified in the <strong>name</strong> field.
+     * Sets the value property value. The value of the object.
      * @param string|null $value Value to set for the value property.
     */
     public function setValue(?string $value): void {

@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains the specifications for the entire collection of shipping fulfillments that are associated with the order specified by a <b>getShippingFulfillments</b> call. The <b>fulfillments</b> container returns an array of all the fulfillments in the collection.
+ * This type contains the specifications for the entire collection of shipping fulfillments that are associated with the order specified by a <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments" target="_blank">getShippingFulfillments</a> call. The <strong>fulfillments</strong> container returns an array of all the fulfillments in the collection.
 */
 class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsable 
 {
@@ -42,7 +42,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
     private ?int $total = null;
     
     /**
-     * @var array<Error>|null $warnings This array is only returned if one or more errors or warnings occur with the call request.
+     * @var array<ErrorDetailV3>|null $warnings This array is only returned if one or more errors or warnings occur with the call request.
     */
     private ?array $warnings = null;
     
@@ -79,7 +79,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
         return  [
             'fulfillments' => fn(ParseNode $n) => $o->setFulfillments($n->getCollectionOfObjectValues([ShippingFulfillment::class, 'createFromDiscriminatorValue'])),
             'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
-            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([Error::class, 'createFromDiscriminatorValue'])),
+            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetailV3::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -101,7 +101,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
 
     /**
      * Gets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
-     * @return array<Error>|null
+     * @return array<ErrorDetailV3>|null
     */
     public function getWarnings(): ?array {
         return $this->warnings;
@@ -144,7 +144,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
 
     /**
      * Sets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
-     * @param array<Error>|null $value Value to set for the warnings property.
+     * @param array<ErrorDetailV3>|null $value Value to set for the warnings property.
     */
     public function setWarnings(?array $value): void {
         $this->warnings = $value;

@@ -47,9 +47,9 @@ class ContactAddress implements AdditionalDataHolder, Parsable
     private ?string $city = null;
     
     /**
-     * @var string|null $countryCode The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum'>eBay API documentation</a>
+     * @var CountryCodeEnum|null $countryCode The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany.
     */
-    private ?string $countryCode = null;
+    private ?CountryCodeEnum $countryCode = null;
     
     /**
      * @var string|null $county The county (not country) in which the address is located. Counties typically contain multiple cities or towns.
@@ -115,10 +115,10 @@ class ContactAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the countryCode property value. The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the countryCode property value. The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany.
+     * @return CountryCodeEnum|null
     */
-    public function getCountryCode(): ?string {
+    public function getCountryCode(): ?CountryCodeEnum {
         return $this->countryCode;
     }
 
@@ -140,7 +140,7 @@ class ContactAddress implements AdditionalDataHolder, Parsable
             'addressLine1' => fn(ParseNode $n) => $o->setAddressLine1($n->getStringValue()),
             'addressLine2' => fn(ParseNode $n) => $o->setAddressLine2($n->getStringValue()),
             'city' => fn(ParseNode $n) => $o->setCity($n->getStringValue()),
-            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getStringValue()),
+            'countryCode' => fn(ParseNode $n) => $o->setCountryCode($n->getEnumValue(CountryCodeEnum::class)),
             'county' => fn(ParseNode $n) => $o->setCounty($n->getStringValue()),
             'postalCode' => fn(ParseNode $n) => $o->setPostalCode($n->getStringValue()),
             'stateOrProvince' => fn(ParseNode $n) => $o->setStateOrProvince($n->getStringValue()),
@@ -171,7 +171,7 @@ class ContactAddress implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('addressLine1', $this->getAddressLine1());
         $writer->writeStringValue('addressLine2', $this->getAddressLine2());
         $writer->writeStringValue('city', $this->getCity());
-        $writer->writeStringValue('countryCode', $this->getCountryCode());
+        $writer->writeEnumValue('countryCode', $this->getCountryCode());
         $writer->writeStringValue('county', $this->getCounty());
         $writer->writeStringValue('postalCode', $this->getPostalCode());
         $writer->writeStringValue('stateOrProvince', $this->getStateOrProvince());
@@ -211,10 +211,10 @@ class ContactAddress implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the countryCode property value. The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html " title="https://www.iso.org " target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/bas:CountryCodeEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the countryCode property.
+     * Sets the countryCode property value. The country of the address, represented as two-letter <a href="https://www.iso.org/iso-3166-country-codes.html" title="https://www.iso.org" target="_blank">ISO 3166</a> country code. For example, <code>US</code> represents the United States and <code>DE</code> represents Germany.
+     * @param CountryCodeEnum|null $value Value to set for the countryCode property.
     */
-    public function setCountryCode(?string $value): void {
+    public function setCountryCode(?CountryCodeEnum $value): void {
         $this->countryCode = $value;
     }
 

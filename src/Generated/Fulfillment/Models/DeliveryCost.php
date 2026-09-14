@@ -32,27 +32,27 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $discountAmount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $discountAmount The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
     */
     private ?Amount $discountAmount = null;
     
     /**
-     * @var Amount|null $handlingCost This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $handlingCost The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
     */
     private ?Amount $handlingCost = null;
     
     /**
-     * @var Amount|null $importCharges This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $importCharges The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
     */
     private ?Amount $importCharges = null;
     
     /**
-     * @var Amount|null $shippingCost This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $shippingCost The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the <strong>value</strong> field will show <code>0.0</code> (dollars).
     */
     private ?Amount $shippingCost = null;
     
     /**
-     * @var Amount|null $shippingIntermediationFee This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $shippingIntermediationFee This field shows the fee due to eBay's international shipping provider for a line item that is being shipped through the Global Shipping Program.<br><br>This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> The value returned for this field will always be <code>0.0</code> for line items sold in the UK marketplace.</span>
     */
     private ?Amount $shippingIntermediationFee = null;
     
@@ -81,7 +81,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the discountAmount property value. The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
      * @return Amount|null
     */
     public function getDiscountAmount(): ?Amount {
@@ -104,7 +104,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the handlingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the handlingCost property value. The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
      * @return Amount|null
     */
     public function getHandlingCost(): ?Amount {
@@ -112,7 +112,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the importCharges property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the importCharges property value. The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
      * @return Amount|null
     */
     public function getImportCharges(): ?Amount {
@@ -120,7 +120,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the shippingCost property value. The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the <strong>value</strong> field will show <code>0.0</code> (dollars).
      * @return Amount|null
     */
     public function getShippingCost(): ?Amount {
@@ -128,7 +128,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shippingIntermediationFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the shippingIntermediationFee property value. This field shows the fee due to eBay's international shipping provider for a line item that is being shipped through the Global Shipping Program.<br><br>This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> The value returned for this field will always be <code>0.0</code> for line items sold in the UK marketplace.</span>
      * @return Amount|null
     */
     public function getShippingIntermediationFee(): ?Amount {
@@ -157,7 +157,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the discountAmount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the discountAmount property value. The amount of any shipping discount that has been applied to the line item. This container is returned only if a shipping discount applies to the line item.
      * @param Amount|null $value Value to set for the discountAmount property.
     */
     public function setDiscountAmount(?Amount $value): void {
@@ -165,7 +165,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the handlingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the handlingCost property value. The amount of any handing cost that has been applied to the line item. This container is returned only if a handling cost applies to the line item.
      * @param Amount|null $value Value to set for the handlingCost property.
     */
     public function setHandlingCost(?Amount $value): void {
@@ -173,7 +173,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the importCharges property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the importCharges property value. The amount of any import charges applied to international shipping of the line item. This container is only returned if import charges apply to the line item.
      * @param Amount|null $value Value to set for the importCharges property.
     */
     public function setImportCharges(?Amount $value): void {
@@ -181,7 +181,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the shippingCost property value. The total cost of shipping all units of the line item. This container is always returned even when the shipping cost is free, in which case the <strong>value</strong> field will show <code>0.0</code> (dollars).
      * @param Amount|null $value Value to set for the shippingCost property.
     */
     public function setShippingCost(?Amount $value): void {
@@ -189,7 +189,7 @@ class DeliveryCost implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shippingIntermediationFee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the shippingIntermediationFee property value. This field shows the fee due to eBay's international shipping provider for a line item that is being shipped through the Global Shipping Program.<br><br>This container is only returned for line items being shipped internationally through the Global Shipping Program, which is currently only supported in the US and UK marketplaces.<br><br><span class="tablenote"><strong>Note:</strong> The value returned for this field will always be <code>0.0</code> for line items sold in the UK marketplace.</span>
      * @param Amount|null $value Value to set for the shippingIntermediationFee property.
     */
     public function setShippingIntermediationFee(?Amount $value): void {

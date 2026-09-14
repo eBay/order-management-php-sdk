@@ -27,19 +27,19 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class PaymentDisputeActivity implements AdditionalDataHolder, Parsable 
 {
     /**
-     * @var string|null $activityDate The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * @var string|null $activityDate The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
     */
     private ?string $activityDate = null;
     
     /**
-     * @var string|null $activityType This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActivityEnum'>eBay API documentation</a>
+     * @var ActivityEnum|null $activityType This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here.
     */
-    private ?string $activityType = null;
+    private ?ActivityEnum $activityType = null;
     
     /**
-     * @var string|null $actor This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActorEnum'>eBay API documentation</a>
+     * @var ActorEnum|null $actor This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>.
     */
-    private ?string $actor = null;
+    private ?ActorEnum $actor = null;
     
     /**
      * @var array<string, mixed>|null $additionalData Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -63,7 +63,7 @@ class PaymentDisputeActivity implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the activityDate property value. The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Gets the activityDate property value. The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @return string|null
     */
     public function getActivityDate(): ?string {
@@ -71,18 +71,18 @@ class PaymentDisputeActivity implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the activityType property value. This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActivityEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the activityType property value. This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here.
+     * @return ActivityEnum|null
     */
-    public function getActivityType(): ?string {
+    public function getActivityType(): ?ActivityEnum {
         return $this->activityType;
     }
 
     /**
-     * Gets the actor property value. This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActorEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the actor property value. This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>.
+     * @return ActorEnum|null
     */
-    public function getActor(): ?string {
+    public function getActor(): ?ActorEnum {
         return $this->actor;
     }
 
@@ -102,8 +102,8 @@ class PaymentDisputeActivity implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'activityDate' => fn(ParseNode $n) => $o->setActivityDate($n->getStringValue()),
-            'activityType' => fn(ParseNode $n) => $o->setActivityType($n->getStringValue()),
-            'actor' => fn(ParseNode $n) => $o->setActor($n->getStringValue()),
+            'activityType' => fn(ParseNode $n) => $o->setActivityType($n->getEnumValue(ActivityEnum::class)),
+            'actor' => fn(ParseNode $n) => $o->setActor($n->getEnumValue(ActorEnum::class)),
         ];
     }
 
@@ -113,13 +113,13 @@ class PaymentDisputeActivity implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('activityDate', $this->getActivityDate());
-        $writer->writeStringValue('activityType', $this->getActivityType());
-        $writer->writeStringValue('actor', $this->getActor());
+        $writer->writeEnumValue('activityType', $this->getActivityType());
+        $writer->writeEnumValue('actor', $this->getActor());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
     /**
-     * Sets the activityDate property value. The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the ISO-8601 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO-8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
+     * Sets the activityDate property value. The timestamp in this field shows the date/time of the payment dispute activity.<br><br>The timestamps returned here use the <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> 24-hour date and time format, and the time zone used is Universal Coordinated Time (UTC), also known as Greenwich Mean Time (GMT), or Zulu. The ISO 8601 format looks like this: <em>yyyy-MM-ddThh:mm.ss.sssZ</em>. An example would be <code>2019-08-04T19:09:02.768Z</code>.
      * @param string|null $value Value to set for the activityDate property.
     */
     public function setActivityDate(?string $value): void {
@@ -127,18 +127,18 @@ class PaymentDisputeActivity implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the activityType property value. This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActivityEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the activityType property.
+     * Sets the activityType property value. This enumeration value indicates the type of activity that occured on the payment dispute. For example, a value of <code>DISPUTE_OPENED</code> is returned when a payment disute is first created,  a value indicating the seller's decision on the dispute, such as <code>SELLER_CONTEST</code>, is returned when seller makes a decision to accept or contest dispute, and a value of <code>DISPUTE_CLOSED</code> is returned when a payment disute is resolved. See <strong>ActivityEnum</strong> for an explanation of each of the values that may be returned here.
+     * @param ActivityEnum|null $value Value to set for the activityType property.
     */
-    public function setActivityType(?string $value): void {
+    public function setActivityType(?ActivityEnum $value): void {
         $this->activityType = $value;
     }
 
     /**
-     * Sets the actor property value. This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ActorEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the actor property.
+     * Sets the actor property value. This enumeration value indicates the actor that performed the action. Possible values include the <code>BUYER</code>, <code>SELLER</code>, <code>CS_AGENT</code> (eBay customer service), or <code>SYSTEM</code>.
+     * @param ActorEnum|null $value Value to set for the actor property.
     */
-    public function setActor(?string $value): void {
+    public function setActor(?ActorEnum $value): void {
         $this->actor = $value;
     }
 

@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type defines the base response payload of the <strong>getPaymentDisputeSummaries</strong> method. Each payment dispute that matches the input criteria is returned under the <strong>paymentDisputeSummaries</strong> array.
+ * This type defines the base response payload of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> method. Each payment dispute that matches the input criteria is returned under the <strong>paymentDisputeSummaries</strong> array.
 */
 class DisputeSummaryResponse implements AdditionalDataHolder, Parsable 
 {
@@ -32,17 +32,17 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $href The URI of the <strong>getPaymentDisputeSummaries</strong> call request that produced the current page of the result set.
+     * @var string|null $href The URI of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call request that produced the current page of the result set.
     */
     private ?string $href = null;
     
     /**
-     * @var int|null $limit This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><b>Min</b>: 1; <b>Max</b>: 200; <b>Default</b>: 200
+     * @var int|null $limit This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><strong>Min</strong>: 1; <strong>Max</strong>: 200; <strong>Default</strong>: 200
     */
     private ?int $limit = null;
     
     /**
-     * @var string|null $next The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
+     * @var string|null $next The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
     */
     private ?string $next = null;
     
@@ -57,7 +57,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     private ?array $paymentDisputeSummaries = null;
     
     /**
-     * @var string|null $prev The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * @var string|null $prev The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
     */
     private ?string $prev = null;
     
@@ -108,7 +108,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the href property value. The URI of the <strong>getPaymentDisputeSummaries</strong> call request that produced the current page of the result set.
+     * Gets the href property value. The URI of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call request that produced the current page of the result set.
      * @return string|null
     */
     public function getHref(): ?string {
@@ -116,7 +116,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><b>Min</b>: 1; <b>Max</b>: 200; <b>Default</b>: 200
+     * Gets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><strong>Min</strong>: 1; <strong>Max</strong>: 200; <strong>Default</strong>: 200
      * @return int|null
     */
     public function getLimit(): ?int {
@@ -124,7 +124,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the next property value. The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
+     * Gets the next property value. The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
      * @return string|null
     */
     public function getNext(): ?string {
@@ -148,7 +148,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the prev property value. The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Gets the prev property value. The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @return string|null
     */
     public function getPrev(): ?string {
@@ -187,7 +187,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the href property value. The URI of the <strong>getPaymentDisputeSummaries</strong> call request that produced the current page of the result set.
+     * Sets the href property value. The URI of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call request that produced the current page of the result set.
      * @param string|null $value Value to set for the href property.
     */
     public function setHref(?string $value): void {
@@ -195,7 +195,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><b>Min</b>: 1; <b>Max</b>: 200; <b>Default</b>: 200
+     * Sets the limit property value. This value shows the maximum number of payment disputes that will appear on one page of the result set. The <strong>limit</strong> value can be passed in as a query parameter in the request, or if it is not used, it defaults to <code>200</code>. If the value in the <strong>total</strong> field exceeds this <strong>limit</strong> value, there are multiple pages in the current result set.<br><br><strong>Min</strong>: 1; <strong>Max</strong>: 200; <strong>Default</strong>: 200
      * @param int|null $value Value to set for the limit property.
     */
     public function setLimit(?int $value): void {
@@ -203,7 +203,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the next property value. The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 thru 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
+     * Sets the next property value. The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the next page of the result set. For example, the following URI returns records 11 through 20 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=10</code><br><br>This field is only returned if there is a next page of results to view based on the current input criteria.
      * @param string|null $value Value to set for the next property.
     */
     public function setNext(?string $value): void {
@@ -227,7 +227,7 @@ class DisputeSummaryResponse implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the prev property value. The <strong>getPaymentDisputeSummaries</strong> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 thru 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * Sets the prev property value. The <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> call URI to use if you wish to view the previous page of the result set. For example, the following URI returns records 1 through 10 from the collection of payment disputes:<br><br><code>path/payment_dispute_summary?limit=10&offset=0</code><br><br>This field is only returned if there is a previous page of results to view based on the current input criteria.
      * @param string|null $value Value to set for the prev property.
     */
     public function setPrev(?string $value): void {

@@ -17,6 +17,7 @@
 namespace EBay\OrderManagement\Generated\Fulfillment\Payment_dispute_summary;
 
 use EBay\OrderManagement\Generated\Fulfillment\Models\DisputeSummaryResponse;
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use Exception;
 use Http\Promise\Promise;
 use Microsoft\Kiota\Abstractions\BaseRequestBuilder;
@@ -44,18 +45,22 @@ class Payment_dispute_summaryRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * This method is used retrieve one or more payment disputes filed against the seller. These payment disputes can be open or recently closed. The following filter types are available in the request payload to control the payment disputes that are returned:<ul><li>Dispute filed against a specific order (<b>order_id</b> parameter is used)</li><li>Dispute(s) filed by a specific buyer (<b>buyer_username</b> parameter is used)</li><li>Dispute(s) filed within a specific date range (<b>open_date_from</b> and/or <b>open_date_to</b> parameters are used)</li><li>Disputes in a specific state (<b>payment_dispute_status</b> parameter is used)</li></ul>More than one of these filter types can be used together. See the request payload request fields for more information about how each filter is used.<br><br>If none of the filters are used, all open and recently closed payment disputes are returned.<br><br>Pagination is also available. See the <b>limit</b> and <b>offset</b> fields for more information on how pagination is used for this method.
+     * This method is used retrieve one or more payment disputes filed against the seller. These payment disputes can be open or recently closed. The following filter types are available in the request payload to control the payment disputes that are returned:<ul><li>Dispute filed against a specific order (<strong>order_id</strong> parameter is used)</li><li>Dispute(s) filed by a specific buyer (<strong>buyer_username</strong> parameter is used)</li><li>Dispute(s) filed within a specific date range (<strong>open_date_from</strong> and/or <strong>open_date_to</strong> parameters are used)</li><li>Disputes in a specific state (<strong>payment_dispute_status</strong> parameter is used)</li></ul>More than one of these filter types can be used together. See the request payload request fields for more information about how each filter is used.<br><br>If none of the filters are used, all open and recently closed payment disputes are returned.<br><br>Pagination is also available. See the <strong>limit</strong> and <strong>offset</strong> fields for more information on how pagination is used for this method.
      * @param Payment_dispute_summaryRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<DisputeSummaryResponse|null>
      * @throws Exception
     */
     public function get(?Payment_dispute_summaryRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [DisputeSummaryResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [DisputeSummaryResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
-     * This method is used retrieve one or more payment disputes filed against the seller. These payment disputes can be open or recently closed. The following filter types are available in the request payload to control the payment disputes that are returned:<ul><li>Dispute filed against a specific order (<b>order_id</b> parameter is used)</li><li>Dispute(s) filed by a specific buyer (<b>buyer_username</b> parameter is used)</li><li>Dispute(s) filed within a specific date range (<b>open_date_from</b> and/or <b>open_date_to</b> parameters are used)</li><li>Disputes in a specific state (<b>payment_dispute_status</b> parameter is used)</li></ul>More than one of these filter types can be used together. See the request payload request fields for more information about how each filter is used.<br><br>If none of the filters are used, all open and recently closed payment disputes are returned.<br><br>Pagination is also available. See the <b>limit</b> and <b>offset</b> fields for more information on how pagination is used for this method.
+     * This method is used retrieve one or more payment disputes filed against the seller. These payment disputes can be open or recently closed. The following filter types are available in the request payload to control the payment disputes that are returned:<ul><li>Dispute filed against a specific order (<strong>order_id</strong> parameter is used)</li><li>Dispute(s) filed by a specific buyer (<strong>buyer_username</strong> parameter is used)</li><li>Dispute(s) filed within a specific date range (<strong>open_date_from</strong> and/or <strong>open_date_to</strong> parameters are used)</li><li>Disputes in a specific state (<strong>payment_dispute_status</strong> parameter is used)</li></ul>More than one of these filter types can be used together. See the request payload request fields for more information about how each filter is used.<br><br>If none of the filters are used, all open and recently closed payment disputes are returned.<br><br>Pagination is also available. See the <strong>limit</strong> and <strong>offset</strong> fields for more information on how pagination is used for this method.
      * @param Payment_dispute_summaryRequestBuilderGetRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation
     */

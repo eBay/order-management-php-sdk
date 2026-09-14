@@ -32,22 +32,22 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $pickupSlotEndTime The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * @var string|null $pickupSlotEndTime The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
     */
     private ?string $pickupSlotEndTime = null;
     
     /**
-     * @var string|null $pickupSlotId Seller-defined name for the pickup slot. <!-- Max characters? -->
+     * @var string|null $pickupSlotId Seller-defined name for the pickup slot.
     */
     private ?string $pickupSlotId = null;
     
     /**
-     * @var string|null $pickupSlotStartTime The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * @var string|null $pickupSlotStartTime The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
     */
     private ?string $pickupSlotStartTime = null;
     
     /**
-     * @var string|null $pickupSlotTimeZone The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also know as an Olson time zone ID).
+     * @var string|null $pickupSlotTimeZone The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also known as an Olson time zone ID).
     */
     private ?string $pickupSlotTimeZone = null;
     
@@ -90,7 +90,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Gets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @return string|null
     */
     public function getPickupSlotEndTime(): ?string {
@@ -98,7 +98,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupSlotId property value. Seller-defined name for the pickup slot. <!-- Max characters? -->
+     * Gets the pickupSlotId property value. Seller-defined name for the pickup slot.
      * @return string|null
     */
     public function getPickupSlotId(): ?string {
@@ -106,7 +106,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * Gets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @return string|null
     */
     public function getPickupSlotStartTime(): ?string {
@@ -114,7 +114,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also know as an Olson time zone ID).
+     * Gets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also known as an Olson time zone ID).
      * @return string|null
     */
     public function getPickupSlotTimeZone(): ?string {
@@ -142,7 +142,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Sets the pickupSlotEndTime property value. The date and time the pickup slot ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @param string|null $value Value to set for the pickupSlotEndTime property.
     */
     public function setPickupSlotEndTime(?string $value): void {
@@ -150,7 +150,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupSlotId property value. Seller-defined name for the pickup slot. <!-- Max characters? -->
+     * Sets the pickupSlotId property value. Seller-defined name for the pickup slot.
      * @param string|null $value Value to set for the pickupSlotId property.
     */
     public function setPickupSlotId(?string $value): void {
@@ -158,7 +158,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * Sets the pickupSlotStartTime property value. The date and time the pickup slot begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @param string|null $value Value to set for the pickupSlotStartTime property.
     */
     public function setPickupSlotStartTime(?string $value): void {
@@ -166,7 +166,7 @@ class PickupSlot implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also know as an Olson time zone ID).
+     * Sets the pickupSlotTimeZone property value. The time zone of the pickup location, returned as <a href="https://www.iana.org/time-zones " target="_blank">Time Zone Database</a> ID (also known as an Olson time zone ID).
      * @param string|null $value Value to set for the pickupSlotTimeZone property.
     */
     public function setPickupSlotTimeZone(?string $value): void {

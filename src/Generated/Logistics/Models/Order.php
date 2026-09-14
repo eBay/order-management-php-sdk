@@ -32,12 +32,12 @@ class Order implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $channel The marketplace where the order was created.<br><br>Use the value <code>EBAY</code> to get the rates available for eBay orders.
+     * @var string|null $channel The marketplace where the order was created.<br><br>Currently, only <code>EBAY</code> is supported. This value can be used to retrieve rates available for eBay orders.
     */
     private ?string $channel = null;
     
     /**
-     * @var string|null $orderId The unique identifier of the order. The <a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <b>Fulfillment API</b> can be used to retrieve order IDs.
+     * @var string|null $orderId The unique identifier of the order. The <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <strong>Fulfillment API</strong> can be used to retrieve order IDs.
     */
     private ?string $orderId = null;
     
@@ -66,7 +66,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the channel property value. The marketplace where the order was created.<br><br>Use the value <code>EBAY</code> to get the rates available for eBay orders.
+     * Gets the channel property value. The marketplace where the order was created.<br><br>Currently, only <code>EBAY</code> is supported. This value can be used to retrieve rates available for eBay orders.
      * @return string|null
     */
     public function getChannel(): ?string {
@@ -86,7 +86,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the orderId property value. The unique identifier of the order. The <a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <b>Fulfillment API</b> can be used to retrieve order IDs.
+     * Gets the orderId property value. The unique identifier of the order. The <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <strong>Fulfillment API</strong> can be used to retrieve order IDs.
      * @return string|null
     */
     public function getOrderId(): ?string {
@@ -112,7 +112,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the channel property value. The marketplace where the order was created.<br><br>Use the value <code>EBAY</code> to get the rates available for eBay orders.
+     * Sets the channel property value. The marketplace where the order was created.<br><br>Currently, only <code>EBAY</code> is supported. This value can be used to retrieve rates available for eBay orders.
      * @param string|null $value Value to set for the channel property.
     */
     public function setChannel(?string $value): void {
@@ -120,7 +120,7 @@ class Order implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the orderId property value. The unique identifier of the order. The <a href=/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <b>Fulfillment API</b> can be used to retrieve order IDs.
+     * Sets the orderId property value. The unique identifier of the order. The <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> method of the <strong>Fulfillment API</strong> can be used to retrieve order IDs.
      * @param string|null $value Value to set for the orderId property.
     */
     public function setOrderId(?string $value): void {

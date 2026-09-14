@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item;
 
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\PaymentDispute;
 use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Accept\AcceptRequestBuilder;
 use EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Activity\ActivityRequestBuilder;
@@ -107,7 +108,11 @@ class WithPayment_dispute_ItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?WithPayment_dispute_ItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [PaymentDispute::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '404' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [PaymentDispute::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type contains the name-value specifics of a multi-variation listing (<b>variationAspects</b>) or the name-value specifics for all item aspects of a linked line item (<b>linkedOrderLineItems</b>).
+ * This type contains the name-value specifics of a multi-variation listing (<strong>variationAspects</strong>) or the name-value specifics for all item aspects of a linked line item (<strong>linkedOrderLineItems</strong>).
 */
 class NameValuePair implements AdditionalDataHolder, Parsable 
 {
@@ -32,12 +32,12 @@ class NameValuePair implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $name The text representing the name of the aspect for the name-value pair. For example, <code>color</code>, or <code>Tire Type</code>.
+     * @var string|null $name The text representing the name of the aspect for the name-value pair. For example, <code>color</code> or <code>Tire Type</code>.
     */
     private ?string $name = null;
     
     /**
-     * @var string|null $value The value of the aspect for the name-value pair. For example, <code>red</code>, or <code>All Season</code>.
+     * @var string|null $value The value of the aspect for the name-value pair. For example, <code>red</code> or <code>All Season</code>.
     */
     private ?string $value = null;
     
@@ -78,7 +78,7 @@ class NameValuePair implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the name property value. The text representing the name of the aspect for the name-value pair. For example, <code>color</code>, or <code>Tire Type</code>.
+     * Gets the name property value. The text representing the name of the aspect for the name-value pair. For example, <code>color</code> or <code>Tire Type</code>.
      * @return string|null
     */
     public function getName(): ?string {
@@ -86,7 +86,7 @@ class NameValuePair implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the value property value. The value of the aspect for the name-value pair. For example, <code>red</code>, or <code>All Season</code>.
+     * Gets the value property value. The value of the aspect for the name-value pair. For example, <code>red</code> or <code>All Season</code>.
      * @return string|null
     */
     public function getValue(): ?string {
@@ -112,7 +112,7 @@ class NameValuePair implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the name property value. The text representing the name of the aspect for the name-value pair. For example, <code>color</code>, or <code>Tire Type</code>.
+     * Sets the name property value. The text representing the name of the aspect for the name-value pair. For example, <code>color</code> or <code>Tire Type</code>.
      * @param string|null $value Value to set for the name property.
     */
     public function setName(?string $value): void {
@@ -120,7 +120,7 @@ class NameValuePair implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the value property value. The value of the aspect for the name-value pair. For example, <code>red</code>, or <code>All Season</code>.
+     * Sets the value property value. The value of the aspect for the name-value pair. For example, <code>red</code> or <code>All Season</code>.
      * @param string|null $value Value to set for the value property.
     */
     public function setValue(?string $value): void {

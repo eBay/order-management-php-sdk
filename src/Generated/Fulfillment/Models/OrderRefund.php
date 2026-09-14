@@ -32,17 +32,17 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $amount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $amount This field shows the refund amount for an order. This container is always returned for each refund.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
     */
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $refundDate The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * @var string|null $refundDate The date and time that the refund was issued. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
     private ?string $refundDate = null;
     
     /**
-     * @var string|null $refundId Unique identifier of a refund that was initiated for an order through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<b>lineItems.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrders</b> and <b>getOrders</b> responses for pending and completed refunds. For other refunds, see the <b>refundReferenceId</b> field.
+     * @var string|null $refundId Unique identifier of a refund that was initiated for an order through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<strong>lineItems.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds. For other refunds, see the <strong>refundReferenceId</strong> field.
     */
     private ?string $refundId = null;
     
@@ -52,9 +52,9 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     private ?string $refundReferenceId = null;
     
     /**
-     * @var string|null $refundStatus This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
+     * @var RefundStatusEnum|null $refundStatus This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
     */
-    private ?string $refundStatus = null;
+    private ?RefundStatusEnum $refundStatus = null;
     
     /**
      * Instantiates a new OrderRefund and sets the default values.
@@ -81,7 +81,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the amount property value. This field shows the refund amount for an order. This container is always returned for each refund.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
      * @return Amount|null
     */
     public function getAmount(): ?Amount {
@@ -99,12 +99,12 @@ class OrderRefund implements AdditionalDataHolder, Parsable
             'refundDate' => fn(ParseNode $n) => $o->setRefundDate($n->getStringValue()),
             'refundId' => fn(ParseNode $n) => $o->setRefundId($n->getStringValue()),
             'refundReferenceId' => fn(ParseNode $n) => $o->setRefundReferenceId($n->getStringValue()),
-            'refundStatus' => fn(ParseNode $n) => $o->setRefundStatus($n->getStringValue()),
+            'refundStatus' => fn(ParseNode $n) => $o->setRefundStatus($n->getEnumValue(RefundStatusEnum::class)),
         ];
     }
 
     /**
-     * Gets the refundDate property value. The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Gets the refundDate property value. The date and time that the refund was issued. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @return string|null
     */
     public function getRefundDate(): ?string {
@@ -112,7 +112,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<b>lineItems.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrders</b> and <b>getOrders</b> responses for pending and completed refunds. For other refunds, see the <b>refundReferenceId</b> field.
+     * Gets the refundId property value. Unique identifier of a refund that was initiated for an order through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<strong>lineItems.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds. For other refunds, see the <strong>refundReferenceId</strong> field.
      * @return string|null
     */
     public function getRefundId(): ?string {
@@ -128,10 +128,10 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
+     * @return RefundStatusEnum|null
     */
-    public function getRefundStatus(): ?string {
+    public function getRefundStatus(): ?RefundStatusEnum {
         return $this->refundStatus;
     }
 
@@ -144,7 +144,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('refundDate', $this->getRefundDate());
         $writer->writeStringValue('refundId', $this->getRefundId());
         $writer->writeStringValue('refundReferenceId', $this->getRefundReferenceId());
-        $writer->writeStringValue('refundStatus', $this->getRefundStatus());
+        $writer->writeEnumValue('refundStatus', $this->getRefundStatus());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -157,7 +157,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the amount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the amount property value. This field shows the refund amount for an order. This container is always returned for each refund.<br><br><span class="tablenote"><strong>Note:</strong> The refund amount shown is the seller's <em>net amount</em> received from the sale/transaction. eBay-collected tax will not be included in this amount, so the actual amount of the buyer's refund may be higher than this value.</span>
      * @param Amount|null $value Value to set for the amount property.
     */
     public function setAmount(?Amount $value): void {
@@ -165,7 +165,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundDate property value. The date and time that the refund was issued. This timestamp is in ISO 8601 format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2015-08-04T19:09:02.768Z</code>
+     * Sets the refundDate property value. The date and time that the refund was issued. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
      * @param string|null $value Value to set for the refundDate property.
     */
     public function setRefundDate(?string $value): void {
@@ -173,7 +173,7 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order through the <b>issueRefund</b> method. If the <b>issueRefund</b> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<b>lineItems.refunds.refundId</b> field).<br><br> A <b>refundId</b> value is returned in the response of the <b>issueRefund</b> method, and this same value will be returned in the <b>getOrders</b> and <b>getOrders</b> responses for pending and completed refunds. For other refunds, see the <b>refundReferenceId</b> field.
+     * Sets the refundId property value. Unique identifier of a refund that was initiated for an order through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (<strong>lineItems.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds. For other refunds, see the <strong>refundReferenceId</strong> field.
      * @param string|null $value Value to set for the refundId property.
     */
     public function setRefundId(?string $value): void {
@@ -189,10 +189,10 @@ class OrderRefund implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/sel:RefundStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the refundStatus property.
+     * Sets the refundStatus property value. This enumeration value indicates the current status of the refund to the buyer. This container is always returned for each refund.
+     * @param RefundStatusEnum|null $value Value to set for the refundStatus property.
     */
-    public function setRefundStatus(?string $value): void {
+    public function setRefundStatus(?RefundStatusEnum $value): void {
         $this->refundStatus = $value;
     }
 

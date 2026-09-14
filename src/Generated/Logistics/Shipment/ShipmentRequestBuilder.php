@@ -35,7 +35,7 @@ class ShipmentRequestBuilder extends BaseRequestBuilder
     
     /**
      * Gets an item from the EBay/OrderManagement/Generated/Logistics.shipment.item collection
-     * @param string $shipmentId This path parameter specifies the unique eBay-assigned identifier of the shipment you want to retrieve.<br><br>The <b>shipmentId</b> value is generated and returned by the <a href="/api-docs/sell/logistics/resources/shipment/methods/createFromShippingQuote" target="_blank">createFromShippingQuote</a> method.
+     * @param string $shipmentId This path parameter specifies the unique eBay-assigned identifier of the shipment you want to retrieve.<br><br>The <strong>shipmentId</strong> value is generated and returned by the <a href="/api-docs/sell/logistics/resources/shipment/methods/createFromShippingQuote" target="_blank">createFromShippingQuote</a> method.
      * @return WithShipmentItemRequestBuilder
     */
     public function byShipmentId(string $shipmentId): WithShipmentItemRequestBuilder {

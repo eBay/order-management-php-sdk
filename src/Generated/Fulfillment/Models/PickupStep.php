@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * This type is used to indicate the merchant's store where the buyer will pickup their In-Store Pickup order. The <b>pickupStep</b> container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
+ * This type is used to indicate the merchant's store where the buyer will pickup their In-Store Pickup order. The <strong>pickupStep</strong> container is only returned for In-Store Pickup orders. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
 */
 class PickupStep implements AdditionalDataHolder, Parsable 
 {
@@ -32,7 +32,7 @@ class PickupStep implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $merchantLocationKey A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <b>pickupStep</b> container.
+     * @var string|null $merchantLocationKey A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <strong>pickupStep</strong> container.
     */
     private ?string $merchantLocationKey = null;
     
@@ -72,7 +72,7 @@ class PickupStep implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <b>pickupStep</b> container.
+     * Gets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <strong>pickupStep</strong> container.
      * @return string|null
     */
     public function getMerchantLocationKey(): ?string {
@@ -97,7 +97,7 @@ class PickupStep implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <b>pickupStep</b> container.
+     * Sets the merchantLocationKey property value. A merchant-defined unique identifier of the merchant's store where the buyer will pick up their In-Store Pickup order.<br><br> This field is always returned with the <strong>pickupStep</strong> container.
      * @param string|null $value Value to set for the merchantLocationKey property.
     */
     public function setMerchantLocationKey(?string $value): void {

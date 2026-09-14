@@ -32,12 +32,12 @@ class PackageSpecification implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Dimensions|null $dimensions This complex type defines the dimensions of a package to be shipped.
+     * @var Dimensions|null $dimensions Declares the height, length, width, and unit of measure for the package to be shipped.
     */
     private ?Dimensions $dimensions = null;
     
     /**
-     * @var Weight|null $weight This complex type contains information about the weight of an object such as a shipping package.
+     * @var Weight|null $weight Declares the weight of the package.
     */
     private ?Weight $weight = null;
     
@@ -66,7 +66,7 @@ class PackageSpecification implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the dimensions property value. This complex type defines the dimensions of a package to be shipped.
+     * Gets the dimensions property value. Declares the height, length, width, and unit of measure for the package to be shipped.
      * @return Dimensions|null
     */
     public function getDimensions(): ?Dimensions {
@@ -86,7 +86,7 @@ class PackageSpecification implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the weight property value. This complex type contains information about the weight of an object such as a shipping package.
+     * Gets the weight property value. Declares the weight of the package.
      * @return Weight|null
     */
     public function getWeight(): ?Weight {
@@ -112,7 +112,7 @@ class PackageSpecification implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the dimensions property value. This complex type defines the dimensions of a package to be shipped.
+     * Sets the dimensions property value. Declares the height, length, width, and unit of measure for the package to be shipped.
      * @param Dimensions|null $value Value to set for the dimensions property.
     */
     public function setDimensions(?Dimensions $value): void {
@@ -120,7 +120,7 @@ class PackageSpecification implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the weight property value. This complex type contains information about the weight of an object such as a shipping package.
+     * Sets the weight property value. Declares the weight of the package.
      * @param Weight|null $value Value to set for the weight property.
     */
     public function setWeight(?Weight $value): void {

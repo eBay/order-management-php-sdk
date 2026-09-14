@@ -37,7 +37,7 @@ class Contact implements AdditionalDataHolder, Parsable
     private ?string $companyName = null;
     
     /**
-     * @var ContactAddress|null $contactAddress This complex type specifies the details of a geographical address.
+     * @var ContactAddress|null $contactAddress The details of the contact's geographical address.
     */
     private ?ContactAddress $contactAddress = null;
     
@@ -47,7 +47,7 @@ class Contact implements AdditionalDataHolder, Parsable
     private ?string $fullName = null;
     
     /**
-     * @var PhoneNumber|null $primaryPhone This complex type contains a string field representing a telephone number.
+     * @var PhoneNumber|null $primaryPhone The contact's primary telephone number.
     */
     private ?PhoneNumber $primaryPhone = null;
     
@@ -84,7 +84,7 @@ class Contact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the contactAddress property value. This complex type specifies the details of a geographical address.
+     * Gets the contactAddress property value. The details of the contact's geographical address.
      * @return ContactAddress|null
     */
     public function getContactAddress(): ?ContactAddress {
@@ -114,7 +114,7 @@ class Contact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the primaryPhone property value. This complex type contains a string field representing a telephone number.
+     * Gets the primaryPhone property value. The contact's primary telephone number.
      * @return PhoneNumber|null
     */
     public function getPrimaryPhone(): ?PhoneNumber {
@@ -150,7 +150,7 @@ class Contact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the contactAddress property value. This complex type specifies the details of a geographical address.
+     * Sets the contactAddress property value. The details of the contact's geographical address.
      * @param ContactAddress|null $value Value to set for the contactAddress property.
     */
     public function setContactAddress(?ContactAddress $value): void {
@@ -166,7 +166,7 @@ class Contact implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the primaryPhone property value. This complex type contains a string field representing a telephone number.
+     * Sets the primaryPhone property value. The contact's primary telephone number.
      * @param PhoneNumber|null $value Value to set for the primaryPhone property.
     */
     public function setPrimaryPhone(?PhoneNumber $value): void {

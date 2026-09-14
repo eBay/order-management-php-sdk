@@ -32,14 +32,14 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $cancellationRequestedDate The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * @var string|null $cancellationRequestedDate The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
     */
     private ?string $cancellationRequestedDate = null;
     
     /**
-     * @var string|null $cancellationStatus This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum'>eBay API documentation</a>
+     * @var ShipmentCancellationStatusEnum|null $cancellationStatus This enum specifies the current cancellation status of a shipment, if a cancellation request has been made.
     */
-    private ?string $cancellationStatus = null;
+    private ?ShipmentCancellationStatusEnum $cancellationStatus = null;
     
     /**
      * Instantiates a new ShipmentCancellation and sets the default values.
@@ -66,7 +66,7 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * Gets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @return string|null
     */
     public function getCancellationRequestedDate(): ?string {
@@ -74,10 +74,10 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made.
+     * @return ShipmentCancellationStatusEnum|null
     */
-    public function getCancellationStatus(): ?string {
+    public function getCancellationStatus(): ?ShipmentCancellationStatusEnum {
         return $this->cancellationStatus;
     }
 
@@ -89,7 +89,7 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'cancellationRequestedDate' => fn(ParseNode $n) => $o->setCancellationRequestedDate($n->getStringValue()),
-            'cancellationStatus' => fn(ParseNode $n) => $o->setCancellationStatus($n->getStringValue()),
+            'cancellationStatus' => fn(ParseNode $n) => $o->setCancellationStatus($n->getEnumValue(ShipmentCancellationStatusEnum::class)),
         ];
     }
 
@@ -99,7 +99,7 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('cancellationRequestedDate', $this->getCancellationRequestedDate());
-        $writer->writeStringValue('cancellationStatus', $this->getCancellationStatus());
+        $writer->writeEnumValue('cancellationStatus', $this->getCancellationStatus());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
 
@@ -112,7 +112,7 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> UTC string.
+     * Sets the cancellationRequestedDate property value. The time and date the request was made to cancel the shipment, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> UTC string.
      * @param string|null $value Value to set for the cancellationRequestedDate property.
     */
     public function setCancellationRequestedDate(?string $value): void {
@@ -120,10 +120,10 @@ class ShipmentCancellation implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:ShipmentCancellationStatusEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the cancellationStatus property.
+     * Sets the cancellationStatus property value. This enum specifies the current cancellation status of a shipment, if a cancellation request has been made.
+     * @param ShipmentCancellationStatusEnum|null $value Value to set for the cancellationStatus property.
     */
-    public function setCancellationStatus(?string $value): void {
+    public function setCancellationStatus(?ShipmentCancellationStatusEnum $value): void {
         $this->cancellationStatus = $value;
     }
 

@@ -22,6 +22,7 @@ use EBay\OrderManagement\Clients\GraphQL\DynamicGraphQLClient;
 use EBay\OrderManagement\Clients\GraphQL\OrderManagementGraphQLClient;
 use EBay\OrderManagement\Clients\Rest\FulfillmentClient;
 use EBay\OrderManagement\Clients\Rest\LogisticsClient;
+use EBay\OrderManagement\Clients\Rest\PostOrderApiClient;
 use EBay\OrderManagement\Configuration\OrderManagementConfiguration;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
@@ -35,6 +36,7 @@ final class OrderManagementClient
 {
     public readonly FulfillmentClient $fulfillment;
     public readonly LogisticsClient $logistics;
+    public readonly PostOrderApiClient $postOrderApi;
     public readonly OrderManagementGraphQLClient $graphQL;
 
     public function __construct(
@@ -45,6 +47,7 @@ final class OrderManagementClient
 
         $this->fulfillment = new FulfillmentClient($guzzle, $config);
         $this->logistics = new LogisticsClient($guzzle, $config);
+        $this->postOrderApi = new PostOrderApiClient($guzzle, $config);
 
         $this->graphQL = new OrderManagementGraphQLClient(
             new DynamicGraphQLClient($guzzle, $config)

@@ -32,12 +32,12 @@ class Shipment implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var ShipmentCancellation|null $cancellation This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * @var ShipmentCancellation|null $cancellation Cancellation status for the package, if one exists.
     */
     private ?ShipmentCancellation $cancellation = null;
     
     /**
-     * @var string|null $creationDate The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * @var string|null $creationDate The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
     */
     private ?string $creationDate = null;
     
@@ -52,7 +52,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     private ?string $labelDownloadUrl = null;
     
     /**
-     * @var string|null $labelSize The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <b>creaateFromShippingQuote</b> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
+     * @var string|null $labelSize The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <strong>createFromShippingQuote</strong> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
     */
     private ?string $labelSize = null;
     
@@ -62,27 +62,27 @@ class Shipment implements AdditionalDataHolder, Parsable
     private ?array $orders = null;
     
     /**
-     * @var PackageSpecification|null $packageSpecification This complex type specifies the dimensions and weight of a package.
+     * @var PackageSpecification|null $packageSpecification The weight and dimensions of the package.
     */
     private ?PackageSpecification $packageSpecification = null;
     
     /**
-     * @var PurchasedRate|null $rate The "rate" that has been selected and purchased for the shipment, as referenced by the <b>rateId</b> value.
+     * @var PurchasedRate|null $rate The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a <strong>rateId</strong>, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
     */
     private ?PurchasedRate $rate = null;
     
     /**
-     * @var Contact|null $returnTo This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $returnTo The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their <strong>shipFrom</strong> address. If not specified, the return address defaults to the <strong>shipFrom</strong> address in the shipping quote.
     */
     private ?Contact $returnTo = null;
     
     /**
-     * @var Contact|null $shipFrom This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipFrom The address and contact details for the origin of the package shipment.
     */
     private ?Contact $shipFrom = null;
     
     /**
-     * @var string|null $shipmentId The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <b>createFromShippingQuote</b>.
+     * @var string|null $shipmentId The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <strong>createFromShippingQuote</strong>.
     */
     private ?string $shipmentId = null;
     
@@ -92,7 +92,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     private ?string $shipmentTrackingNumber = null;
     
     /**
-     * @var Contact|null $shipTo This complex type contains contact information for an individual buyer or seller.
+     * @var Contact|null $shipTo The address and contact details for the destination of the shipment.
     */
     private ?Contact $shipTo = null;
     
@@ -121,7 +121,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the cancellation property value. This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * Gets the cancellation property value. Cancellation status for the package, if one exists.
      * @return ShipmentCancellation|null
     */
     public function getCancellation(): ?ShipmentCancellation {
@@ -129,7 +129,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the creationDate property value. The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Gets the creationDate property value. The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @return string|null
     */
     public function getCreationDate(): ?string {
@@ -176,7 +176,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the labelSize property value. The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <b>creaateFromShippingQuote</b> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
+     * Gets the labelSize property value. The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <strong>createFromShippingQuote</strong> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
      * @return string|null
     */
     public function getLabelSize(): ?string {
@@ -192,7 +192,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Gets the packageSpecification property value. The weight and dimensions of the package.
      * @return PackageSpecification|null
     */
     public function getPackageSpecification(): ?PackageSpecification {
@@ -200,7 +200,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the rate property value. The "rate" that has been selected and purchased for the shipment, as referenced by the <b>rateId</b> value.
+     * Gets the rate property value. The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a <strong>rateId</strong>, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
      * @return PurchasedRate|null
     */
     public function getRate(): ?PurchasedRate {
@@ -208,7 +208,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the returnTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the returnTo property value. The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their <strong>shipFrom</strong> address. If not specified, the return address defaults to the <strong>shipFrom</strong> address in the shipping quote.
      * @return Contact|null
     */
     public function getReturnTo(): ?Contact {
@@ -216,7 +216,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipFrom property value. The address and contact details for the origin of the package shipment.
      * @return Contact|null
     */
     public function getShipFrom(): ?Contact {
@@ -224,7 +224,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <b>createFromShippingQuote</b>.
+     * Gets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <strong>createFromShippingQuote</strong>.
      * @return string|null
     */
     public function getShipmentId(): ?string {
@@ -240,7 +240,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Gets the shipTo property value. The address and contact details for the destination of the shipment.
      * @return Contact|null
     */
     public function getShipTo(): ?Contact {
@@ -277,7 +277,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the cancellation property value. This type defines a shipment cancellation by the date and time the cancellation request was made and the current status of the request.
+     * Sets the cancellation property value. Cancellation status for the package, if one exists.
      * @param ShipmentCancellation|null $value Value to set for the cancellation property.
     */
     public function setCancellation(?ShipmentCancellation $value): void {
@@ -285,7 +285,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the creationDate property value. The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><b>Format:</b> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><b>Example:</b> <code>2018-08-20T07:09:00.000Z</code>
+     * Sets the creationDate property value. The date and time the shipment was created, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org" target="_blank">ISO 8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2018-08-20T07:09:00.000Z</code>
      * @param string|null $value Value to set for the creationDate property.
     */
     public function setCreationDate(?string $value): void {
@@ -309,7 +309,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the labelSize property value. The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <b>creaateFromShippingQuote</b> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
+     * Sets the labelSize property value. The seller's desired label size. The support for multi-sized labels is shipping-carrier specific and if the size requested in the <strong>createFromShippingQuote</strong> call matches a size the carrier supports, the value will be represented here in the shipment. <br><br>Currently, the only valid value is: <code>4"x6"</code>
      * @param string|null $value Value to set for the labelSize property.
     */
     public function setLabelSize(?string $value): void {
@@ -325,7 +325,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the packageSpecification property value. This complex type specifies the dimensions and weight of a package.
+     * Sets the packageSpecification property value. The weight and dimensions of the package.
      * @param PackageSpecification|null $value Value to set for the packageSpecification property.
     */
     public function setPackageSpecification(?PackageSpecification $value): void {
@@ -333,7 +333,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the rate property value. The "rate" that has been selected and purchased for the shipment, as referenced by the <b>rateId</b> value.
+     * Sets the rate property value. The shipping rate that the seller has chosen to purchase for this shipment. Each rate, identified by a <strong>rateId</strong>, contains the offered base service, options, and shipping parameters that were selected for the package shipment.
      * @param PurchasedRate|null $value Value to set for the rate property.
     */
     public function setRate(?PurchasedRate $value): void {
@@ -341,7 +341,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the returnTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the returnTo property value. The address and contact details that should be used for item returns. Sellers have the option to define a return address that is different from their <strong>shipFrom</strong> address. If not specified, the return address defaults to the <strong>shipFrom</strong> address in the shipping quote.
      * @param Contact|null $value Value to set for the returnTo property.
     */
     public function setReturnTo(?Contact $value): void {
@@ -349,7 +349,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipFrom property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipFrom property value. The address and contact details for the origin of the package shipment.
      * @param Contact|null $value Value to set for the shipFrom property.
     */
     public function setShipFrom(?Contact $value): void {
@@ -357,7 +357,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <b>createFromShippingQuote</b>.
+     * Sets the shipmentId property value. The unique eBay-assigned ID for the shipment. The ID is generated when the shipment is created by a call to <strong>createFromShippingQuote</strong>.
      * @param string|null $value Value to set for the shipmentId property.
     */
     public function setShipmentId(?string $value): void {
@@ -373,7 +373,7 @@ class Shipment implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the shipTo property value. This complex type contains contact information for an individual buyer or seller.
+     * Sets the shipTo property value. The address and contact details for the destination of the shipment.
      * @param Contact|null $value Value to set for the shipTo property.
     */
     public function setShipTo(?Contact $value): void {

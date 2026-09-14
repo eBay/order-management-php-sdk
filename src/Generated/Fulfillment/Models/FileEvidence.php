@@ -32,7 +32,7 @@ class FileEvidence implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $fileId This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes" target="_blank ">getPaymentDisputes</a> method.
+     * @var string|null $fileId This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> method.
     */
     private ?string $fileId = null;
     
@@ -72,7 +72,7 @@ class FileEvidence implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes" target="_blank ">getPaymentDisputes</a> method.
+     * Gets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> method.
      * @return string|null
     */
     public function getFileId(): ?string {
@@ -97,7 +97,7 @@ class FileEvidence implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/uploadEvidenceFile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputes" target="_blank ">getPaymentDisputes</a> method.
+     * Sets the fileId property value. This field is used to identify the evidence file to be uploaded to the evidence set.<br><br> This file is created with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-uploadevidencefile" target="_blank ">uploadEvidenceFile</a> method and can be retrieved using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdispute" target="_blank ">getPaymentDispute</a> method.
      * @param string|null $value Value to set for the fileId property.
     */
     public function setFileId(?string $value): void {

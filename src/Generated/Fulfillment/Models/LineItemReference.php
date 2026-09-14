@@ -32,12 +32,12 @@ class LineItemReference implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $lineItemId This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the lineItems.<b>lineItemId</b> field of the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> response.
+     * @var string|null $lineItemId This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the <strong>lineItems.lineItemId</strong> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> response.
     */
     private ?string $lineItemId = null;
     
     /**
-     * @var int|null $quantity This is the number of lineItems associated with the <a href="#request.trackingNumber">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><b>Default:</b> 1
+     * @var int|null $quantity This is the number of lineItems associated with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber" target="_blank">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><strong>Default:</strong> 1
     */
     private ?int $quantity = null;
     
@@ -78,7 +78,7 @@ class LineItemReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the lineItems.<b>lineItemId</b> field of the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> response.
+     * Gets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the <strong>lineItems.lineItemId</strong> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> response.
      * @return string|null
     */
     public function getLineItemId(): ?string {
@@ -86,7 +86,7 @@ class LineItemReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the quantity property value. This is the number of lineItems associated with the <a href="#request.trackingNumber">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><b>Default:</b> 1
+     * Gets the quantity property value. This is the number of lineItems associated with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber" target="_blank">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><strong>Default:</strong> 1
      * @return int|null
     */
     public function getQuantity(): ?int {
@@ -112,7 +112,7 @@ class LineItemReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the lineItems.<b>lineItemId</b> field of the <a href="/api-docs/sell/fulfillment/resources/order/methods/getOrders" target="_blank">getOrders</a> response.
+     * Sets the lineItemId property value. This is the unique identifier of the eBay order line item that is part of the shipping fulfillment.<br><br>Line item Ids can be found in the <strong>lineItems.lineItemId</strong> field of the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> response.
      * @param string|null $value Value to set for the lineItemId property.
     */
     public function setLineItemId(?string $value): void {
@@ -120,7 +120,7 @@ class LineItemReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the quantity property value. This is the number of lineItems associated with the <a href="#request.trackingNumber">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><b>Default:</b> 1
+     * Sets the quantity property value. This is the number of lineItems associated with the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-createshippingfulfillment.shippingfulfillmentdetails.trackingnumber" target="_blank">trackingNumber</a> specified by the seller. This must be a whole number greater than zero (0).<br><br><strong>Default:</strong> 1
      * @param int|null $value Value to set for the quantity property.
     */
     public function setQuantity(?int $value): void {

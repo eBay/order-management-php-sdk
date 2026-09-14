@@ -42,9 +42,9 @@ class Dimensions implements AdditionalDataHolder, Parsable
     private ?string $length = null;
     
     /**
-     * @var string|null $unit The unit of measure used to express the height, length, and width of the package. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum'>eBay API documentation</a>
+     * @var LengthUnitOfMeasureEnum|null $unit The unit of measure used to express the height, length, and width of the package.
     */
-    private ?string $unit = null;
+    private ?LengthUnitOfMeasureEnum $unit = null;
     
     /**
      * @var string|null $width The numeric value of the width of the package.
@@ -84,7 +84,7 @@ class Dimensions implements AdditionalDataHolder, Parsable
         return  [
             'height' => fn(ParseNode $n) => $o->setHeight($n->getStringValue()),
             'length' => fn(ParseNode $n) => $o->setLength($n->getStringValue()),
-            'unit' => fn(ParseNode $n) => $o->setUnit($n->getStringValue()),
+            'unit' => fn(ParseNode $n) => $o->setUnit($n->getEnumValue(LengthUnitOfMeasureEnum::class)),
             'width' => fn(ParseNode $n) => $o->setWidth($n->getStringValue()),
         ];
     }
@@ -106,10 +106,10 @@ class Dimensions implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the unit property value. The unit of measure used to express the height, length, and width of the package. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the unit property value. The unit of measure used to express the height, length, and width of the package.
+     * @return LengthUnitOfMeasureEnum|null
     */
-    public function getUnit(): ?string {
+    public function getUnit(): ?LengthUnitOfMeasureEnum {
         return $this->unit;
     }
 
@@ -128,7 +128,7 @@ class Dimensions implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('height', $this->getHeight());
         $writer->writeStringValue('length', $this->getLength());
-        $writer->writeStringValue('unit', $this->getUnit());
+        $writer->writeEnumValue('unit', $this->getUnit());
         $writer->writeStringValue('width', $this->getWidth());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -158,10 +158,10 @@ class Dimensions implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the unit property value. The unit of measure used to express the height, length, and width of the package. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/logistics/types/api:LengthUnitOfMeasureEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the unit property.
+     * Sets the unit property value. The unit of measure used to express the height, length, and width of the package.
+     * @param LengthUnitOfMeasureEnum|null $value Value to set for the unit property.
     */
-    public function setUnit(?string $value): void {
+    public function setUnit(?LengthUnitOfMeasureEnum $value): void {
         $this->unit = $value;
     }
 

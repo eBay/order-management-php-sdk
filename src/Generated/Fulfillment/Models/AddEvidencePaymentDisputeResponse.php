@@ -32,7 +32,7 @@ class AddEvidencePaymentDisputeResponse implements AdditionalDataHolder, Parsabl
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $evidenceId The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <strong>fetchEvidenceContent</strong> method.
+     * @var string|null $evidenceId The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-fetchevidencecontent" target="_blank">fetchEvidenceContent</a> method.
     */
     private ?string $evidenceId = null;
     
@@ -61,7 +61,7 @@ class AddEvidencePaymentDisputeResponse implements AdditionalDataHolder, Parsabl
     }
 
     /**
-     * Gets the evidenceId property value. The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <strong>fetchEvidenceContent</strong> method.
+     * Gets the evidenceId property value. The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-fetchevidencecontent" target="_blank">fetchEvidenceContent</a> method.
      * @return string|null
     */
     public function getEvidenceId(): ?string {
@@ -97,7 +97,7 @@ class AddEvidencePaymentDisputeResponse implements AdditionalDataHolder, Parsabl
     }
 
     /**
-     * Sets the evidenceId property value. The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <strong>fetchEvidenceContent</strong> method.
+     * Sets the evidenceId property value. The value returned in this field is the unique identifier of the newly-created evidence set. Upon a successful call, this value is automatically genererated. This new evidence set for the payment dispute includes the evidence file(s) that were passed in to the <strong>fileId</strong> array in the request payload. The <strong>evidenceId</strong> value will be needed if the seller wishes to add to the evidence set by using the <strong>updateEvidence</strong> method, or if they want to retrieve a specific evidence file within the evidence set by using the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-fetchevidencecontent" target="_blank">fetchEvidenceContent</a> method.
      * @param string|null $value Value to set for the evidenceId property.
     */
     public function setEvidenceId(?string $value): void {

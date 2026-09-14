@@ -23,8 +23,9 @@ final class OrderManagementConfiguration
     public readonly RequestOptions $defaultRequestOptions;
 
     public function __construct(
-        public readonly string $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1',
+        public readonly string $fulfillmentBaseUrl = 'https://apiz.ebay.com/sell/fulfillment/v1',
         public readonly string $logisticsBaseUrl = 'https://api.ebay.com/sell/logistics/v1_beta',
+        public readonly string $postOrderApiBaseUrl = 'https://api.ebay.com/post-order/v2',
         public readonly string $graphQLBaseUrl = 'https://api.ebay.com/graphql',
         public readonly ?string $accessToken = null,
         public readonly bool $diagnosticLogging = false,
@@ -51,6 +52,7 @@ final class OrderManagementConfiguration
             [
                 $this->fulfillmentBaseUrl,
                 $this->logisticsBaseUrl,
+                $this->postOrderApiBaseUrl,
                 $this->graphQLBaseUrl,
             ]
         ), 'is_string')));

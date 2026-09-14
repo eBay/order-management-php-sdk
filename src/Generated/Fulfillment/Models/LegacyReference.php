@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * Type defining the <b>legacyReference</b> container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
+ * Type defining the legacyReference container. This container is needed if the seller is issuing a refund for an individual order line item, and wishes to use an item ID and transaction ID to identify the order line item.
 */
 class LegacyReference implements AdditionalDataHolder, Parsable 
 {
@@ -32,12 +32,12 @@ class LegacyReference implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $legacyItemId The unique identifier of a listing.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>.<br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * @var string|null $legacyItemId The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
     */
     private ?string $legacyItemId = null;
     
     /**
-     * @var string|null $legacyTransactionId The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>. <br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * @var string|null $legacyTransactionId The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
     */
     private ?string $legacyTransactionId = null;
     
@@ -78,7 +78,7 @@ class LegacyReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the legacyItemId property value. The unique identifier of a listing.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>.<br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * Gets the legacyItemId property value. The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @return string|null
     */
     public function getLegacyItemId(): ?string {
@@ -86,7 +86,7 @@ class LegacyReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>. <br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * Gets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @return string|null
     */
     public function getLegacyTransactionId(): ?string {
@@ -112,7 +112,7 @@ class LegacyReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the legacyItemId property value. The unique identifier of a listing.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>.<br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * Sets the legacyItemId property value. The unique identifier of a listing. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @param string|null $value Value to set for the legacyItemId property.
     */
     public function setLegacyItemId(?string $value): void {
@@ -120,7 +120,7 @@ class LegacyReference implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder.<br><br> This value can be found in the <a href="/devzone/xml/docs/reference/ebay/getorders.html#Response.OrderArray.Order.TransactionArray.Transaction" target="_blank">Transaction</a> container in the response of the <a href="/devzone/xml/docs/reference/ebay/getorders.html" target="_blank">getOrder</a> call of the <b>Trading API</b>. <br><br><span class="tablenote"><strong>Note:</strong> Both <b>legacyItemId</b> and <b>legacyTransactionId</b> are needed to identify an order line item. </span>
+     * Sets the legacyTransactionId property value. The unique identifier of a sale/transaction in legacy/Trading API format. A 'transaction ID' is created once a buyer purchases a 'Buy It Now' item or if an auction listing ends with a winning bidder. This value can be found in the Transaction container in the response of the getOrder call of the Trading API. Note: Both legacyItemId and legacyTransactionId are needed to identify an order line item.
      * @param string|null $value Value to set for the legacyTransactionId property.
     */
     public function setLegacyTransactionId(?string $value): void {

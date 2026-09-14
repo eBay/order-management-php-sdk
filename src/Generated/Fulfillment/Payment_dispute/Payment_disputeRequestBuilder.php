@@ -27,7 +27,7 @@ class Payment_disputeRequestBuilder extends BaseRequestBuilder
 {
     /**
      * Gets an item from the EBay/OrderManagement/Generated/Fulfillment.payment_dispute.item collection
-     * @param string $payment_dispute_id This parameter is used to specify the unique identifier of the payment dispute being retrieved.<br><br> Use the <a href="/api-docs/sell/fulfillment/resources/payment_dispute/methods/getPaymentDisputeSummaries" target="_blank ">getPaymentDisputeSummaries</a> method to retrieve payment dispute IDs.
+     * @param string $payment_dispute_id This parameter is used to specify the unique identifier of the payment dispute being retrieved.<br><br> Use the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-payment_dispute-getpaymentdisputesummaries" target="_blank ">getPaymentDisputeSummaries</a> method to retrieve payment dispute IDs.
      * @return WithPayment_dispute_ItemRequestBuilder
     */
     public function byPayment_dispute_id(string $payment_dispute_id): WithPayment_dispute_ItemRequestBuilder {

@@ -22,7 +22,7 @@ use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
 use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 
 /**
- * The base type used by the request payload of the <b>issueRefund</b> method.
+ * The base type used by the request payload of the issueRefund method.
 */
 class IssueRefundRequest implements AdditionalDataHolder, Parsable 
 {
@@ -32,22 +32,22 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $comment This free-text field allows the seller to clarify why the refund is being issued to the buyer.<br><br><b>Max Length</b>: 100
+     * @var string|null $comment This free-text field allows the seller to clarify why the refund is being issued to the buyer. Max Length: 1000
     */
     private ?string $comment = null;
     
     /**
-     * @var SimpleAmount|null $orderLevelRefundAmount This type defines the monetary value of the payment dispute, and the currency used.
+     * @var SimpleAmount|null $orderLevelRefundAmount This container is used to specify the amount of the refund for the entire order. If a seller wants to issue a refund for an individual line item within a multiple line item order, the seller would use the <strong>refundItems</strong> array instead.
     */
     private ?SimpleAmount $orderLevelRefundAmount = null;
     
     /**
-     * @var string|null $reasonForRefund The enumeration value passed into this field indicates the reason for the refund. One of the defined enumeration values in the <b>ReasonForRefundEnum</b> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <b>issueRefund</b> calls, one for each refund reason. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ReasonForRefundEnum'>eBay API documentation</a>
+     * @var ReasonForRefundEnum|null $reasonForRefund The enumeration value passed in this field indicates the reason for the refund. One of the defined enumeration values in the <strong>ReasonForRefundEnum</strong> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <strong>issueRefund</strong> calls, one for each refund reason. </span>
     */
-    private ?string $reasonForRefund = null;
+    private ?ReasonForRefundEnum $reasonForRefund = null;
     
     /**
-     * @var array<RefundItem>|null $refundItems The <b>refundItems</b> array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <b>orderLevelRefundAmount</b> container to specify the amount of the refund for the entire order.
+     * @var array<RefundItem>|null $refundItems The refundItems array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.
     */
     private ?array $refundItems = null;
     
@@ -76,7 +76,7 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the comment property value. This free-text field allows the seller to clarify why the refund is being issued to the buyer.<br><br><b>Max Length</b>: 100
+     * Gets the comment property value. This free-text field allows the seller to clarify why the refund is being issued to the buyer. Max Length: 1000
      * @return string|null
     */
     public function getComment(): ?string {
@@ -92,13 +92,13 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
         return  [
             'comment' => fn(ParseNode $n) => $o->setComment($n->getStringValue()),
             'orderLevelRefundAmount' => fn(ParseNode $n) => $o->setOrderLevelRefundAmount($n->getObjectValue([SimpleAmount::class, 'createFromDiscriminatorValue'])),
-            'reasonForRefund' => fn(ParseNode $n) => $o->setReasonForRefund($n->getStringValue()),
+            'reasonForRefund' => fn(ParseNode $n) => $o->setReasonForRefund($n->getEnumValue(ReasonForRefundEnum::class)),
             'refundItems' => fn(ParseNode $n) => $o->setRefundItems($n->getCollectionOfObjectValues([RefundItem::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
     /**
-     * Gets the orderLevelRefundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Gets the orderLevelRefundAmount property value. This container is used to specify the amount of the refund for the entire order. If a seller wants to issue a refund for an individual line item within a multiple line item order, the seller would use the <strong>refundItems</strong> array instead.
      * @return SimpleAmount|null
     */
     public function getOrderLevelRefundAmount(): ?SimpleAmount {
@@ -106,15 +106,15 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the reasonForRefund property value. The enumeration value passed into this field indicates the reason for the refund. One of the defined enumeration values in the <b>ReasonForRefundEnum</b> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <b>issueRefund</b> calls, one for each refund reason. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ReasonForRefundEnum'>eBay API documentation</a>
-     * @return string|null
+     * Gets the reasonForRefund property value. The enumeration value passed in this field indicates the reason for the refund. One of the defined enumeration values in the <strong>ReasonForRefundEnum</strong> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <strong>issueRefund</strong> calls, one for each refund reason. </span>
+     * @return ReasonForRefundEnum|null
     */
-    public function getReasonForRefund(): ?string {
+    public function getReasonForRefund(): ?ReasonForRefundEnum {
         return $this->reasonForRefund;
     }
 
     /**
-     * Gets the refundItems property value. The <b>refundItems</b> array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <b>orderLevelRefundAmount</b> container to specify the amount of the refund for the entire order.
+     * Gets the refundItems property value. The refundItems array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.
      * @return array<RefundItem>|null
     */
     public function getRefundItems(): ?array {
@@ -128,7 +128,7 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('comment', $this->getComment());
         $writer->writeObjectValue('orderLevelRefundAmount', $this->getOrderLevelRefundAmount());
-        $writer->writeStringValue('reasonForRefund', $this->getReasonForRefund());
+        $writer->writeEnumValue('reasonForRefund', $this->getReasonForRefund());
         $writer->writeCollectionOfObjectValues('refundItems', $this->getRefundItems());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -142,7 +142,7 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the comment property value. This free-text field allows the seller to clarify why the refund is being issued to the buyer.<br><br><b>Max Length</b>: 100
+     * Sets the comment property value. This free-text field allows the seller to clarify why the refund is being issued to the buyer. Max Length: 1000
      * @param string|null $value Value to set for the comment property.
     */
     public function setComment(?string $value): void {
@@ -150,7 +150,7 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the orderLevelRefundAmount property value. This type defines the monetary value of the payment dispute, and the currency used.
+     * Sets the orderLevelRefundAmount property value. This container is used to specify the amount of the refund for the entire order. If a seller wants to issue a refund for an individual line item within a multiple line item order, the seller would use the <strong>refundItems</strong> array instead.
      * @param SimpleAmount|null $value Value to set for the orderLevelRefundAmount property.
     */
     public function setOrderLevelRefundAmount(?SimpleAmount $value): void {
@@ -158,15 +158,15 @@ class IssueRefundRequest implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the reasonForRefund property value. The enumeration value passed into this field indicates the reason for the refund. One of the defined enumeration values in the <b>ReasonForRefundEnum</b> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <b>issueRefund</b> calls, one for each refund reason. </span> For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/fulfillment/types/api:ReasonForRefundEnum'>eBay API documentation</a>
-     * @param string|null $value Value to set for the reasonForRefund property.
+     * Sets the reasonForRefund property value. The enumeration value passed in this field indicates the reason for the refund. One of the defined enumeration values in the <strong>ReasonForRefundEnum</strong> type must be used.<br><br>This field is required, and it is highly recommended that sellers use the correct refund reason, especially in the case of a buyer-requested cancellation or 'buyer remorse' return to indicate that there was nothing wrong with the item(s) or with the shipment of the order.<br><br><span class="tablenote"><strong>Note:</strong> If issuing refunds for more than one order line item, keep in mind that the refund reason must be the same for each of the order line items. If the refund reason is different for one or more order line items in an order, the seller would need to make separate <strong>issueRefund</strong> calls, one for each refund reason. </span>
+     * @param ReasonForRefundEnum|null $value Value to set for the reasonForRefund property.
     */
-    public function setReasonForRefund(?string $value): void {
+    public function setReasonForRefund(?ReasonForRefundEnum $value): void {
         $this->reasonForRefund = $value;
     }
 
     /**
-     * Sets the refundItems property value. The <b>refundItems</b> array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the <b>orderLevelRefundAmount</b> container to specify the amount of the refund for the entire order.
+     * Sets the refundItems property value. The refundItems array is only required if the seller is issuing a refund for one or more individual order line items in a multiple line item order. Otherwise, the seller just uses the orderLevelRefundAmount container to specify the amount of the refund for the entire order.
      * @param array<RefundItem>|null $value Value to set for the refundItems property.
     */
     public function setRefundItems(?array $value): void {

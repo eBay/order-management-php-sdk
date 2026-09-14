@@ -32,42 +32,42 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var Amount|null $adjustment This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $adjustment This container shows the total amount of any adjustments that were applied to the cost of the item(s) in the order. This amount does not include shipping, discounts, fixed fees, or taxes.<br><br>This container is only returned if price adjustments were made to the order after the initial transaction/commitment to buy occurred.
     */
     private ?Amount $adjustment = null;
     
     /**
-     * @var Amount|null $deliveryCost This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $deliveryCost This container shows the total cost of delivering the order to the buyer before any shipping/delivery discount is applied.
     */
     private ?Amount $deliveryCost = null;
     
     /**
-     * @var Amount|null $deliveryDiscount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $deliveryDiscount This container shows the total amount of delivery discounts (including shipping discounts) that apply to the order. This should be a negative real number.<br><br>This container is only returned if delivery discounts are being applied to the order.
     */
     private ?Amount $deliveryDiscount = null;
     
     /**
-     * @var Amount|null $fee This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $fee This container shows the total amount of any special fees applied to the order, such as a tire recycling fee or an electronic waste fee. <br><br>This container is returned if special fees are being applied to the order and if the <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>.
     */
     private ?Amount $fee = null;
     
     /**
-     * @var Amount|null $priceDiscount This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $priceDiscount This container shows the total amount of all item price discounts (including promotions) that apply to the order and reduce its cost to the buyer. This should be a negative real number. <br><br>This container is only returned if special discounts are being applied to the order.
     */
     private ?Amount $priceDiscount = null;
     
     /**
-     * @var Amount|null $priceSubtotal This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $priceSubtotal This container shows the cumulative costs of of all units of all line items in the order before any discount is applied.
     */
     private ?Amount $priceSubtotal = null;
     
     /**
-     * @var Amount|null $tax This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $tax This container shows the total amount of tax for the order. To calculate the tax percentage rate, divide this value by the value of the <strong>total</strong> field. <br><br>This container is only returned if any type of tax (sales tax, tax on shipping, tax on handling, import tax, etc.) is applied to the order.
     */
     private ?Amount $tax = null;
     
     /**
-     * @var Amount|null $total This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * @var Amount|null $total The total cost of the order after adding all line item costs, delivery costs, sales tax, and special fees and then subtracting all special discounts and price adjustments.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>total</strong> value only when the <strong>fieldGroups</strong> query parameter is set to <code>TAX_BREAKDOWN</code>. If the <strong>fieldGroups</strong> query parameter is not set to <code>TAX_BREAKDOWN</code>, 'Collect and Remit' will not be added into this <strong>total</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>total</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US state-mandated sales tax</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: 'Good and Services' tax in Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
     */
     private ?Amount $total = null;
     
@@ -96,7 +96,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the adjustment property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the adjustment property value. This container shows the total amount of any adjustments that were applied to the cost of the item(s) in the order. This amount does not include shipping, discounts, fixed fees, or taxes.<br><br>This container is only returned if price adjustments were made to the order after the initial transaction/commitment to buy occurred.
      * @return Amount|null
     */
     public function getAdjustment(): ?Amount {
@@ -104,7 +104,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the deliveryCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the deliveryCost property value. This container shows the total cost of delivering the order to the buyer before any shipping/delivery discount is applied.
      * @return Amount|null
     */
     public function getDeliveryCost(): ?Amount {
@@ -112,7 +112,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the deliveryDiscount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the deliveryDiscount property value. This container shows the total amount of delivery discounts (including shipping discounts) that apply to the order. This should be a negative real number.<br><br>This container is only returned if delivery discounts are being applied to the order.
      * @return Amount|null
     */
     public function getDeliveryDiscount(): ?Amount {
@@ -120,7 +120,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the fee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the fee property value. This container shows the total amount of any special fees applied to the order, such as a tire recycling fee or an electronic waste fee. <br><br>This container is returned if special fees are being applied to the order and if the <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>.
      * @return Amount|null
     */
     public function getFee(): ?Amount {
@@ -146,7 +146,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the priceDiscount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the priceDiscount property value. This container shows the total amount of all item price discounts (including promotions) that apply to the order and reduce its cost to the buyer. This should be a negative real number. <br><br>This container is only returned if special discounts are being applied to the order.
      * @return Amount|null
     */
     public function getPriceDiscount(): ?Amount {
@@ -154,7 +154,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the priceSubtotal property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the priceSubtotal property value. This container shows the cumulative costs of of all units of all line items in the order before any discount is applied.
      * @return Amount|null
     */
     public function getPriceSubtotal(): ?Amount {
@@ -162,7 +162,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the tax property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the tax property value. This container shows the total amount of tax for the order. To calculate the tax percentage rate, divide this value by the value of the <strong>total</strong> field. <br><br>This container is only returned if any type of tax (sales tax, tax on shipping, tax on handling, import tax, etc.) is applied to the order.
      * @return Amount|null
     */
     public function getTax(): ?Amount {
@@ -170,7 +170,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the total property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Gets the total property value. The total cost of the order after adding all line item costs, delivery costs, sales tax, and special fees and then subtracting all special discounts and price adjustments.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>total</strong> value only when the <strong>fieldGroups</strong> query parameter is set to <code>TAX_BREAKDOWN</code>. If the <strong>fieldGroups</strong> query parameter is not set to <code>TAX_BREAKDOWN</code>, 'Collect and Remit' will not be added into this <strong>total</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>total</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US state-mandated sales tax</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: 'Good and Services' tax in Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
      * @return Amount|null
     */
     public function getTotal(): ?Amount {
@@ -202,7 +202,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the adjustment property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the adjustment property value. This container shows the total amount of any adjustments that were applied to the cost of the item(s) in the order. This amount does not include shipping, discounts, fixed fees, or taxes.<br><br>This container is only returned if price adjustments were made to the order after the initial transaction/commitment to buy occurred.
      * @param Amount|null $value Value to set for the adjustment property.
     */
     public function setAdjustment(?Amount $value): void {
@@ -210,7 +210,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the deliveryCost property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the deliveryCost property value. This container shows the total cost of delivering the order to the buyer before any shipping/delivery discount is applied.
      * @param Amount|null $value Value to set for the deliveryCost property.
     */
     public function setDeliveryCost(?Amount $value): void {
@@ -218,7 +218,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the deliveryDiscount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the deliveryDiscount property value. This container shows the total amount of delivery discounts (including shipping discounts) that apply to the order. This should be a negative real number.<br><br>This container is only returned if delivery discounts are being applied to the order.
      * @param Amount|null $value Value to set for the deliveryDiscount property.
     */
     public function setDeliveryDiscount(?Amount $value): void {
@@ -226,7 +226,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the fee property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the fee property value. This container shows the total amount of any special fees applied to the order, such as a tire recycling fee or an electronic waste fee. <br><br>This container is returned if special fees are being applied to the order and if the <strong>fieldGroups</strong> is set to <code>TAX_BREAKDOWN</code>.
      * @param Amount|null $value Value to set for the fee property.
     */
     public function setFee(?Amount $value): void {
@@ -234,7 +234,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the priceDiscount property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the priceDiscount property value. This container shows the total amount of all item price discounts (including promotions) that apply to the order and reduce its cost to the buyer. This should be a negative real number. <br><br>This container is only returned if special discounts are being applied to the order.
      * @param Amount|null $value Value to set for the priceDiscount property.
     */
     public function setPriceDiscount(?Amount $value): void {
@@ -242,7 +242,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the priceSubtotal property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the priceSubtotal property value. This container shows the cumulative costs of of all units of all line items in the order before any discount is applied.
      * @param Amount|null $value Value to set for the priceSubtotal property.
     */
     public function setPriceSubtotal(?Amount $value): void {
@@ -250,7 +250,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the tax property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the tax property value. This container shows the total amount of tax for the order. To calculate the tax percentage rate, divide this value by the value of the <strong>total</strong> field. <br><br>This container is only returned if any type of tax (sales tax, tax on shipping, tax on handling, import tax, etc.) is applied to the order.
      * @param Amount|null $value Value to set for the tax property.
     */
     public function setTax(?Amount $value): void {
@@ -258,7 +258,7 @@ class PricingSummary implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the total property value. This type defines the monetary value of an amount. It can provide the amount in both the currency used on the eBay site where an item is being offered and the conversion of that value into another currency, if applicable.
+     * Sets the total property value. The total cost of the order after adding all line item costs, delivery costs, sales tax, and special fees and then subtracting all special discounts and price adjustments.<br><br><span class="tablenote"><strong>Note:</strong> For orders that are subject to eBay 'Collect and Remit' tax, the 'Collect and Remit' tax amount for the order will be included in this <strong>total</strong> value only when the <strong>fieldGroups</strong> query parameter is set to <code>TAX_BREAKDOWN</code>. If the <strong>fieldGroups</strong> query parameter is not set to <code>TAX_BREAKDOWN</code>, 'Collect and Remit' will not be added into this <strong>total</strong> value.<br><br>To determine if 'Collect and Remit' taxes were added into this <strong>total</strong> value, the user can check for the corresponding <strong>lineItems.ebayCollectAndRemitTaxes</strong> and the <strong>lineItems.taxes</strong> containers in the response. If both of these containers appear for one or more line items in the response with the following <strong>taxType</strong> values, the 'Collect and Remit' tax amount that the buyer paid is included in this amount:<ul><li><code>STATE_SALES_TAX</code>: US state-mandated sales tax</li><li><code>PROVINCE_SALES_TAX</code>: Provincial Sales Tax in Canada</li><li><code>GST</code>: 'Good and Services' tax in Canada, Australia, and New Zealand</li><li><code>VAT</code>: VAT collected for UK and EU countries</li></ul></span>
      * @param Amount|null $value Value to set for the total property.
     */
     public function setTotal(?Amount $value): void {

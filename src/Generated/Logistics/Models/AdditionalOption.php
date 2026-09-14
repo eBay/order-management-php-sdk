@@ -27,7 +27,7 @@ use Microsoft\Kiota\Abstractions\Serialization\SerializationWriter;
 class AdditionalOption implements AdditionalDataHolder, Parsable 
 {
     /**
-     * @var Amount|null $additionalCost A complex type that describes the value of a monetary amount as represented by a global currency.
+     * @var Amount|null $additionalCost The monetary cost of the additional shipping option identified by the <strong>optionType</strong> field.
     */
     private ?Amount $additionalCost = null;
     
@@ -58,7 +58,7 @@ class AdditionalOption implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Gets the additionalCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Gets the additionalCost property value. The monetary cost of the additional shipping option identified by the <strong>optionType</strong> field.
      * @return Amount|null
     */
     public function getAdditionalCost(): ?Amount {
@@ -104,7 +104,7 @@ class AdditionalOption implements AdditionalDataHolder, Parsable
     }
 
     /**
-     * Sets the additionalCost property value. A complex type that describes the value of a monetary amount as represented by a global currency.
+     * Sets the additionalCost property value. The monetary cost of the additional shipping option identified by the <strong>optionType</strong> field.
      * @param Amount|null $value Value to set for the additionalCost property.
     */
     public function setAdditionalCost(?Amount $value): void {

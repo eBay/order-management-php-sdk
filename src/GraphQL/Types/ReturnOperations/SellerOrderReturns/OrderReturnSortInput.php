@@ -21,23 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns
 readonly class OrderReturnSortInput
 {
     public function __construct(
-        public string $sortField = 'REQUESTED_AT',
-        public string $sortOrder = 'ASC',
+        public ?string $sortField = null,
+        public ?string $sortOrder = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            sortField: $data['sortField'] ?? 'REQUESTED_AT',
-            sortOrder: $data['sortOrder'] ?? 'ASC',
+        return new self(
+            sortField: $data['sortField'] ?? null,
+            sortOrder: $data['sortOrder'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return [
-            'sortField' => $this->sortField,
-            'sortOrder' => $this->sortOrder,
-        ];
+        return array_filter(
+            [
+                'sortField' => $this->sortField,
+                'sortOrder' => $this->sortOrder,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

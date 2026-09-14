@@ -24,16 +24,17 @@ readonly class PurchaseQuote
         public ?string $purchaseQuoteId = null,
         public ?string $createdAt = null,
         public ?string $updatedAt = null,
-        public ?PurchaseQuoteState $state = null,
+        public PurchaseQuoteActive|PurchaseQuoteCancelled|PurchaseQuoteCompleted|PurchaseQuoteInvalid|PurchaseQuoteLocked|PurchaseQuoteRequested|null $state = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
             purchaseQuoteId: $data['purchaseQuoteId'] ?? null,
-            createdAt:       $data['createdAt'] ?? null,
-            updatedAt:       $data['updatedAt'] ?? null,
-            state:           isset($data['state']) ? PurchaseQuoteState::fromArray($data['state']) : null,
+            createdAt: $data['createdAt'] ?? null,
+            updatedAt: $data['updatedAt'] ?? null,
+            state: isset($data['state']) ? PurchaseQuoteState::fromArray($data['state']) : null,
         );
     }
 }

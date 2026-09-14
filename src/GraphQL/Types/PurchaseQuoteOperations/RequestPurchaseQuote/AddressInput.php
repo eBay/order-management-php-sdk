@@ -31,31 +31,36 @@ readonly class AddressInput
         public ?string $stateOrProvince = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            addressLine1:    $data['addressLine1'] ?? null,
-            addressLine2:    $data['addressLine2'] ?? null,
-            city:            $data['city'] ?? null,
-            country:         $data['country'] ?? null,
-            email:           $data['email'] ?? null,
-            phone:           $data['phone'] ?? null,
-            postalCode:      $data['postalCode'] ?? null,
+        return new self(
+            addressLine1: $data['addressLine1'] ?? null,
+            addressLine2: $data['addressLine2'] ?? null,
+            city: $data['city'] ?? null,
+            country: $data['country'] ?? null,
+            email: $data['email'] ?? null,
+            phone: $data['phone'] ?? null,
+            postalCode: $data['postalCode'] ?? null,
             stateOrProvince: $data['stateOrProvince'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'addressLine1'    => $this->addressLine1,
-            'addressLine2'    => $this->addressLine2,
-            'city'            => $this->city,
-            'country'         => $this->country,
-            'email'           => $this->email,
-            'phone'           => $this->phone,
-            'postalCode'      => $this->postalCode,
-            'stateOrProvince' => $this->stateOrProvince,
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'addressLine1' => $this->addressLine1,
+                'addressLine2' => $this->addressLine2,
+                'city' => $this->city,
+                'country' => $this->country,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'postalCode' => $this->postalCode,
+                'stateOrProvince' => $this->stateOrProvince,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

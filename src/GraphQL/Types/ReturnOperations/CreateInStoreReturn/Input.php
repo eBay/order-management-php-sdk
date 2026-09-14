@@ -25,20 +25,22 @@ readonly class Input
         public array $returnLineItemInput,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            returnLineItemInput: array_map(
-                fn(array $i) => CreateReturnLineItemInput::fromArray($i),
-                $data['returnLineItemInput'],
-            ),
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            returnLineItemInput: array_map(fn($item) => CreateReturnLineItemInput::fromArray($item), $data['returnLineItemInput']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'returnLineItemInput' => array_map(fn(CreateReturnLineItemInput $i) => $i->toArray(), $this->returnLineItemInput),
+                'returnLineItemInput' => array_map(fn(CreateReturnLineItemInput $item) => $item->toArray(), $this->returnLineItemInput),
         ];
     }
 }

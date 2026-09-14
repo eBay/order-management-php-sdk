@@ -20,18 +20,17 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerReturn
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnRuleDuplicateRuleIdsError|ReturnRuleFeatureNotEnabledError|ReturnRuleInvalidRuleIdsError|ReturnRuleMissingRuleIdsError|UpdateSellerReturnToAddressRulesPrioritiesSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'UpdateSellerReturnToAddressRulesPrioritiesSuccess' => Success::fromArray($data),
-            'ReturnRuleMissingRuleIdsError'                    => MissingRuleIdsError::fromArray($data),
-            'ReturnRuleDuplicateRuleIdsError'                  => DuplicateRuleIdsError::fromArray($data),
-            'ReturnRuleInvalidRuleIdsError'                    => InvalidRuleIdsError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError'                 => FeatureNotEnabledError::fromArray($data),
+            'ReturnRuleDuplicateRuleIdsError' => ReturnRuleDuplicateRuleIdsError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleInvalidRuleIdsError' => ReturnRuleInvalidRuleIdsError::fromArray($data),
+            'ReturnRuleMissingRuleIdsError' => ReturnRuleMissingRuleIdsError::fromArray($data),
+            'UpdateSellerReturnToAddressRulesPrioritiesSuccess' => UpdateSellerReturnToAddressRulesPrioritiesSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

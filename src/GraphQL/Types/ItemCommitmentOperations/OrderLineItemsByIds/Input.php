@@ -20,24 +20,27 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\OrderLineI
 
 readonly class Input
 {
-    /**
-     * @param string[] $lineItemIds
-     */
     public function __construct(
+        /** @var array<int, mixed> */
         public array $lineItemIds,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             lineItemIds: $data['lineItemIds'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'lineItemIds' => $this->lineItemIds,
+                'lineItemIds' => $this->lineItemIds,
         ];
     }
 }

@@ -18,27 +18,21 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProcessReturnRefund;
 
-readonly class ItemPriceRefundWithholdViolation extends Violation
+readonly class ItemPriceRefundWithholdViolation
 {
     public function __construct(
         public ?string $code = null,
         public ?string $displayMessage = null,
-        public ?RefundWithholdConstraint $constraint = null,
+        public ?ItemPriceRefundWithholdConstraint $constraint = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ItemPriceRefundWithholdViolation';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:          $data['code'] ?? null,
+            code: $data['code'] ?? null,
             displayMessage: $data['displayMessage'] ?? null,
-            constraint:    isset($data['constraint'])
-                ? RefundWithholdConstraint::fromArray($data['constraint'])
-                : null,
+            constraint: isset($data['constraint']) ? ItemPriceRefundWithholdConstraint::fromArray($data['constraint']) : null,
         );
     }
 }

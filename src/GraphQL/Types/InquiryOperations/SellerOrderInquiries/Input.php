@@ -21,28 +21,31 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\SellerOrderInquir
 readonly class Input
 {
     public function __construct(
-        public ?InitialPageInput $initialPage = null,
+        public ?OrderInquiryInitialPageInput $initialPage = null,
         public ?PageInfoInput $pageInfo = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            initialPage: isset($data['initialPage']) ? InitialPageInput::fromArray($data['initialPage']) : null,
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            initialPage: isset($data['initialPage']) ? OrderInquiryInitialPageInput::fromArray($data['initialPage']) : null,
             pageInfo: isset($data['pageInfo']) ? PageInfoInput::fromArray($data['pageInfo']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $arr = [];
-        if ($this->initialPage !== null) {
-            $arr['initialPage'] = $this->initialPage->toArray();
-        }
-        if ($this->pageInfo !== null) {
-            $arr['pageInfo'] = $this->pageInfo->toArray();
-        }
-
-        return $arr;
+        return array_filter(
+            [
+                'initialPage' => $this->initialPage !== null ? (object)$this->initialPage->toArray() : null,
+                'pageInfo' => $this->pageInfo !== null ? (object)$this->pageInfo->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

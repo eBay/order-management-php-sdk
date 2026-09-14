@@ -18,14 +18,14 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output;
 
-final class Pagination
+readonly class Pagination
 {
     public function __construct(
-        public readonly ?string $nextCursor = null,
-        public readonly ?string $previousCursor = null,
-    ) {
-    }
+        public ?string $nextCursor = null,
+        public ?string $previousCursor = null,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(

@@ -21,26 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns
 readonly class OrderReturnFilterInput
 {
     public function __construct(
-        public string $presets = 'AWAITING_ACTION_FROM_SELLER',
+        public string $presets,
         public ?DateTimeRangeInput $dateRange = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            presets: $data['presets'] ?? 'AWAITING_ACTION_FROM_SELLER',
-            dateRange: isset($data['dateRange'])
-                ? DateTimeRangeInput::fromArray($data['dateRange'])
-                : null,
+        return new self(
+            dateRange: isset($data['dateRange']) ? DateTimeRangeInput::fromArray($data['dateRange']) : null,
+            presets: $data['presets'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = ['presets' => $this->presets];
-        if ($this->dateRange !== null) {
-            $data['dateRange'] = $this->dateRange->toArray();
-        }
-        return $data;
+        return array_filter(
+            [
+                'dateRange' => $this->dateRange !== null ? (object)$this->dateRange->toArray() : null,
+                'presets' => $this->presets,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

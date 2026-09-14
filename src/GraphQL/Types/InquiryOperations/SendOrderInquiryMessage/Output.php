@@ -20,16 +20,17 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\SendOrderInquiryM
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderInquiryActionNotPermittedError|OrderInquiryNotFoundError|SendOrderInquiryMessageInputValidationError|SendOrderInquiryMessageSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'SendOrderInquiryMessageSuccess' => Success::fromArray($data),
-            'OrderInquiryNotFoundError' => NotFoundError::fromArray($data),
-            'OrderInquiryActionNotPermittedError' => ActionNotPermittedError::fromArray($data),
-            'SendOrderInquiryMessageInputValidationError' => InputValidationError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'OrderInquiryActionNotPermittedError' => OrderInquiryActionNotPermittedError::fromArray($data),
+            'OrderInquiryNotFoundError' => OrderInquiryNotFoundError::fromArray($data),
+            'SendOrderInquiryMessageInputValidationError' => SendOrderInquiryMessageInputValidationError::fromArray($data),
+            'SendOrderInquiryMessageSuccess' => SendOrderInquiryMessageSuccess::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

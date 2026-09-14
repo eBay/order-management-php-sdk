@@ -22,20 +22,16 @@ readonly class ReturnOffer
 {
     public function __construct(
         public ?ReturnOfferStatus $status = null,
-        /** @var ProposedTerm[] */
+        /** @var (KeepItemPartialRefundTerm)[] */
         public array $proposedTerm = [],
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            status:       isset($data['status'])
-                ? ReturnOfferStatus::fromArray($data['status'])
-                : null,
-            proposedTerm: array_map(
-                fn(array $t) => ProposedTerm::fromArray($t),
-                $data['proposedTerm'] ?? []
-            ),
+            status: isset($data['status']) ? ReturnOfferStatus::fromArray($data['status']) : null,
+            proposedTerm: array_map(fn($item) => ReturnOfferTerm::fromArray($item), $data['proposedTerm'] ?? []),
         );
     }
 }

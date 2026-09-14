@@ -20,19 +20,18 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToRetur
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnRuleFeatureNotEnabledError|ReturnRuleListingGroup|ReturnRuleListingGroupDuplicateListingError|ReturnRuleListingGroupMaxSizeExceededError|ReturnRuleListingGroupNotFoundError|ReturnRuleListingIdsPerRequestLimitExceededError
     {
         return match ($data['__typename'] ?? null) {
-            'ReturnRuleListingGroup'                         => ListingGroupSuccess::fromArray($data),
-            'ReturnRuleListingGroupDuplicateListingError'    => DuplicateListingError::fromArray($data),
-            'ReturnRuleListingIdsPerRequestLimitExceededError' => PerRequestLimitError::fromArray($data),
-            'ReturnRuleListingGroupMaxSizeExceededError'     => MaxSizeExceededError::fromArray($data),
-            'ReturnRuleListingGroupNotFoundError'            => ListingGroupNotFoundError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError'               => GenericError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleListingGroup' => ReturnRuleListingGroup::fromArray($data),
+            'ReturnRuleListingGroupDuplicateListingError' => ReturnRuleListingGroupDuplicateListingError::fromArray($data),
+            'ReturnRuleListingGroupMaxSizeExceededError' => ReturnRuleListingGroupMaxSizeExceededError::fromArray($data),
+            'ReturnRuleListingGroupNotFoundError' => ReturnRuleListingGroupNotFoundError::fromArray($data),
+            'ReturnRuleListingIdsPerRequestLimitExceededError' => ReturnRuleListingIdsPerRequestLimitExceededError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

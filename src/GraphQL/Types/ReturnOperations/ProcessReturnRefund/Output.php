@@ -20,25 +20,24 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProcessReturnRefun
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): MultipleRefundWithholdingsNotAllowedError|OrderReturn|ProcessReturnRefundInputValidationError|RefundAuthorizationFailedError|RefundBlockedByPaymentDisputeError|RefundInstrumentDeclinedError|RefundInstrumentInsufficientFundsError|RefundInstrumentInvalidError|RefundProcessingError|ReturnActionNotPermittedError|ReturnLineItemNotFoundError|ReturnNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'OrderReturn'                              => OrderReturnData::fromArray($data),
-            'ReturnNotFoundError'                     => ReturnNotFoundError::fromArray($data),
-            'ReturnActionNotPermittedError'            => ReturnActionNotPermittedError::fromArray($data),
-            'ReturnLineItemNotFoundError'              => ReturnLineItemNotFoundError::fromArray($data),
             'MultipleRefundWithholdingsNotAllowedError' => MultipleRefundWithholdingsNotAllowedError::fromArray($data),
-            'ProcessReturnRefundInputValidationError'  => ProcessReturnRefundInputValidationError::fromArray($data),
-            'RefundProcessingError',
-            'RefundInstrumentInvalidError',
-            'RefundInstrumentInsufficientFundsError',
-            'RefundInstrumentDeclinedError',
-            'RefundBlockedByPaymentDisputeError',
-            'RefundAuthorizationFailedError'           => GenericError::fromArray($data),
+            'OrderReturn' => OrderReturn::fromArray($data),
+            'ProcessReturnRefundInputValidationError' => ProcessReturnRefundInputValidationError::fromArray($data),
+            'RefundAuthorizationFailedError' => RefundAuthorizationFailedError::fromArray($data),
+            'RefundBlockedByPaymentDisputeError' => RefundBlockedByPaymentDisputeError::fromArray($data),
+            'RefundInstrumentDeclinedError' => RefundInstrumentDeclinedError::fromArray($data),
+            'RefundInstrumentInsufficientFundsError' => RefundInstrumentInsufficientFundsError::fromArray($data),
+            'RefundInstrumentInvalidError' => RefundInstrumentInvalidError::fromArray($data),
+            'RefundProcessingError' => RefundProcessingError::fromArray($data),
+            'ReturnActionNotPermittedError' => ReturnActionNotPermittedError::fromArray($data),
+            'ReturnLineItemNotFoundError' => ReturnLineItemNotFoundError::fromArray($data),
+            'ReturnNotFoundError' => ReturnNotFoundError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

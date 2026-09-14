@@ -25,30 +25,27 @@ readonly class Input
         public ?PageInfoInput $ordersPage = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            ordersFirstPage: isset($data['ordersFirstPage'])
-                ? OrdersFirstPageInput::fromArray($data['ordersFirstPage'])
-                : null,
-            ordersPage: isset($data['ordersPage'])
-                ? PageInfoInput::fromArray($data['ordersPage'])
-                : null,
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            ordersFirstPage: isset($data['ordersFirstPage']) ? OrdersFirstPageInput::fromArray($data['ordersFirstPage']) : null,
+            ordersPage: isset($data['ordersPage']) ? PageInfoInput::fromArray($data['ordersPage']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $result = [];
-
-        if ($this->ordersFirstPage !== null) {
-            $result['ordersFirstPage'] = $this->ordersFirstPage->toArray();
-        }
-
-        if ($this->ordersPage !== null) {
-            $result['ordersPage'] = $this->ordersPage->toArray();
-        }
-
-        return $result;
+        return array_filter(
+            [
+                'ordersFirstPage' => $this->ordersFirstPage !== null ? (object)$this->ordersFirstPage->toArray() : null,
+                'ordersPage' => $this->ordersPage !== null ? (object)$this->ordersPage->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

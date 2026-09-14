@@ -18,13 +18,13 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output;
 
-final class Refund
+readonly class Refund
 {
     public function __construct(
-        public readonly ?string $refundId = null,
-    ) {
-    }
+        public ?string $refundId = null,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(

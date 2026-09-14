@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkOrders
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): MarkOrdersPaidCompleteFailure|MarkOrdersPaidPartialFailure|MarkOrdersPaidSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'MarkOrdersPaidSuccess'        => Success::fromArray($data),
-            'MarkOrdersPaidPartialFailure' => PartialFailure::fromArray($data),
-            'MarkOrdersPaidCompleteFailure' => CompleteFailure::fromArray($data),
+            'MarkOrdersPaidCompleteFailure' => MarkOrdersPaidCompleteFailure::fromArray($data),
+            'MarkOrdersPaidPartialFailure' => MarkOrdersPaidPartialFailure::fromArray($data),
+            'MarkOrdersPaidSuccess' => MarkOrdersPaidSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

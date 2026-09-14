@@ -20,47 +20,36 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\ProcessOrderInqui
 
 readonly class ItemNotReceivedInquiry
 {
-    /**
-     * @param string[] $inquirers
-     * @param InquiryLineItem[] $lineItems
-     * @param Refund[] $refunds
-     */
     public function __construct(
-        public ?string $__typename = null,
         public ?string $inquiryId = null,
-        public ?InquiryStatus $status = null,
+        public ?OrderInquiryStatus $status = null,
         public ?string $createdAt = null,
         public ?string $closedAt = null,
         public ?string $initiator = null,
         public ?string $responder = null,
+        /** @var array<int, mixed> */
         public array $inquirers = [],
+        /** @var OrderInquiryLineItem[] */
         public array $lineItems = [],
-        public ?SellerAvailableActions $sellerAvailableActions = null,
+        public ?OrderInquiryActions $sellerAvailableActions = null,
+        /** @var Refund[] */
         public array $refunds = [],
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            __typename: $data['__typename'] ?? null,
             inquiryId: $data['inquiryId'] ?? null,
-            status: isset($data['status']) ? InquiryStatus::fromArray($data['status']) : null,
+            status: isset($data['status']) ? OrderInquiryStatus::fromArray($data['status']) : null,
             createdAt: $data['createdAt'] ?? null,
             closedAt: $data['closedAt'] ?? null,
             initiator: $data['initiator'] ?? null,
             responder: $data['responder'] ?? null,
             inquirers: $data['inquirers'] ?? [],
-            lineItems: array_map(
-                fn(array $li) => InquiryLineItem::fromArray($li),
-                $data['lineItems'] ?? [],
-            ),
-            sellerAvailableActions: isset($data['sellerAvailableActions'])
-                ? SellerAvailableActions::fromArray($data['sellerAvailableActions'])
-                : null,
-            refunds: array_map(
-                fn(array $r) => Refund::fromArray($r),
-                $data['refunds'] ?? [],
-            ),
+            lineItems: array_map(fn($item) => OrderInquiryLineItem::fromArray($item), $data['lineItems'] ?? []),
+            sellerAvailableActions: isset($data['sellerAvailableActions']) ? OrderInquiryActions::fromArray($data['sellerAvailableActions']) : null,
+            refunds: array_map(fn($item) => Refund::fromArray($item), $data['refunds'] ?? []),
         );
     }
 }

@@ -20,20 +20,19 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleLi
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): ReturnRuleFeatureNotEnabledError|ReturnRuleListingGroup|ReturnRuleListingGroupDuplicateListingError|ReturnRuleListingGroupInvalidNameError|ReturnRuleListingGroupMaxSizeExceededError|ReturnRuleListingGroupQuotaExceededError|ReturnRuleListingIdsPerRequestLimitExceededError
     {
         return match ($data['__typename'] ?? null) {
-            'ReturnRuleListingGroup'                    => ListingGroupSuccess::fromArray($data),
-            'ReturnRuleListingGroupInvalidNameError'    => InvalidNameError::fromArray($data),
-            'ReturnRuleListingGroupDuplicateListingError' => DuplicateListingError::fromArray($data),
-            'ReturnRuleListingGroupQuotaExceededError'           => QuotaExceededError::fromArray($data),
-            'ReturnRuleFeatureNotEnabledError'                   => FeatureNotEnabledError::fromArray($data),
-            'ReturnRuleListingGroupMaxSizeExceededError'         => MaxSizeExceededError::fromArray($data),
-            'ReturnRuleListingIdsPerRequestLimitExceededError'   => IdsPerRequestLimitExceededError::fromArray($data),
+            'ReturnRuleFeatureNotEnabledError' => ReturnRuleFeatureNotEnabledError::fromArray($data),
+            'ReturnRuleListingGroup' => ReturnRuleListingGroup::fromArray($data),
+            'ReturnRuleListingGroupDuplicateListingError' => ReturnRuleListingGroupDuplicateListingError::fromArray($data),
+            'ReturnRuleListingGroupInvalidNameError' => ReturnRuleListingGroupInvalidNameError::fromArray($data),
+            'ReturnRuleListingGroupMaxSizeExceededError' => ReturnRuleListingGroupMaxSizeExceededError::fromArray($data),
+            'ReturnRuleListingGroupQuotaExceededError' => ReturnRuleListingGroupQuotaExceededError::fromArray($data),
+            'ReturnRuleListingIdsPerRequestLimitExceededError' => ReturnRuleListingIdsPerRequestLimitExceededError::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

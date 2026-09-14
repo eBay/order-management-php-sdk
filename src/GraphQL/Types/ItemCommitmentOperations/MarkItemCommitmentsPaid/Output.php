@@ -20,16 +20,15 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\MarkItemCo
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): MarkItemCommitmentsPaidCompleteFailure|MarkItemCommitmentsPaidPartialFailure|MarkItemCommitmentsPaidSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'MarkItemCommitmentsPaidSuccess'        => Success::fromArray($data),
-            'MarkItemCommitmentsPaidPartialFailure' => PartialFailure::fromArray($data),
-            'MarkItemCommitmentsPaidCompleteFailure' => CompleteFailure::fromArray($data),
+            'MarkItemCommitmentsPaidCompleteFailure' => MarkItemCommitmentsPaidCompleteFailure::fromArray($data),
+            'MarkItemCommitmentsPaidPartialFailure' => MarkItemCommitmentsPaidPartialFailure::fromArray($data),
+            'MarkItemCommitmentsPaidSuccess' => MarkItemCommitmentsPaidSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

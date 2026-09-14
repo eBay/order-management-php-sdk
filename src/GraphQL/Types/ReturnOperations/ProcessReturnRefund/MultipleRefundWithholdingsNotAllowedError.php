@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProcessReturnRefund;
 
-readonly class MultipleRefundWithholdingsNotAllowedError extends Output
+readonly class MultipleRefundWithholdingsNotAllowedError
 {
     public function __construct(
         public ?string $errorCode = null,
@@ -27,18 +27,14 @@ readonly class MultipleRefundWithholdingsNotAllowedError extends Output
         public ?int $providedCount = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'MultipleRefundWithholdingsNotAllowedError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:     $data['errorCode'] ?? null,
-            errorMessage:  $data['errorMessage'] ?? null,
-            maxAllowed:    isset($data['maxAllowed']) ? (int) $data['maxAllowed'] : null,
-            providedCount: isset($data['providedCount']) ? (int) $data['providedCount'] : null,
+            errorCode: $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
+            maxAllowed: $data['maxAllowed'] ?? null,
+            providedCount: $data['providedCount'] ?? null,
         );
     }
 }

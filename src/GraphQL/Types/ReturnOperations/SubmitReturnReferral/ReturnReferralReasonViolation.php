@@ -18,31 +18,23 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SubmitReturnReferral;
 
-readonly class ReturnReferralReasonViolation extends Violation
+readonly class ReturnReferralReasonViolation
 {
     public function __construct(
         public ?string $code = null,
         public ?string $displayMessage = null,
         public ?bool $invalidReferralReason = null,
-        public ?ReferralReasonConstraint $constraint = null,
+        public ?ReturnReferralConstraint $constraint = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnReferralReasonViolation';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:                 $data['code'] ?? null,
-            displayMessage:       $data['displayMessage'] ?? null,
-            invalidReferralReason: isset($data['invalidReferralReason'])
-                ? (bool) $data['invalidReferralReason']
-                : null,
-            constraint:           isset($data['constraint'])
-                ? ReferralReasonConstraint::fromArray($data['constraint'])
-                : null,
+            code: $data['code'] ?? null,
+            displayMessage: $data['displayMessage'] ?? null,
+            invalidReferralReason: $data['invalidReferralReason'] ?? null,
+            constraint: isset($data['constraint']) ? ReturnReferralConstraint::fromArray($data['constraint']) : null,
         );
     }
 }

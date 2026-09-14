@@ -25,19 +25,21 @@ readonly class OrderReturnInitialPageInput
         public OrderReturnSortInput $sort,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             filter: OrderReturnFilterInput::fromArray($data['filter']),
             sort: OrderReturnSortInput::fromArray($data['sort']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'filter' => $this->filter->toArray(),
-            'sort'   => $this->sort->toArray(),
+                'filter' => (object)$this->filter->toArray(),
+                'sort' => (object)$this->sort->toArray(),
         ];
     }
 }

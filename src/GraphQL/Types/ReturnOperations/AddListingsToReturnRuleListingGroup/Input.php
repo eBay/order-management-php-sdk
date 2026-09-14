@@ -21,24 +21,29 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToRetur
 readonly class Input
 {
     public function __construct(
+        /** @var array<int, mixed> */
+        public array $listingIds,
         public string $returnRuleListingGroupId,
-        /** @var string[] */
-        public array $listingIds = [],
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            listingIds: $data['listingIds'],
             returnRuleListingGroupId: $data['returnRuleListingGroupId'],
-            listingIds: $data['listingIds'] ?? [],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'returnRuleListingGroupId' => $this->returnRuleListingGroupId,
-            'listingIds'               => $this->listingIds,
+                'listingIds' => $this->listingIds,
+                'returnRuleListingGroupId' => $this->returnRuleListingGroupId,
         ];
     }
 }

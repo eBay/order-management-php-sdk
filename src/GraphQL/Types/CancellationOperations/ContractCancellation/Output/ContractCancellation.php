@@ -21,41 +21,29 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\ContractCanc
 readonly class ContractCancellation
 {
     public function __construct(
-        public ?string $cancellationId,
-        public ?string $closedAt,
-        public ?CancellationReason $reason,
-        public array $refunds,
-        public ?string $requestedAt,
-        public ?string $requester,
-        public ?string $requesterNote,
-        public ?CancellationStatus $status,
+        public ?string $cancellationId = null,
+        public ?string $closedAt = null,
+        public ?ContractCancellationReason $reason = null,
+        /** @var Refund[] */
+        public array $refunds = [],
+        public ?string $requestedAt = null,
+        public ?string $requester = null,
+        public ?string $requesterNote = null,
+        public ?ContractCancellationStatus $status = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             cancellationId: $data['cancellationId'] ?? null,
             closedAt: $data['closedAt'] ?? null,
-            reason: isset($data['reason']) ? CancellationReason::fromArray($data['reason']) : null,
-            refunds: array_map(fn(array $r) => Refund::fromArray($r), $data['refunds'] ?? []),
+            reason: isset($data['reason']) ? ContractCancellationReason::fromArray($data['reason']) : null,
+            refunds: array_map(fn($item) => Refund::fromArray($item), $data['refunds'] ?? []),
             requestedAt: $data['requestedAt'] ?? null,
             requester: $data['requester'] ?? null,
             requesterNote: $data['requesterNote'] ?? null,
-            status: isset($data['status']) ? CancellationStatus::fromArray($data['status']) : null,
+            status: isset($data['status']) ? ContractCancellationStatus::fromArray($data['status']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'cancellationId' => $this->cancellationId,
-            'closedAt' => $this->closedAt,
-            'reason' => $this->reason?->toArray(),
-            'refunds' => array_map(fn(Refund $r) => $r->toArray(), $this->refunds),
-            'requestedAt' => $this->requestedAt,
-            'requester' => $this->requester,
-            'requesterNote' => $this->requesterNote,
-            'status' => $this->status?->toArray(),
-        ], fn($v) => $v !== null && $v !== []);
     }
 }

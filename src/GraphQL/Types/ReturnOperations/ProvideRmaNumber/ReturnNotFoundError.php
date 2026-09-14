@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProvideRmaNumber;
 
-readonly class ReturnNotFoundError extends Output
+readonly class ReturnNotFoundError
 {
     public function __construct(
         public ?string $errorCode = null,
@@ -26,16 +26,12 @@ readonly class ReturnNotFoundError extends Output
         public ?string $requestedReturnId = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnNotFoundError';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            errorCode:         $data['errorCode'] ?? null,
-            errorMessage:      $data['errorMessage'] ?? null,
+            errorCode: $data['errorCode'] ?? null,
+            errorMessage: $data['errorMessage'] ?? null,
             requestedReturnId: $data['requestedReturnId'] ?? null,
         );
     }

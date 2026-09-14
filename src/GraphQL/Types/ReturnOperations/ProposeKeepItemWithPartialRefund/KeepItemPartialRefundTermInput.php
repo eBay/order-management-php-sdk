@@ -21,26 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\ProposeKeepItemWit
 readonly class KeepItemPartialRefundTermInput
 {
     public function __construct(
-        public string $returnLineItemId,
         public int $itemPriceRefundPercentage,
-        public bool $itemShippingPriceWaived = false,
+        public bool $itemShippingPriceWaived,
+        public string $returnLineItemId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
+            itemPriceRefundPercentage: $data['itemPriceRefundPercentage'],
+            itemShippingPriceWaived: $data['itemShippingPriceWaived'],
             returnLineItemId: $data['returnLineItemId'],
-            itemPriceRefundPercentage: (int) $data['itemPriceRefundPercentage'],
-            itemShippingPriceWaived: (bool) ($data['itemShippingPriceWaived'] ?? false),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'returnLineItemId'          => $this->returnLineItemId,
-            'itemPriceRefundPercentage' => $this->itemPriceRefundPercentage,
-            'itemShippingPriceWaived'   => $this->itemShippingPriceWaived,
+                'itemPriceRefundPercentage' => $this->itemPriceRefundPercentage,
+                'itemShippingPriceWaived' => $this->itemShippingPriceWaived,
+                'returnLineItemId' => $this->returnLineItemId,
         ];
     }
 }

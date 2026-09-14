@@ -23,11 +23,11 @@ final class OrderManagementConfiguration
     public readonly RequestOptions $defaultRequestOptions;
 
     public function __construct(
-        public readonly string  $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1',
-        public readonly string  $logisticsBaseUrl   = 'https://api.ebay.com/sell/logistics/v1',
-        public readonly string  $graphQLBaseUrl     = 'https://api.ebay.com/graphql',
-        public readonly ?string $accessToken        = null,
-        public readonly bool    $diagnosticLogging  = false,
+        public readonly string $fulfillmentBaseUrl = 'https://api.ebay.com/sell/fulfillment/v1',
+        public readonly string $logisticsBaseUrl = 'https://api.ebay.com/sell/logistics/v1_beta',
+        public readonly string $graphQLBaseUrl = 'https://api.ebay.com/graphql',
+        public readonly ?string $accessToken = null,
+        public readonly bool $diagnosticLogging = false,
     ) {
         $this->defaultRequestOptions = new RequestOptions();
     }
@@ -40,7 +40,7 @@ final class OrderManagementConfiguration
     }
 
     /**
-     * Hostnames tokens may be sent to — passed to AllowedHostsValidator.
+     * Hostnames tokens may be sent to. Passed to AllowedHostsValidator.
      *
      * @return string[]
      */
@@ -48,7 +48,11 @@ final class OrderManagementConfiguration
     {
         return array_values(array_unique(array_filter(array_map(
             fn(string $url) => parse_url($url, PHP_URL_HOST),
-            [$this->fulfillmentBaseUrl, $this->logisticsBaseUrl, $this->graphQLBaseUrl]
+            [
+                $this->fulfillmentBaseUrl,
+                $this->logisticsBaseUrl,
+                $this->graphQLBaseUrl,
+            ]
         ), 'is_string')));
     }
 }

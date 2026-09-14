@@ -25,19 +25,24 @@ readonly class Input
         public string $status,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             ruleId: $data['ruleId'],
             status: $data['status'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'ruleId' => $this->ruleId,
-            'status' => $this->status,
+                'ruleId' => $this->ruleId,
+                'status' => $this->status,
         ];
     }
 }

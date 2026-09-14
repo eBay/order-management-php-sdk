@@ -25,6 +25,7 @@ readonly class DateTimeRangeInput
         public string $startDateTime,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -33,11 +34,12 @@ readonly class DateTimeRangeInput
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'endDateTime' => $this->endDateTime,
-            'startDateTime' => $this->startDateTime,
+                'endDateTime' => $this->endDateTime,
+                'startDateTime' => $this->startDateTime,
         ];
     }
 }

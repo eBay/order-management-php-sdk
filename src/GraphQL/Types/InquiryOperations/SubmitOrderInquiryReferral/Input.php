@@ -25,19 +25,24 @@ readonly class Input
         public string $referralReasonCode,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             inquiryId: $data['inquiryId'],
             referralReasonCode: $data['referralReasonCode'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'inquiryId' => $this->inquiryId,
-            'referralReasonCode' => $this->referralReasonCode,
+                'inquiryId' => $this->inquiryId,
+                'referralReasonCode' => $this->referralReasonCode,
         ];
     }
 }

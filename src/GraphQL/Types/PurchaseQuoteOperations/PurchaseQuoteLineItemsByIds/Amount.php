@@ -25,10 +25,11 @@ readonly class Amount
         public ?string $currency = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            value:    $data['value'] ?? null,
+            value: $data['value'] ?? null,
             currency: $data['currency'] ?? null,
         );
     }

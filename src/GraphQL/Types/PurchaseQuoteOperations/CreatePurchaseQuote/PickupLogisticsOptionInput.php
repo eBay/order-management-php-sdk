@@ -25,19 +25,21 @@ readonly class PickupLogisticsOptionInput
         public string $displayName,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             cost: AmountInput::fromArray($data['cost']),
             displayName: $data['displayName'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'cost'        => $this->cost->toArray(),
-            'displayName' => $this->displayName,
+                'cost' => (object)$this->cost->toArray(),
+                'displayName' => $this->displayName,
         ];
     }
 }

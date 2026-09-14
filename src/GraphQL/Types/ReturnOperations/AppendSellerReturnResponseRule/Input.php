@@ -21,31 +21,34 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturn
 readonly class Input
 {
     public function __construct(
+        public ReturnRuleConditionSetInput $conditionSet,
+        public string $listingMarketplace,
         public string $name,
         public string $responseStrategy,
-        public ?ConditionSetInput $conditionSet = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            conditionSet: ReturnRuleConditionSetInput::fromArray($data['conditionSet']),
+            listingMarketplace: $data['listingMarketplace'],
             name: $data['name'],
             responseStrategy: $data['responseStrategy'],
-            conditionSet: isset($data['conditionSet'])
-                ? ConditionSetInput::fromArray($data['conditionSet'])
-                : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'name'                 => $this->name,
-            'responseStrategy' => $this->responseStrategy,
+        return [
+                'conditionSet' => (object)$this->conditionSet->toArray(),
+                'listingMarketplace' => $this->listingMarketplace,
+                'name' => $this->name,
+                'responseStrategy' => $this->responseStrategy,
         ];
-        if ($this->conditionSet !== null) {
-            $data['conditionSet'] = $this->conditionSet->toArray();
-        }
-        return $data;
     }
 }

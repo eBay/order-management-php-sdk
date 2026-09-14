@@ -24,8 +24,11 @@ readonly class RmaPreference
         public ?string $preferenceStatus = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
-        return new self(preferenceStatus: $data['preferenceStatus'] ?? null);
+        return new self(
+            preferenceStatus: $data['preferenceStatus'] ?? null,
+        );
     }
 }

@@ -24,12 +24,11 @@ readonly class ReturnNegotiation
         public ?ReturnOffer $latestReturnOffer = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            latestReturnOffer: isset($data['latestReturnOffer'])
-                ? ReturnOffer::fromArray($data['latestReturnOffer'])
-                : null,
+            latestReturnOffer: isset($data['latestReturnOffer']) ? ReturnOffer::fromArray($data['latestReturnOffer']) : null,
         );
     }
 }

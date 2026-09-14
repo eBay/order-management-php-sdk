@@ -18,30 +18,31 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\ApproveContractCancellation\Input;
 
-final class ApproveContractCancellationInput
+readonly class ApproveContractCancellationInput
 {
     public function __construct(
-        public readonly string $cancellationId,
-        public readonly bool $relistAllItems = false,
-    ) {
-    }
+        public string $cancellationId,
+        public bool $relistAllItems,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
         return new self(
-            cancellationId: (string) $data['cancellationId'],
-            relistAllItems: (bool) ($data['relistAllItems'] ?? false),
+            cancellationId: $data['cancellationId'],
+            relistAllItems: $data['relistAllItems'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter(
-            [
+        return [
                 'cancellationId' => $this->cancellationId,
                 'relistAllItems' => $this->relistAllItems,
-            ],
-            fn($v) => $v !== null,
-        );
+        ];
     }
 }

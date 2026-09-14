@@ -25,20 +25,24 @@ readonly class ReturnShippingCarrierInput
         public ?string $unsupportedCarrierName = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             carrierCode: $data['carrierCode'],
             unsupportedCarrierName: $data['unsupportedCarrierName'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = ['carrierCode' => $this->carrierCode];
-        if ($this->unsupportedCarrierName !== null) {
-            $data['unsupportedCarrierName'] = $this->unsupportedCarrierName;
-        }
-        return $data;
+        return array_filter(
+            [
+                'carrierCode' => $this->carrierCode,
+                'unsupportedCarrierName' => $this->unsupportedCarrierName,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

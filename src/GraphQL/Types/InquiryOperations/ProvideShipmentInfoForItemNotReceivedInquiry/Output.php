@@ -20,16 +20,17 @@ namespace EBay\OrderManagement\GraphQL\Types\InquiryOperations\ProvideShipmentIn
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): OrderInquiryActionNotPermittedError|OrderInquiryNotFoundError|ProvideShipmentInfoForInquiryInputValidationError|ProvideShipmentInfoForItemNotReceivedInquirySuccess
     {
         return match ($data['__typename'] ?? null) {
-            'ProvideShipmentInfoForItemNotReceivedInquirySuccess' => Success::fromArray($data),
-            'OrderInquiryActionNotPermittedError' => ActionNotPermittedError::fromArray($data),
-            'OrderInquiryNotFoundError' => NotFoundError::fromArray($data),
-            'ProvideShipmentInfoForInquiryInputValidationError' => InputValidationError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'OrderInquiryActionNotPermittedError' => OrderInquiryActionNotPermittedError::fromArray($data),
+            'OrderInquiryNotFoundError' => OrderInquiryNotFoundError::fromArray($data),
+            'ProvideShipmentInfoForInquiryInputValidationError' => ProvideShipmentInfoForInquiryInputValidationError::fromArray($data),
+            'ProvideShipmentInfoForItemNotReceivedInquirySuccess' => ProvideShipmentInfoForItemNotReceivedInquirySuccess::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

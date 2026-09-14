@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\AttachReturnShipmentLabel;
 
-readonly class ReturnTrackingNumberViolation extends Violation
+readonly class ReturnTrackingNumberViolation
 {
     public function __construct(
         public ?string $code = null,
@@ -26,25 +26,19 @@ readonly class ReturnTrackingNumberViolation extends Violation
         public ?bool $containsInvalidCharacters = null,
         public ?bool $exceededLength = null,
         public ?bool $duplicateTrackingNumber = null,
-        public ?TrackingNumberConstraint $constraint = null,
+        public ?ReturnTrackingNumberConstraint $constraint = null,
     ) {}
 
-    public function getTypename(): string
-    {
-        return 'ReturnTrackingNumberViolation';
-    }
-
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            code:                    $data['code'] ?? null,
-            displayMessage:          $data['displayMessage'] ?? null,
+            code: $data['code'] ?? null,
+            displayMessage: $data['displayMessage'] ?? null,
             containsInvalidCharacters: $data['containsInvalidCharacters'] ?? null,
-            exceededLength:          $data['exceededLength'] ?? null,
+            exceededLength: $data['exceededLength'] ?? null,
             duplicateTrackingNumber: $data['duplicateTrackingNumber'] ?? null,
-            constraint:              isset($data['constraint'])
-                ? TrackingNumberConstraint::fromArray($data['constraint'])
-                : null,
+            constraint: isset($data['constraint']) ? ReturnTrackingNumberConstraint::fromArray($data['constraint']) : null,
         );
     }
 }

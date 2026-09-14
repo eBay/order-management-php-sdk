@@ -20,30 +20,27 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\BulkUpdate
 
 readonly class Input
 {
-    /**
-     * @param UpdateItemCommitmentTagInput[] $itemCommitmentTagUpdates
-     */
     public function __construct(
+        /** @var UpdateItemCommitmentTagInput[] */
         public array $itemCommitmentTagUpdates,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            itemCommitmentTagUpdates: array_map(
-                fn(array $u) => UpdateItemCommitmentTagInput::fromArray($u),
-                $data['itemCommitmentTagUpdates'],
-            ),
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            itemCommitmentTagUpdates: array_map(fn($item) => UpdateItemCommitmentTagInput::fromArray($item), $data['itemCommitmentTagUpdates']),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'itemCommitmentTagUpdates' => array_map(
-                fn(UpdateItemCommitmentTagInput $u) => $u->toArray(),
-                $this->itemCommitmentTagUpdates
-            ),
+                'itemCommitmentTagUpdates' => array_map(fn(UpdateItemCommitmentTagInput $item) => $item->toArray(), $this->itemCommitmentTagUpdates),
         ];
     }
 }

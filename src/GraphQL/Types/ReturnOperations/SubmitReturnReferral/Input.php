@@ -21,23 +21,28 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\SubmitReturnReferr
 readonly class Input
 {
     public function __construct(
-        public string $returnId,
         public string $referralReasonCode,
+        public string $returnId,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            returnId:           $data['returnId'],
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             referralReasonCode: $data['referralReasonCode'],
+            returnId: $data['returnId'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'returnId'           => $this->returnId,
-            'referralReasonCode' => $this->referralReasonCode,
+                'referralReasonCode' => $this->referralReasonCode,
+                'returnId' => $this->returnId,
         ];
     }
 }

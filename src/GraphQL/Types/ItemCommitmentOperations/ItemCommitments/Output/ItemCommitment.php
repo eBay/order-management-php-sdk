@@ -20,23 +20,22 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommit
 
 readonly class ItemCommitment
 {
-    /**
-     * @param RefundRef[] $refunds
-     */
     public function __construct(
         public ?string $itemCommitmentId = null,
         public ?string $createdAt = null,
         public ?string $updatedAt = null,
         public ?string $committedMarketplace = null,
-        public ?ItemCommitmentState $state = null,
-        public ?CancellationRef $cancellation = null,
+        public ItemCommitmentAbandoned|ItemCommitmentActive|ItemCommitmentCancelled|ItemCommitmentCompleted|ItemCommitmentLocked|null $state = null,
+        public ?ItemCommitmentCancellation $cancellation = null,
+        /** @var Refund[] */
         public array $refunds = [],
-        public ?UserRef $buyer = null,
-        public ?UserRef $seller = null,
-        public ?CommittedTotals $totals = null,
-        public ?LineItem $lineItem = null,
+        public ?User $buyer = null,
+        public ?User $seller = null,
+        public ?ItemCommitmentTotals $totals = null,
+        public ?ContractListingItem $lineItem = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -44,28 +43,13 @@ readonly class ItemCommitment
             createdAt: $data['createdAt'] ?? null,
             updatedAt: $data['updatedAt'] ?? null,
             committedMarketplace: $data['committedMarketplace'] ?? null,
-            state: isset($data['state'])
-                ? ItemCommitmentState::fromArray($data['state'])
-                : null,
-            cancellation: isset($data['cancellation'])
-                ? CancellationRef::fromArray($data['cancellation'])
-                : null,
-            refunds: array_map(
-                static fn(array $r) => RefundRef::fromArray($r),
-                $data['refunds'] ?? [],
-            ),
-            buyer: isset($data['buyer'])
-                ? UserRef::fromArray($data['buyer'])
-                : null,
-            seller: isset($data['seller'])
-                ? UserRef::fromArray($data['seller'])
-                : null,
-            totals: isset($data['totals'])
-                ? CommittedTotals::fromArray($data['totals'])
-                : null,
-            lineItem: isset($data['lineItem'])
-                ? LineItem::fromArray($data['lineItem'])
-                : null,
+            state: isset($data['state']) ? ItemCommitmentState::fromArray($data['state']) : null,
+            cancellation: isset($data['cancellation']) ? ItemCommitmentCancellation::fromArray($data['cancellation']) : null,
+            refunds: array_map(fn($item) => Refund::fromArray($item), $data['refunds'] ?? []),
+            buyer: isset($data['buyer']) ? User::fromArray($data['buyer']) : null,
+            seller: isset($data['seller']) ? User::fromArray($data['seller']) : null,
+            totals: isset($data['totals']) ? ItemCommitmentTotals::fromArray($data['totals']) : null,
+            lineItem: isset($data['lineItem']) ? ContractListingItem::fromArray($data['lineItem']) : null,
         );
     }
 }

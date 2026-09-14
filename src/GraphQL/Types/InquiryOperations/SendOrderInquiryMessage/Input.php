@@ -25,19 +25,24 @@ readonly class Input
         public string $message,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             inquiryId: $data['inquiryId'],
             message: $data['message'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'inquiryId' => $this->inquiryId,
-            'message' => $this->message,
+                'inquiryId' => $this->inquiryId,
+                'message' => $this->message,
         ];
     }
 }

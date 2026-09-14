@@ -20,15 +20,16 @@ namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreatePurcha
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): CreatePurchaseQuoteCancellationSuccess|PurchaseQuoteCancellationEligibilityError|PurchaseQuoteNotFoundError
     {
         return match ($data['__typename'] ?? null) {
-            'CreatePurchaseQuoteCancellationSuccess' => Success::fromArray($data),
-            'PurchaseQuoteCancellationEligibilityError' => EligibilityError::fromArray($data),
-            'PurchaseQuoteNotFoundError' => NotFoundError::fromArray($data),
-            default => throw new \UnexpectedValueException('Unknown __typename: ' . ($data['__typename'] ?? 'null')),
+            'CreatePurchaseQuoteCancellationSuccess' => CreatePurchaseQuoteCancellationSuccess::fromArray($data),
+            'PurchaseQuoteCancellationEligibilityError' => PurchaseQuoteCancellationEligibilityError::fromArray($data),
+            'PurchaseQuoteNotFoundError' => PurchaseQuoteNotFoundError::fromArray($data),
+            default => throw new \UnexpectedValueException(
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
+            ),
         };
     }
 }

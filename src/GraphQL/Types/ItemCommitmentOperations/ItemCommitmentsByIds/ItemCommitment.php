@@ -24,9 +24,10 @@ readonly class ItemCommitment
         public ?string $itemCommitmentId = null,
         public ?string $createdAt = null,
         public ?string $updatedAt = null,
-        public ?ItemCommitmentState $state = null,
+        public ItemCommitmentAbandoned|ItemCommitmentActive|ItemCommitmentCancelled|ItemCommitmentCompleted|ItemCommitmentLocked|null $state = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(

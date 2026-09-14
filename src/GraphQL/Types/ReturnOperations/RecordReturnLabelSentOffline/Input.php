@@ -21,32 +21,35 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnLabelS
 readonly class Input
 {
     public function __construct(
-        public string $returnId,
         public string $offlineReturnLabelChannel,
-        /** @var ReturnLabelTrackingInput[]|null */
+        public string $returnId,
+        /** @var ReturnLabelTrackingInput[] */
         public ?array $trackings = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
-            returnId: $data['returnId'],
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             offlineReturnLabelChannel: $data['offlineReturnLabelChannel'],
-            trackings: isset($data['trackings'])
-                ? array_map(fn(array $t) => ReturnLabelTrackingInput::fromArray($t), $data['trackings'])
-                : null,
+            returnId: $data['returnId'],
+            trackings: array_map(fn($item) => ReturnLabelTrackingInput::fromArray($item), $data['trackings'] ?? []),
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = [
-            'returnId'                  => $this->returnId,
-            'offlineReturnLabelChannel' => $this->offlineReturnLabelChannel,
-        ];
-        if ($this->trackings !== null) {
-            $data['trackings'] = array_map(fn(ReturnLabelTrackingInput $t) => $t->toArray(), $this->trackings);
-        }
-        return $data;
+        return array_filter(
+            [
+                'offlineReturnLabelChannel' => $this->offlineReturnLabelChannel,
+                'returnId' => $this->returnId,
+                'trackings' => $this->trackings !== null ? array_map(fn(ReturnLabelTrackingInput $item) => $item->toArray(), $this->trackings) : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

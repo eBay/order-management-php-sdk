@@ -20,15 +20,14 @@ namespace EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurc
 
 abstract readonly class Output
 {
-    abstract public function getTypename(): string;
-
-    public static function fromArray(array $data): self
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): RequestPurchaseQuoteBusinessError|RequestPurchaseQuoteSuccess
     {
         return match ($data['__typename'] ?? null) {
-            'RequestPurchaseQuoteBusinessError' => BusinessError::fromArray($data),
-            'RequestPurchaseQuoteSuccess'       => Success::fromArray($data),
+            'RequestPurchaseQuoteBusinessError' => RequestPurchaseQuoteBusinessError::fromArray($data),
+            'RequestPurchaseQuoteSuccess' => RequestPurchaseQuoteSuccess::fromArray($data),
             default => throw new \UnexpectedValueException(
-                'Unknown __typename: ' . ($data['__typename'] ?? 'null')
+                'Unknown __typename for Output: ' . ($data['__typename'] ?? 'null')
             ),
         };
     }

@@ -25,10 +25,11 @@ readonly class Pagination
         public ?string $previousCursor = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            nextCursor:     $data['nextCursor'] ?? null,
+            nextCursor: $data['nextCursor'] ?? null,
             previousCursor: $data['previousCursor'] ?? null,
         );
     }

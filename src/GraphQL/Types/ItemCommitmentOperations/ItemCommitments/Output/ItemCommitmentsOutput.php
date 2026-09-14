@@ -21,15 +21,14 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommit
 readonly class ItemCommitmentsOutput
 {
     public function __construct(
-        public ?BuyerItemCommitments $buyerItemCommitments = null,
+        public ?PaginatedItemCommitments $buyerItemCommitments = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
-            buyerItemCommitments: isset($data['buyerItemCommitments'])
-                ? BuyerItemCommitments::fromArray($data['buyerItemCommitments'])
-                : null,
+            buyerItemCommitments: isset($data['buyerItemCommitments']) ? PaginatedItemCommitments::fromArray($data['buyerItemCommitments']) : null,
         );
     }
 }

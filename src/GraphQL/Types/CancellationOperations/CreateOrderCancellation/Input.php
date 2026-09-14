@@ -23,24 +23,29 @@ readonly class Input
     public function __construct(
         public string $contractCancellationReason,
         public string $orderId,
-        public bool $relistAllItems = false,
+        public bool $relistAllItems,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             contractCancellationReason: $data['contractCancellationReason'],
             orderId: $data['orderId'],
-            relistAllItems: (bool)($data['relistAllItems'] ?? false),
+            relistAllItems: $data['relistAllItems'],
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
-            'contractCancellationReason' => $this->contractCancellationReason,
-            'orderId' => $this->orderId,
-            'relistAllItems' => $this->relistAllItems,
+                'contractCancellationReason' => $this->contractCancellationReason,
+                'orderId' => $this->orderId,
+                'relistAllItems' => $this->relistAllItems,
         ];
     }
 }

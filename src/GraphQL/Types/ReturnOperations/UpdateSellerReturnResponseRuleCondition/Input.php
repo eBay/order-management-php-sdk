@@ -21,26 +21,34 @@ namespace EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerReturn
 readonly class Input
 {
     public function __construct(
+        public ReturnRuleConditionSetInput $conditionSet,
         public string $ruleId,
-        public ?ConditionSetInput $conditionSet = null,
+        public ?string $name = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
+            conditionSet: ReturnRuleConditionSetInput::fromArray($data['conditionSet']),
+            name: $data['name'] ?? null,
             ruleId: $data['ruleId'],
-            conditionSet: isset($data['conditionSet'])
-                ? ConditionSetInput::fromArray($data['conditionSet'])
-                : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        $data = ['ruleId' => $this->ruleId];
-        if ($this->conditionSet !== null) {
-            $data['conditionSet'] = $this->conditionSet->toArray();
-        }
-        return $data;
+        return array_filter(
+            [
+                'conditionSet' => (object)$this->conditionSet->toArray(),
+                'name' => $this->name,
+                'ruleId' => $this->ruleId,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

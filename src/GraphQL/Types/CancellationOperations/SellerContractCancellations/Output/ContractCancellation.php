@@ -18,34 +18,32 @@ declare(strict_types=1);
 
 namespace EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output;
 
-final class ContractCancellation
+readonly class ContractCancellation
 {
-    /**
-     * @param Refund[] $refunds
-     */
     public function __construct(
-        public readonly ?string $cancellationId = null,
-        public readonly ?string $closedAt = null,
-        public readonly ?CancellationReason $reason = null,
-        public readonly array $refunds = [],
-        public readonly ?string $requestedAt = null,
-        public readonly ?string $requester = null,
-        public readonly ?string $requesterNote = null,
-        public readonly ?CancellationStatus $status = null,
-    ) {
-    }
+        public ?string $cancellationId = null,
+        public ?string $closedAt = null,
+        public ?ContractCancellationReason $reason = null,
+        /** @var Refund[] */
+        public array $refunds = [],
+        public ?string $requestedAt = null,
+        public ?string $requester = null,
+        public ?string $requesterNote = null,
+        public ?ContractCancellationStatus $status = null,
+    ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
         return new self(
             cancellationId: $data['cancellationId'] ?? null,
             closedAt: $data['closedAt'] ?? null,
-            reason: isset($data['reason']) ? CancellationReason::fromArray($data['reason']) : null,
-            refunds: array_map(static fn($r) => Refund::fromArray($r), $data['refunds'] ?? []),
+            reason: isset($data['reason']) ? ContractCancellationReason::fromArray($data['reason']) : null,
+            refunds: array_map(fn($item) => Refund::fromArray($item), $data['refunds'] ?? []),
             requestedAt: $data['requestedAt'] ?? null,
             requester: $data['requester'] ?? null,
             requesterNote: $data['requesterNote'] ?? null,
-            status: isset($data['status']) ? CancellationStatus::fromArray($data['status']) : null,
+            status: isset($data['status']) ? ContractCancellationStatus::fromArray($data['status']) : null,
         );
     }
 }

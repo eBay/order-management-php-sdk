@@ -23,30 +23,38 @@ readonly class Input
     public function __construct(
         public string $itemId,
         public AmountInput $price,
-        public int $quantity = 1,
-        public bool $userConsentReceived = false,
-        public bool $userVerifiedAsAdult = false,
+        public ?int $quantity = null,
+        public ?bool $userConsentReceived = null,
+        public ?bool $userVerifiedAsAdult = null,
     ) {}
 
-    public static function fromArray(array $data): static
+    /** @param array<string, mixed> $data */
+    public static function fromArray(array $data): self
     {
-        return new static(
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
+        return new self(
             itemId: $data['itemId'],
             price: AmountInput::fromArray($data['price']),
-            quantity: (int)($data['quantity'] ?? 1),
-            userConsentReceived: (bool)($data['userConsentReceived'] ?? false),
-            userVerifiedAsAdult: (bool)($data['userVerifiedAsAdult'] ?? false),
+            quantity: $data['quantity'] ?? null,
+            userConsentReceived: $data['userConsentReceived'] ?? null,
+            userVerifiedAsAdult: $data['userVerifiedAsAdult'] ?? null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return [
-            'itemId'               => $this->itemId,
-            'price'                => $this->price->toArray(),
-            'quantity'             => $this->quantity,
-            'userConsentReceived'  => $this->userConsentReceived,
-            'userVerifiedAsAdult'  => $this->userVerifiedAsAdult,
-        ];
+        return array_filter(
+            [
+                'itemId' => $this->itemId,
+                'price' => (object)$this->price->toArray(),
+                'quantity' => $this->quantity,
+                'userConsentReceived' => $this->userConsentReceived,
+                'userVerifiedAsAdult' => $this->userVerifiedAsAdult,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

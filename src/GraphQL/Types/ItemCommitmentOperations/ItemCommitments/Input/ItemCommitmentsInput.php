@@ -21,27 +21,31 @@ namespace EBay\OrderManagement\GraphQL\Types\ItemCommitmentOperations\ItemCommit
 readonly class ItemCommitmentsInput
 {
     public function __construct(
-        public ?FirstPageInput $itemCommitmentsFirstPage = null,
+        public ?ItemCommitmentsFirstPageInput $itemCommitmentsFirstPage = null,
         public ?PageInfoInput $itemCommitmentsPage = null,
     ) {}
 
+    /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
+        if (isset($data['input']) && is_array($data['input'])) {
+            $data = array_merge($data['input'], $data);
+        }
         return new self(
-            itemCommitmentsFirstPage: isset($data['itemCommitmentsFirstPage'])
-                ? FirstPageInput::fromArray($data['itemCommitmentsFirstPage'])
-                : null,
-            itemCommitmentsPage: isset($data['itemCommitmentsPage'])
-                ? PageInfoInput::fromArray($data['itemCommitmentsPage'])
-                : null,
+            itemCommitmentsFirstPage: isset($data['itemCommitmentsFirstPage']) ? ItemCommitmentsFirstPageInput::fromArray($data['itemCommitmentsFirstPage']) : null,
+            itemCommitmentsPage: isset($data['itemCommitmentsPage']) ? PageInfoInput::fromArray($data['itemCommitmentsPage']) : null,
         );
     }
 
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
-            'itemCommitmentsFirstPage' => $this->itemCommitmentsFirstPage?->toArray(),
-            'itemCommitmentsPage' => $this->itemCommitmentsPage?->toArray(),
-        ], static fn($v) => $v !== null);
+        return array_filter(
+            [
+                'itemCommitmentsFirstPage' => $this->itemCommitmentsFirstPage !== null ? (object)$this->itemCommitmentsFirstPage->toArray() : null,
+                'itemCommitmentsPage' => $this->itemCommitmentsPage !== null ? (object)$this->itemCommitmentsPage->toArray() : null,
+            ],
+            static fn($value) => $value !== null,
+        );
     }
 }

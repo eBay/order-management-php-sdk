@@ -1,19 +1,30 @@
 # ChangeLog
 
-## 1.1.0 (09/14/2026)
+## 0.2.0 (09/14/2026)
 
-- The following clients were added:
-  - `PostOrderApiClient`
-- The following members were added to `OrderManagementClient`:
-  - `$postOrderApi`
+### Breaking changes
 
-## 1.0.0 (09/14/2026)
+#### Changed signatures
 
-**Breaking changes**
-- The following operations changed signature on `FulfillmentClient`:
-  - `uploadEvidenceFile`: `(string, ?string, ?RequestOptions)` → `(string, mixed, ?string, ?RequestOptions)`
-- The following operations changed signature on `LogisticsClient`:
-  - `createFromShippingQuote`: `(CreateShipmentFromQuoteRequest, ?string, ?RequestOptions)` → `(CreateShipmentFromQuoteRequest, ?string, ?string, ?RequestOptions)`
-  - `createShippingQuote`: `(ShippingQuoteRequest, ?string, ?RequestOptions)` → `(ShippingQuoteRequest, ?string, ?string, ?RequestOptions)`
-- The following operations changed signature on `OrderManagementGraphQLClient`:
-  - `purchaseQuotes`: `(?string, ?RequestOptions)` → `(PurchaseQuotesInput, ?string, ?RequestOptions)`
+`FulfillmentClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `uploadEvidenceFile` | `(string $paymentDisputeId, ?string $accessToken, ?RequestOptions $requestOptions)` | `(string $paymentDisputeId, mixed $body, ?string $accessToken, ?RequestOptions $requestOptions)` |
+
+`LogisticsClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `createFromShippingQuote` | `(CreateShipmentFromQuoteRequest $body, ?string $accessToken, ?RequestOptions $requestOptions)` | `(CreateShipmentFromQuoteRequest $body, ?string $xEBAYCMARKETPLACEID, ?string $accessToken, ?RequestOptions $requestOptions)` |
+| `createShippingQuote` | `(ShippingQuoteRequest $body, ?string $accessToken, ?RequestOptions $requestOptions)` | `(ShippingQuoteRequest $body, ?string $xEBAYCMARKETPLACEID, ?string $accessToken, ?RequestOptions $requestOptions)` |
+
+`OrderManagementGraphQLClient`:
+
+| Operation | Previous parameters | Current parameters |
+| --- | --- | --- |
+| `purchaseQuotes` | `(?string $accessToken, ?RequestOptions $requestOptions)` | `(PurchaseQuotesInput $input, ?string $accessToken, ?RequestOptions $requestOptions)` |
+
+### Added
+
+- REST client `PostOrderApiClient` and its `OrderManagementClient::$postOrderApi` member.

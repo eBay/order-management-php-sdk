@@ -277,9 +277,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(
-                $body,
                 new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
-            )->wait()
+            )->wait(),
+            fn($adapter) => new MultipartFileRequestAdapter($adapter, "file", $body),
         );
     }
 
@@ -315,20 +315,22 @@ final class FulfillmentClient
         );
     }
 
-    private function call(?string $accessToken, callable $op): mixed
+    /** @param (\Closure(GuzzleRequestAdapter): \Microsoft\Kiota\Abstractions\RequestAdapter)|null $decorateAdapter */
+    private function call(?string $accessToken, callable $op, ?\Closure $decorateAdapter = null): mixed
     {
         $token = ($accessToken ?? $this->config->accessToken)
             ?: throw new \RuntimeException('No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.');
-        return $op($this->buildApiClient($token));
+        return $op($this->buildApiClient($token, $decorateAdapter));
     }
 
-    private function buildApiClient(string $token): FulfillmentApiClient
+    /** @param (\Closure(GuzzleRequestAdapter): \Microsoft\Kiota\Abstractions\RequestAdapter)|null $decorateAdapter */
+    private function buildApiClient(string $token, ?\Closure $decorateAdapter = null): FulfillmentApiClient
     {
         $auth = new BaseBearerTokenAuthenticationProvider(
             new KiotaAuthProvider($token, $this->config->getAllowedHosts())
         );
         $adapter = new GuzzleRequestAdapter($auth, guzzleClient: $this->guzzle);
         $adapter->setBaseUrl($this->config->fulfillmentBaseUrl);
-        return new FulfillmentApiClient($adapter);
+        return new FulfillmentApiClient($decorateAdapter === null ? $adapter : $decorateAdapter($adapter));
     }
 }

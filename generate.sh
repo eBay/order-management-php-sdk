@@ -22,7 +22,7 @@ echo "Regenerating REST clients via Kiota..."
 rm -rf src/Generated
 
 kiota generate -l php \
-  -d specs/openapi/fulfillment.json \
+  -d specs/kiota/fulfillment.json \
   -c FulfillmentApiClient \
   -n 'EBay\OrderManagement\Generated\Fulfillment' \
   -o src/Generated/Fulfillment \

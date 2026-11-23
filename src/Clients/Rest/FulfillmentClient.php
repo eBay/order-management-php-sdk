@@ -277,9 +277,9 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(
-                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
-            )->wait(),
-            fn($adapter) => new MultipartFileRequestAdapter($adapter, "file", $body),
+                new MultipartFile("file", $body),
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: array_filter($headers, fn($name) => strcasecmp($name, 'Content-Type') !== 0, ARRAY_FILTER_USE_KEY))
+            )->wait()
         );
     }
 
@@ -315,22 +315,20 @@ final class FulfillmentClient
         );
     }
 
-    /** @param (\Closure(GuzzleRequestAdapter): \Microsoft\Kiota\Abstractions\RequestAdapter)|null $decorateAdapter */
-    private function call(?string $accessToken, callable $op, ?\Closure $decorateAdapter = null): mixed
+    private function call(?string $accessToken, callable $op): mixed
     {
         $token = ($accessToken ?? $this->config->accessToken)
             ?: throw new \RuntimeException('No access token. Pass $accessToken per-call or set OrderManagementConfiguration::$accessToken.');
-        return $op($this->buildApiClient($token, $decorateAdapter));
+        return $op($this->buildApiClient($token));
     }
 
-    /** @param (\Closure(GuzzleRequestAdapter): \Microsoft\Kiota\Abstractions\RequestAdapter)|null $decorateAdapter */
-    private function buildApiClient(string $token, ?\Closure $decorateAdapter = null): FulfillmentApiClient
+    private function buildApiClient(string $token): FulfillmentApiClient
     {
         $auth = new BaseBearerTokenAuthenticationProvider(
             new KiotaAuthProvider($token, $this->config->getAllowedHosts())
         );
         $adapter = new GuzzleRequestAdapter($auth, guzzleClient: $this->guzzle);
         $adapter->setBaseUrl($this->config->fulfillmentBaseUrl);
-        return new FulfillmentApiClient($decorateAdapter === null ? $adapter : $decorateAdapter($adapter));
+        return new FulfillmentApiClient($adapter);
     }
 }

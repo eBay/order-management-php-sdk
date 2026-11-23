@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43d12f4e2dbece8034f6a5f65207b8e6",
+    "content-hash": "be5fbbb5af3a3eafa8f3e6a1749521d9",
     "packages": [
         {
             "name": "brick/math",
@@ -475,16 +475,16 @@
         },
         {
             "name": "microsoft/kiota-abstractions",
-            "version": "2.0.2",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoft/kiota-abstractions-php.git",
-                "reference": "bd7e363030e19b2ed34c1d6ea9cf2a33bb969a3c"
+                "reference": "d04e981c4fd7d1545d222a90b716985a8a630e21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoft/kiota-abstractions-php/zipball/bd7e363030e19b2ed34c1d6ea9cf2a33bb969a3c",
-                "reference": "bd7e363030e19b2ed34c1d6ea9cf2a33bb969a3c",
+                "url": "https://api.github.com/repos/microsoft/kiota-abstractions-php/zipball/d04e981c4fd7d1545d222a90b716985a8a630e21",
+                "reference": "d04e981c4fd7d1545d222a90b716985a8a630e21",
                 "shasum": ""
             },
             "require": {
@@ -518,9 +518,9 @@
             ],
             "description": "Abstractions for Kiota",
             "support": {
-                "source": "https://github.com/microsoft/kiota-abstractions-php/tree/2.0.2"
+                "source": "https://github.com/microsoft/kiota-abstractions-php/tree/2.3.0"
             },
-            "time": "2026-04-20T15:14:55+00:00"
+            "time": "2026-11-17T10:41:15+00:00"
         },
         {
             "name": "microsoft/kiota-http-guzzle",

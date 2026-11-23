@@ -4,8 +4,12 @@
 
 ### Bug fixes
 
-- `FulfillmentClient::uploadEvidenceFile` now sends the file as a `multipart/form-data` part. Before, it passed the file where the SDK expected a multipart body, so every upload failed with a `TypeError`.
-- `uploadEvidenceFile` now rejects a file that is not a string, a stream resource, or a PSR-7 stream with an `InvalidArgumentException`, before any request is sent.
+- `FulfillmentClient::uploadEvidenceFile` now sends the file as a `multipart/form-data` part. Before, it passed the file where the SDK expected request options, so every upload failed with a `TypeError`.
+- It takes the file as a string or a PSR-7 stream. Any other value throws an `InvalidArgumentException` before the request is sent.
+
+### Dependencies
+
+- Requires `microsoft/kiota-abstractions` 2.3 or later. Earlier 2.x versions build multipart boundaries that are not valid in a header.
 
 ## 0.2.0 (09/14/2026)
 

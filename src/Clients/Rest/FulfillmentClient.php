@@ -278,7 +278,7 @@ final class FulfillmentClient
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(
                 new MultipartFile("file", $body),
-                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: array_filter($headers, fn($name) => strcasecmp($name, 'Content-Type') !== 0, ARRAY_FILTER_USE_KEY))
+                new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }

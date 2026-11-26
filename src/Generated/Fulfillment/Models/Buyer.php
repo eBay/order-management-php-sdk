@@ -37,6 +37,11 @@ class Buyer implements AdditionalDataHolder, Parsable
     private ?ExtendedContact $buyerRegistrationAddress = null;
     
     /**
+     * @var array<ExternalId>|null $externalIds The external identifiers associated with the buyer.
+    */
+    private ?array $externalIds = null;
+    
+    /**
      * @var TaxAddress|null $taxAddress This container consists of address information that can be used by sellers for tax purpose.<br><br><span class="tablenote"><strong>Note:</strong> When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.</span>
     */
     private ?TaxAddress $taxAddress = null;
@@ -84,6 +89,14 @@ class Buyer implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Gets the externalIds property value. The external identifiers associated with the buyer.
+     * @return array<ExternalId>|null
+    */
+    public function getExternalIds(): ?array {
+        return $this->externalIds;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -91,6 +104,7 @@ class Buyer implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'buyerRegistrationAddress' => fn(ParseNode $n) => $o->setBuyerRegistrationAddress($n->getObjectValue([ExtendedContact::class, 'createFromDiscriminatorValue'])),
+            'externalIds' => fn(ParseNode $n) => $o->setExternalIds($n->getCollectionOfObjectValues([ExternalId::class, 'createFromDiscriminatorValue'])),
             'taxAddress' => fn(ParseNode $n) => $o->setTaxAddress($n->getObjectValue([TaxAddress::class, 'createFromDiscriminatorValue'])),
             'taxIdentifier' => fn(ParseNode $n) => $o->setTaxIdentifier($n->getObjectValue([TaxIdentifier::class, 'createFromDiscriminatorValue'])),
             'username' => fn(ParseNode $n) => $o->setUsername($n->getStringValue()),
@@ -127,6 +141,7 @@ class Buyer implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('buyerRegistrationAddress', $this->getBuyerRegistrationAddress());
+        $writer->writeCollectionOfObjectValues('externalIds', $this->getExternalIds());
         $writer->writeObjectValue('taxAddress', $this->getTaxAddress());
         $writer->writeObjectValue('taxIdentifier', $this->getTaxIdentifier());
         $writer->writeStringValue('username', $this->getUsername());
@@ -147,6 +162,14 @@ class Buyer implements AdditionalDataHolder, Parsable
     */
     public function setBuyerRegistrationAddress(?ExtendedContact $value): void {
         $this->buyerRegistrationAddress = $value;
+    }
+
+    /**
+     * Sets the externalIds property value. The external identifiers associated with the buyer.
+     * @param array<ExternalId>|null $value Value to set for the externalIds property.
+    */
+    public function setExternalIds(?array $value): void {
+        $this->externalIds = $value;
     }
 
     /**

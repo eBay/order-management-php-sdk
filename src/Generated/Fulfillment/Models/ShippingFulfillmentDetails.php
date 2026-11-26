@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -37,9 +38,9 @@ class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsable
     private ?array $lineItems = null;
     
     /**
-     * @var string|null $shippedDate This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.
+     * @var DateTime|null $shippedDate This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.
     */
-    private ?string $shippedDate = null;
+    private ?DateTime $shippedDate = null;
     
     /**
      * @var string|null $shippingCarrierCode The unique identifier of the shipping carrier being used to ship the line item(s). Technically, the <strong>shippingCarrierCode</strong> and <strong>trackingNumber</strong> fields are optional, but generally these fields will be provided if the shipping carrier and tracking number are known. <br><br><span class="tablenote"><strong>Note:</strong> Use the Trading API's <strong>GeteBayDetails</strong> call to retrieve the latest shipping carrier enumeration values. When making the <a href="https://developer.ebay.com/devzone/xml/docs/reference/ebay/GeteBayDetails.html" target="_blank">GeteBayDetails</a> call, include the <strong>DetailName</strong> field in the request payload and set its value to <code>ShippingCarrierDetails</code>. Each valid shipping carrier enumeration value is returned in a <strong>ShippingCarrierDetails.ShippingCarrier</strong> field in the response payload.</span>
@@ -83,7 +84,7 @@ class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([LineItemReference::class, 'createFromDiscriminatorValue'])),
-            'shippedDate' => fn(ParseNode $n) => $o->setShippedDate($n->getStringValue()),
+            'shippedDate' => fn(ParseNode $n) => $o->setShippedDate($n->getDateTimeValue()),
             'shippingCarrierCode' => fn(ParseNode $n) => $o->setShippingCarrierCode($n->getStringValue()),
             'trackingNumber' => fn(ParseNode $n) => $o->setTrackingNumber($n->getStringValue()),
         ];
@@ -99,9 +100,9 @@ class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the shippedDate property value. This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getShippedDate(): ?string {
+    public function getShippedDate(): ?DateTime {
         return $this->shippedDate;
     }
 
@@ -127,7 +128,7 @@ class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
-        $writer->writeStringValue('shippedDate', $this->getShippedDate());
+        $writer->writeDateTimeValue('shippedDate', $this->getShippedDate());
         $writer->writeStringValue('shippingCarrierCode', $this->getShippingCarrierCode());
         $writer->writeStringValue('trackingNumber', $this->getTrackingNumber());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -151,9 +152,9 @@ class ShippingFulfillmentDetails implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the shippedDate property value. This is the actual date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code><br><br><strong>Default:</strong> The current date and time.
-     * @param string|null $value Value to set for the shippedDate property.
+     * @param DateTime|null $value Value to set for the shippedDate property.
     */
-    public function setShippedDate(?string $value): void {
+    public function setShippedDate(?DateTime $value): void {
         $this->shippedDate = $value;
     }
 

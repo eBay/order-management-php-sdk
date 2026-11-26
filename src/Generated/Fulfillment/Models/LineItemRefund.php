@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -37,9 +38,9 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $refundDate The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $refundDate The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $refundDate = null;
+    private ?DateTime $refundDate = null;
     
     /**
      * @var string|null $refundId Unique identifier of a refund that was initiated for an order's line item through the <strong>issueRefund</strong> method. If the <strong>issueRefund</strong> method was used to issue a refund at the order level, this identifier is returned at the order level instead (<strong>paymentSummary.refunds.refundId</strong> field).<br><br> A <strong>refundId</strong> value is returned in the response of the <strong>issueRefund</strong> method, and this same value will be returned in the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> and <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> responses for pending and completed refunds.
@@ -91,7 +92,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
-            'refundDate' => fn(ParseNode $n) => $o->setRefundDate($n->getStringValue()),
+            'refundDate' => fn(ParseNode $n) => $o->setRefundDate($n->getDateTimeValue()),
             'refundId' => fn(ParseNode $n) => $o->setRefundId($n->getStringValue()),
             'refundReferenceId' => fn(ParseNode $n) => $o->setRefundReferenceId($n->getStringValue()),
         ];
@@ -99,9 +100,9 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getRefundDate(): ?string {
+    public function getRefundDate(): ?DateTime {
         return $this->refundDate;
     }
 
@@ -127,7 +128,7 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
-        $writer->writeStringValue('refundDate', $this->getRefundDate());
+        $writer->writeDateTimeValue('refundDate', $this->getRefundDate());
         $writer->writeStringValue('refundId', $this->getRefundId());
         $writer->writeStringValue('refundReferenceId', $this->getRefundReferenceId());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -151,9 +152,9 @@ class LineItemRefund implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the refundDate property value. The date and time that the refund was issued for the line item. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the refundDate property.
+     * @param DateTime|null $value Value to set for the refundDate property.
     */
-    public function setRefundDate(?string $value): void {
+    public function setRefundDate(?DateTime $value): void {
         $this->refundDate = $value;
     }
 

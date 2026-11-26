@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Order\Item;
 
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\Order;
 use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Issue_refund\Issue_refundRequestBuilder;
 use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Shipping_fulfillmentRequestBuilder;
@@ -67,7 +68,12 @@ class OrderItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?OrderItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Order::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '404' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Order::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

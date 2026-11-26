@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -47,9 +48,9 @@ class ShippingFulfillment implements AdditionalDataHolder, Parsable
     private ?string $shipmentTrackingNumber = null;
     
     /**
-     * @var string|null $shippedDate The date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $shippedDate The date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $shippedDate = null;
+    private ?DateTime $shippedDate = null;
     
     /**
      * @var string|null $shippingCarrierCode The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. <br><br><span class="tablenote"><strong>Note:</strong> The Trading API's <strong>ShippingCarrierCodeType</strong> enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See <a href="https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html " target="_blank">ShippingCarrierCodeType</a>.</span>
@@ -90,7 +91,7 @@ class ShippingFulfillment implements AdditionalDataHolder, Parsable
             'fulfillmentId' => fn(ParseNode $n) => $o->setFulfillmentId($n->getStringValue()),
             'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([LineItemReference::class, 'createFromDiscriminatorValue'])),
             'shipmentTrackingNumber' => fn(ParseNode $n) => $o->setShipmentTrackingNumber($n->getStringValue()),
-            'shippedDate' => fn(ParseNode $n) => $o->setShippedDate($n->getStringValue()),
+            'shippedDate' => fn(ParseNode $n) => $o->setShippedDate($n->getDateTimeValue()),
             'shippingCarrierCode' => fn(ParseNode $n) => $o->setShippingCarrierCode($n->getStringValue()),
         ];
     }
@@ -121,9 +122,9 @@ class ShippingFulfillment implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getShippedDate(): ?string {
+    public function getShippedDate(): ?DateTime {
         return $this->shippedDate;
     }
 
@@ -143,7 +144,7 @@ class ShippingFulfillment implements AdditionalDataHolder, Parsable
         $writer->writeStringValue('fulfillmentId', $this->getFulfillmentId());
         $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
         $writer->writeStringValue('shipmentTrackingNumber', $this->getShipmentTrackingNumber());
-        $writer->writeStringValue('shippedDate', $this->getShippedDate());
+        $writer->writeDateTimeValue('shippedDate', $this->getShippedDate());
         $writer->writeStringValue('shippingCarrierCode', $this->getShippingCarrierCode());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -182,9 +183,9 @@ class ShippingFulfillment implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the shippedDate property value. The date and time that the fulfillment package was shipped. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the shippedDate property.
+     * @param DateTime|null $value Value to set for the shippedDate property.
     */
-    public function setShippedDate(?string $value): void {
+    public function setShippedDate(?DateTime $value): void {
         $this->shippedDate = $value;
     }
 

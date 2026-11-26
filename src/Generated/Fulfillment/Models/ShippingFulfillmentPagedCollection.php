@@ -37,12 +37,32 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
     private ?array $fulfillments = null;
     
     /**
+     * @var int|null $limit Maximum number of fulfillments returned per page.
+    */
+    private ?int $limit = null;
+    
+    /**
+     * @var string|null $next URI of the next page of results, if one exists.
+    */
+    private ?string $next = null;
+    
+    /**
+     * @var int|null $offset Number of fulfillments skipped before this page.
+    */
+    private ?int $offset = null;
+    
+    /**
+     * @var string|null $prev URI of the previous page of results, if one exists.
+    */
+    private ?string $prev = null;
+    
+    /**
      * @var int|null $total The total number of fulfillments in the specified order.<br><br><span class="tablenote"><strong>Note:</strong> If no fulfillments are found for the order, this field is returned with a value of <code>0</code>.</span>
     */
     private ?int $total = null;
     
     /**
-     * @var array<ErrorDetailV3>|null $warnings This array is only returned if one or more errors or warnings occur with the call request.
+     * @var array<ErrorDetail>|null $warnings This array is only returned if one or more errors or warnings occur with the call request.
     */
     private ?array $warnings = null;
     
@@ -78,8 +98,12 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
         $o = $this;
         return  [
             'fulfillments' => fn(ParseNode $n) => $o->setFulfillments($n->getCollectionOfObjectValues([ShippingFulfillment::class, 'createFromDiscriminatorValue'])),
+            'limit' => fn(ParseNode $n) => $o->setLimit($n->getIntegerValue()),
+            'next' => fn(ParseNode $n) => $o->setNext($n->getStringValue()),
+            'offset' => fn(ParseNode $n) => $o->setOffset($n->getIntegerValue()),
+            'prev' => fn(ParseNode $n) => $o->setPrev($n->getStringValue()),
             'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
-            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetailV3::class, 'createFromDiscriminatorValue'])),
+            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetail::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -92,6 +116,38 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
     }
 
     /**
+     * Gets the limit property value. Maximum number of fulfillments returned per page.
+     * @return int|null
+    */
+    public function getLimit(): ?int {
+        return $this->limit;
+    }
+
+    /**
+     * Gets the next property value. URI of the next page of results, if one exists.
+     * @return string|null
+    */
+    public function getNext(): ?string {
+        return $this->next;
+    }
+
+    /**
+     * Gets the offset property value. Number of fulfillments skipped before this page.
+     * @return int|null
+    */
+    public function getOffset(): ?int {
+        return $this->offset;
+    }
+
+    /**
+     * Gets the prev property value. URI of the previous page of results, if one exists.
+     * @return string|null
+    */
+    public function getPrev(): ?string {
+        return $this->prev;
+    }
+
+    /**
      * Gets the total property value. The total number of fulfillments in the specified order.<br><br><span class="tablenote"><strong>Note:</strong> If no fulfillments are found for the order, this field is returned with a value of <code>0</code>.</span>
      * @return int|null
     */
@@ -101,7 +157,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
 
     /**
      * Gets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
-     * @return array<ErrorDetailV3>|null
+     * @return array<ErrorDetail>|null
     */
     public function getWarnings(): ?array {
         return $this->warnings;
@@ -113,6 +169,10 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('fulfillments', $this->getFulfillments());
+        $writer->writeIntegerValue('limit', $this->getLimit());
+        $writer->writeStringValue('next', $this->getNext());
+        $writer->writeIntegerValue('offset', $this->getOffset());
+        $writer->writeStringValue('prev', $this->getPrev());
         $writer->writeIntegerValue('total', $this->getTotal());
         $writer->writeCollectionOfObjectValues('warnings', $this->getWarnings());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -135,6 +195,38 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
     }
 
     /**
+     * Sets the limit property value. Maximum number of fulfillments returned per page.
+     * @param int|null $value Value to set for the limit property.
+    */
+    public function setLimit(?int $value): void {
+        $this->limit = $value;
+    }
+
+    /**
+     * Sets the next property value. URI of the next page of results, if one exists.
+     * @param string|null $value Value to set for the next property.
+    */
+    public function setNext(?string $value): void {
+        $this->next = $value;
+    }
+
+    /**
+     * Sets the offset property value. Number of fulfillments skipped before this page.
+     * @param int|null $value Value to set for the offset property.
+    */
+    public function setOffset(?int $value): void {
+        $this->offset = $value;
+    }
+
+    /**
+     * Sets the prev property value. URI of the previous page of results, if one exists.
+     * @param string|null $value Value to set for the prev property.
+    */
+    public function setPrev(?string $value): void {
+        $this->prev = $value;
+    }
+
+    /**
      * Sets the total property value. The total number of fulfillments in the specified order.<br><br><span class="tablenote"><strong>Note:</strong> If no fulfillments are found for the order, this field is returned with a value of <code>0</code>.</span>
      * @param int|null $value Value to set for the total property.
     */
@@ -144,7 +236,7 @@ class ShippingFulfillmentPagedCollection implements AdditionalDataHolder, Parsab
 
     /**
      * Sets the warnings property value. This array is only returned if one or more errors or warnings occur with the call request.
-     * @param array<ErrorDetailV3>|null $value Value to set for the warnings property.
+     * @param array<ErrorDetail>|null $value Value to set for the warnings property.
     */
     public function setWarnings(?array $value): void {
         $this->warnings = $value;

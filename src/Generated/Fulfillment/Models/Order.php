@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -48,9 +49,9 @@ class Order implements AdditionalDataHolder, Parsable
     private ?CancelStatus $cancelStatus = null;
     
     /**
-     * @var string|null $creationDate The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $creationDate The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $creationDate = null;
+    private ?DateTime $creationDate = null;
     
     /**
      * @var bool|null $ebayCollectAndRemitTax This field is only returned if <code>true</code> and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, 'Goods and Services' tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer's residence. If this field is returned, the seller should search for one or more <strong>ebayCollectAndRemitTaxes</strong> containers at the line item level to get more information about the type of tax and the amount.
@@ -68,9 +69,9 @@ class Order implements AdditionalDataHolder, Parsable
     private ?array $fulfillmentStartInstructions = null;
     
     /**
-     * @var string|null $lastModifiedDate The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $lastModifiedDate The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $lastModifiedDate = null;
+    private ?DateTime $lastModifiedDate = null;
     
     /**
      * @var array<LineItem>|null $lineItems This array contains the details for all line items that comprise the order.
@@ -177,9 +178,9 @@ class Order implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the creationDate property value. The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getCreationDate(): ?string {
+    public function getCreationDate(): ?DateTime {
         return $this->creationDate;
     }
 
@@ -201,7 +202,7 @@ class Order implements AdditionalDataHolder, Parsable
             'buyer' => fn(ParseNode $n) => $o->setBuyer($n->getObjectValue([Buyer::class, 'createFromDiscriminatorValue'])),
             'buyerCheckoutNotes' => fn(ParseNode $n) => $o->setBuyerCheckoutNotes($n->getStringValue()),
             'cancelStatus' => fn(ParseNode $n) => $o->setCancelStatus($n->getObjectValue([CancelStatus::class, 'createFromDiscriminatorValue'])),
-            'creationDate' => fn(ParseNode $n) => $o->setCreationDate($n->getStringValue()),
+            'creationDate' => fn(ParseNode $n) => $o->setCreationDate($n->getDateTimeValue()),
             'ebayCollectAndRemitTax' => fn(ParseNode $n) => $o->setEbayCollectAndRemitTax($n->getBooleanValue()),
             'fulfillmentHrefs' => function (ParseNode $n) {
                 $val = $n->getCollectionOfPrimitiveValues();
@@ -212,7 +213,7 @@ class Order implements AdditionalDataHolder, Parsable
                 $this->setFulfillmentHrefs($val);
             },
             'fulfillmentStartInstructions' => fn(ParseNode $n) => $o->setFulfillmentStartInstructions($n->getCollectionOfObjectValues([FulfillmentStartInstruction::class, 'createFromDiscriminatorValue'])),
-            'lastModifiedDate' => fn(ParseNode $n) => $o->setLastModifiedDate($n->getStringValue()),
+            'lastModifiedDate' => fn(ParseNode $n) => $o->setLastModifiedDate($n->getDateTimeValue()),
             'lineItems' => fn(ParseNode $n) => $o->setLineItems($n->getCollectionOfObjectValues([LineItem::class, 'createFromDiscriminatorValue'])),
             'orderFulfillmentStatus' => fn(ParseNode $n) => $o->setOrderFulfillmentStatus($n->getEnumValue(OrderFulfillmentStatus::class)),
             'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
@@ -245,9 +246,9 @@ class Order implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getLastModifiedDate(): ?string {
+    public function getLastModifiedDate(): ?DateTime {
         return $this->lastModifiedDate;
     }
 
@@ -347,11 +348,11 @@ class Order implements AdditionalDataHolder, Parsable
         $writer->writeObjectValue('buyer', $this->getBuyer());
         $writer->writeStringValue('buyerCheckoutNotes', $this->getBuyerCheckoutNotes());
         $writer->writeObjectValue('cancelStatus', $this->getCancelStatus());
-        $writer->writeStringValue('creationDate', $this->getCreationDate());
+        $writer->writeDateTimeValue('creationDate', $this->getCreationDate());
         $writer->writeBooleanValue('ebayCollectAndRemitTax', $this->getEbayCollectAndRemitTax());
         $writer->writeCollectionOfPrimitiveValues('fulfillmentHrefs', $this->getFulfillmentHrefs());
         $writer->writeCollectionOfObjectValues('fulfillmentStartInstructions', $this->getFulfillmentStartInstructions());
-        $writer->writeStringValue('lastModifiedDate', $this->getLastModifiedDate());
+        $writer->writeDateTimeValue('lastModifiedDate', $this->getLastModifiedDate());
         $writer->writeCollectionOfObjectValues('lineItems', $this->getLineItems());
         $writer->writeEnumValue('orderFulfillmentStatus', $this->getOrderFulfillmentStatus());
         $writer->writeStringValue('orderId', $this->getOrderId());
@@ -400,9 +401,9 @@ class Order implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the creationDate property value. The date and time that the order was created. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the creationDate property.
+     * @param DateTime|null $value Value to set for the creationDate property.
     */
-    public function setCreationDate(?string $value): void {
+    public function setCreationDate(?DateTime $value): void {
         $this->creationDate = $value;
     }
 
@@ -432,9 +433,9 @@ class Order implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the lastModifiedDate property value. The date and time that the order was last modified. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the lastModifiedDate property.
+     * @param DateTime|null $value Value to set for the lastModifiedDate property.
     */
-    public function setLastModifiedDate(?string $value): void {
+    public function setLastModifiedDate(?DateTime $value): void {
         $this->lastModifiedDate = $value;
     }
 

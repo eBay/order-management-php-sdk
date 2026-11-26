@@ -82,8 +82,6 @@ use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuotesByI
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\PurchaseQuotesByIds\Output as PurchaseQuotesByIdsOutput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurchaseQuote\Input as RequestPurchaseQuoteInput;
 use EBay\OrderManagement\GraphQL\Types\PurchaseQuoteOperations\RequestPurchaseQuote\Output as RequestPurchaseQuoteOutput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\Input as AddListingsToReturnRuleListingGroupInput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\Output as AddListingsToReturnRuleListingGroupOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\Input as AppendSellerReturnResponseRuleInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\Output as AppendSellerReturnResponseRuleOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnToAddressRule\Input as AppendSellerReturnToAddressRuleInput;
@@ -92,14 +90,8 @@ use EBay\OrderManagement\GraphQL\Types\ReturnOperations\ApproveReturn\Input as A
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\ApproveReturn\Output as ApproveReturnOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AttachReturnShipmentLabel\Input as AttachReturnShipmentLabelInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\AttachReturnShipmentLabel\Output as AttachReturnShipmentLabelOutput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\Input as CreateInStoreReturnInput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\Output as CreateInStoreReturnOutput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\Input as CreateReturnRuleListingGroupInput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\Output as CreateReturnRuleListingGroupOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeclineReturn\Input as DeclineReturnInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeclineReturn\Output as DeclineReturnOutput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleListingGroup\Input as DeleteReturnRuleListingGroupInput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleListingGroup\Output as DeleteReturnRuleListingGroupOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturnRule\Input as DeleteSellerReturnRuleInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturnRule\Output as DeleteSellerReturnRuleOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\OrderReturn\Input as OrderReturnInput;
@@ -114,8 +106,6 @@ use EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnLabelSentOff
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnLabelSentOffline\Output as RecordReturnLabelSentOfflineOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnReceived\Input as RecordReturnReceivedInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\RecordReturnReceived\Output as RecordReturnReceivedOutput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingGroup\Input as ReturnRuleListingGroupInput;
-use EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingGroup\Output as ReturnRuleListingGroupOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns\Input as SellerOrderReturnsInput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerOrderReturns\Output as SellerOrderReturnsOutput;
 use EBay\OrderManagement\GraphQL\Types\ReturnOperations\SellerReturnPreference\Input as SellerReturnPreferenceInput;
@@ -140,17 +130,6 @@ use EBay\OrderManagement\GraphQL\Types\ReturnOperations\UpdateSellerRmaPreferenc
 final class OrderManagementGraphQLClient
 {
     public function __construct(private readonly DynamicGraphQLClient $dynamic) {}
-
-    public function addListingsToReturnRuleListingGroup(AddListingsToReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleFeatureNotEnabledError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleListingGroup|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleListingGroupDuplicateListingError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleListingGroupMaxSizeExceededError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleListingGroupNotFoundError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AddListingsToReturnRuleListingGroup\ReturnRuleListingIdsPerRequestLimitExceededError
-    {
-        $data = $this->dynamic->execute(
-            ReturnOperations::ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP(),
-            ['input' => (object)$input->toArray()],
-            $accessToken,
-            $requestOptions
-        );
-        return AddListingsToReturnRuleListingGroupOutput::fromArray($data['addListingsToReturnRuleListingGroup'] ?? []);
-    }
 
     public function appendSellerReturnResponseRule(AppendSellerReturnResponseRuleInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnResponseRule|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnRuleFeatureNotEnabledError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnRuleInvalidConditionsError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnRuleLimitExceededError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnRuleMissingConditionError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\AppendSellerReturnResponseRule\ReturnRuleNameError
     {
@@ -262,17 +241,6 @@ final class OrderManagementGraphQLClient
         return ContractCancellationOutput::fromArray($data['contractCancellation'] ?? []);
     }
 
-    public function createInStoreReturn(CreateInStoreReturnInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\CreateInStoreReturnInputValidationError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\MultipleLineItemReturnNotSupportedError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\OrderLineItemNotFoundError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\OrderReturn|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\ReturnCreationNotAllowedError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateInStoreReturn\ReturnRequestLineItemRequiredError
-    {
-        $data = $this->dynamic->execute(
-            ReturnOperations::CREATE_IN_STORE_RETURN(),
-            ['input' => (object)$input->toArray()],
-            $accessToken,
-            $requestOptions
-        );
-        return CreateInStoreReturnOutput::fromArray($data['createInStoreReturn'] ?? []);
-    }
-
     public function createItemCommitmentCancellation(CreateItemCommitmentCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output\CreateItemCommitmentCancellationSuccess|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output\ItemCommitmentCancellationEligibilityError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\CreateItemCommitmentCancellation\Output\ItemCommitmentNotFoundError
     {
         $data = $this->dynamic->execute(
@@ -317,17 +285,6 @@ final class OrderManagementGraphQLClient
         return CreatePurchaseQuoteCancellationOutput::fromArray($data['createPurchaseQuoteCancellation'] ?? []);
     }
 
-    public function createReturnRuleListingGroup(CreateReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleFeatureNotEnabledError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingGroup|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingGroupDuplicateListingError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingGroupInvalidNameError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingGroupMaxSizeExceededError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingGroupQuotaExceededError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\CreateReturnRuleListingGroup\ReturnRuleListingIdsPerRequestLimitExceededError
-    {
-        $data = $this->dynamic->execute(
-            ReturnOperations::CREATE_RETURN_RULE_LISTING_GROUP(),
-            ['input' => (object)$input->toArray()],
-            $accessToken,
-            $requestOptions
-        );
-        return CreateReturnRuleListingGroupOutput::fromArray($data['createReturnRuleListingGroup'] ?? []);
-    }
-
     public function declineContractCancellation(DeclineContractCancellationInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output\ContractCancellationActionNotPermittedError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output\ContractCancellationNotFoundError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output\DeclineCancellationInputValidationError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\DeclineContractCancellation\Output\DeclineContractCancellationSuccess
     {
         $data = $this->dynamic->execute(
@@ -348,17 +305,6 @@ final class OrderManagementGraphQLClient
             $requestOptions
         );
         return DeclineReturnOutput::fromArray($data['declineReturn'] ?? []);
-    }
-
-    public function deleteReturnRuleListingGroup(DeleteReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleListingGroup\DeleteReturnRuleListingGroupSuccess|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleListingGroup\ReturnRuleFeatureNotEnabledError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteReturnRuleListingGroup\ReturnRuleListingGroupNotFoundError
-    {
-        $data = $this->dynamic->execute(
-            ReturnOperations::DELETE_RETURN_RULE_LISTING_GROUP(),
-            ['input' => (object)$input->toArray()],
-            $accessToken,
-            $requestOptions
-        );
-        return DeleteReturnRuleListingGroupOutput::fromArray($data['deleteReturnRuleListingGroup'] ?? []);
     }
 
     public function deleteSellerReturnRule(DeleteSellerReturnRuleInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturnRule\DeleteSellerReturnRuleSuccess|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturnRule\ReturnRuleFeatureNotEnabledError|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\DeleteSellerReturnRule\ReturnRuleNotFoundError
@@ -590,17 +536,6 @@ final class OrderManagementGraphQLClient
             $requestOptions
         );
         return RequestPurchaseQuoteOutput::fromArray($data['requestPurchaseQuote'] ?? []);
-    }
-
-    public function returnRuleListingGroup(ReturnRuleListingGroupInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingGroup\ReturnRuleListingGroup|\EBay\OrderManagement\GraphQL\Types\ReturnOperations\ReturnRuleListingGroup\ReturnRuleListingGroupNotFoundError
-    {
-        $data = $this->dynamic->execute(
-            ReturnOperations::RETURN_RULE_LISTING_GROUP(),
-            ['input' => (object)$input->toArray()],
-            $accessToken,
-            $requestOptions
-        );
-        return ReturnRuleListingGroupOutput::fromArray($data['returnRuleListingGroup'] ?? []);
     }
 
     public function sellerContractCancellations(SellerContractCancellationsInput $input, ?string $accessToken = null, ?RequestOptions $requestOptions = null): \EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output\ContractCancellationInvalidDateRangeError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output\ContractCancellationInvalidPageSizeError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output\ContractCancellationInvalidSearchInputError|\EBay\OrderManagement\GraphQL\Types\CancellationOperations\SellerContractCancellations\Output\SellerContractCancellationsSuccess

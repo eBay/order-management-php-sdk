@@ -42,10 +42,10 @@ class OrderItemRequestBuilderGetRequestConfiguration extends BaseRequestConfigur
 
     /**
      * Instantiates a new OrderItemRequestBuilderGetQueryParameters.
-     * @param string|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
+     * @param GetFieldGroupsQueryParameterType|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
      * @return OrderItemRequestBuilderGetQueryParameters
     */
-    public static function createQueryParameters(?string $fieldGroups = null): OrderItemRequestBuilderGetQueryParameters {
+    public static function createQueryParameters(?GetFieldGroupsQueryParameterType $fieldGroups = null): OrderItemRequestBuilderGetQueryParameters {
         return new OrderItemRequestBuilderGetQueryParameters($fieldGroups);
     }
 

@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -57,14 +58,14 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
     private ?FulfillmentInstructionsType $fulfillmentInstructionsType = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $maxEstimatedDeliveryDate This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $maxEstimatedDeliveryDate = null;
+    private ?DateTime $maxEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $minEstimatedDeliveryDate This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $minEstimatedDeliveryDate This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $minEstimatedDeliveryDate = null;
+    private ?DateTime $minEstimatedDeliveryDate = null;
     
     /**
      * @var PickupStep|null $pickupStep This container is only returned for In-Store Pickup orders, and it indicates the specific merchant's store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.
@@ -136,8 +137,8 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
             'ebaySupportedFulfillment' => fn(ParseNode $n) => $o->setEbaySupportedFulfillment($n->getBooleanValue()),
             'finalDestinationAddress' => fn(ParseNode $n) => $o->setFinalDestinationAddress($n->getObjectValue([Address::class, 'createFromDiscriminatorValue'])),
             'fulfillmentInstructionsType' => fn(ParseNode $n) => $o->setFulfillmentInstructionsType($n->getEnumValue(FulfillmentInstructionsType::class)),
-            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getStringValue()),
-            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getStringValue()),
+            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getDateTimeValue()),
+            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getDateTimeValue()),
             'pickupStep' => fn(ParseNode $n) => $o->setPickupStep($n->getObjectValue([PickupStep::class, 'createFromDiscriminatorValue'])),
             'shippingStep' => fn(ParseNode $n) => $o->setShippingStep($n->getObjectValue([ShippingStep::class, 'createFromDiscriminatorValue'])),
         ];
@@ -161,17 +162,17 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMaxEstimatedDeliveryDate(): ?string {
+    public function getMaxEstimatedDeliveryDate(): ?DateTime {
         return $this->maxEstimatedDeliveryDate;
     }
 
     /**
      * Gets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMinEstimatedDeliveryDate(): ?string {
+    public function getMinEstimatedDeliveryDate(): ?DateTime {
         return $this->minEstimatedDeliveryDate;
     }
 
@@ -201,8 +202,8 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
         $writer->writeBooleanValue('ebaySupportedFulfillment', $this->getEbaySupportedFulfillment());
         $writer->writeObjectValue('finalDestinationAddress', $this->getFinalDestinationAddress());
         $writer->writeEnumValue('fulfillmentInstructionsType', $this->getFulfillmentInstructionsType());
-        $writer->writeStringValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
-        $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
         $writer->writeObjectValue('pickupStep', $this->getPickupStep());
         $writer->writeObjectValue('shippingStep', $this->getShippingStep());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -258,17 +259,17 @@ class FulfillmentStartInstruction implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the maxEstimatedDeliveryDate property value. This is the estimated latest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
-    public function setMaxEstimatedDeliveryDate(?string $value): void {
+    public function setMaxEstimatedDeliveryDate(?DateTime $value): void {
         $this->maxEstimatedDeliveryDate = $value;
     }
 
     /**
      * Sets the minEstimatedDeliveryDate property value. This is the estimated earliest date that the fulfillment will be completed. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the <strong>fulfillmentInstructionsType</strong> field is <code>DIGITAL</code> or <code>PREPARE_FOR_PICKUP</code>.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the minEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the minEstimatedDeliveryDate property.
     */
-    public function setMinEstimatedDeliveryDate(?string $value): void {
+    public function setMinEstimatedDeliveryDate(?DateTime $value): void {
         $this->minEstimatedDeliveryDate = $value;
     }
 

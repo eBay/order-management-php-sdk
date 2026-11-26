@@ -19,9 +19,9 @@ namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 use Microsoft\Kiota\Abstractions\Enum;
 
 class FulfillmentInstructionsType extends Enum {
-    public const D_I_G_I_T_A_L = "DIGITAL";
-    public const P_R_E_P_A_R_E__F_O_R__P_I_C_K_U_P = "PREPARE_FOR_PICKUP";
-    public const S_E_L_L_E_R__D_E_F_I_N_E_D = "SELLER_DEFINED";
     public const S_H_I_P__T_O = "SHIP_TO";
+    public const P_R_E_P_A_R_E__F_O_R__P_I_C_K_U_P = "PREPARE_FOR_PICKUP";
+    public const D_I_G_I_T_A_L = "DIGITAL";
+    public const S_E_L_L_E_R__D_E_F_I_N_E_D = "SELLER_DEFINED";
     public const F_U_L_F_I_L_L_E_D__B_Y__E_B_A_Y = "FULFILLED_BY_EBAY";
 }

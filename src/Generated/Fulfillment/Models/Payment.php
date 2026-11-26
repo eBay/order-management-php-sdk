@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -37,9 +38,9 @@ class Payment implements AdditionalDataHolder, Parsable
     private ?Amount $amount = null;
     
     /**
-     * @var string|null $paymentDate The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $paymentDate The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $paymentDate = null;
+    private ?DateTime $paymentDate = null;
     
     /**
      * @var array<PaymentHold>|null $paymentHolds This container is only returned if eBay is temporarily holding the seller's funds for the order. If a payment hold has been placed on the order, this container includes the reason for the payment hold, the expected release date of the funds into the seller's account, the current state of the hold, and as soon as the payment hold has been released, the actual release date.
@@ -101,7 +102,7 @@ class Payment implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'amount' => fn(ParseNode $n) => $o->setAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
-            'paymentDate' => fn(ParseNode $n) => $o->setPaymentDate($n->getStringValue()),
+            'paymentDate' => fn(ParseNode $n) => $o->setPaymentDate($n->getDateTimeValue()),
             'paymentHolds' => fn(ParseNode $n) => $o->setPaymentHolds($n->getCollectionOfObjectValues([PaymentHold::class, 'createFromDiscriminatorValue'])),
             'paymentMethod' => fn(ParseNode $n) => $o->setPaymentMethod($n->getEnumValue(PaymentMethodTypeEnum::class)),
             'paymentReferenceId' => fn(ParseNode $n) => $o->setPaymentReferenceId($n->getStringValue()),
@@ -111,9 +112,9 @@ class Payment implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getPaymentDate(): ?string {
+    public function getPaymentDate(): ?DateTime {
         return $this->paymentDate;
     }
 
@@ -155,7 +156,7 @@ class Payment implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeObjectValue('amount', $this->getAmount());
-        $writer->writeStringValue('paymentDate', $this->getPaymentDate());
+        $writer->writeDateTimeValue('paymentDate', $this->getPaymentDate());
         $writer->writeCollectionOfObjectValues('paymentHolds', $this->getPaymentHolds());
         $writer->writeEnumValue('paymentMethod', $this->getPaymentMethod());
         $writer->writeStringValue('paymentReferenceId', $this->getPaymentReferenceId());
@@ -181,9 +182,9 @@ class Payment implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the paymentDate property value. The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the paymentDate property.
+     * @param DateTime|null $value Value to set for the paymentDate property.
     */
-    public function setPaymentDate(?string $value): void {
+    public function setPaymentDate(?DateTime $value): void {
         $this->paymentDate = $value;
     }
 

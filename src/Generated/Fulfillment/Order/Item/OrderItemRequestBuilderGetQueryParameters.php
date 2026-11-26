@@ -22,15 +22,15 @@ namespace EBay\OrderManagement\Generated\Fulfillment\Order\Item;
 class OrderItemRequestBuilderGetQueryParameters 
 {
     /**
-     * @var string|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
+     * @var GetFieldGroupsQueryParameterType|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
     */
-    public ?string $fieldGroups = null;
+    public ?GetFieldGroupsQueryParameterType $fieldGroups = null;
     
     /**
      * Instantiates a new OrderItemRequestBuilderGetQueryParameters and sets the default values.
-     * @param string|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
+     * @param GetFieldGroupsQueryParameterType|null $fieldGroups This parameter lets you control what is returned in the response.<br><br><span class="tablenote"><strong>Note:</strong> The only presently supported value is <code>TAX_BREAKDOWN</code>. This field group adds addition fields to the response that return a breakdown of taxes and fees.</span>
     */
-    public function __construct(?string $fieldGroups = null) {
+    public function __construct(?GetFieldGroupsQueryParameterType $fieldGroups = null) {
         $this->fieldGroups = $fieldGroups;
     }
 

@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Item;
 
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillment;
 use Exception;
 use Http\Promise\Promise;
@@ -51,7 +52,12 @@ class WithFulfillmentItemRequestBuilder extends BaseRequestBuilder
     */
     public function get(?WithFulfillmentItemRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ShippingFulfillment::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '404' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ShippingFulfillment::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

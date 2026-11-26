@@ -75,10 +75,10 @@ final class LogisticsClient
         );
     }
 
-    public function downloadLabelFile(string $shipmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): void
+    public function downloadLabelFile(string $shipmentId, ?string $accessToken = null, ?RequestOptions $requestOptions = null): mixed
     {
         $headers = $this->mergedHeaders($requestOptions);
-        $this->call($accessToken, fn($api) =>
+        return $this->call($accessToken, fn($api) =>
             $api->shipment()->byShipmentId($shipmentId)->download_label_file()->get(
                 new \EBay\OrderManagement\Generated\Logistics\Shipment\Item\Download_label_file\Download_label_fileRequestBuilderGetRequestConfiguration(headers: $headers)
             )->wait()

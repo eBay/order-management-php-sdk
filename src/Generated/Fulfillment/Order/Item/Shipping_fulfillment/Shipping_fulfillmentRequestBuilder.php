@@ -16,8 +16,10 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment;
 
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentDetails;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentPagedCollection;
+use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Create_additional\Create_additionalRequestBuilder;
 use EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Item\WithFulfillmentItemRequestBuilder;
 use Exception;
 use Http\Promise\Promise;
@@ -31,6 +33,13 @@ use Microsoft\Kiota\Abstractions\RequestInformation;
 */
 class Shipping_fulfillmentRequestBuilder extends BaseRequestBuilder 
 {
+    /**
+     * The create_additional property
+    */
+    public function create_additional(): Create_additionalRequestBuilder {
+        return new Create_additionalRequestBuilder($this->pathParameters, $this->requestAdapter);
+    }
+    
     /**
      * Gets an item from the EBay/OrderManagement/Generated/Fulfillment.order.item.shipping_fulfillment.item collection
      * @param string $fulfillmentId This path parameter is used to specify the unique identifier of the shipping fulfillment being retrieved.<br><br>Use the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillments" target="_blank">getShippingFulfillments</a> method to retrieve fulfillment IDs.
@@ -64,11 +73,15 @@ class Shipping_fulfillmentRequestBuilder extends BaseRequestBuilder
     */
     public function get(?Shipping_fulfillmentRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [ShippingFulfillmentPagedCollection::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [ShippingFulfillmentPagedCollection::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
-     * When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is <i>shipping fulfillment</i>. For each package, execute this call once to generate the shipping fulfillment associated with that package. <br><br> <span class="tablenote"><strong>Note:</strong> A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.</span><br>Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.<br><br>This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * This method is used by sellers to create a shipping fulfillment for an order.<p>When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For each package, execute this call once to generate the shipping fulfillment associated with that package.</p><p>Use this method when an order is shipped in a single package, or to create multiple packages for the same order, as long as each package contains different line items from that order. Each call creates one shipping fulfillment for the specified order line items and associates that package with its tracking information.</p><p>Before using this method, determine which line items are included in the package. If the package has already shipped, you should provide the date of shipment in the request. If no shipment date is provided, the current date and time is used.</p><p>If the same line item under an order must be shipped across multiple packages, use the <b>createAdditionalShippingFulfillment</b> method for the additional package shipments. That method is intended primarily to support that use case.</p><p>This method can also be used to provide proof of delivery for contested payment disputes. To do so, create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. eBay will then pick up this information for the dispute directly.</p>
      * @param ShippingFulfillmentDetails $body fulfillment payload
      * @param Shipping_fulfillmentRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return Promise<Shipping_fulfillmentPostResponse|null>
@@ -76,7 +89,12 @@ class Shipping_fulfillmentRequestBuilder extends BaseRequestBuilder
     */
     public function post(ShippingFulfillmentDetails $body, ?Shipping_fulfillmentRequestBuilderPostRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toPostRequestInformation($body, $requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [Shipping_fulfillmentPostResponse::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '409' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [Shipping_fulfillmentPostResponse::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**
@@ -98,7 +116,7 @@ class Shipping_fulfillmentRequestBuilder extends BaseRequestBuilder
     }
 
     /**
-     * When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is <i>shipping fulfillment</i>. For each package, execute this call once to generate the shipping fulfillment associated with that package. <br><br> <span class="tablenote"><strong>Note:</strong> A single line item in an order can consist of multiple units of a purchased item, and one unit can consist of multiple parts or components. Although these components might be provided by the manufacturer in separate packaging, the seller must include all components of a given line item in the same package.</span><br>Before using this call for a given package, you must determine which line items are in the package. If the package has been shipped, you should provide the date of shipment in the request. If not provided, it will default to the current date and time.<br><br>This method can also be used to provide proof of delivery for contested payment disputes. To do so, use this method to create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. EBay will then pick up this information for the dispute directly.
+     * This method is used by sellers to create a shipping fulfillment for an order.<p>When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. For each package, execute this call once to generate the shipping fulfillment associated with that package.</p><p>Use this method when an order is shipped in a single package, or to create multiple packages for the same order, as long as each package contains different line items from that order. Each call creates one shipping fulfillment for the specified order line items and associates that package with its tracking information.</p><p>Before using this method, determine which line items are included in the package. If the package has already shipped, you should provide the date of shipment in the request. If no shipment date is provided, the current date and time is used.</p><p>If the same line item under an order must be shipped across multiple packages, use the <b>createAdditionalShippingFulfillment</b> method for the additional package shipments. That method is intended primarily to support that use case.</p><p>This method can also be used to provide proof of delivery for contested payment disputes. To do so, create a shipping fulfillment and provide shipment tracking information for all line items involved in the dispute. eBay will then pick up this information for the dispute directly.</p>
      * @param ShippingFulfillmentDetails $body fulfillment payload
      * @param Shipping_fulfillmentRequestBuilderPostRequestConfiguration|null $requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @return RequestInformation

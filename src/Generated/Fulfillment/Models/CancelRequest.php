@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -32,9 +33,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $cancelCompletedDate This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $cancelCompletedDate This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $cancelCompletedDate = null;
+    private ?DateTime $cancelCompletedDate = null;
     
     /**
      * @var string|null $cancelInitiator This string value indicates the party who made the initial cancellation request. This is typically, either the 'Buyer' or 'Seller'. If a cancellation request has been made, this field should be returned.
@@ -47,9 +48,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     private ?string $cancelReason = null;
     
     /**
-     * @var string|null $cancelRequestedDate This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $cancelRequestedDate This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $cancelRequestedDate = null;
+    private ?DateTime $cancelRequestedDate = null;
     
     /**
      * @var string|null $cancelRequestId This string vlaue is the unique identifier of the order cancellation request. This field is returned for each cancellation request.
@@ -87,9 +88,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getCancelCompletedDate(): ?string {
+    public function getCancelCompletedDate(): ?DateTime {
         return $this->cancelCompletedDate;
     }
 
@@ -111,9 +112,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getCancelRequestedDate(): ?string {
+    public function getCancelRequestedDate(): ?DateTime {
         return $this->cancelRequestedDate;
     }
 
@@ -140,10 +141,10 @@ class CancelRequest implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cancelCompletedDate' => fn(ParseNode $n) => $o->setCancelCompletedDate($n->getStringValue()),
+            'cancelCompletedDate' => fn(ParseNode $n) => $o->setCancelCompletedDate($n->getDateTimeValue()),
             'cancelInitiator' => fn(ParseNode $n) => $o->setCancelInitiator($n->getStringValue()),
             'cancelReason' => fn(ParseNode $n) => $o->setCancelReason($n->getStringValue()),
-            'cancelRequestedDate' => fn(ParseNode $n) => $o->setCancelRequestedDate($n->getStringValue()),
+            'cancelRequestedDate' => fn(ParseNode $n) => $o->setCancelRequestedDate($n->getDateTimeValue()),
             'cancelRequestId' => fn(ParseNode $n) => $o->setCancelRequestId($n->getStringValue()),
             'cancelRequestState' => fn(ParseNode $n) => $o->setCancelRequestState($n->getEnumValue(CancelRequestStateEnum::class)),
         ];
@@ -154,10 +155,10 @@ class CancelRequest implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('cancelCompletedDate', $this->getCancelCompletedDate());
+        $writer->writeDateTimeValue('cancelCompletedDate', $this->getCancelCompletedDate());
         $writer->writeStringValue('cancelInitiator', $this->getCancelInitiator());
         $writer->writeStringValue('cancelReason', $this->getCancelReason());
-        $writer->writeStringValue('cancelRequestedDate', $this->getCancelRequestedDate());
+        $writer->writeDateTimeValue('cancelRequestedDate', $this->getCancelRequestedDate());
         $writer->writeStringValue('cancelRequestId', $this->getCancelRequestId());
         $writer->writeEnumValue('cancelRequestState', $this->getCancelRequestState());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -173,9 +174,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cancelCompletedDate property value. This string is the date and time that the order cancellation was completed, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the cancellation request has actually been approved by the seller.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the cancelCompletedDate property.
+     * @param DateTime|null $value Value to set for the cancelCompletedDate property.
     */
-    public function setCancelCompletedDate(?string $value): void {
+    public function setCancelCompletedDate(?DateTime $value): void {
         $this->cancelCompletedDate = $value;
     }
 
@@ -197,9 +198,9 @@ class CancelRequest implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cancelRequestedDate property value. This string is the date and time that the order cancellation was requested. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is returned for each cancellation request.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the cancelRequestedDate property.
+     * @param DateTime|null $value Value to set for the cancelRequestedDate property.
     */
-    public function setCancelRequestedDate(?string $value): void {
+    public function setCancelRequestedDate(?DateTime $value): void {
         $this->cancelRequestedDate = $value;
     }
 

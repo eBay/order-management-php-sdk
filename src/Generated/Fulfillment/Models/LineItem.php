@@ -37,6 +37,11 @@ class LineItem implements AdditionalDataHolder, Parsable
     private ?array $appliedPromotions = null;
     
     /**
+     * @var CombineShipping|null $combineShipping This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+    */
+    private ?CombineShipping $combineShipping = null;
+    
+    /**
      * @var array<Property>|null $compatibilityProperties This array is only returned for a Parts & Accessory item and identifies the buyer's motor vehicle that is compatible with the part or accessory.
     */
     private ?array $compatibilityProperties = null;
@@ -60,6 +65,11 @@ class LineItem implements AdditionalDataHolder, Parsable
      * @var EbayCollectedCharges|null $ebayCollectedCharges This container consists of a breakdown of costs that are collected by eBay from the buyer for this order. <br><br><span class="tablenote"><strong>Note:</strong> Currently, this container is returned only if eBay is directly charging the buyer for eBay shipping.</span>
     */
     private ?EbayCollectedCharges $ebayCollectedCharges = null;
+    
+    /**
+     * @var EbayLiveContext|null $ebayLiveContext This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+    */
+    private ?EbayLiveContext $ebayLiveContext = null;
     
     /**
      * @var GiftDetails|null $giftDetails This container consists of information that is needed by the seller to send a digital gift card to the buyer or recipient of the digital gift card. This container is only returned and applicable for digital gift card line items.
@@ -120,6 +130,11 @@ class LineItem implements AdditionalDataHolder, Parsable
      * @var MarketplaceIdEnum|null $purchaseMarketplaceId The unique identifier of the eBay marketplace where the line item was listed. Often, the <strong>listingMarketplaceId</strong> and the <strong>purchaseMarketplaceId</strong> identifier are the same, but there are occasions when an item will surface on multiple eBay marketplaces.
     */
     private ?MarketplaceIdEnum $purchaseMarketplaceId = null;
+    
+    /**
+     * @var PurchaseSourceEnum|null $purchaseSource This enumeration value indicates the channel through which the line item was purchased.
+    */
+    private ?PurchaseSourceEnum $purchaseSource = null;
     
     /**
      * @var int|null $quantity The number of units of the line item in the order. These are represented as a group by a single <strong>lineItemId</strong>.
@@ -194,6 +209,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Gets the combineShipping property value. This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+     * @return CombineShipping|null
+    */
+    public function getCombineShipping(): ?CombineShipping {
+        return $this->combineShipping;
+    }
+
+    /**
      * Gets the compatibilityProperties property value. This array is only returned for a Parts & Accessory item and identifies the buyer's motor vehicle that is compatible with the part or accessory.
      * @return array<Property>|null
     */
@@ -234,6 +257,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Gets the ebayLiveContext property value. This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+     * @return EbayLiveContext|null
+    */
+    public function getEbayLiveContext(): ?EbayLiveContext {
+        return $this->ebayLiveContext;
+    }
+
+    /**
      * The deserialization information for the current model
      * @return array<string, callable(ParseNode): void>
     */
@@ -241,11 +272,13 @@ class LineItem implements AdditionalDataHolder, Parsable
         $o = $this;
         return  [
             'appliedPromotions' => fn(ParseNode $n) => $o->setAppliedPromotions($n->getCollectionOfObjectValues([AppliedPromotion::class, 'createFromDiscriminatorValue'])),
+            'combineShipping' => fn(ParseNode $n) => $o->setCombineShipping($n->getObjectValue([CombineShipping::class, 'createFromDiscriminatorValue'])),
             'compatibilityProperties' => fn(ParseNode $n) => $o->setCompatibilityProperties($n->getCollectionOfObjectValues([Property::class, 'createFromDiscriminatorValue'])),
             'deliveryCost' => fn(ParseNode $n) => $o->setDeliveryCost($n->getObjectValue([DeliveryCost::class, 'createFromDiscriminatorValue'])),
             'discountedLineItemCost' => fn(ParseNode $n) => $o->setDiscountedLineItemCost($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
             'ebayCollectAndRemitTaxes' => fn(ParseNode $n) => $o->setEbayCollectAndRemitTaxes($n->getCollectionOfObjectValues([EbayCollectAndRemitTax::class, 'createFromDiscriminatorValue'])),
             'ebayCollectedCharges' => fn(ParseNode $n) => $o->setEbayCollectedCharges($n->getObjectValue([EbayCollectedCharges::class, 'createFromDiscriminatorValue'])),
+            'ebayLiveContext' => fn(ParseNode $n) => $o->setEbayLiveContext($n->getObjectValue([EbayLiveContext::class, 'createFromDiscriminatorValue'])),
             'giftDetails' => fn(ParseNode $n) => $o->setGiftDetails($n->getObjectValue([GiftDetails::class, 'createFromDiscriminatorValue'])),
             'itemLocation' => fn(ParseNode $n) => $o->setItemLocation($n->getObjectValue([ItemLocation::class, 'createFromDiscriminatorValue'])),
             'legacyItemId' => fn(ParseNode $n) => $o->setLegacyItemId($n->getStringValue()),
@@ -258,6 +291,7 @@ class LineItem implements AdditionalDataHolder, Parsable
             'listingMarketplaceId' => fn(ParseNode $n) => $o->setListingMarketplaceId($n->getEnumValue(MarketplaceIdEnum::class)),
             'properties' => fn(ParseNode $n) => $o->setProperties($n->getObjectValue([LineItemProperties::class, 'createFromDiscriminatorValue'])),
             'purchaseMarketplaceId' => fn(ParseNode $n) => $o->setPurchaseMarketplaceId($n->getEnumValue(MarketplaceIdEnum::class)),
+            'purchaseSource' => fn(ParseNode $n) => $o->setPurchaseSource($n->getEnumValue(PurchaseSourceEnum::class)),
             'quantity' => fn(ParseNode $n) => $o->setQuantity($n->getIntegerValue()),
             'refunds' => fn(ParseNode $n) => $o->setRefunds($n->getCollectionOfObjectValues([LineItemRefund::class, 'createFromDiscriminatorValue'])),
             'sku' => fn(ParseNode $n) => $o->setSku($n->getStringValue()),
@@ -366,6 +400,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     }
 
     /**
+     * Gets the purchaseSource property value. This enumeration value indicates the channel through which the line item was purchased.
+     * @return PurchaseSourceEnum|null
+    */
+    public function getPurchaseSource(): ?PurchaseSourceEnum {
+        return $this->purchaseSource;
+    }
+
+    /**
      * Gets the quantity property value. The number of units of the line item in the order. These are represented as a group by a single <strong>lineItemId</strong>.
      * @return int|null
     */
@@ -435,11 +477,13 @@ class LineItem implements AdditionalDataHolder, Parsable
     */
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('appliedPromotions', $this->getAppliedPromotions());
+        $writer->writeObjectValue('combineShipping', $this->getCombineShipping());
         $writer->writeCollectionOfObjectValues('compatibilityProperties', $this->getCompatibilityProperties());
         $writer->writeObjectValue('deliveryCost', $this->getDeliveryCost());
         $writer->writeObjectValue('discountedLineItemCost', $this->getDiscountedLineItemCost());
         $writer->writeCollectionOfObjectValues('ebayCollectAndRemitTaxes', $this->getEbayCollectAndRemitTaxes());
         $writer->writeObjectValue('ebayCollectedCharges', $this->getEbayCollectedCharges());
+        $writer->writeObjectValue('ebayLiveContext', $this->getEbayLiveContext());
         $writer->writeObjectValue('giftDetails', $this->getGiftDetails());
         $writer->writeObjectValue('itemLocation', $this->getItemLocation());
         $writer->writeStringValue('legacyItemId', $this->getLegacyItemId());
@@ -452,6 +496,7 @@ class LineItem implements AdditionalDataHolder, Parsable
         $writer->writeEnumValue('listingMarketplaceId', $this->getListingMarketplaceId());
         $writer->writeObjectValue('properties', $this->getProperties());
         $writer->writeEnumValue('purchaseMarketplaceId', $this->getPurchaseMarketplaceId());
+        $writer->writeEnumValue('purchaseSource', $this->getPurchaseSource());
         $writer->writeIntegerValue('quantity', $this->getQuantity());
         $writer->writeCollectionOfObjectValues('refunds', $this->getRefunds());
         $writer->writeStringValue('sku', $this->getSku());
@@ -477,6 +522,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     */
     public function setAppliedPromotions(?array $value): void {
         $this->appliedPromotions = $value;
+    }
+
+    /**
+     * Sets the combineShipping property value. This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.
+     * @param CombineShipping|null $value Value to set for the combineShipping property.
+    */
+    public function setCombineShipping(?CombineShipping $value): void {
+        $this->combineShipping = $value;
     }
 
     /**
@@ -517,6 +570,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     */
     public function setEbayCollectedCharges(?EbayCollectedCharges $value): void {
         $this->ebayCollectedCharges = $value;
+    }
+
+    /**
+     * Sets the ebayLiveContext property value. This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.
+     * @param EbayLiveContext|null $value Value to set for the ebayLiveContext property.
+    */
+    public function setEbayLiveContext(?EbayLiveContext $value): void {
+        $this->ebayLiveContext = $value;
     }
 
     /**
@@ -613,6 +674,14 @@ class LineItem implements AdditionalDataHolder, Parsable
     */
     public function setPurchaseMarketplaceId(?MarketplaceIdEnum $value): void {
         $this->purchaseMarketplaceId = $value;
+    }
+
+    /**
+     * Sets the purchaseSource property value. This enumeration value indicates the channel through which the line item was purchased.
+     * @param PurchaseSourceEnum|null $value Value to set for the purchaseSource property.
+    */
+    public function setPurchaseSource(?PurchaseSourceEnum $value): void {
+        $this->purchaseSource = $value;
     }
 
     /**

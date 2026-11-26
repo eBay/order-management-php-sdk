@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Order;
 
+use EBay\OrderManagement\Generated\Fulfillment\Models\ErrorResponse;
 use EBay\OrderManagement\Generated\Fulfillment\Models\OrderSearchPagedCollection;
 use EBay\OrderManagement\Generated\Fulfillment\Order\Item\OrderItemRequestBuilder;
 use Exception;
@@ -63,7 +64,11 @@ class OrderRequestBuilder extends BaseRequestBuilder
     */
     public function get(?OrderRequestBuilderGetRequestConfiguration $requestConfiguration = null): Promise {
         $requestInfo = $this->toGetRequestInformation($requestConfiguration);
-        return $this->requestAdapter->sendAsync($requestInfo, [OrderSearchPagedCollection::class, 'createFromDiscriminatorValue'], null);
+        $errorMappings = [
+                '400' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+                '500' => [ErrorResponse::class, 'createFromDiscriminatorValue'],
+        ];
+        return $this->requestAdapter->sendAsync($requestInfo, [OrderSearchPagedCollection::class, 'createFromDiscriminatorValue'], $errorMappings);
     }
 
     /**

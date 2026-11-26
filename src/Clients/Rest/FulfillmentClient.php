@@ -36,6 +36,7 @@ use EBay\OrderManagement\Generated\Fulfillment\Models\Refund;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillment;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentDetails;
 use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingFulfillmentPagedCollection;
+use EBay\OrderManagement\Generated\Fulfillment\Models\ShippingTrackingDetails;
 use EBay\OrderManagement\Generated\Fulfillment\Models\UpdateEvidencePaymentDisputeRequest;
 use EBay\OrderManagement\Generated\Fulfillment\Models\UploadEvidenceFilePaymentDisputeResponse;
 use GuzzleHttp\Client as GuzzleClient;
@@ -60,7 +61,7 @@ final class FulfillmentClient
 
     public function getOrder(
         string $orderId,
-        ?string $fieldGroups = null,
+        ?\EBay\OrderManagement\Generated\Fulfillment\Order\Item\GetFieldGroupsQueryParameterType $fieldGroups = null,
         ?string $accessToken = null,
         ?RequestOptions $requestOptions = null,
     ): ?Order
@@ -79,7 +80,7 @@ final class FulfillmentClient
     }
 
     public function getOrders(
-        ?string $fieldGroups = null,
+        ?\EBay\OrderManagement\Generated\Fulfillment\Order\GetFieldGroupsQueryParameterType $fieldGroups = null,
         ?string $filter = null,
         ?string $limit = null,
         ?string $offset = null,
@@ -178,10 +179,10 @@ final class FulfillmentClient
         ?string $fileId = null,
         ?string $accessToken = null,
         ?RequestOptions $requestOptions = null,
-    ): void
+    ): mixed
     {
         $headers = $this->mergedHeaders($requestOptions);
-        $this->call($accessToken, fn($api) =>
+        return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->fetch_evidence_content()->get(
                 new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Fetch_evidence_content\Fetch_evidence_contentRequestBuilderGetRequestConfiguration(
                     headers: $headers,
@@ -277,7 +278,7 @@ final class FulfillmentClient
         $headers = $this->mergedHeaders($requestOptions);
         return $this->call($accessToken, fn($api) =>
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->upload_evidence_file()->post(
-                $body,
+                new MultipartFile("file", $body),
                 new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Upload_evidence_file\Upload_evidence_fileRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
@@ -311,6 +312,22 @@ final class FulfillmentClient
             $api->payment_dispute()->byPayment_dispute_id($paymentDisputeId)->update_evidence()->post(
                 $body,
                 new \EBay\OrderManagement\Generated\Fulfillment\Payment_dispute\Item\Update_evidence\Update_evidenceRequestBuilderPostRequestConfiguration(headers: $headers)
+            )->wait()
+        );
+    }
+
+    public function createAdditionalShippingFulfillment(
+        string $orderId,
+        ShippingTrackingDetails $body,
+        ?string $accessToken = null,
+        ?RequestOptions $requestOptions = null,
+    ): void
+    {
+        $headers = $this->mergedHeaders($requestOptions);
+        $this->call($accessToken, fn($api) =>
+            $api->order()->byOrderId($orderId)->shipping_fulfillment()->create_additional()->post(
+                $body,
+                new \EBay\OrderManagement\Generated\Fulfillment\Order\Item\Shipping_fulfillment\Create_additional\Create_additionalRequestBuilderPostRequestConfiguration(headers: $headers)
             )->wait()
         );
     }

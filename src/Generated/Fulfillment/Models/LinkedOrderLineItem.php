@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -42,14 +43,14 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     private ?string $lineItemId = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate The end of the date range in which the linked line item is expected to be delivered to the shipping address.
+     * @var DateTime|null $maxEstimatedDeliveryDate The end of the date range in which the linked line item is expected to be delivered to the shipping address.
     */
-    private ?string $maxEstimatedDeliveryDate = null;
+    private ?DateTime $maxEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $minEstimatedDeliveryDate The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
+     * @var DateTime|null $minEstimatedDeliveryDate The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
     */
-    private ?string $minEstimatedDeliveryDate = null;
+    private ?DateTime $minEstimatedDeliveryDate = null;
     
     /**
      * @var string|null $orderId The unique identifier of the order to which the linked line item belongs.
@@ -104,8 +105,8 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
         return  [
             'lineItemAspects' => fn(ParseNode $n) => $o->setLineItemAspects($n->getCollectionOfObjectValues([NameValuePair::class, 'createFromDiscriminatorValue'])),
             'lineItemId' => fn(ParseNode $n) => $o->setLineItemId($n->getStringValue()),
-            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getStringValue()),
-            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getStringValue()),
+            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getDateTimeValue()),
+            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getDateTimeValue()),
             'orderId' => fn(ParseNode $n) => $o->setOrderId($n->getStringValue()),
             'sellerId' => fn(ParseNode $n) => $o->setSellerId($n->getStringValue()),
             'shipments' => fn(ParseNode $n) => $o->setShipments($n->getCollectionOfObjectValues([TrackingInfo::class, 'createFromDiscriminatorValue'])),
@@ -131,17 +132,17 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the maxEstimatedDeliveryDate property value. The end of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMaxEstimatedDeliveryDate(): ?string {
+    public function getMaxEstimatedDeliveryDate(): ?DateTime {
         return $this->maxEstimatedDeliveryDate;
     }
 
     /**
      * Gets the minEstimatedDeliveryDate property value. The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMinEstimatedDeliveryDate(): ?string {
+    public function getMinEstimatedDeliveryDate(): ?DateTime {
         return $this->minEstimatedDeliveryDate;
     }
 
@@ -184,8 +185,8 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeCollectionOfObjectValues('lineItemAspects', $this->getLineItemAspects());
         $writer->writeStringValue('lineItemId', $this->getLineItemId());
-        $writer->writeStringValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
-        $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
         $writer->writeStringValue('orderId', $this->getOrderId());
         $writer->writeStringValue('sellerId', $this->getSellerId());
         $writer->writeCollectionOfObjectValues('shipments', $this->getShipments());
@@ -219,17 +220,17 @@ class LinkedOrderLineItem implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the maxEstimatedDeliveryDate property value. The end of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
-    public function setMaxEstimatedDeliveryDate(?string $value): void {
+    public function setMaxEstimatedDeliveryDate(?DateTime $value): void {
         $this->maxEstimatedDeliveryDate = $value;
     }
 
     /**
      * Sets the minEstimatedDeliveryDate property value. The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.
-     * @param string|null $value Value to set for the minEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the minEstimatedDeliveryDate property.
     */
-    public function setMinEstimatedDeliveryDate(?string $value): void {
+    public function setMinEstimatedDeliveryDate(?DateTime $value): void {
         $this->minEstimatedDeliveryDate = $value;
     }
 

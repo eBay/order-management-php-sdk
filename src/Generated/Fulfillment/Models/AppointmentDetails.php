@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -32,14 +33,14 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $appointmentEndTime The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
+     * @var DateTime|null $appointmentEndTime The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
     */
-    private ?string $appointmentEndTime = null;
+    private ?DateTime $appointmentEndTime = null;
     
     /**
-     * @var string|null $appointmentStartTime The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
+     * @var DateTime|null $appointmentStartTime The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
     */
-    private ?string $appointmentStartTime = null;
+    private ?DateTime $appointmentStartTime = null;
     
     /**
      * @var AppointmentStatusEnum|null $appointmentStatus The status of the appointment.
@@ -87,17 +88,17 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getAppointmentEndTime(): ?string {
+    public function getAppointmentEndTime(): ?DateTime {
         return $this->appointmentEndTime;
     }
 
     /**
      * Gets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getAppointmentStartTime(): ?string {
+    public function getAppointmentStartTime(): ?DateTime {
         return $this->appointmentStartTime;
     }
 
@@ -132,8 +133,8 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'appointmentEndTime' => fn(ParseNode $n) => $o->setAppointmentEndTime($n->getStringValue()),
-            'appointmentStartTime' => fn(ParseNode $n) => $o->setAppointmentStartTime($n->getStringValue()),
+            'appointmentEndTime' => fn(ParseNode $n) => $o->setAppointmentEndTime($n->getDateTimeValue()),
+            'appointmentStartTime' => fn(ParseNode $n) => $o->setAppointmentStartTime($n->getDateTimeValue()),
             'appointmentStatus' => fn(ParseNode $n) => $o->setAppointmentStatus($n->getEnumValue(AppointmentStatusEnum::class)),
             'appointmentType' => fn(ParseNode $n) => $o->setAppointmentType($n->getEnumValue(AppointmentTypeEnum::class)),
             'appointmentWindow' => fn(ParseNode $n) => $o->setAppointmentWindow($n->getEnumValue(AppointmentWindowEnum::class)),
@@ -154,8 +155,8 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('appointmentEndTime', $this->getAppointmentEndTime());
-        $writer->writeStringValue('appointmentStartTime', $this->getAppointmentStartTime());
+        $writer->writeDateTimeValue('appointmentEndTime', $this->getAppointmentEndTime());
+        $writer->writeDateTimeValue('appointmentStartTime', $this->getAppointmentStartTime());
         $writer->writeEnumValue('appointmentStatus', $this->getAppointmentStatus());
         $writer->writeEnumValue('appointmentType', $this->getAppointmentType());
         $writer->writeEnumValue('appointmentWindow', $this->getAppointmentWindow());
@@ -173,17 +174,17 @@ class AppointmentDetails implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the appointmentEndTime property value. The date and time the appointment ends, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:00:00.000Z</code>
-     * @param string|null $value Value to set for the appointmentEndTime property.
+     * @param DateTime|null $value Value to set for the appointmentEndTime property.
     */
-    public function setAppointmentEndTime(?string $value): void {
+    public function setAppointmentEndTime(?DateTime $value): void {
         $this->appointmentEndTime = $value;
     }
 
     /**
      * Sets the appointmentStartTime property value. The date and time the appointment begins, formatted as an <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2022-10-28T00:10:00.000Z</code>
-     * @param string|null $value Value to set for the appointmentStartTime property.
+     * @param DateTime|null $value Value to set for the appointmentStartTime property.
     */
-    public function setAppointmentStartTime(?string $value): void {
+    public function setAppointmentStartTime(?DateTime $value): void {
         $this->appointmentStartTime = $value;
     }
 

@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -42,19 +43,19 @@ class LineItemFulfillmentInstructions implements AdditionalDataHolder, Parsable
     private ?bool $guaranteedDelivery = null;
     
     /**
-     * @var string|null $maxEstimatedDeliveryDate The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
+     * @var DateTime|null $maxEstimatedDeliveryDate The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
     */
-    private ?string $maxEstimatedDeliveryDate = null;
+    private ?DateTime $maxEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $minEstimatedDeliveryDate The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
+     * @var DateTime|null $minEstimatedDeliveryDate The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
     */
-    private ?string $minEstimatedDeliveryDate = null;
+    private ?DateTime $minEstimatedDeliveryDate = null;
     
     /**
-     * @var string|null $shipByDate The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
+     * @var DateTime|null $shipByDate The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
     */
-    private ?string $shipByDate = null;
+    private ?DateTime $shipByDate = null;
     
     /**
      * @var string|null $sourceTimeZone This field is reserved for internal or future use. <!-- Source time zone. This is time zone id from Olson database. Example: America/Los_Angeles. Ship by date is calculated relative to this time zone. -->
@@ -102,9 +103,9 @@ class LineItemFulfillmentInstructions implements AdditionalDataHolder, Parsable
         return  [
             'destinationTimeZone' => fn(ParseNode $n) => $o->setDestinationTimeZone($n->getStringValue()),
             'guaranteedDelivery' => fn(ParseNode $n) => $o->setGuaranteedDelivery($n->getBooleanValue()),
-            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getStringValue()),
-            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getStringValue()),
-            'shipByDate' => fn(ParseNode $n) => $o->setShipByDate($n->getStringValue()),
+            'maxEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMaxEstimatedDeliveryDate($n->getDateTimeValue()),
+            'minEstimatedDeliveryDate' => fn(ParseNode $n) => $o->setMinEstimatedDeliveryDate($n->getDateTimeValue()),
+            'shipByDate' => fn(ParseNode $n) => $o->setShipByDate($n->getDateTimeValue()),
             'sourceTimeZone' => fn(ParseNode $n) => $o->setSourceTimeZone($n->getStringValue()),
         ];
     }
@@ -119,25 +120,25 @@ class LineItemFulfillmentInstructions implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMaxEstimatedDeliveryDate(): ?string {
+    public function getMaxEstimatedDeliveryDate(): ?DateTime {
         return $this->maxEstimatedDeliveryDate;
     }
 
     /**
      * Gets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getMinEstimatedDeliveryDate(): ?string {
+    public function getMinEstimatedDeliveryDate(): ?DateTime {
         return $this->minEstimatedDeliveryDate;
     }
 
     /**
      * Gets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getShipByDate(): ?string {
+    public function getShipByDate(): ?DateTime {
         return $this->shipByDate;
     }
 
@@ -156,9 +157,9 @@ class LineItemFulfillmentInstructions implements AdditionalDataHolder, Parsable
     public function serialize(SerializationWriter $writer): void {
         $writer->writeStringValue('destinationTimeZone', $this->getDestinationTimeZone());
         $writer->writeBooleanValue('guaranteedDelivery', $this->getGuaranteedDelivery());
-        $writer->writeStringValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
-        $writer->writeStringValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
-        $writer->writeStringValue('shipByDate', $this->getShipByDate());
+        $writer->writeDateTimeValue('maxEstimatedDeliveryDate', $this->getMaxEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('minEstimatedDeliveryDate', $this->getMinEstimatedDeliveryDate());
+        $writer->writeDateTimeValue('shipByDate', $this->getShipByDate());
         $writer->writeStringValue('sourceTimeZone', $this->getSourceTimeZone());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -189,25 +190,25 @@ class LineItemFulfillmentInstructions implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the maxEstimatedDeliveryDate property value. The estimated latest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options. The seller must pay extra attention to this date, as a failure to deliver by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @param string|null $value Value to set for the maxEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the maxEstimatedDeliveryDate property.
     */
-    public function setMaxEstimatedDeliveryDate(?string $value): void {
+    public function setMaxEstimatedDeliveryDate(?DateTime $value): void {
         $this->maxEstimatedDeliveryDate = $value;
     }
 
     /**
      * Sets the minEstimatedDeliveryDate property value. The estimated earliest date and time that the buyer can expect to receive the line item based on the seller's stated handling time and the transit times of the available shipping service options.<br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @param string|null $value Value to set for the minEstimatedDeliveryDate property.
+     * @param DateTime|null $value Value to set for the minEstimatedDeliveryDate property.
     */
-    public function setMinEstimatedDeliveryDate(?string $value): void {
+    public function setMinEstimatedDeliveryDate(?DateTime $value): void {
         $this->minEstimatedDeliveryDate = $value;
     }
 
     /**
      * Sets the shipByDate property value. The latest date and time by which the seller should ship line item in order to meet the expected delivery window. This timestamp will be set by eBay based on time of purchase and the seller's stated handling time. The seller must pay extra attention to this date, as a failure to physically ship the line item by this date/time can result in a 'Late shipment' seller defect, and can affect seller level and Top-Rated Seller status. In addition to the seller defect, buyers will be eligible for a shipping cost refund, and will also be eligible to return the item for a full refund (with no return shipping charge) if they choose. <br><br><span class="tablenote"><strong>Note:</strong> This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html" title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code></span>
-     * @param string|null $value Value to set for the shipByDate property.
+     * @param DateTime|null $value Value to set for the shipByDate property.
     */
-    public function setShipByDate(?string $value): void {
+    public function setShipByDate(?DateTime $value): void {
         $this->shipByDate = $value;
     }
 

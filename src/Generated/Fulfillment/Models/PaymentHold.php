@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -32,9 +33,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $expectedReleaseDate The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $expectedReleaseDate The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $expectedReleaseDate = null;
+    private ?DateTime $expectedReleaseDate = null;
     
     /**
      * @var Amount|null $holdAmount The monetary amount of the payment being held. This field is always returned with the <strong>paymentHolds</strong> array. 
@@ -52,9 +53,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
     private ?string $holdState = null;
     
     /**
-     * @var string|null $releaseDate The date and time that the payment being held was actually released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $releaseDate The date and time that the payment being held was actually released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $releaseDate = null;
+    private ?DateTime $releaseDate = null;
     
     /**
      * @var array<SellerActionsToRelease>|null $sellerActionsToRelease A list of one or more possible actions that the seller can take to expedite the release of the payment hold.
@@ -87,9 +88,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the expectedReleaseDate property value. The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getExpectedReleaseDate(): ?string {
+    public function getExpectedReleaseDate(): ?DateTime {
         return $this->expectedReleaseDate;
     }
 
@@ -100,11 +101,11 @@ class PaymentHold implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'expectedReleaseDate' => fn(ParseNode $n) => $o->setExpectedReleaseDate($n->getStringValue()),
+            'expectedReleaseDate' => fn(ParseNode $n) => $o->setExpectedReleaseDate($n->getDateTimeValue()),
             'holdAmount' => fn(ParseNode $n) => $o->setHoldAmount($n->getObjectValue([Amount::class, 'createFromDiscriminatorValue'])),
             'holdReason' => fn(ParseNode $n) => $o->setHoldReason($n->getStringValue()),
             'holdState' => fn(ParseNode $n) => $o->setHoldState($n->getStringValue()),
-            'releaseDate' => fn(ParseNode $n) => $o->setReleaseDate($n->getStringValue()),
+            'releaseDate' => fn(ParseNode $n) => $o->setReleaseDate($n->getDateTimeValue()),
             'sellerActionsToRelease' => fn(ParseNode $n) => $o->setSellerActionsToRelease($n->getCollectionOfObjectValues([SellerActionsToRelease::class, 'createFromDiscriminatorValue'])),
         ];
     }
@@ -135,9 +136,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the releaseDate property value. The date and time that the payment being held was actually released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getReleaseDate(): ?string {
+    public function getReleaseDate(): ?DateTime {
         return $this->releaseDate;
     }
 
@@ -154,11 +155,11 @@ class PaymentHold implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('expectedReleaseDate', $this->getExpectedReleaseDate());
+        $writer->writeDateTimeValue('expectedReleaseDate', $this->getExpectedReleaseDate());
         $writer->writeObjectValue('holdAmount', $this->getHoldAmount());
         $writer->writeStringValue('holdReason', $this->getHoldReason());
         $writer->writeStringValue('holdState', $this->getHoldState());
-        $writer->writeStringValue('releaseDate', $this->getReleaseDate());
+        $writer->writeDateTimeValue('releaseDate', $this->getReleaseDate());
         $writer->writeCollectionOfObjectValues('sellerActionsToRelease', $this->getSellerActionsToRelease());
         $writer->writeAdditionalData($this->getAdditionalData());
     }
@@ -173,9 +174,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the expectedReleaseDate property value. The date and time that the payment being held is expected to be released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the expectedReleaseDate property.
+     * @param DateTime|null $value Value to set for the expectedReleaseDate property.
     */
-    public function setExpectedReleaseDate(?string $value): void {
+    public function setExpectedReleaseDate(?DateTime $value): void {
         $this->expectedReleaseDate = $value;
     }
 
@@ -205,9 +206,9 @@ class PaymentHold implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the releaseDate property value. The date and time that the payment being held was actually released to the seller. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller's payment is actually released into the seller's account.<br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the releaseDate property.
+     * @param DateTime|null $value Value to set for the releaseDate property.
     */
-    public function setReleaseDate(?string $value): void {
+    public function setReleaseDate(?DateTime $value): void {
         $this->releaseDate = $value;
     }
 

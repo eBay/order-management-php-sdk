@@ -20,12 +20,6 @@ namespace EBay\OrderManagement\GraphQL\Operations;
 
 final class ReturnOperations
 {
-    public static function ADD_LISTINGS_TO_RETURN_RULE_LISTING_GROUP(): string
-    {
-        return file_get_contents(__DIR__ . '/addListingsToReturnRuleListingGroup.graphql')
-            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: addListingsToReturnRuleListingGroup.graphql');
-    }
-
     public static function APPEND_SELLER_RETURN_RESPONSE_RULE(): string
     {
         return file_get_contents(__DIR__ . '/appendSellerReturnResponseRule.graphql')
@@ -50,28 +44,10 @@ final class ReturnOperations
             ?: throw new \RuntimeException('Failed to read bundled GraphQL file: attachReturnShipmentLabel.graphql');
     }
 
-    public static function CREATE_IN_STORE_RETURN(): string
-    {
-        return file_get_contents(__DIR__ . '/createInStoreReturn.graphql')
-            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: createInStoreReturn.graphql');
-    }
-
-    public static function CREATE_RETURN_RULE_LISTING_GROUP(): string
-    {
-        return file_get_contents(__DIR__ . '/createReturnRuleListingGroup.graphql')
-            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: createReturnRuleListingGroup.graphql');
-    }
-
     public static function DECLINE_RETURN(): string
     {
         return file_get_contents(__DIR__ . '/declineReturn.graphql')
             ?: throw new \RuntimeException('Failed to read bundled GraphQL file: declineReturn.graphql');
-    }
-
-    public static function DELETE_RETURN_RULE_LISTING_GROUP(): string
-    {
-        return file_get_contents(__DIR__ . '/deleteReturnRuleListingGroup.graphql')
-            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: deleteReturnRuleListingGroup.graphql');
     }
 
     public static function DELETE_SELLER_RETURN_RULE(): string
@@ -114,12 +90,6 @@ final class ReturnOperations
     {
         return file_get_contents(__DIR__ . '/recordReturnReceived.graphql')
             ?: throw new \RuntimeException('Failed to read bundled GraphQL file: recordReturnReceived.graphql');
-    }
-
-    public static function RETURN_RULE_LISTING_GROUP(): string
-    {
-        return file_get_contents(__DIR__ . '/returnRuleListingGroup.graphql')
-            ?: throw new \RuntimeException('Failed to read bundled GraphQL file: returnRuleListingGroup.graphql');
     }
 
     public static function SELLER_ORDER_RETURNS(): string

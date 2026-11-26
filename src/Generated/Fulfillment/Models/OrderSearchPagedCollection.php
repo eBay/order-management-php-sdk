@@ -67,7 +67,7 @@ class OrderSearchPagedCollection implements AdditionalDataHolder, Parsable
     private ?int $total = null;
     
     /**
-     * @var array<ErrorDetailV3>|null $warnings This array is returned if one or more errors or warnings occur with the call request.
+     * @var array<ErrorDetail>|null $warnings This array is returned if one or more errors or warnings occur with the call request.
     */
     private ?array $warnings = null;
     
@@ -109,7 +109,7 @@ class OrderSearchPagedCollection implements AdditionalDataHolder, Parsable
             'orders' => fn(ParseNode $n) => $o->setOrders($n->getCollectionOfObjectValues([Order::class, 'createFromDiscriminatorValue'])),
             'prev' => fn(ParseNode $n) => $o->setPrev($n->getStringValue()),
             'total' => fn(ParseNode $n) => $o->setTotal($n->getIntegerValue()),
-            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetailV3::class, 'createFromDiscriminatorValue'])),
+            'warnings' => fn(ParseNode $n) => $o->setWarnings($n->getCollectionOfObjectValues([ErrorDetail::class, 'createFromDiscriminatorValue'])),
         ];
     }
 
@@ -171,7 +171,7 @@ class OrderSearchPagedCollection implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
-     * @return array<ErrorDetailV3>|null
+     * @return array<ErrorDetail>|null
     */
     public function getWarnings(): ?array {
         return $this->warnings;
@@ -259,7 +259,7 @@ class OrderSearchPagedCollection implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the warnings property value. This array is returned if one or more errors or warnings occur with the call request.
-     * @param array<ErrorDetailV3>|null $value Value to set for the warnings property.
+     * @param array<ErrorDetail>|null $value Value to set for the warnings property.
     */
     public function setWarnings(?array $value): void {
         $this->warnings = $value;

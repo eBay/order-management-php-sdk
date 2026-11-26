@@ -16,6 +16,7 @@
 
 namespace EBay\OrderManagement\Generated\Fulfillment\Models;
 
+use DateTime;
 use Microsoft\Kiota\Abstractions\Serialization\AdditionalDataHolder;
 use Microsoft\Kiota\Abstractions\Serialization\Parsable;
 use Microsoft\Kiota\Abstractions\Serialization\ParseNode;
@@ -32,9 +33,9 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     private ?array $additionalData = null;
     
     /**
-     * @var string|null $cancelledDate The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
+     * @var DateTime|null $cancelledDate The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
     */
-    private ?string $cancelledDate = null;
+    private ?DateTime $cancelledDate = null;
     
     /**
      * @var array<CancelRequest>|null $cancelRequests This array contains details of one or more buyer requests to cancel the order. <br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders" target="_blank">getOrders</a> call:</strong>  This array is returned but is always empty.<br><br><strong>For the <a href="/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder" target="_blank">getOrder</a> call:</strong> This array is returned fully populated with information about any cancellation requests.
@@ -72,9 +73,9 @@ class CancelStatus implements AdditionalDataHolder, Parsable
 
     /**
      * Gets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @return string|null
+     * @return DateTime|null
     */
-    public function getCancelledDate(): ?string {
+    public function getCancelledDate(): ?DateTime {
         return $this->cancelledDate;
     }
 
@@ -101,7 +102,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
     public function getFieldDeserializers(): array {
         $o = $this;
         return  [
-            'cancelledDate' => fn(ParseNode $n) => $o->setCancelledDate($n->getStringValue()),
+            'cancelledDate' => fn(ParseNode $n) => $o->setCancelledDate($n->getDateTimeValue()),
             'cancelRequests' => fn(ParseNode $n) => $o->setCancelRequests($n->getCollectionOfObjectValues([CancelRequest::class, 'createFromDiscriminatorValue'])),
             'cancelState' => fn(ParseNode $n) => $o->setCancelState($n->getEnumValue(CancelStateEnum::class)),
         ];
@@ -112,7 +113,7 @@ class CancelStatus implements AdditionalDataHolder, Parsable
      * @param SerializationWriter $writer Serialization writer to use to serialize this model
     */
     public function serialize(SerializationWriter $writer): void {
-        $writer->writeStringValue('cancelledDate', $this->getCancelledDate());
+        $writer->writeDateTimeValue('cancelledDate', $this->getCancelledDate());
         $writer->writeCollectionOfObjectValues('cancelRequests', $this->getCancelRequests());
         $writer->writeEnumValue('cancelState', $this->getCancelState());
         $writer->writeAdditionalData($this->getAdditionalData());
@@ -128,9 +129,9 @@ class CancelStatus implements AdditionalDataHolder, Parsable
 
     /**
      * Sets the cancelledDate property value. The date and time the order was cancelled, if applicable. This timestamp is in <a href="https://www.iso.org/iso-8601-date-and-time-format.html " title="https://www.iso.org " target="_blank">ISO&nbsp;8601</a> format, which uses the 24-hour Universal Coordinated Time (UTC) clock. <br><br><strong>Format:</strong> <code>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z</code> <br><strong>Example:</strong> <code>2015-08-04T19:09:02.768Z</code>
-     * @param string|null $value Value to set for the cancelledDate property.
+     * @param DateTime|null $value Value to set for the cancelledDate property.
     */
-    public function setCancelledDate(?string $value): void {
+    public function setCancelledDate(?DateTime $value): void {
         $this->cancelledDate = $value;
     }
 

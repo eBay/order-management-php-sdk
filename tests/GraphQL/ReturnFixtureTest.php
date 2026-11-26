@@ -30,15 +30,11 @@ class ReturnFixtureTest extends TestCase
     private static function operations(): array
     {
         return [
-            'addListingsToReturnRuleListingGroup',
             'appendSellerReturnResponseRule',
             'appendSellerReturnToAddressRule',
             'approveReturn',
             'attachReturnShipmentLabel',
-            'createInStoreReturn',
-            'createReturnRuleListingGroup',
             'declineReturn',
-            'deleteReturnRuleListingGroup',
             'deleteSellerReturnRule',
             'orderReturn',
             'processReturnRefund',
@@ -46,7 +42,6 @@ class ReturnFixtureTest extends TestCase
             'provideRmaNumber',
             'recordReturnLabelSentOffline',
             'recordReturnReceived',
-            'returnRuleListingGroup',
             'sellerOrderReturns',
             'sellerReturnPreference',
             'sendReturnMessage',
